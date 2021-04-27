@@ -5,7 +5,7 @@ Changelog
 ---------------------------
 * Change: Fix testing, linting and pep8 [erral]
 
-1.0-dev0 - (unreleased)
+1.0 - (2021-04-27)
 -----------------------
 
 * Initial release.
