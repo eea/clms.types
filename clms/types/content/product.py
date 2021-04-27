@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+DataSet content-type definition
+"""
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope.interface import implementer
@@ -49,4 +52,4 @@ class IProduct(model.Schema):
 
 @implementer(IProduct)
 class Product(Container):
-    """"""
+    """ Product content type class """

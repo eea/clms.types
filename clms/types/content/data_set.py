@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+DataSet content-type definition
+"""
 from clms.types import _
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
@@ -133,4 +136,4 @@ class IDataSet(model.Schema):
 
 @implementer(IDataSet)
 class DataSet(Container):
-    """"""
+    """ DataSet content-type class """
