@@ -14,9 +14,12 @@ class EEAFixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         """Setup Zope"""
+        import plone.restapi
         import clms.types
 
+        self.loadZCML(package=plone.restapi)
         self.loadZCML(package=clms.types)
+        z2.installProduct(app, "plone.restapi")
         z2.installProduct(app, "clms.types")
 
     def setUpPloneSite(self, portal):
