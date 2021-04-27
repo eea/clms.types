@@ -3,7 +3,7 @@ pipeline {
 
   environment {
         GIT_NAME = "clms.types"
-        SONARQUBE_TAGS = "www.eea.europa.eu"
+        SONARQUBE_TAGS = "clms.land.copernicus.eu"
     }
 
   stages {
