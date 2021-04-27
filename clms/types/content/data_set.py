@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
+"""
+DataSet content-type definition
+"""
+from clms.types import _
 from plone.app.textfield import RichText
-
-# from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
-
-# from plone.supermodel.directives import fieldset
-# from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.interface import implementer
-
-
-from clms.types import _
 
 
 class IDataSet(model.Schema):
@@ -57,9 +53,13 @@ class IDataSet(model.Schema):
 
     dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
 
-    dataResourceAbstract = RichText(title=_(u"dataResourceAbstract"), required=False)
+    dataResourceAbstract = RichText(
+        title=_(u"dataResourceAbstract"), required=False
+    )
 
-    dataResourceLocator = schema.URI(title=_(u"dataResourceLocator"), required=False)
+    dataResourceLocator = schema.URI(
+        title=_(u"dataResourceLocator"), required=False
+    )
 
     dataResourceTitle = schema.TextLine(
         title=_(u"dataResourceTitle"),
@@ -90,7 +90,9 @@ class IDataSet(model.Schema):
     #     required=True
     # )
 
-    geographicAccuracy = RichText(title=_(u"geographicAccuracy"), required=False)
+    geographicAccuracy = RichText(
+        title=_(u"geographicAccuracy"), required=False
+    )
 
     # geographicBoundingBox = schema.List(
     #     title=_(u'geographicBoundingBox'),
@@ -115,7 +117,9 @@ class IDataSet(model.Schema):
         title=_(u"qualitySpatialResolution"), required=False
     )
 
-    responsiblePartyRole = RichText(title=_(u"responsiblePartyRole"), required=False)
+    responsiblePartyRole = RichText(
+        title=_(u"responsiblePartyRole"), required=False
+    )
 
     # advertisement = namedfile.NamedBlobImage(
     #     title=_(u'Advertisement (Gold-sponsors and above)'),
@@ -132,4 +136,4 @@ class IDataSet(model.Schema):
 
 @implementer(IDataSet)
 class DataSet(Container):
-    """"""
+    """ DataSet content-type class """
