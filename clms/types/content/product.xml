@@ -1,0 +1,20 @@
+<model
+    xmlns="http://namespaces.plone.org/supermodel/schema"
+    xmlns:security="http://namespaces.plone.org/supermodel/security"
+    xmlns:form="http://namespaces.plone.org/supermodel/form"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="clms.types">
+  <schema>
+  <field name="image" type="plone.namedfile.field.NamedBlobImage">
+    <title i18n:translate="">Image</title>
+    <description i18n:translate=""></description>
+    <required>False</required>
+    <readonly>False</readonly>
+  </field>
+  <field name="text" type="plone.app.textfield.RichText">
+    <title>Text</title>
+    <description></description>
+    <required>False</required>
+  </field>
+  </schema>
+</model>
