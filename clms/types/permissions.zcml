@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="clms.types.AddDataSet"
+        title="clms.types: Add DataSet"
+    />
+
+
+    <permission
         id="clms.types.AddProduct"
         title="clms.types: Add Product"
     />
