@@ -2,7 +2,7 @@
 """
 from zope.i18nmessageid.message import MessageFactory
 
-EEAMessageFactory = MessageFactory("clms.types")
+_ = MessageFactory("clms.types")
 
 
 def initialize(context):
