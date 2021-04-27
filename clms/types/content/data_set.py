@@ -57,9 +57,13 @@ class IDataSet(model.Schema):
 
     dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
 
-    dataResourceAbstract = RichText(title=_(u"dataResourceAbstract"), required=False)
+    dataResourceAbstract = RichText(
+        title=_(u"dataResourceAbstract"), required=False
+    )
 
-    dataResourceLocator = schema.URI(title=_(u"dataResourceLocator"), required=False)
+    dataResourceLocator = schema.URI(
+        title=_(u"dataResourceLocator"), required=False
+    )
 
     dataResourceTitle = schema.TextLine(
         title=_(u"dataResourceTitle"),
@@ -90,7 +94,9 @@ class IDataSet(model.Schema):
     #     required=True
     # )
 
-    geographicAccuracy = RichText(title=_(u"geographicAccuracy"), required=False)
+    geographicAccuracy = RichText(
+        title=_(u"geographicAccuracy"), required=False
+    )
 
     # geographicBoundingBox = schema.List(
     #     title=_(u'geographicBoundingBox'),
@@ -115,7 +121,9 @@ class IDataSet(model.Schema):
         title=_(u"qualitySpatialResolution"), required=False
     )
 
-    responsiblePartyRole = RichText(title=_(u"responsiblePartyRole"), required=False)
+    responsiblePartyRole = RichText(
+        title=_(u"responsiblePartyRole"), required=False
+    )
 
     # advertisement = namedfile.NamedBlobImage(
     #     title=_(u'Advertisement (Gold-sponsors and above)'),
