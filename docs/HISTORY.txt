@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.1-dev0 - (unreleased)
+---------------------------
+
+* Add layout configuration [erral]
+
+
 1.0 - (2021-04-27)
 ---------------------------
 * Change: Fix testing, linting and pep8 [erral]
