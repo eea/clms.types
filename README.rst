@@ -32,7 +32,6 @@ Install
 
 * You can download a sample buildout from:
 
-  - https://github.com/eea/clms.types/tree/master/buildouts/plone4
   - https://github.com/eea/clms.types/tree/master/buildouts/plone5
 
 * Or via docker::
@@ -45,14 +44,12 @@ Install
 Buildout installation
 =====================
 
-- `Plone 4+ <https://github.com/eea/clms.types/tree/master/buildouts/plone4>`_
 - `Plone 5+ <https://github.com/eea/clms.types/tree/master/buildouts/plone5>`_
 
 
 Source code
 ===========
 
-- `Plone 4+ on github <https://github.com/eea/clms.types>`_
 - `Plone 5+ on github <https://github.com/eea/clms.types>`_
 
 
@@ -65,7 +62,7 @@ Eggs repository
 
 Plone versions
 ==============
-It has been developed and tested for Plone 4 and 5. See buildouts section above.
+It has been developed and tested for Plone 5. See buildouts section above.
 
 
 How to contribute
