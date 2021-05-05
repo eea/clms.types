@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1 - (2021-05-05)
+---------------------------
+* Change: Remove Plone 4 references [aitzol]
+
 1.1-dev0 - (unreleased)
 ---------------------------
 
