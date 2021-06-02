@@ -17,6 +17,7 @@ class VocabItem(object):
     """
     VocabItem class
     """
+
     def __init__(self, token, value):
         self.token = token
         self.value = value
@@ -27,7 +28,6 @@ class TopicsVocabulary(object):
     """
     Topics vocabulary class
     """
-
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
