@@ -18,6 +18,12 @@
     />
 
 
+    <permission
+        id="clms.types.AddUseCase"
+        title="clms.types: Add UseCase"
+    />
+
+
 
   </configure>
 
