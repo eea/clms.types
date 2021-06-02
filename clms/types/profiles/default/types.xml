@@ -4,4 +4,5 @@
   <!--<object name="example_ct" meta_type="Dexterity FTI"/>-->
   <object name="Product" meta_type="Dexterity FTI"/>
   <object name="DataSet" meta_type="Dexterity FTI"/>
+  <object name="UseCase" meta_type="Dexterity FTI"/>
 </object>

@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.2 - (2021-06-02)
+---------------------------
+* Change: useCase content_type
+  [ionlizarazu]
+
 1.1 - (2021-05-05)
 ---------------------------
 * Change: Remove Plone 4 references [aitzol]

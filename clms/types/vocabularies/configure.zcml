@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="clms.types">
+
+    <!-- -*- extra stuff goes here -*- -->
+
+    <utility
+        component=".topics_vocabulary.TopicsVocabularyFactory"
+        name="clms.types.TopicsVocabulary"
+    />
+
+
+</configure>

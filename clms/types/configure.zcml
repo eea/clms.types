@@ -10,5 +10,6 @@
   <include package=".browser" />
   <include package=".upgrades" />
   <include package=".content" />
+  <include package=".vocabularies" />
 
 </configure>
