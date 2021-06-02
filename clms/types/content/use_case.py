@@ -23,15 +23,10 @@ def products_vocabulary_factory():
     productsList = [(p.getObject().id, p.getObject().title) for p in products]
     terms = [SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
              for pair in productsList]
-    products_vocabulary = SimpleVocabulary(terms)
-    return products_vocabulary
+    return SimpleVocabulary(terms)
 
 
 products_vocabulary = products_vocabulary_factory()
-
-
-class IUseCaseMarker(Interface):
-    pass
 
 
 class IUseCase(model.Schema):
@@ -122,89 +117,5 @@ class IUseCase(model.Schema):
 
 
 @implementer(IUseCase)
-@adapter(IUseCaseMarker)
 class UseCase(Container):
     """ UseCase content-type class """
-
-    def __init__(self, context):
-        self.context = context
-
-    @property
-    def products(self):
-        if hasattr(self.context, "products"):
-            return self.context.products
-        return None
-
-    @products.setter
-    def products(self, value):
-        self.context.products = value
-
-    @property
-    def responsibleOrganization(self):
-        if hasattr(self.context, "responsibleOrganization"):
-            return self.context.responsibleOrganization
-        return None
-
-    @responsibleOrganization.setter
-    def responsibleOrganization(self, value):
-        self.context.responsibleOrganization = value
-
-    @property
-    def contactName(self):
-        if hasattr(self.context, "contactName"):
-            return self.context.contactName
-        return None
-
-    @contactName.setter
-    def contactName(self, value):
-        self.context.contactName = value
-
-    @property
-    def contactEmail(self):
-        if hasattr(self.context, "contactEmail"):
-            return self.context.contactEmail
-        return None
-
-    @contactEmail.setter
-    def contactEmail(self, value):
-        self.context.contactEmail = value
-
-    @property
-    def topics(self):
-        if hasattr(self.context, "topics"):
-            return self.context.topics
-        return None
-
-    @topics.setter
-    def topics(self, value):
-        self.context.topics = value
-
-    @property
-    def outcome(self):
-        if hasattr(self.context, "outcome"):
-            return self.context.outcome
-        return None
-
-    @outcome.setter
-    def outcome(self, value):
-        self.context.outcome = value
-
-    @property
-    def links(self):
-        if hasattr(self.context, "links"):
-            return self.context.links
-        return None
-
-    @links.setter
-    def links(self, value):
-        self.context.links = value
-
-    @property
-    def image(self):
-        if hasattr(self.context, "image"):
-            return self.context.image
-        return None
-
-    @image.setter
-    def image(self, value):
-        self.context.image = value
