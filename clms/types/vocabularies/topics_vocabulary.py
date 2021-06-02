@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+Topics vocabulary definition
+"""
 
 # from plone import api
 from clms.types import _
@@ -11,6 +14,9 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 
 class VocabItem(object):
+    """
+    VocabItem class
+    """
     def __init__(self, token, value):
         self.token = token
         self.value = value
@@ -19,7 +25,9 @@ class VocabItem(object):
 @implementer(IVocabularyFactory)
 class TopicsVocabulary(object):
     """
+    Topics vocabulary class
     """
+
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
@@ -31,7 +39,6 @@ class TopicsVocabulary(object):
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
-        # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501
         if not IDexterityContent.providedBy(context):
             req = getRequest()
             context = req.PARENTS[0]
