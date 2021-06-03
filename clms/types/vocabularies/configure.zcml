@@ -9,5 +9,10 @@
         name="clms.types.TopicsVocabulary"
     />
 
+    <utility
+        component=".products_vocabulary.ProductsVocabularyFactory"
+        name="clms.types.ProductsVocabulary"
+    />
+
 
 </configure>

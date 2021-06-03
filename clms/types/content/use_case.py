@@ -3,31 +3,12 @@
 UseCase content-type definition
 """
 
-from plone import api
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
-from zope.interface import implementer, provider
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
-
+from zope.interface import implementer
 from clms.types import _
-
-
-@provider(IVocabularyFactory)
-def products_vocabulary_factory():
-    """
-    Products vocabulary factory
-    """
-    products = api.content.find(portal_type='Product')
-    productsList = [(p.getObject().id, p.getObject().title) for p in products]
-    terms = [SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
-             for pair in productsList]
-    return SimpleVocabulary(terms)
-
-
-products_vocabulary = products_vocabulary_factory()
 
 
 class IUseCase(model.Schema):
@@ -50,7 +31,7 @@ class IUseCase(model.Schema):
             title=_(
                 u'CLMS products used',
             ),
-            vocabulary=products_vocabulary,
+            vocabulary=u'clms.types.ProductsVocabulary',
             required=True,
             readonly=False,
         ),
