@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.3 - (2021-06-03)
+---------------------------
+* Change: Products Vocabulary
+  [ionlizarazu]
+
 1.2 - (2021-06-02)
 ---------------------------
 * Change: useCase content_type
