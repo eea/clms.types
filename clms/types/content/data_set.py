@@ -10,70 +10,16 @@ from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer, Interface
-try:
-    from collective.z3cform.datagridfield import DictRow
-    from collective.z3cform.datagridfield.datagridfield import \
-        DataGridFieldFactory
-    DictRow  # pyflakes
-    DataGridFieldFactory  # pyflakes
-    USE_DATAGRID = True
-except ImportError:
-    from zope.schema import Object as DictRow
-    DataGridFieldFactory = None
-    USE_DATAGRID = False
 
+import json
+from plone.schema.jsonfield import JSONField
 
-
-class IBoundingRowSchema(Interface):
-    dataResourceType = schema.TextLine(
-        title=_(
-            u"Data Resource Type",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
-
-    dataResourceType2 = schema.TextLine(
-        title=_(
-            u"Data Resource Type",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
-
-    dataResourceType3 = schema.TextLine(
-        title=_(
-            u"Data Resource Type",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
-
-    dataResourceType4 = schema.TextLine(
-        title=_(
-            u"Data Resource Type",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
-
-
+MIXEDFIELD_SCHEMA = json.dumps(
+    {
+        "type": "object",
+        "properties": {"items": {"type": "array", "items": {"type": "object", "properties": {}}}},
+    }
+)
 
 
 class IDataSet(model.Schema):
@@ -147,10 +93,6 @@ class IDataSet(model.Schema):
         title=_(
             u"Dataservices",
         ),
-        description=_(
-            u"",
-        ),
-        default=u"",
         required=False,
         readonly=False,
     )
@@ -181,20 +123,15 @@ class IDataSet(model.Schema):
     #     title=_(u"geographicAccuracy"), required=False
     # )
 
-    if DataGridFieldFactory is not None:
-        widget(geographicBoundingBox=DataGridFieldFactory)
-    geographicBoundingBox = schema.List(
-        title=_(
-            u"Geographic Bounding box",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=DictRow(title=u"Schedule", schema=IBoundingRowSchema),
-        
+
+    bounding_field = JSONField(
+        title=u'Bounding box dataGrid field',
         required=False,
-        readonly=False,
-    )
+        schema=MIXEDFIELD_SCHEMA,
+        widget="bounding_widget",
+        default={"items": []},
+        missing_value={"items": []},
+        )
 
     geographicCoverage = schema.List(
         title=_(
@@ -255,10 +192,6 @@ class IDataSet(model.Schema):
         title=_(
             u"Point of contact",
         ),
-        description=_(
-            u"",
-        ),
-        default=u"",
         required=False,
         readonly=False,
     )
@@ -280,10 +213,6 @@ class IDataSet(model.Schema):
         title=_(
             u"Distribution format",
         ),
-        description=_(
-            u"",
-        ),
-        default=u"",
         required=False,
         readonly=False,
     )
