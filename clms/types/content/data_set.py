@@ -2,22 +2,27 @@
 """
 DataSet content-type definition
 """
+import json
+
 from plone.app.textfield import RichText
-from clms.types import _
-from plone.autoform.directives import widget
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
+from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
-from zope.interface import implementer, Interface
+from zope.interface import implementer
 
-import json
-from plone.schema.jsonfield import JSONField
+from clms.types import _
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
         "type": "object",
-        "properties": {"items": {"type": "array", "items": {"type": "object", "properties": {}}}},
+        "properties": {
+            "items": {
+                "type": "array",
+                "items": {"type": "object", "properties": {}},
+            }
+        },
     }
 )
 
@@ -123,15 +128,14 @@ class IDataSet(model.Schema):
     #     title=_(u"geographicAccuracy"), required=False
     # )
 
-
     bounding_field = JSONField(
-        title=u'Bounding box dataGrid field',
+        title=u"Bounding box dataGrid field",
         required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="bounding_widget",
         default={"items": []},
         missing_value={"items": []},
-        )
+    )
 
     geographicCoverage = schema.List(
         title=_(
@@ -300,4 +304,4 @@ Non-visible metadata for the user
 
 @implementer(IDataSet)
 class DataSet(Container):
-    """ DataSet content-type class """
+    """DataSet content-type class"""
