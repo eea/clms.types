@@ -4,6 +4,7 @@ DataSet content-type definition
 """
 from plone.app.textfield import RichText
 from clms.types import _
+from plone.autoform.directives import widget
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
@@ -25,6 +26,42 @@ except ImportError:
 
 class IBoundingRowSchema(Interface):
     dataResourceType = schema.TextLine(
+        title=_(
+            u"Data Resource Type",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    dataResourceType2 = schema.TextLine(
+        title=_(
+            u"Data Resource Type",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    dataResourceType3 = schema.TextLine(
+        title=_(
+            u"Data Resource Type",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    dataResourceType4 = schema.TextLine(
         title=_(
             u"Data Resource Type",
         ),
@@ -144,6 +181,8 @@ class IDataSet(model.Schema):
     #     title=_(u"geographicAccuracy"), required=False
     # )
 
+    if DataGridFieldFactory is not None:
+        widget(geographicBoundingBox=DataGridFieldFactory)
     geographicBoundingBox = schema.List(
         title=_(
             u"Geographic Bounding box",
@@ -152,9 +191,7 @@ class IDataSet(model.Schema):
             u"",
         ),
         value_type=DictRow(title=u"Schedule", schema=IBoundingRowSchema),
-        # default=[{'day': 'default', 'audience_day': False},
-        #      {'day': 'default', 'audience_day': False},
-        #      {'day': 'default', 'audience_day': False}],
+        
         required=False,
         readonly=False,
     )
