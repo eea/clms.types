@@ -42,6 +42,7 @@ setup(
     python_requires="==2.7, >=3.6",
     install_requires=[
         "setuptools",
+        "collective.z3cform.datagridfield",
         # -*- Extra requirements: -*-
         "plone.restapi",
     ],

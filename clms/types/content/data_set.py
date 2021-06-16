@@ -4,12 +4,39 @@ DataSet content-type definition
 """
 from plone.app.textfield import RichText
 from clms.types import _
-from plone.app.textfield import RichText
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
-from zope.interface import implementer
+from zope.interface import implementer, Interface
+try:
+    from collective.z3cform.datagridfield import DictRow
+    from collective.z3cform.datagridfield.datagridfield import \
+        DataGridFieldFactory
+    DictRow  # pyflakes
+    DataGridFieldFactory  # pyflakes
+    USE_DATAGRID = True
+except ImportError:
+    from zope.schema import Object as DictRow
+    DataGridFieldFactory = None
+    USE_DATAGRID = False
+
+
+
+class IBoundingRowSchema(Interface):
+    dataResourceType = schema.TextLine(
+        title=_(
+            u"Data Resource Type",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+
 
 
 class IDataSet(model.Schema):
@@ -21,16 +48,16 @@ class IDataSet(model.Schema):
     # model.load('product.xml')
 
     accessAndUseConstraints = RichText(
-        title=_(u"accessAndUseConstraints"), required=False
+        title=_(u"Access And Use Constraints"), required=False
     )
 
     accessAndUseLimitationPublic = RichText(
-        title=_(u"accessAndUseLimitationPublic"), required=False
+        title=_(u"Access And Use Limitation Public"), required=False
     )
 
     classificationTopicCategory = schema.List(
         title=_(
-            u"",
+            u"Classification Topic Category",
         ),
         description=_(
             u"",
@@ -43,13 +70,13 @@ class IDataSet(model.Schema):
     )
 
     conformitySpecification = RichText(
-        title=_(u"conformitySpecification"), required=False
+        title=_(u"Conformity Specification"), required=False
     )
 
     conformityPass = RichText(title=_(u"conformityPass"), required=False)
 
     coordinateReferenceSystem = schema.TextLine(
-        title=_(u"coordinateReferenceSystem"),
+        title=_(u"Coordinate Reference System"),
         required=False,
     )
 
@@ -59,7 +86,7 @@ class IDataSet(model.Schema):
     # )
 
     image = namedfile.NamedBlobImage(
-        title=_(u"image"),
+        title=_(u"Image"),
         required=False,
     )
 
@@ -70,7 +97,7 @@ class IDataSet(model.Schema):
     # )
 
     dataResourceLocator = schema.URI(
-        title=_(u"dataResourceLocator"), required=False
+        title=_(u"Data Resource Locator"), required=False
     )
 
     # dataResourceTitle = schema.TextLine(
@@ -93,7 +120,7 @@ class IDataSet(model.Schema):
 
     dataResourceType = schema.TextLine(
         title=_(
-            u"resource type",
+            u"Data Resource Type",
         ),
         description=_(
             u"",
@@ -119,21 +146,22 @@ class IDataSet(model.Schema):
 
     geographicBoundingBox = schema.List(
         title=_(
-            u"",
+            u"Geographic Bounding box",
         ),
         description=_(
             u"",
         ),
-        value_type=schema.TextLine(
-            title=u"",
-        ),
+        value_type=DictRow(title=u"Schedule", schema=IBoundingRowSchema),
+        # default=[{'day': 'default', 'audience_day': False},
+        #      {'day': 'default', 'audience_day': False},
+        #      {'day': 'default', 'audience_day': False}],
         required=False,
         readonly=False,
     )
 
     geographicCoverage = schema.List(
         title=_(
-            u"",
+            u"Geographic Coverage",
         ),
         description=_(
             u"",
@@ -147,7 +175,7 @@ class IDataSet(model.Schema):
 
     geographicCoverageGT = schema.List(
         title=_(
-            u"",
+            u"Geographic Coverage GT",
         ),
         description=_(
             u"",
@@ -161,16 +189,16 @@ class IDataSet(model.Schema):
 
     # owners = RichText(title=_(u"owners"), required=False)
 
-    qualityLineage = RichText(title=_(u"qualityLineage"), required=False)
+    qualityLineage = RichText(title=_(u"Quality Lineage"), required=False)
 
     qualitySpatialResolution = RichText(
-        title=_(u"qualitySpatialResolution"), required=False
+        title=_(u"Quality Spatial Resolution"), required=False
     )
 
-    responsibleParty = RichText(title=_(u"responsibleParty"), required=False)
+    responsibleParty = RichText(title=_(u"Responsible Party"), required=False)
 
     responsiblePartyRole = RichText(
-        title=_(u"responsiblePartyRole"), required=False
+        title=_(u"Responsible Party Role"), required=False
     )
 
     identifier = schema.TextLine(
@@ -200,7 +228,7 @@ class IDataSet(model.Schema):
 
     update_frequency = schema.TextLine(
         title=_(
-            u"",
+            u"Update Frequency",
         ),
         description=_(
             u"",
@@ -213,7 +241,7 @@ class IDataSet(model.Schema):
     # Make sure to import: plone.app.textfield
     distribution_format = RichText(
         title=_(
-            u"",
+            u"Distribution format",
         ),
         description=_(
             u"",
@@ -225,7 +253,7 @@ class IDataSet(model.Schema):
 
     hierarchy_level = schema.TextLine(
         title=_(
-            u"",
+            u"Hierarchy level",
         ),
         description=_(
             u"",
@@ -237,7 +265,7 @@ class IDataSet(model.Schema):
 
     geonetwork_identifier = schema.TextLine(
         title=_(
-            u"",
+            u"GeoNetwork id",
         ),
         description=_(
             u"",
