@@ -246,53 +246,51 @@ class IDataSet(model.Schema):
     )
 
 
-"""
-IDENTIFICATION INFO
-    Resource title: title
-    Date of publication: effective
-    Revision date: modified
-    Resource abstract: description
-    Keywords: subject
-    Coverage: geographicCoverage
-    Geotags : geographicCoverageGT
-    Limitation of public access: accessAndUseLimitationPublic
-    Conditions applying to access and use: accessAndUseConstraints
-    Spatial resolution: qualitySpatialResolution
-    Topic of category: classificationTopicCategory
-    Bounding Box: geographicBoundingBox
-    Temporal extent
+# IDENTIFICATION INFO
+#     Resource title: title
+#     Date of publication: effective
+#     Revision date: modified
+#     Resource abstract: description
+#     Keywords: subject
+#     Coverage: geographicCoverage
+#     Geotags : geographicCoverageGT
+#     Limitation of public access: accessAndUseLimitationPublic
+#     Conditions applying to access and use: accessAndUseConstraints
+#     Spatial resolution: qualitySpatialResolution
+#     Topic of category: classificationTopicCategory
+#     Bounding Box: geographicBoundingBox
+#     Temporal extent
 
-HIERARCHY LEVEL
-    Resource type: dataResourceType
+# HIERARCHY LEVEL
+#     Resource type: dataResourceType
 
-CONTACT
-    Responsible party: responsibleParty
-    Responsible party role: responsiblePartyRole
+# CONTACT
+#     Responsible party: responsibleParty
+#     Responsible party role: responsiblePartyRole
 
-REFERENCE SYSTEM INFO
-    Coordinate Reference System: coordinateReferenceSystem
+# REFERENCE SYSTEM INFO
+#     Coordinate Reference System: coordinateReferenceSystem
 
-DATA QUALITY INFO
-    Specification: conformitySpecification
-    Pass: conformityPass
-    Lineage: qualityLineage
+# DATA QUALITY INFO
+#     Specification: conformitySpecification
+#     Pass: conformityPass
+#     Lineage: qualityLineage
 
-DISTRIBUTION INFO
-    Resource Locator: dataResourceLocator
-    Services: dataServices
+# DISTRIBUTION INFO
+#     Resource Locator: dataResourceLocator
+#     Services: dataServices
 
-Non-visible metadata for the user
-    Identifier: identifier
-    Metadata language: AUTOMATIC
-    Character Set: AUTOMATIC
-    Date stamp: AUTOMATIC
-    Metadata standard name: AUTOMATIC
-    Metadata standard version: AUTOMATIC
-    Point of contact: point_of_contact
-    Maintenance and update frequency: update_frequence
-    Distribution format: distribution_format
-    Hierarchy level: hierarchy_level
-"""
+# Non-visible metadata for the user
+#     Identifier: identifier
+#     Metadata language: AUTOMATIC
+#     Character Set: AUTOMATIC
+#     Date stamp: AUTOMATIC
+#     Metadata standard name: AUTOMATIC
+#     Metadata standard version: AUTOMATIC
+#     Point of contact: point_of_contact
+#     Maintenance and update frequency: update_frequence
+#     Distribution format: distribution_format
+#     Hierarchy level: hierarchy_level
 
 
 # model.fieldset(
