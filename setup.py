@@ -44,7 +44,9 @@ setup(
         "setuptools",
         "collective.z3cform.datagridfield",
         # -*- Extra requirements: -*-
-        "plone.restapi>=8.3.0",
+        "plone.restapi",
+        "collective.volto.dropdownmenu",
+        "plone.schema",
     ],
     extras_require={
         "test": [
