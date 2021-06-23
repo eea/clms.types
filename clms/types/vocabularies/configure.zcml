@@ -14,5 +14,15 @@
         name="clms.types.ProductsVocabulary"
     />
 
+    <utility
+        component=".conformity_pass_vocabulary.ConformityPassVocabularyFactory"
+        name="clms.types.ConformityPassVocabulary"
+    />
+
+    <utility
+        component=".category_topics_vocabulary.CategoryTopicsVocabularyFactory"
+        name="clms.types.CategoryTopicsVocabulary"
+    />
+
 
 </configure>

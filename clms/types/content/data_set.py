@@ -34,13 +34,159 @@ class IDataSet(model.Schema):
     # and customize it in Python:
 
     # model.load('product.xml')
+    coverImage = namedfile.NamedBlobImage(
+        title=_(u"coverImage"),
+        required=False,
+    )
+
+    model.fieldset(
+        "metadata",
+        label=_(u"Metadata"),
+        fields=[
+            "dataResourceTitle",
+            "resourceEffective",
+            "resourceModified",
+            "dataResourceAbstract",
+            "keywords",
+            "geographicCoverage",
+            "accessAndUseLimitationPublic",
+            "accessAndUseConstraints",
+            "qualitySpatialResolution",
+            "classificationTopicCategory",
+            "geographicBoundingBox",
+            "temporalCoverage",
+            "dataResourceType",
+            "responsibleParty",
+            "responsiblePartyRole",
+            "coordinateReferenceSystem",
+            "conformitySpecification",
+            "conformityPass",
+            "qualityLineage",
+            "dataResourceLocator",
+            "dataServices",
+            "identifier",
+            "point_of_contact",
+            "update_frequency",
+            "distribution_format",
+            "hierarchy_level",
+            "geonetwork_identifier",
+        ],
+    )
+
+    # IDENTIFICATION INFO
+    #     Resource title: dataResourceTitle
+    #     Date of publication: resourceEffective
+    #     Revision date: resourceModified
+    #     Resource abstract: dataResourceAbstract
+    #     Keywords: keywords
+    #     Coverage: geographicCoverage
+    #     Geotags : geographicCoverage
+    #     Limitation of public access: accessAndUseLimitationPublic
+    #     Conditions applying to access and use: accessAndUseConstraints
+    #     Spatial resolution: qualitySpatialResolution
+    #     Topic of category: classificationTopicCategory
+    #     Bounding Box: geographicBoundingBox
+    #     Temporal extent: temporalCoverage
+
+    dataResourceTitle = schema.TextLine(
+        title=_(
+            u"Resource title",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    resourceEffective = schema.Date(
+        title=_(
+            u"Effective date",
+        ),
+        description=_(
+            u"",
+        ),
+        # defaultFactory=get_default_name,
+        required=False,
+        readonly=False,
+    )
+
+    resourceModified = schema.Date(
+        title=_(
+            u"Modified date",
+        ),
+        description=_(
+            u"",
+        ),
+        # defaultFactory=get_default_name,
+        required=False,
+        readonly=False,
+    )
+
+    dataResourceAbstract = RichText(
+        title=_(u"Resource abstract"), required=False
+    )
+
+    keywords = schema.List(
+        title=_(
+            u"Keywords",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.TextLine(
+            title=u"Keyword",
+        ),
+        required=False,
+        readonly=False,
+    )
+
+    geographicCoverage = JSONField(
+        title=_(u"geographicCoverage"),
+        required=False,
+        widget="geolocation",
+        default={},
+    )
+
+    # geographicCoverage = schema.List(
+    #     title=_(
+    #         u"Geographic Coverage",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.TextLine(
+    #         title=u"",
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
+
+    # geographicCoverageGT = schema.List(
+    #     title=_(
+    #         u"Geographic Coverage GT",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.TextLine(
+    #         title=u"",
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
+
+    accessAndUseLimitationPublic = RichText(
+        title=_(u"Access And Use Limitation Public"), required=False
+    )
 
     accessAndUseConstraints = RichText(
         title=_(u"Access And Use Constraints"), required=False
     )
 
-    accessAndUseLimitationPublic = RichText(
-        title=_(u"Access And Use Limitation Public"), required=False
+    qualitySpatialResolution = RichText(
+        title=_(u"Quality Spatial Resolution"), required=False
     )
 
     classificationTopicCategory = schema.List(
@@ -50,58 +196,43 @@ class IDataSet(model.Schema):
         description=_(
             u"",
         ),
-        value_type=schema.TextLine(
-            title=u"",
+        value_type=schema.Choice(
+            title=_(
+                u"Use case topics",
+            ),
+            vocabulary=u"clms.types.CategoryTopicsVocabulary",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
     )
 
-    conformitySpecification = RichText(
-        title=_(u"Conformity Specification"), required=False
-    )
-
-    conformityPass = RichText(title=_(u"conformityPass"), required=False)
-
-    coordinateReferenceSystem = schema.TextLine(
-        title=_(u"Coordinate Reference System"),
+    geographicBoundingBox = JSONField(
+        title=u"Bounding box dataGrid field",
         required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="bounding_widget",
+        default={"items": []},
+        missing_value={"items": []},
     )
 
-    # coverImage = namedfile.NamedBlobImage(
-    #     title=_(u"coverImage"),
-    #     required=False,
-    # )
-
-    image = namedfile.NamedBlobImage(
-        title=_(u"Image"),
-        required=False,
-    )
-
-    # dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
-
-    # dataResourceAbstract = RichText(
-    #     title=_(u"dataResourceAbstract"), required=False
-    # )
-
-    dataResourceLocator = schema.URI(
-        title=_(u"Data Resource Locator"), required=False
-    )
-
-    # dataResourceTitle = schema.TextLine(
-    #     title=_(u"dataResourceTitle"),
-    #     required=False,
-    # )
-
-    # Make sure to import: plone.app.textfield
-    dataServices = RichText(
+    temporalCoverage = schema.List(
         title=_(
-            u"Dataservices",
+            u"Temporal Coverage",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.TextLine(
+            title=u"Year",
         ),
         required=False,
         readonly=False,
     )
 
+    # HIERARCHY LEVEL
+    #     Resource type: dataResourceType
     dataResourceType = schema.TextLine(
         title=_(
             u"Data Resource Type",
@@ -114,70 +245,76 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # dataSources = RichText(title=_(u"dataSources"), required=False)
-
-    # descriptionDetailedMetadata = RichText(
-    #     title=_(u"descriptionDetailedMetadata"), required=False
-    # )
-
-    # download = RichText(title=_(u"download"), required=False)
-
-    # embed = schema.SourceText(title=_(u"embed"), required=True)
-
-    # geographicAccuracy = RichText(
-    #     title=_(u"geographicAccuracy"), required=False
-    # )
-
-    bounding_field = JSONField(
-        title=u"Bounding box dataGrid field",
-        required=False,
-        schema=MIXEDFIELD_SCHEMA,
-        widget="bounding_widget",
-        default={"items": []},
-        missing_value={"items": []},
-    )
-
-    geographicCoverage = schema.List(
-        title=_(
-            u"Geographic Coverage",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.TextLine(
-            title=u"",
-        ),
-        required=False,
-        readonly=False,
-    )
-
-    geographicCoverageGT = schema.List(
-        title=_(
-            u"Geographic Coverage GT",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.TextLine(
-            title=u"",
-        ),
-        required=False,
-        readonly=False,
-    )
-
-    # owners = RichText(title=_(u"owners"), required=False)
-
-    qualityLineage = RichText(title=_(u"Quality Lineage"), required=False)
-
-    qualitySpatialResolution = RichText(
-        title=_(u"Quality Spatial Resolution"), required=False
-    )
-
+    # CONTACT
+    #     Responsible party: responsibleParty
+    #     Responsible party role: responsiblePartyRole
     responsibleParty = RichText(title=_(u"Responsible Party"), required=False)
 
     responsiblePartyRole = RichText(
         title=_(u"Responsible Party Role"), required=False
     )
+
+    # REFERENCE SYSTEM INFO
+    #     Coordinate Reference System: coordinateReferenceSystem
+    coordinateReferenceSystem = schema.TextLine(
+        title=_(u"Coordinate Reference System"),
+        required=False,
+    )
+
+    # DATA QUALITY INFO
+    #     Specification: conformitySpecification
+    #     Pass: conformityPass (conformityDegree)
+    #     Lineage: qualityLineage
+    conformitySpecification = RichText(
+        title=_(u"Conformity Specification"), required=False
+    )
+
+    # Make sure to import: plone.app.vocabularies as vocabs
+    conformityPass = schema.Choice(
+        title=_(u"conformityPass"),
+        description=_(
+            u"(true - if conformant, false - if not conformant, or null - if not evaluated)",
+        ),
+        vocabulary=u"clms.types.ConformityPassVocabulary",
+        default=u"",
+        # defaultFactory=get_default_name,
+        required=False,
+        readonly=False,
+    )
+
+    qualityLineage = RichText(title=_(u"Quality Lineage"), required=False)
+
+    # DISTRIBUTION INFO
+    #     Resource Locator: dataResourceLocator
+    #     Services: dataServices
+    dataResourceLocator = schema.URI(
+        title=_(u"Data Resource Locator"), required=False
+    )
+
+    dataServices = RichText(
+        title=_(
+            u"Dataservices",
+        ),
+        required=False,
+        readonly=False,
+    )
+
+    # Non-visible metadata for the user
+    #     Identifier: identifier
+    #     Metadata language: AUTOMATIC
+    #     Character Set: AUTOMATIC
+    #     Date stamp: AUTOMATIC
+    #     Metadata standard name: AUTOMATIC
+    #     Metadata standard version: AUTOMATIC
+    #     Point of contact: point_of_contact
+    #     Maintenance and update frequency: update_frequence
+    #     Distribution format: distribution_format
+    #     Hierarchy level: hierarchy_level
+
+    # image = namedfile.NamedBlobImage(
+    #     title=_(u"Image"),
+    #     required=False,
+    # )
 
     identifier = schema.TextLine(
         title=_(
@@ -191,7 +328,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: plone.app.textfield
     point_of_contact = RichText(
         title=_(
             u"Point of contact",
@@ -212,7 +348,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: plone.app.textfield
     distribution_format = RichText(
         title=_(
             u"Distribution format",
@@ -246,51 +381,29 @@ class IDataSet(model.Schema):
     )
 
 
-# IDENTIFICATION INFO
-#     Resource title: title
-#     Date of publication: effective
-#     Revision date: modified
-#     Resource abstract: description
-#     Keywords: subject
-#     Coverage: geographicCoverage
-#     Geotags : geographicCoverageGT
-#     Limitation of public access: accessAndUseLimitationPublic
-#     Conditions applying to access and use: accessAndUseConstraints
-#     Spatial resolution: qualitySpatialResolution
-#     Topic of category: classificationTopicCategory
-#     Bounding Box: geographicBoundingBox
-#     Temporal extent
+# dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
 
-# HIERARCHY LEVEL
-#     Resource type: dataResourceType
 
-# CONTACT
-#     Responsible party: responsibleParty
-#     Responsible party role: responsiblePartyRole
+# dataResourceTitle = schema.TextLine(
+#     title=_(u"dataResourceTitle"),
+#     required=False,
+# )
 
-# REFERENCE SYSTEM INFO
-#     Coordinate Reference System: coordinateReferenceSystem
+# dataSources = RichText(title=_(u"dataSources"), required=False)
 
-# DATA QUALITY INFO
-#     Specification: conformitySpecification
-#     Pass: conformityPass
-#     Lineage: qualityLineage
+# descriptionDetailedMetadata = RichText(
+#     title=_(u"descriptionDetailedMetadata"), required=False
+# )
 
-# DISTRIBUTION INFO
-#     Resource Locator: dataResourceLocator
-#     Services: dataServices
+# download = RichText(title=_(u"download"), required=False)
 
-# Non-visible metadata for the user
-#     Identifier: identifier
-#     Metadata language: AUTOMATIC
-#     Character Set: AUTOMATIC
-#     Date stamp: AUTOMATIC
-#     Metadata standard name: AUTOMATIC
-#     Metadata standard version: AUTOMATIC
-#     Point of contact: point_of_contact
-#     Maintenance and update frequency: update_frequence
-#     Distribution format: distribution_format
-#     Hierarchy level: hierarchy_level
+# embed = schema.SourceText(title=_(u"embed"), required=True)
+
+# geographicAccuracy = RichText(
+#     title=_(u"geographicAccuracy"), required=False
+# )
+
+# owners = RichText(title=_(u"owners"), required=False)
 
 
 # model.fieldset(
