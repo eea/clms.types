@@ -46,7 +46,7 @@ setup(
         # -*- Extra requirements: -*-
         "plone.restapi",
         "collective.volto.dropdownmenu",
-        "plone.schema",
+        "plone.schema>=1.3",
     ],
     extras_require={
         "test": [
