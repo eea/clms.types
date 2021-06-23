@@ -273,7 +273,8 @@ class IDataSet(model.Schema):
     conformityPass = schema.Choice(
         title=_(u"conformityPass"),
         description=_(
-            u"(true - if conformant, false - if not conformant, or null - if not evaluated)",
+            u"(true - if conformant, false - if not "
+            "conformant, or null - if not evaluated)",
         ),
         vocabulary=u"clms.types.ConformityPassVocabulary",
         default=u"",
