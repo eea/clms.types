@@ -5,4 +5,5 @@
   <object name="Product" meta_type="Dexterity FTI"/>
   <object name="DataSet" meta_type="Dexterity FTI"/>
   <object name="UseCase" meta_type="Dexterity FTI"/>
+  <object name="LRF" meta_type="Dexterity FTI"/>
 </object>

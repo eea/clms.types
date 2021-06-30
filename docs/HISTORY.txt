@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.4 - (2021-06-30)
+---------------------------
+* Change: Merge dataset metadata field modifications from Develop to Master
+  [ionlizarazu]
+
 1.3 - (2021-06-03)
 ---------------------------
 * Change: Products Vocabulary
