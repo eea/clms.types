@@ -1,0 +1,18 @@
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:browser="http://namespaces.zope.org/browser" xmlns:plone="http://namespaces.plone.org/plone" i18n_domain="clms.types">
+
+  <browser:page 
+    name="geonetwork-xml-view" 
+    for="clms.types.content.data_set.IDataSet" 
+    class=".geonetwork_xml.GeoNetworkXMLView" 
+    template="geonetwork_xml.pt" 
+    permission="zope2.View" 
+  />
+
+  <browser:page name="write-to-geonetwork-view" 
+    for="clms.types.content.data_set.IDataSet"
+    class=".write_to_geonetwork.WriteToGeoNetworkView" 
+    template="write_to_geonetwork.pt" 
+    permission="zope2.View" 
+  />
+
+</configure>
