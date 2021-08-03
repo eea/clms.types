@@ -446,7 +446,8 @@ class IDataSet(model.Schema):
             u"Download service",
         ),
         description=_(
-            u"This field is used to identify where the download files should come from",
+            u"This field is used to identify where the download files "
+            "should come from",
         ),
         default=u"EEA",
         required=True,
@@ -458,7 +459,8 @@ class IDataSet(model.Schema):
             u"Download type",
         ),
         description=_(
-            u"This field is used to identify how the download should be handled",
+            u"This field is used to identify how the download should "
+            u"be handled",
         ),
         default=u"ESRI REST service",
         required=False,
@@ -470,7 +472,9 @@ class IDataSet(model.Schema):
             u"Is time series?",
         ),
         description=_(
-            u"Mark this field if this dataset contains time series information and fill the next field with the time series service url"
+            u"Mark this field if this dataset contains time series "
+            u" information and fill the next field with the time "
+            u"series service url"
         ),
         required=False,
         default=False,
