@@ -12,8 +12,7 @@ from clms.types import _
 
 
 class IUseCase(model.Schema):
-    """ Marker interface for UseCase
-    """
+    """Marker interface for UseCase"""
 
     # If you want, you can load a xml model created TTW here
     # and customize it in Python:
@@ -22,16 +21,16 @@ class IUseCase(model.Schema):
 
     products = schema.List(
         title=_(
-            u'CLMS products used',
+            u"CLMS products used",
         ),
         description=_(
-            u'Multiple selection allowed',
+            u"Multiple selection allowed",
         ),
         value_type=schema.Choice(
             title=_(
-                u'CLMS products used',
+                u"CLMS products used",
             ),
-            vocabulary=u'clms.types.ProductsVocabulary',
+            vocabulary=u"clms.types.ProductsVocabulary",
             required=True,
             readonly=False,
         ),
@@ -56,16 +55,16 @@ class IUseCase(model.Schema):
 
     topics = schema.List(
         title=_(
-            u'Use case topics',
+            u"Use case topics",
         ),
         description=_(
-            u'Multiple selection allowed',
+            u"Multiple selection allowed",
         ),
         value_type=schema.Choice(
             title=_(
-                u'Use case topics',
+                u"Use case topics",
             ),
-            vocabulary=u'clms.types.TopicsVocabulary',
+            vocabulary=u"clms.types.TopicsVocabulary",
             required=True,
             readonly=False,
         ),
@@ -80,13 +79,13 @@ class IUseCase(model.Schema):
 
     links = schema.List(
         title=_(
-            u'Links to use case',
+            u"Links to use case",
         ),
         description=_(
-            u'',
+            u"",
         ),
         value_type=schema.URI(
-            title=u'',
+            title=u"",
         ),
         required=True,
         readonly=False,
