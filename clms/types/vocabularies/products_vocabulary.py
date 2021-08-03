@@ -17,11 +17,14 @@ class ProductsVocabulary(object):
     """
 
     def __call__(self, context):
-        products = api.content.find(portal_type='Product')
-        productsList = [(p.getObject().id, p.getObject().title)
-                        for p in products]
-        terms = [SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
-                 for pair in productsList]
+        products = api.content.find(portal_type="Product")
+        productsList = [
+            (p.getObject().id, p.getObject().title) for p in products
+        ]
+        terms = [
+            SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
+            for pair in productsList
+        ]
         return SimpleVocabulary(terms)
 
 
