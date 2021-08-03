@@ -12,4 +12,12 @@
     permission="zope2.View"
     />
 
+  <plone:service
+    method="GET"
+    for="clms.types.content.data_set.IDataSet"
+    factory=".dataset_get.DataSetMapViewerServiceGet"
+    name="@mapviewer"
+    permission="zope2.View"
+    />
+
 </configure>
