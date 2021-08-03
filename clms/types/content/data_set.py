@@ -381,6 +381,114 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    model.fieldset(
+        "mapviewer",
+        label=_(u"Mapviewer"),
+        fields=[
+            "mapviewer_component",
+            "mapviewer_datasetid",
+            "mapviewer_viewservice",
+            "mapviewer_downloadservice",
+            "mapviewer_layers",
+            "mapviewer_downloadtype",
+            "mapviewer_istimeseries",
+            "mapviewer_timeseriesservice",
+        ],
+    )
+
+    mapviewer_component = schema.TextLine(
+        title=_(
+            u"Component Title",
+        ),
+        description=_(
+            u"This field is used to group datasets under a singel component",
+        ),
+        default=u"Default",
+        required=True,
+        readonly=False,
+    )
+
+    mapviewer_datasetid = schema.TextLine(
+        title=_(
+            u"Dataset id",
+        ),
+        description=_(
+            u"This field is used to identify this dataset in the map viewer",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+
+    mapviewer_viewservice = schema.TextLine(
+        title=_(
+            u"View service",
+        ),
+        description=_(
+            u"Enter the service url (WMS)",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+
+    mapviewer_layers = JSONField(
+        title=_("Layers available in the map viewer"),
+        required=True,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="layer_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
+    mapviewer_downloadservice = schema.TextLine(
+        title=_(
+            u"Download service",
+        ),
+        description=_(
+            u"This field is used to identify where the download files should come from",
+        ),
+        default=u"EEA",
+        required=True,
+        readonly=False,
+    )
+
+    mapviewer_downloadtype = schema.TextLine(
+        title=_(
+            u"Download type",
+        ),
+        description=_(
+            u"This field is used to identify how the download should be handled",
+        ),
+        default=u"ESRI REST service",
+        required=False,
+        readonly=False,
+    )
+
+    mapviewer_istimeseries = schema.Bool(
+        title=_(
+            u"Is time series?",
+        ),
+        description=_(
+            u"Mark this field if this dataset contains time series information and fill the next field with the time series service url"
+        ),
+        required=False,
+        default=False,
+        readonly=False,
+    )
+
+    mapviewer_timeseriesservice = schema.TextLine(
+        title=_(
+            u"Time series service URL",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
 
 # dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
 
