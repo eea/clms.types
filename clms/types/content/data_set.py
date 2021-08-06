@@ -386,7 +386,6 @@ class IDataSet(model.Schema):
         label=_(u"Mapviewer"),
         fields=[
             "mapviewer_component",
-            "mapviewer_datasetid",
             "mapviewer_viewservice",
             "mapviewer_downloadservice",
             "mapviewer_layers",
@@ -401,21 +400,9 @@ class IDataSet(model.Schema):
             u"Component Title",
         ),
         description=_(
-            u"This field is used to group datasets under a singel component",
+            u"This field is used to group datasets under a single component",
         ),
         default=u"Default",
-        required=True,
-        readonly=False,
-    )
-
-    mapviewer_datasetid = schema.TextLine(
-        title=_(
-            u"Dataset id",
-        ),
-        description=_(
-            u"This field is used to identify this dataset in the map viewer",
-        ),
-        default=u"",
         required=True,
         readonly=False,
     )
@@ -491,6 +478,24 @@ class IDataSet(model.Schema):
         default=u"",
         required=False,
         readonly=False,
+    )
+
+    model.fieldset(
+        "downloads",
+        label=_(u"Downloads"),
+        fields=[
+            "downloadable_files",
+        ],
+    )
+
+    downloadable_files = JSONField(
+        title=_("Downloadable files"),
+        description=_("Add one line per file"),
+        required=True,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="downloadable_files_widget",
+        default={"items": []},
+        missing_value={"items": []},
     )
 
 

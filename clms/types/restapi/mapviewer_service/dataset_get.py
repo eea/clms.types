@@ -60,7 +60,7 @@ class DataSetMapViewerServiceGet(Service):
             )
 
         return {
-            "DatasetId": dataset.mapviewer_datasetid,
+            "DatasetId": api.content.get_uuid(obj=dataset),
             "DatasetTitle": dataset.Title(),
             "DatasetDescription": dataset.Description(),
             "ViewService": dataset.mapviewer_viewservice,
