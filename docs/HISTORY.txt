@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.7 - (2021-08-06)
+---------------------------
+* Change: Merge pull request #15 from eea/fields-for-downloadable-files [erral]
+
 1.6 - (2021-08-03)
 ---------------------------
 * Change: New fields
