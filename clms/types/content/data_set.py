@@ -400,7 +400,7 @@ class IDataSet(model.Schema):
             u"Component Title",
         ),
         description=_(
-            u"This field is used to group datasets under a singel component",
+            u"This field is used to group datasets under a single component",
         ),
         default=u"Default",
         required=True,
