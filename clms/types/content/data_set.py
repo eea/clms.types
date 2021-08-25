@@ -493,6 +493,24 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    model.fieldset(
+        "downloads",
+        label=_(u"Downloads"),
+        fields=[
+            "downloadable_files",
+        ],
+    )
+
+    downloadable_files = JSONField(
+        title=_("Downloadable files"),
+        description=_("Add one line per file"),
+        required=True,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="downloadable_files_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
 
 # dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
 
