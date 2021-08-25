@@ -35,7 +35,7 @@ class ConformityPassVocabulary(object):
         items = [
             VocabItem(u"False", _(u"False")),
             VocabItem(u"True", _(u"True")),
-            VocabItem(u"null", _(u"null")),
+            VocabItem(u"Null", _(u"Null")),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.
