@@ -518,7 +518,7 @@ class IDataSet(model.Schema):
 #     title=_(u"dataResourceTitle"),
 #     required=False,
 # )
-
+# 
 # dataSources = RichText(title=_(u"dataSources"), required=False)
 
 # descriptionDetailedMetadata = RichText(
