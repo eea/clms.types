@@ -511,7 +511,7 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-# dataCustodians = RichText(title=_(u"dataCustodians"), required=False) 
+# dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
 
 
 # dataResourceTitle = schema.TextLine(
