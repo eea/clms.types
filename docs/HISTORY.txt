@@ -4,6 +4,9 @@ Changelog
 1.8-dev0 - (unreleased)
 ---------------------------
 
+1.8-dev0 - (unreleased)
+---------------------------
+
 1.7 - (2021-08-06)
 ---------------------------
 * Change: Merge pull request #15 from eea/fields-for-downloadable-files [erral]
