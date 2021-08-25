@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.9 - (2021-08-25)
+---------------------------
+* Change: Develop into master (comments) [ionlizarazu]
+
 1.8-dev0 - (unreleased)
 ---------------------------
 
