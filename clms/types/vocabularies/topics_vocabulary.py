@@ -33,9 +33,9 @@ class TopicsVocabulary(object):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u'Topic 1', _(u'Topic 1')),
-            VocabItem(u'Topic 2', _(u'Topic 2')),
-            VocabItem(u'Topic 3', _(u'Topic 3')),
+            VocabItem(u"Topic 1", _(u"Topic 1")),
+            VocabItem(u"Topic 2", _(u"Topic 2")),
+            VocabItem(u"Topic 3", _(u"Topic 3")),
         ]
 
         # Fix context if you are using the vocabulary in DataGridField.

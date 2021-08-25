@@ -11,5 +11,6 @@
   <include package=".upgrades" />
   <include package=".content" />
   <include package=".vocabularies" />
+  <include package=".restapi" />
 
 </configure>
