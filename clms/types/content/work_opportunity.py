@@ -5,7 +5,6 @@ WorkOpportunity content-type definition
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope.interface import implementer
-from plone.app.textfield import RichText
 from zope import schema
 
 from clms.types import _
