@@ -5,8 +5,10 @@ Changelog
 ---------------------------
 * Change: Develop [ionlizarazu]
 
-2.0-dev0 - (unreleased)
+2.0 - (2021-09-03)
 ---------------------------
+* Change: Develop
+  [ionlizarazu]
 
 1.9 - (2021-08-25)
 ---------------------------
