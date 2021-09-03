@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-DataSet content-type definition
+Product content-type definition
 """
 from plone.dexterity.content import Container
 from plone.supermodel import model
@@ -52,4 +52,4 @@ class IProduct(model.Schema):
 
 @implementer(IProduct)
 class Product(Container):
-    """ Product content type class """
+    """Product content type class"""
