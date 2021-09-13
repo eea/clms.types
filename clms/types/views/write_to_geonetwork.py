@@ -3,10 +3,17 @@
 Write into geonetwork
 """
 
-import requests
 from xml.etree import ElementTree as ET
-from Products.Five.browser import BrowserView
+
+import requests
 from plone import api
+from Products.Five.browser import BrowserView
+
+GEONETWORK_BASE_URL = "http://localhost:7070/geonetwork"
+
+GEONETWORK_API_URL = f"{GEONETWORK_BASE_URL}/srv/api"
+
+EEA_GEONETWORK_BASE_URL = "https://sdi.eea.europa.eu/catalogue/srv/api"
 
 
 class InvalidLoginException(Exception):
@@ -35,7 +42,13 @@ class WriteToGeoNetworkView(BrowserView):
             processing = "GENERATEUUID"
 
         result = requests.put(
-            f"{GEONETWORK_API_URL}/records?_csrf={token}&metadataType=METADATA&uuidProcessing={processing}&transformWith=_none_&group=2&category=&publishToAll=true",
+            f"{GEONETWORK_API_URL}/records?_csrf={token}"
+            f"&metadataType=METADATA"
+            f"&uuidProcessing={processing}"
+            f"&transformWith=_none_"
+            f"&group=2"
+            f"&category="
+            f"&publishToAll=true",
             data=metadata,
             auth=AUTH,
             headers={
@@ -93,7 +106,7 @@ class WriteToGeoNetworkView(BrowserView):
             token = self.login()
             if (
                 self.context.geonetwork_identifier != ""
-                or self.context.geonetwork_identifier != None
+                or self.context.geonetwork_identifier is not None
             ):
                 result = self.write_one_metadata(
                     metadata, token=token, update=True

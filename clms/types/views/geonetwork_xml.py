@@ -2,9 +2,10 @@
 """
 Geonetwork xml view
 """
-from Products.Five.browser import BrowserView
 from datetime import datetime
+
 from bs4 import BeautifulSoup
+from Products.Five.browser import BrowserView
 
 
 class GeoNetworkXMLView(BrowserView):
