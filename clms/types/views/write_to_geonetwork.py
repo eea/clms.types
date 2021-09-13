@@ -3,8 +3,6 @@
 Write into geonetwork
 """
 
-from __future__ import print_function
-
 from xml.etree import ElementTree as ET
 
 import requests
@@ -21,7 +19,7 @@ class InvalidLoginException(Exception):
 
 
 GEONETWORK_BASE_URL = "http://localhost:7070/geonetwork"
-GEONETWORK_API_URL = "{}/srv/api".format(GEONETWORK_BASE_URL)
+GEONETWORK_API_URL = f"{GEONETWORK_BASE_URL}/srv/api"
 EEA_GEONETWORK_BASE_URL = "https://sdi.eea.europa.eu/catalogue/srv/api"
 AUTH = ("admin", "admin")
 
