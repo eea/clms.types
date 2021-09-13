@@ -15,8 +15,6 @@ class InvalidLoginException(Exception):
     Invalid Login Exception
     """
 
-    pass
-
 
 GEONETWORK_BASE_URL = "http://localhost:7070/geonetwork"
 GEONETWORK_API_URL = f"{GEONETWORK_BASE_URL}/srv/api"
@@ -28,8 +26,6 @@ class InvalidMetadata(Exception):
     """
     Invalid Metadata
     """
-
-    pass
 
 
 class WriteToGeoNetworkView(BrowserView):
@@ -93,8 +89,7 @@ class WriteToGeoNetworkView(BrowserView):
                 "token": result.cookies.get("XSRF-TOKEN") or token,
                 "metadatauuid": metadatauuid,
             }
-        else:
-            raise InvalidMetadata
+        raise InvalidMetadata
 
     def parse_login_response(self, xmldata):
         """
@@ -142,6 +137,7 @@ class WriteToGeoNetworkView(BrowserView):
             return result.get("metadatauuid")
         except InvalidMetadata:
             print("Error writing {}".format(self.uuid))
+            return None
 
     def plone_to_xml(self):
         """

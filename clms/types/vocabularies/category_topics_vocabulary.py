@@ -13,7 +13,7 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
-class VocabItem(object):
+class VocabItem:
     """
     VocabItem class
     """
@@ -24,7 +24,7 @@ class VocabItem(object):
 
 
 @implementer(IVocabularyFactory)
-class CategoryTopicsVocabulary(object):
+class CategoryTopicsVocabulary:
     """
     CategoryTopics vocabulary class
     """
