@@ -86,11 +86,11 @@ class WriteToGeoNetworkView(BrowserView):
         return value == "true"
 
     def login(self):
-        result = requests.post(f"{GEONETWORK_API_URL}/info?type=me")
+        result = requests.post("{}/info?type=me".format(GEONETWORK_API_URL))
         token = result.cookies.get("XSRF-TOKEN")
 
         result2 = requests.post(
-            f"{GEONETWORK_BASE_URL}/srv/eng/info?type=me",
+            "{}/srv/eng/info?type=me".format(GEONETWORK_BASE_URL),
             auth=AUTH,
             headers={"X-XSRF-TOKEN": token},
             cookies={"XSRF-TOKEN": token},
@@ -110,14 +110,14 @@ class WriteToGeoNetworkView(BrowserView):
                 result = self.write_one_metadata(
                     metadata, token=token, update=True
                 )
-                print(f"Done {result.get('metadatauuid')}")
+                print("Done {}".format(result.get("metadatauuid")))
                 return result.get("metadatauuid")
             else:
                 result = self.write_one_metadata(metadata, token=token)
-                print(f"Done {result.get('metadatauuid')}")
+                print("Done {}".format(result.get("metadatauuid")))
                 return result.get("metadatauuid")
         except InvalidMetadata:
-            print(f"Error writing {self.uuid}")
+            print("Error writing {}".format(self.uuid))
 
     def plone_to_xml(self):
         training_view = api.content.get_view(
