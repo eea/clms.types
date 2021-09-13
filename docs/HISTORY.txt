@@ -1,8 +1,36 @@
 Changelog
 =========
 
-1.6-dev0 - (unreleased)
+1.2-dev0 - (unreleased)
 ---------------------------
+
+1.10 - (2021-09-03)
+---------------------------
+* Change: Develop [ionlizarazu]
+
+2.0 - (2021-09-03)
+---------------------------
+* Change: Develop
+  [ionlizarazu]
+
+1.9 - (2021-08-25)
+---------------------------
+* Change: Develop into master (comments) [ionlizarazu]
+
+1.8 - (2021-08-25)
+---------------------------
+
+1.8 - (2021-08-25)
+---------------------------
+
+1.7 - (2021-08-06)
+---------------------------
+* Change: Merge pull request #15 from eea/fields-for-downloadable-files [erral]
+
+1.6 - (2021-08-03)
+---------------------------
+* Change: New fields
+  [erral]
 
 1.5 - (2021-06-30)
 ---------------------------

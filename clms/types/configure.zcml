@@ -1,7 +1,4 @@
-<configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:i18n="http://namespaces.zope.org/i18n"
-  i18n_domain="clms.types">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:i18n="http://namespaces.zope.org/i18n" i18n_domain="clms.types">
 
   <i18n:registerTranslations directory="locales" />
 
@@ -12,5 +9,6 @@
   <include package=".content" />
   <include package=".vocabularies" />
   <include package=".views" />
+  <include package=".restapi" />
 
 </configure>
