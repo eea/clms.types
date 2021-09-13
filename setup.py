@@ -1,7 +1,6 @@
 """ clms.types Installer
 """
 from os.path import join
-from xml.etree.ElementTree import VERSION
 from setuptools import setup, find_packages
 
 NAME = "clms.types"
