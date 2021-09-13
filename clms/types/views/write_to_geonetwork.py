@@ -9,17 +9,14 @@ import requests
 from plone import api
 from Products.Five.browser import BrowserView
 
-GEONETWORK_BASE_URL = "http://localhost:7070/geonetwork"
-
-GEONETWORK_API_URL = f"{GEONETWORK_BASE_URL}/srv/api"
-
-EEA_GEONETWORK_BASE_URL = "https://sdi.eea.europa.eu/catalogue/srv/api"
-
 
 class InvalidLoginException(Exception):
     pass
 
 
+GEONETWORK_BASE_URL = "http://localhost:7070/geonetwork"
+GEONETWORK_API_URL = f"{GEONETWORK_BASE_URL}/srv/api"
+EEA_GEONETWORK_BASE_URL = "https://sdi.eea.europa.eu/catalogue/srv/api"
 AUTH = ("admin", "admin")
 
 
@@ -102,12 +99,10 @@ class WriteToGeoNetworkView(BrowserView):
 
     def write_into_geonetwork(self):
         try:
+            geo_id = self.context.geonetwork_identifier
             metadata = self.plone_to_xml().encode("utf-8")
             token = self.login()
-            if (
-                self.context.geonetwork_identifier != ""
-                or self.context.geonetwork_identifier is not None
-            ):
+            if geo_id != "" or geo_id is not None:
                 result = self.write_one_metadata(
                     metadata, token=token, update=True
                 )
