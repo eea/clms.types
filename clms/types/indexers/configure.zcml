@@ -1,0 +1,11 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="clms.types">
+
+  -*- extra stuff goes here -*-
+
+  <adapter factory=".associated_products.associated_products"
+    name="associated_products" />
+
+
+</configure>
