@@ -15,7 +15,9 @@ class InvalidLoginException(Exception):
 
 
 GEONETWORK_BASE_URL = "http://localhost:7070/geonetwork"
-GEONETWORK_API_URL = f"{GEONETWORK_BASE_URL}/srv/api"
+GEONETWORK_API_URL = "{GEONETWORK_BASE_URL}/srv/api".format(
+    GEONETWORK_BASE_URL=GEONETWORK_BASE_URL
+)
 EEA_GEONETWORK_BASE_URL = "https://sdi.eea.europa.eu/catalogue/srv/api"
 AUTH = ("admin", "admin")
 
