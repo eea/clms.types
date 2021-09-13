@@ -39,13 +39,17 @@ class WriteToGeoNetworkView(BrowserView):
             processing = "GENERATEUUID"
 
         result = requests.put(
-            f"""{GEONETWORK_API_URL}/records?_csrf={token}
+            """{GEONETWORK_API_URL}/records?_csrf={token}
             &metadataType=METADATA
             &uuidProcessing={processing}
             &transformWith=_none_
             &group=2
             &category=
-            &publishToAll=true""",
+            &publishToAll=true""".format(
+                GEONETWORK_API_URL=GEONETWORK_API_URL,
+                token=token,
+                processing=processing,
+            ),
             data=metadata,
             auth=AUTH,
             headers={
