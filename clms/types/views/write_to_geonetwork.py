@@ -15,7 +15,7 @@ class InvalidLoginException(Exception):
 
 
 GEONETWORK_BASE_URL = "http://localhost:7070/geonetwork"
-GEONETWORK_API_URL = f'{GEONETWORK_BASE_URL}/srv/api'
+GEONETWORK_API_URL = "{}/srv/api".format(GEONETWORK_BASE_URL)
 EEA_GEONETWORK_BASE_URL = "https://sdi.eea.europa.eu/catalogue/srv/api"
 AUTH = ("admin", "admin")
 
@@ -39,13 +39,13 @@ class WriteToGeoNetworkView(BrowserView):
             processing = "GENERATEUUID"
 
         result = requests.put(
-            f"{GEONETWORK_API_URL}/records?_csrf={token}"
-            f"&metadataType=METADATA"
-            f"&uuidProcessing={processing}"
-            f"&transformWith=_none_"
-            f"&group=2"
-            f"&category="
-            f"&publishToAll=true",
+            f"""{GEONETWORK_API_URL}/records?_csrf={token}
+            &metadataType=METADATA
+            &uuidProcessing={processing}
+            &transformWith=_none_
+            &group=2
+            &category=
+            &publishToAll=true""",
             data=metadata,
             auth=AUTH,
             headers={
