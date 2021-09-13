@@ -1,6 +1,5 @@
 """ clms.types Installer
 """
-import os
 from os.path import join
 from xml.etree.ElementTree import VERSION
 from setuptools import setup, find_packages
