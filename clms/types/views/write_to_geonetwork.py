@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+Write into geonetwork
+"""
 
 import requests
 from xml.etree import ElementTree as ET
@@ -9,7 +12,9 @@ from plone import api
 class InvalidLoginException(Exception):
     pass
 
+
 AUTH = ("admin", "admin")
+
 
 class InvalidMetadata(Exception):
     pass
@@ -25,9 +30,9 @@ class WriteToGeoNetworkView(BrowserView):
     def write_one_metadata(self, metadata, token, update=False):
         # if "OVERWRITE" is passed, the metadata items are updated
         if update:
-          processing = "OVERWRITE"
+            processing = "OVERWRITE"
         else:
-          processing = "GENERATEUUID"
+            processing = "GENERATEUUID"
 
         result = requests.put(
             f"{GEONETWORK_API_URL}/records?_csrf={token}&metadataType=METADATA&uuidProcessing={processing}&transformWith=_none_&group=2&category=&publishToAll=true",
@@ -61,7 +66,6 @@ class WriteToGeoNetworkView(BrowserView):
         else:
             raise InvalidMetadata
 
-
     def parse_login_response(self, xmldata):
         root = ET.fromstring(xmldata)
         value = root.find("me").get("authenticated")
@@ -87,18 +91,22 @@ class WriteToGeoNetworkView(BrowserView):
         try:
             metadata = self.plone_to_xml().encode("utf-8")
             token = self.login()
-            if self.context.geonetwork_identifier != "" or self.context.geonetwork_identifier != None :
-              result = self.write_one_metadata(metadata, token=token, update=True)
-              print(f"Done {result.get('metadatauuid')}")
-              return result.get("metadatauuid")
+            if (
+                self.context.geonetwork_identifier != ""
+                or self.context.geonetwork_identifier != None
+            ):
+                result = self.write_one_metadata(
+                    metadata, token=token, update=True
+                )
+                print(f"Done {result.get('metadatauuid')}")
+                return result.get("metadatauuid")
             else:
-              result = self.write_one_metadata(metadata, token=token)
-              print(f"Done {result.get('metadatauuid')}")
-              return result.get("metadatauuid")
+                result = self.write_one_metadata(metadata, token=token)
+                print(f"Done {result.get('metadatauuid')}")
+                return result.get("metadatauuid")
         except InvalidMetadata:
             print(f"Error writing {self.uuid}")
 
-   
     def plone_to_xml(self):
         training_view = api.content.get_view(
             "geonetwork-xml-view", self.context, self.request
