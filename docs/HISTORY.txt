@@ -5,8 +5,10 @@ Changelog
 ---------------------------
 * Change: long description [ionlizarazu]
 
-1.2-dev0 - (unreleased)
+1.2 - (2021-09-14)
 ---------------------------
+* Change: long description
+  [ionlizarazu]
 
 1.10 - (2021-09-03)
 ---------------------------
