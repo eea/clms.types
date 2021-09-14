@@ -511,14 +511,16 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
+    model.fieldset(
+        "geonetwork",
+        label=_(u"GeoNetwork Sync"),
+        fields=[],
+    )
+
+
 # Unused fields
 
 # dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
-
-# dataResourceTitle = schema.TextLine(
-#     title=_(u"dataResourceTitle"),
-#     required=False,
-# )
 
 # dataSources = RichText(title=_(u"dataSources"), required=False)
 
