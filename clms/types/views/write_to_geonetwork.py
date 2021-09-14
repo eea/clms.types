@@ -49,15 +49,18 @@ class WriteToGeoNetworkView(BrowserView):
             processing = "OVERWRITE"
         else:
             processing = "GENERATEUUID"
+        request = (
+            f"{GEONETWORK_API_URL}/records?_csrf={token}"
+            f"&metadataType=METADATA"
+            f"&uuidProcessing={processing}"
+            f"&transformWith=_none_"
+            f"&group=2"
+            f"&category="
+            f"&publishToAll=true"
+        )
 
         result = requests.put(
-            f"""{GEONETWORK_API_URL}/records?_csrf={token}
-            &metadataType=METADATA
-            &uuidProcessing={processing}
-            &transformWith=_none_
-            &group=2
-            &category=
-            &publishToAll=true""",
+            request,
             data=metadata,
             auth=AUTH,
             headers={
@@ -121,17 +124,13 @@ class WriteToGeoNetworkView(BrowserView):
             geo_id = self.context.geonetwork_identifier
             metadata = self.plone_to_xml().encode("utf-8")
             token = self.login()
-            if geo_id != "" or geo_id is not None:
-                result = self.write_one_metadata(
-                    metadata, token=token, update=True
-                )
-                print(f"Done {result.get('metadatauuid')}")
-            else:
-                result = self.write_one_metadata(metadata, token=token)
-                print(f"Done {result.get('metadatauuid')}")
+            result = self.write_one_metadata(
+                metadata, token=token, update=geo_id is not None
+            )
+            print(f"Done {result.get('metadatauuid')}")
             return result.get("metadatauuid")
         except InvalidMetadata:
-            print(f"Error writing {self.uuid}")
+            print(f"Error writing {self.context.title}")
             return None
 
     def plone_to_xml(self):
