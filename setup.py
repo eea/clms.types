@@ -1,24 +1,23 @@
 """ clms.types Installer
 """
-import os
 from os.path import join
 from setuptools import setup, find_packages
 
 NAME = "clms.types"
 PATH = NAME.split(".") + ["version.txt"]
-VERSION = open(join(*PATH)).read().strip()
+with open(join(*PATH)) as version_file:
+    VERSION = version_file.read().strip()
+with open("README.rst") as readme_file:
+    readme = readme_file.read()
+with open(join("docs", "HISTORY.txt")) as history_file:
+    history = history_file.read()
 
 setup(
     name=NAME,
     version=VERSION,
     description="An add-on with content-types for CLMS site",
     long_description_content_type="text/x-rst",
-    long_description=(
-        "{}\n{}".format(
-            open("README.rst").read(),
-            open(os.path.join("docs", "HISTORY.txt")).read(),
-        )
-    ),
+    long_description=(f"{readme}\n{history}"),
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
