@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Associated products indexers"""
 
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer

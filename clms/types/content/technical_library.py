@@ -2,16 +2,11 @@
 """
 TechnicalLibrary content-type definition
 """
-import json
-
-from plone.app.textfield import RichText
 from plone.dexterity.content import Container
-from plone.namedfile import field as namedfile
-from plone.schema.jsonfield import JSONField
+from plone.namedfile.field import NamedBlobFile
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
-from plone.namedfile.field import NamedBlobFile
 
 from clms.types import _
 
