@@ -17,7 +17,12 @@ setup(
     version=VERSION,
     description="An add-on with content-types for CLMS site",
     long_description_content_type="text/x-rst",
-    long_description=(f"{readme}\n{history}"),
+    long_description=(
+        "{}\n{}".format(
+            readme,
+            history,
+        )
+    ),
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
