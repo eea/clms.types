@@ -10,5 +10,6 @@
   <include package=".vocabularies" />
   <include package=".views" />
   <include package=".restapi" />
+  <include package=".indexers" />
 
 </configure>
