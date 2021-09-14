@@ -11,7 +11,7 @@ from plone import api
 
 
 @implementer(IVocabularyFactory)
-class ProductsVocabulary(object):
+class ProductsVocabulary:
     """
     Products vocabulary class
     """
