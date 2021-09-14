@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gsr="http://www.isotc211.org/2005/gsr" xmlns:gmi="http://www.isotc211.org/2005/gmi" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd">
+    <gmd:fileIdentifier>
+        <gco:CharacterString>
+            <tal:geonetwork_identifier tal:replace="context/geonetwork_identifier">b1ccb4c2-be13-416c-ac17-246b3b5219cf</tal:geonetwork_identifier>
+        </gco:CharacterString>
+    </gmd:fileIdentifier>
+    <gmd:identificationInfo xmlns:geonet="http://www.fao.org/geonetwork">
+        <gmd:MD_DataIdentification>
+            <gmd:citation>
+                <gmd:CI_Citation>
+                    <gmd:title>
+                        <gco:CharacterString>
+                            <tal:dataResourceTitle tal:replace="context/dataResourceTitle">dataResourceTitle</tal:dataResourceTitle>
+                        </gco:CharacterString>
+                    </gmd:title>
+                    <gmd:date>
+                        <gmd:CI_Date>
+                            <gmd:date>
+                                <gco:Date>
+                                    <tal:effective tal:replace="python:view.dateFromIso(context.CreationDate())">2018-04-30</tal:effective>
+                                </gco:Date>
+                            </gmd:date>
+                        </gmd:CI_Date>
+                    </gmd:date>
+                    <gmd:date xmlns:gn="http://www.fao.org/geonetwork">
+                        <gmd:CI_Date>
+                            <gmd:date>
+                                <gco:Date>
+                                    <tal:effective tal:replace="python:view.dateFromIso(context.EffectiveDate())">2018-04-30</tal:effective>
+                                </gco:Date>
+                            </gmd:date>
+                        </gmd:CI_Date>
+                    </gmd:date>
+                </gmd:CI_Citation>
+            </gmd:citation>
+            <gmd:abstract>
+                <gco:CharacterString>
+                    <tal:dataResourceAbstract tal:replace="python:view.htmlToText(context.dataResourceAbstract.raw)">dataResourceAbstract</tal:dataResourceAbstract>
+                </gco:CharacterString>
+            </gmd:abstract>
+
+            <gmd:resourceConstraints>
+                <gmd:MD_LegalConstraints>
+                    <gmd:otherConstraints>
+                        <gco:CharacterString>
+                            <tal:accessAndUseConstraints tal:replace="python:view.htmlToText(context.accessAndUseConstraints.raw)">Access to data is based on a principle of full... </tal:accessAndUseConstraints>
+                        </gco:CharacterString>
+                    </gmd:otherConstraints>
+                </gmd:MD_LegalConstraints>
+            </gmd:resourceConstraints>
+            <gmd:extent>
+                <gmd:EX_Extent>
+                    <tal:boundingBoxes tal:repeat="bbox python:context.geographicBoundingBox['items']">
+                        <gmd:geographicElement>
+                            <gmd:EX_GeographicBoundingBox>
+                                <gmd:westBoundLongitude>
+                                    <gco:Decimal tal:content="python:bbox['west']">-31.2684</gco:Decimal>
+                                </gmd:westBoundLongitude>
+                                <gmd:eastBoundLongitude>
+                                    <gco:Decimal tal:content="python:bbox['east']">-31.2684</gco:Decimal>
+                                </gmd:eastBoundLongitude>
+                                <gmd:southBoundLatitude>
+                                    <gco:Decimal tal:content="python:bbox['south']">-31.2684</gco:Decimal>
+                                </gmd:southBoundLatitude>
+                                <gmd:northBoundLatitude>
+                                    <gco:Decimal tal:content="python:bbox['north']">-31.2684</gco:Decimal>
+                                </gmd:northBoundLatitude>
+                            </gmd:EX_GeographicBoundingBox>
+                        </gmd:geographicElement>
+                    </tal:boundingBoxes>
+                </gmd:EX_Extent>
+            </gmd:extent>
+        </gmd:MD_DataIdentification>
+    </gmd:identificationInfo>
+    <gmd:distributionInfo xmlns:che="http://www.geocat.ch/2008/che" xmlns:geonet="http://www.fao.org/geonetwork">
+        <gmd:MD_Distribution>
+            <gmd:transferOptions>
+                <gmd:MD_DigitalTransferOptions>
+                    <gmd:onLine>
+                        <gmd:CI_OnlineResource>
+                            <gmd:linkage>
+                                <gmd:URL>
+                                    <tal:dataResourceLocator tal:replace="context/dataResourceLocator">https://land.copernicus.eu/pan-european/high-resolution-layers/imperviousness/change-maps/2006-2012-clc-synchronous/degree-change/view
+                                    </tal:dataResourceLocator>
+                                </gmd:URL>
+                            </gmd:linkage>
+                        </gmd:CI_OnlineResource>
+                    </gmd:onLine>
+                </gmd:MD_DigitalTransferOptions>
+            </gmd:transferOptions>
+            <gmd:transferOptions>
+                <gmd:MD_DigitalTransferOptions />
+            </gmd:transferOptions>
+        </gmd:MD_Distribution>
+    </gmd:distributionInfo>
+    <gmd:dataQualityInfo xmlns:geonet="http://www.fao.org/geonetwork">
+        <gmd:DQ_DataQuality>
+            <gmd:lineage>
+                <gmd:LI_Lineage>
+                    <gmd:statement>
+                        <gco:CharacterString>
+                            <tal:qualityLineage tal:replace="python:view.htmlToText(context.qualityLineage.raw)">Quality assurance follows the ...</tal:qualityLineage>
+                        </gco:CharacterString>
+                    </gmd:statement>
+                </gmd:LI_Lineage>
+            </gmd:lineage>
+        </gmd:DQ_DataQuality>
+    </gmd:dataQualityInfo>
+    <gmd:metadataMaintenance xmlns:geonet="http://www.fao.org/geonetwork">
+        <gmd:MD_MaintenanceInformation>
+            <gmd:maintenanceAndUpdateFrequency></gmd:maintenanceAndUpdateFrequency>
+        </gmd:MD_MaintenanceInformation>
+    </gmd:metadataMaintenance>
+</gmd:MD_Metadata>

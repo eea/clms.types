@@ -574,7 +574,7 @@
                     </gmd:useConstraints>
                     <gmd:otherConstraints>
                         <gco:CharacterString>
-                            <tal:accessAndUseConstraints tal:replace="python:view.htmlToText(context.accessAndUseConstraints.raw)">####HARDCODED####Access to data is based on a principle of full... </tal:accessAndUseConstraints>
+                            <tal:accessAndUseConstraints tal:replace="python:view.htmlToText(context.accessAndUseConstraints.raw)">Access to data is based on a principle of full... </tal:accessAndUseConstraints>
                         </gco:CharacterString>
                     </gmd:otherConstraints>
                 </gmd:MD_LegalConstraints>
@@ -658,7 +658,7 @@
                         <gmd:CI_OnlineResource>
                             <gmd:linkage>
                                 <gmd:URL>
-                                    <tal:dataResourceLocator tal:replace="context/dataResourceLocator">####HARDCODED####https://land.copernicus.eu/pan-european/high-resolution-layers/imperviousness/change-maps/2006-2012-clc-synchronous/degree-change/view
+                                    <tal:dataResourceLocator tal:replace="context/dataResourceLocator">https://land.copernicus.eu/pan-european/high-resolution-layers/imperviousness/change-maps/2006-2012-clc-synchronous/degree-change/view
                                     </tal:dataResourceLocator>
                                 </gmd:URL>
                             </gmd:linkage>
@@ -756,7 +756,7 @@
                 <gmd:LI_Lineage>
                     <gmd:statement>
                         <gco:CharacterString>
-                            <tal:qualityLineage tal:replace="python:view.htmlToText(context.qualityLineage.raw)">####HARDCODED####Quality assurance follows the ...</tal:qualityLineage>
+                            <tal:qualityLineage tal:replace="python:view.htmlToText(context.qualityLineage.raw)">Quality assurance follows the ...</tal:qualityLineage>
                         </gco:CharacterString>
                     </gmd:statement>
                     <gmd:source uuidref="####HARDCODED####17b26358-df10-4def-9991-fb395ce64933" />
