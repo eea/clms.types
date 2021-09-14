@@ -51,17 +51,13 @@ class WriteToGeoNetworkView(BrowserView):
             processing = "GENERATEUUID"
 
         result = requests.put(
-            """{GEONETWORK_API_URL}/records?_csrf={token}
+            f"""{GEONETWORK_API_URL}/records?_csrf={token}
             &metadataType=METADATA
             &uuidProcessing={processing}
             &transformWith=_none_
             &group=2
             &category=
-            &publishToAll=true""".format(
-                GEONETWORK_API_URL=GEONETWORK_API_URL,
-                token=token,
-                processing=processing,
-            ),
+            &publishToAll=true""",
             data=metadata,
             auth=AUTH,
             headers={
@@ -79,11 +75,10 @@ class WriteToGeoNetworkView(BrowserView):
                 .get("uuid")
             )
             print(
-                "Created item with uuid: {}".format(
-                    data.get("metadataInfos")
-                    .get(list(data.get("metadataInfos").keys())[0])[0]
-                    .get("uuid")
-                )
+                f"""Created item with uuid: 
+                {data.get('metadataInfos')
+                .get(list(data.get('metadataInfos').keys())[0])[0]
+                .get('uuid')}"""
             )
             return {
                 "token": result.cookies.get("XSRF-TOKEN") or token,
@@ -103,11 +98,11 @@ class WriteToGeoNetworkView(BrowserView):
         """
         login
         """
-        result = requests.post("{}/info?type=me".format(GEONETWORK_API_URL))
+        result = requests.post(f"{GEONETWORK_API_URL}/info?type=me")
         token = result.cookies.get("XSRF-TOKEN")
 
         result2 = requests.post(
-            "{}/srv/eng/info?type=me".format(GEONETWORK_BASE_URL),
+            f"{GEONETWORK_BASE_URL}/srv/eng/info?type=me",
             auth=AUTH,
             headers={"X-XSRF-TOKEN": token},
             cookies={"XSRF-TOKEN": token},
@@ -130,13 +125,13 @@ class WriteToGeoNetworkView(BrowserView):
                 result = self.write_one_metadata(
                     metadata, token=token, update=True
                 )
-                print("Done {}".format(result.get("metadatauuid")))
+                print(f"Done {result.get('metadatauuid')}")
             else:
                 result = self.write_one_metadata(metadata, token=token)
-                print("Done {}".format(result.get("metadatauuid")))
+                print(f"Done {result.get('metadatauuid')}")
             return result.get("metadatauuid")
         except InvalidMetadata:
-            print("Error writing {}".format(self.uuid))
+            print(f"Error writing {self.uuid}")
             return None
 
     def plone_to_xml(self):
