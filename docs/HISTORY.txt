@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.2-dev0 - (unreleased)
+---------------------------
+
 1.11 - (2021-09-14)
 ---------------------------
 * Change: long description [ionlizarazu]
