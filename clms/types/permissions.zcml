@@ -1,28 +1,19 @@
-<configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:zcml="http://namespaces.zope.org/zcml"
-  i18n_domain="plone">
+<configure xmlns="http://namespaces.zope.org/zope" xmlns:zcml="http://namespaces.zope.org/zcml" i18n_domain="plone">
 
   <configure zcml:condition="installed AccessControl.security">
-  <!-- -*- extra stuff goes here -*- -->
+    <!-- -*- extra stuff goes here -*- -->
 
-    <permission
-        id="clms.types.AddDataSet"
-        title="clms.types: Add DataSet"
-    />
+    <permission id="clms.types.AddDataSet" title="clms.types: Add DataSet" />
 
 
-    <permission
-        id="clms.types.AddProduct"
-        title="clms.types: Add Product"
-    />
+    <permission id="clms.types.AddProduct" title="clms.types: Add Product" />
 
 
-    <permission
-        id="clms.types.AddUseCase"
-        title="clms.types: Add UseCase"
-    />
+    <permission id="clms.types.AddUseCase" title="clms.types: Add UseCase" />
 
+    <permission id="clms.types.AddWorkOpportunity" title="clms.types: Add WorkOpportunity" />
+
+    <permission id="clms.types.AddTechnicalLibrary" title="clms.types: Add TechnicalLibrary" />
 
 
   </configure>

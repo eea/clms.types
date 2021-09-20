@@ -12,5 +12,6 @@
   <include package=".content" />
   <include package=".vocabularies" />
   <include package=".restapi" />
+  <include package=".indexers" />
 
 </configure>

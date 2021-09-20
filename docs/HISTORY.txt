@@ -1,6 +1,24 @@
 Changelog
 =========
 
+1.11 - (2021-09-14)
+---------------------------
+* Change: long description [ionlizarazu]
+
+1.2 - (2021-09-14)
+---------------------------
+* Change: long description
+  [ionlizarazu]
+
+1.10 - (2021-09-03)
+---------------------------
+* Change: Develop [ionlizarazu]
+
+2.0 - (2021-09-03)
+---------------------------
+* Change: Develop
+  [ionlizarazu]
+
 1.9 - (2021-08-25)
 ---------------------------
 * Change: Develop into master (comments) [ionlizarazu]
