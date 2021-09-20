@@ -1,0 +1,28 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+  <genericsetup:registerProfile 
+    name="1002"
+    title="Reinstall profile to set the LRF schema"
+    directory="1002"
+    description='Configuration for version 1002'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <genericsetup:upgradeSteps
+    source="1.0"
+    destination="1002"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="Reinstall profile to set the LRF schema"
+      description=""
+      handler=".v1002.upgrade" />
+
+
+      <genericsetup:upgradeDepends title="Reinstall profile to be sure to set the LRF schema"
+      description=""
+      import_profile="clms.types.upgrades:1002" />
+
+  </genericsetup:upgradeSteps>
+</configure>
