@@ -26,7 +26,7 @@ class RootMapViewerServiceGet(Service):
                 "center": [15, 50],
                 "zoom": 3,
             },
-            "Download": false,
+            "Download": False,
             "Components": components,
         }
 
