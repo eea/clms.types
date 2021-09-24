@@ -6,10 +6,10 @@ from plone.restapi.services import Service
 
 
 class RootMapViewerServiceGet(Service):
-    """" Return the mapviewer configuration """
+    """ " Return the mapviewer configuration"""
 
     def reply(self):
-        """ main method """
+        """main method"""
         components = []
 
         for component in self.get_map_components():
@@ -31,7 +31,7 @@ class RootMapViewerServiceGet(Service):
         }
 
     def get_datasets(self):
-        """ get all datasets """
+        """get all datasets"""
         brains = api.content.find(
             portal_type="DataSet",
             context=api.portal.get_navigation_root(self.context),
@@ -39,7 +39,7 @@ class RootMapViewerServiceGet(Service):
         return [brain.getObject() for brain in brains]
 
     def get_map_components(self):
-        """ get dataset information grouped by components """
+        """get dataset information grouped by components"""
         components = {}
         datasets = self.get_datasets()
         for dataset in datasets:
@@ -55,7 +55,7 @@ class RootMapViewerServiceGet(Service):
             }
 
     def serialize_dataset(self, dataset):
-        """ serialize one dataset using the keys needed by the mapviewer """
+        """serialize one dataset using the keys needed by the mapviewer"""
         layers = []
         layers_value = dataset.mapviewer_layers
         for layer_item in layers_value.get("items", []):
@@ -67,7 +67,7 @@ class RootMapViewerServiceGet(Service):
             )
 
         return {
-            "DatasetId": dataset.mapviewer_datasetid,
+            "DatasetId": api.content.get_uuid(obj=dataset),
             "DatasetTitle": dataset.Title(),
             "DatasetDescription": dataset.Description(),
             "ViewService": dataset.mapviewer_viewservice,

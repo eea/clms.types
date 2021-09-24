@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.14-dev0 - (unreleased)
+---------------------------
+
+1.13 - (2021-09-24)
+---------------------------
+* Change: provide default value for download mode in default map-viewer view in LRFs [erral]
+
 1.13-dev0 - (unreleased)
 ---------------------------
 
