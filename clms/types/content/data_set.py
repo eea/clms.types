@@ -403,7 +403,7 @@ class IDataSet(model.Schema):
             u"This field is used to group datasets under a singel component",
         ),
         default=u"Default",
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -415,13 +415,13 @@ class IDataSet(model.Schema):
             u"Enter the service url (WMS)",
         ),
         default=u"",
-        required=True,
+        required=False,
         readonly=False,
     )
 
     mapviewer_layers = JSONField(
         title=_("Layers available in the map viewer"),
-        required=True,
+        required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="layer_widget",
         default={"items": []},
@@ -437,7 +437,7 @@ class IDataSet(model.Schema):
             "should come from",
         ),
         default=u"EEA",
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -491,7 +491,7 @@ class IDataSet(model.Schema):
     downloadable_files = JSONField(
         title=_("Downloadable files"),
         description=_("Add one line per file"),
-        required=True,
+        required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="downloadable_files_widget",
         default={"items": []},
@@ -516,7 +516,7 @@ class IDataSet(model.Schema):
 
 # download = RichText(title=_(u"download"), required=False)
 
-# embed = schema.SourceText(title=_(u"embed"), required=True)
+# embed = schema.SourceText(title=_(u"embed"), required=False)
 
 # geographicAccuracy = RichText(
 #     title=_(u"geographicAccuracy"), required=False
