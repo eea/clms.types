@@ -277,7 +277,7 @@ class IDataSet(model.Schema):
             "conformant, or null - if not evaluated)",
         ),
         vocabulary=u"clms.types.ConformityPassVocabulary",
-        default=u"",
+        # default=u"",
         # defaultFactory=get_default_name,
         required=False,
         readonly=False,
