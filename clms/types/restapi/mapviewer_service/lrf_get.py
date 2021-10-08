@@ -46,8 +46,9 @@ class RootMapViewerServiceGet(Service):
         for dataset in datasets:
             component = components.get(dataset.mapviewer_component, [])
             serialized_dataset = self.serialize_dataset(dataset)
-            component.append(serialized_dataset)
-            components[dataset.mapviewer_component] = component
+            if serialized_dataset is not None:
+                component.append(serialized_dataset)
+                components[dataset.mapviewer_component] = component
 
         for component_name, value in components.items():
 
@@ -79,28 +80,33 @@ class RootMapViewerServiceGet(Service):
 
     def serialize_dataset(self, dataset):
         """serialize one dataset using the keys needed by the mapviewer"""
-        layers = []
-        layers_value = dataset.mapviewer_layers
-        for layer_item in layers_value.get("items", []):
-            layers.append(
-                {
-                    "LayerId": layer_item.get("id", ""),
-                    "Title": layer_item.get("title", ""),
-                    "Default_active": layer_item.get("default_active", False),
-                }
-            )
+        if dataset.mapviewer_vieservice:
+            layers = []
+            layers_value = dataset.mapviewer_layers
+            for layer_item in layers_value.get("items", []):
+                layers.append(
+                    {
+                        "LayerId": layer_item.get("id", ""),
+                        "Title": layer_item.get("title", ""),
+                        "Default_active": layer_item.get(
+                            "default_active", False
+                        ),
+                    }
+                )
 
-        return {
-            # Datasets are saved inside product, so the Title name is its parent's name
-            "Product": aq_parent(dataset).Title(),
-            "DatasetId": api.content.get_uuid(obj=dataset),
-            "DatasetTitle": dataset.Title(),
-            "DatasetDescription": dataset.Description(),
-            "ViewService": dataset.mapviewer_viewservice,
-            "Default_active": dataset.mapviewer_default_active,
-            "Layer": layers,
-            "DownloadService": dataset.mapviewer_downloadservice,
-            "DownloadType": dataset.mapviewer_downloadtype,
-            "IsTimeSeries": dataset.mapviewer_istimeseries,
-            "TimeSeriesService": dataset.mapviewer_timeseriesservice,
-        }
+            return {
+                # Datasets are saved inside product, so the Title name is its parent's name
+                "Product": aq_parent(dataset).Title(),
+                "DatasetId": api.content.get_uuid(obj=dataset),
+                "DatasetTitle": dataset.Title(),
+                "DatasetDescription": dataset.Description(),
+                "ViewService": dataset.mapviewer_viewservice,
+                "Default_active": dataset.mapviewer_default_active,
+                "Layer": layers,
+                "DownloadService": dataset.mapviewer_downloadservice,
+                "DownloadType": dataset.mapviewer_downloadtype,
+                "IsTimeSeries": dataset.mapviewer_istimeseries,
+                "TimeSeriesService": dataset.mapviewer_timeseriesservice,
+            }
+
+        return None
