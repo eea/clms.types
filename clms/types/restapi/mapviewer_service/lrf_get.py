@@ -1,12 +1,13 @@
 """
 REST API endpoint to get the mapviewer configuration data
 """
+from Acquisition import aq_parent
 from plone import api
 from plone.restapi.services import Service
 
 
 class RootMapViewerServiceGet(Service):
-    """ " Return the mapviewer configuration"""
+    """ Return the mapviewer configuration"""
 
     def reply(self):
         """main method"""
@@ -45,35 +46,68 @@ class RootMapViewerServiceGet(Service):
         for dataset in datasets:
             component = components.get(dataset.mapviewer_component, [])
             serialized_dataset = self.serialize_dataset(dataset)
-            component.append(serialized_dataset)
-            components[dataset.mapviewer_component] = component
+            if serialized_dataset is not None:
+                component.append(serialized_dataset)
+                components[dataset.mapviewer_component] = component
 
-        for key, value in components.items():
+        for component_name, component_datasets in components.items():
+
+            products = self.group_by_products(component_datasets)
+
             yield {
-                "title": key,
-                "products": value,
+                "title": component_name,
+                "products": products,
             }
 
-    def serialize_dataset(self, dataset):
-        """serialize one dataset using the keys needed by the mapviewer"""
-        layers = []
-        layers_value = dataset.mapviewer_layers
-        for layer_item in layers_value.get("items", []):
-            layers.append(
+    def group_by_products(self, datasets):
+        """ group all datasets by product """
+        products = {}
+        for dataset in datasets:
+            product = products.get(dataset.get("Product"), [])
+            product.append(dataset)
+            products[dataset.get("Product")] = product
+
+        prepared_products = []
+        for product_name, product_datasets in products.items():
+            prepared_products.append(
                 {
-                    "LayerId": layer_item.get("id", ""),
-                    "Title": layer_item.get("title", ""),
+                    "ProductTitle": product_name,
+                    "Datasets": product_datasets,
                 }
             )
 
-        return {
-            "DatasetId": api.content.get_uuid(obj=dataset),
-            "DatasetTitle": dataset.Title(),
-            "DatasetDescription": dataset.Description(),
-            "ViewService": dataset.mapviewer_viewservice,
-            "Layer": layers,
-            "DownloadService": dataset.mapviewer_downloadservice,
-            "DownloadType": dataset.mapviewer_downloadtype,
-            "IsTimeSeries": dataset.mapviewer_istimeseries,
-            "TimeSeriesService": dataset.mapviewer_timeseriesservice,
-        }
+        return prepared_products
+
+    def serialize_dataset(self, dataset):
+        """serialize one dataset using the keys needed by the mapviewer"""
+        if dataset.mapviewer_viewservice:
+            layers = []
+            layers_value = dataset.mapviewer_layers
+            for layer_item in layers_value.get("items", []):
+                layers.append(
+                    {
+                        "LayerId": layer_item.get("id", ""),
+                        "Title": layer_item.get("title", ""),
+                        "Default_active": layer_item.get(
+                            "default_active", False
+                        ),
+                    }
+                )
+
+            return {
+                # Datasets are saved inside product, so the Title name is its
+                # parent's name
+                "Product": aq_parent(dataset).Title(),
+                "DatasetId": api.content.get_uuid(obj=dataset),
+                "DatasetTitle": dataset.Title(),
+                "DatasetDescription": dataset.Description(),
+                "ViewService": dataset.mapviewer_viewservice,
+                "Default_active": dataset.mapviewer_default_active,
+                "Layer": layers,
+                "DownloadService": dataset.mapviewer_downloadservice,
+                "DownloadType": dataset.mapviewer_downloadtype,
+                "IsTimeSeries": dataset.mapviewer_istimeseries,
+                "TimeSeriesService": dataset.mapviewer_timeseriesservice,
+            }
+
+        return None

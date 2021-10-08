@@ -387,6 +387,7 @@ class IDataSet(model.Schema):
         fields=[
             "mapviewer_component",
             "mapviewer_viewservice",
+            "mapviewer_default_active",
             "mapviewer_downloadservice",
             "mapviewer_layers",
             "mapviewer_downloadtype",
@@ -416,6 +417,16 @@ class IDataSet(model.Schema):
         ),
         default=u"",
         required=False,
+        readonly=False,
+    )
+
+    mapviewer_default_active = schema.Bool(
+        title=_(
+            u"Default active?",
+        ),
+        description=_(u"Enter whether is dataset should be active by default"),
+        required=False,
+        default=False,
         readonly=False,
     )
 
