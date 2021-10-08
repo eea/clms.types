@@ -91,7 +91,8 @@ class RootMapViewerServiceGet(Service):
             )
 
         return {
-            # Datasets are saved inside product, so the Title name is its parent's name
+            # Datasets are saved inside product,
+            # so the Title name is its parent's name
             "Product": aq_parent(dataset).Title(),
             "DatasetId": api.content.get_uuid(obj=dataset),
             "DatasetTitle": dataset.Title(),
