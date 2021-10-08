@@ -41,7 +41,7 @@ class DataSetMapViewerServiceGet(Service):
             component.append(serialized_dataset)
             components[dataset.mapviewer_component] = component
 
-        for component_name, value in components.items():
+        for component_name in components.items():
 
             products = self.group_by_products(component)
 
