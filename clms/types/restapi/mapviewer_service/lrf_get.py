@@ -50,9 +50,9 @@ class RootMapViewerServiceGet(Service):
                 component.append(serialized_dataset)
                 components[dataset.mapviewer_component] = component
 
-        for component_name in components.items():
+        for component_name, component_datasets in components.items():
 
-            products = self.group_by_products(component)
+            products = self.group_by_products(component_datasets)
 
             yield {
                 "title": component_name,
@@ -80,7 +80,7 @@ class RootMapViewerServiceGet(Service):
 
     def serialize_dataset(self, dataset):
         """serialize one dataset using the keys needed by the mapviewer"""
-        if dataset.mapviewer_vieservice:
+        if dataset.mapviewer_viewservice:
             layers = []
             layers_value = dataset.mapviewer_layers
             for layer_item in layers_value.get("items", []):

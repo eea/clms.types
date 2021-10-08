@@ -42,9 +42,9 @@ class DataSetMapViewerServiceGet(Service):
                 component.append(serialized_dataset)
                 components[dataset.mapviewer_component] = component
 
-        for component_name in components.items():
+        for component_name, component_datasets in components.items():
 
-            products = self.group_by_products(component)
+            products = self.group_by_products(component_datasets)
 
             yield {
                 "title": component_name,
