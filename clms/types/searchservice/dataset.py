@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
+"""
+@metadata endpoint extension for DataSets
+"""
+from clms.types.content.data_set import IDataSet
 from eea.api.coremetadata.api.services.metadata.adapters.dexterity import (
     BaseDexterityCoreMetadataAdapter,
 )
 from eea.api.coremetadata.api.services.metadata.adapters.interfaces import (
     ICoreMetadata,
 )
-from clms.types.content.data_set import IDataSet
-
+from Products.CMFPlone.interfaces import ILanguage
 from zope.component import adapter
 from zope.interface import implementer
 
@@ -14,11 +17,15 @@ from zope.interface import implementer
 @adapter(IDataSet)
 @implementer(ICoreMetadata)
 class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
+    """ Specific adapter for datasets """
+
     def render_metadata(self):
+        """ render all metadata for datasets """
         metadata = super().render_metadata()
 
         metadata["SearchableText"] = " ".join(
             [
+                # pylint: ignore=W503
                 self.context.dataResourceAbstract
                 and self.context.dataResourceAbstract.output
                 or "",
@@ -55,6 +62,39 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             ]
         )
 
-        metadata["topic"] = self.context.classificationTopicCategory
+        metadata["language"] = ILanguage(self.context).get_language()
+
+        # Type of resources
+        metadata["resource_type"] = self.context.dataResourceType
+        # GEMET Keyword
+        metadata[
+            "classification_topic_category"
+        ] = self.context.classificationTopicCategory
+        # INSPIRE THEMEs
+        metadata["inspire_themes"] = self.context.inspireThemes
+        # Keywords
+        # They come from Plone field 'tags'
+
+        # Years
+        metadata["temporal_coverage"] = self.context.temporalCoverage
+        # Formats
+        metadata["distribution_format"] = self.context.distribution_format
+
+        # Representation types
+        # ???
+
+        # Update Frequency
+        metadata["update_frequency"] = self.context.update_frequency
+        # Status
+        metadata["conformity_pass"] = self.context.conformityPass
+        # Scale
+        # ???
+        # Resolution
+        # ???
+        # Regions
+        # ???
+        metadata[
+            "geographicBoundingBox"
+        ] = self.context.geographicBoundingBox.get("items", [])
 
         return metadata

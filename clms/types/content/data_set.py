@@ -208,6 +208,25 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    inspireThemes = schema.List(
+        title=_(
+            u"Inspire Themes",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.Choice(
+            title=_(
+                u"Inspire theme",
+            ),
+            vocabulary=u"clms.types.InspireThemesVocabulary",
+            required=False,
+            readonly=False,
+        ),
+        required=False,
+        readonly=False,
+    )
+
     geographicBoundingBox = JSONField(
         title=u"Bounding box dataGrid field",
         required=False,

@@ -24,5 +24,9 @@
         name="clms.types.CategoryTopicsVocabulary"
     />
 
+    <utility
+        component=".inspire_themes_vocabulary.InspireThemesVocabularyFactory"
+        name="clms.types.InspireThemesVocabulary"
+    />
 
 </configure>
