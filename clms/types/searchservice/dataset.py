@@ -26,38 +26,27 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
         metadata["SearchableText"] = " ".join(
             [
                 self.context.dataResourceAbstract and
-                self.context.dataResourceAbstract.output or
-                "",
+                self.context.dataResourceAbstract.output or "",
                 self.context.accessAndUseLimitationPublic and
-                self.context.accessAndUseLimitationPublic.output or
-                "",
+                self.context.accessAndUseLimitationPublic.output or "",
                 self.context.accessAndUseConstraints and
-                self.context.accessAndUseConstraints.output or
-                "",
+                self.context.accessAndUseConstraints.output or "",
                 self.context.qualitySpatialResolution and
-                self.context.qualitySpatialResolution.output or
-                "",
+                self.context.qualitySpatialResolution.output or "",
                 self.context.responsibleParty and
-                self.context.responsibleParty.output or
-                "",
+                self.context.responsibleParty.output or "",
                 self.context.responsiblePartyRole and
-                self.context.responsiblePartyRole.output or
-                "",
+                self.context.responsiblePartyRole.output or "",
                 self.context.conformitySpecification and
-                self.context.conformitySpecification.output or
-                "",
+                self.context.conformitySpecification.output or "",
                 self.context.qualityLineage and
-                self.context.qualityLineage.output or
-                "",
+                self.context.qualityLineage.output or "",
                 self.context.dataServices and
-                self.context.dataServices.output or
-                "",
+                self.context.dataServices.output or "",
                 self.context.point_of_contact and
-                self.context.point_of_contact.output or
-                "",
+                self.context.point_of_contact.output or "",
                 self.context.distribution_format and
-                self.context.distribution_format.output or
-                "",
+                self.context.distribution_format.output or "",
             ]
         )
 
@@ -76,8 +65,10 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
 
         # Years
         metadata["temporal_coverage"] = self.context.temporalCoverage
-        # Formats
-        metadata["distribution_format"] = self.context.distribution_format
+
+        # This is a RichText
+        # # Formats
+        # metadata["distribution_format"] = self.context.distribution_format
 
         # Representation types
         # ???
