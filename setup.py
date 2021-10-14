@@ -51,6 +51,7 @@ setup(
         "plone.restapi",
         "collective.volto.dropdownmenu",
         "plone.schema>=1.3.0",
+        "eea.api.coremetadata",
     ],
     extras_require={
         "test": [
