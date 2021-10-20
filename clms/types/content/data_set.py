@@ -515,7 +515,20 @@ class IDataSet(model.Schema):
         label=_(u"Downloads"),
         fields=[
             "downloadable_files",
+            "dataset_full_path",
         ],
+    )
+
+    dataset_full_path = schema.TextLine(
+        title=_(
+            u"Enter the path to the full dataset download file",
+        ),
+        description=_(
+            u"This is used when requesting the download from the map viewer",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
     )
 
     downloadable_files = JSONField(
