@@ -24,7 +24,8 @@ class IMapviewerComponent(model.Schema):
             u"Component Title",
         ),
         description=_(
-            u"This field is used to group datasets under a single component in the mapviewer",
+            u"This field is used to group datasets under a single "
+            u"component in the mapviewer",
         ),
         default=u"Default",
         required=False,

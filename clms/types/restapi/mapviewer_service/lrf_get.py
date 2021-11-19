@@ -105,9 +105,8 @@ class RootMapViewerServiceGet(Service):
             return {
                 # Datasets are saved inside product, so the Title name is its
                 # parent's name
-                "Product": parent.portal_type == "Product"
-                and parent.Title()
-                or "Default",
+                # pylint: disable=line-too-long
+                "Product": parent.portal_type == "Product" and parent.Title() or "Default",
                 "DatasetId": api.content.get_uuid(obj=dataset),
                 "DatasetTitle": dataset.Title(),
                 "DatasetDescription": dataset.Description(),
