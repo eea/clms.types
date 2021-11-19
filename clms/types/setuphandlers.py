@@ -14,6 +14,9 @@ class HiddenProfiles:
             "clms.types:uninstall",
         ]
 
+    def getNonInstallableProducts(self):
+        return ["clms.types.upgrades"]
+
 
 def post_install(context):
     """Post install script"""
