@@ -1,3 +1,6 @@
+"""
+mapviewer_component behavior
+"""
 # -*- coding: utf-8 -*-
 
 from clms.types import _
@@ -12,12 +15,13 @@ from zope.interface import provider
 
 
 class IMapviewerComponentMarker(Interface):
+    """ marker interface"""
     pass
 
 
 @provider(IFormFieldProvider)
 class IMapviewerComponent(model.Schema):
-    """"""
+    """ interface definition """
 
     component_title = schema.TextLine(
         title=_(
@@ -36,6 +40,7 @@ class IMapviewerComponent(model.Schema):
 @implementer(IMapviewerComponent)
 @adapter(IMapviewerComponentMarker)
 class MapviewerComponent(object):
+    """ behavior implementation """
     def __init__(self, context):
         self.context = context
 
