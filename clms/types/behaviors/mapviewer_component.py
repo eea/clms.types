@@ -16,7 +16,6 @@ from zope.interface import provider
 
 class IMapviewerComponentMarker(Interface):
     """ marker interface"""
-    pass
 
 
 @provider(IFormFieldProvider)
@@ -39,17 +38,19 @@ class IMapviewerComponent(model.Schema):
 
 @implementer(IMapviewerComponent)
 @adapter(IMapviewerComponentMarker)
-class MapviewerComponent(object):
+class MapviewerComponent:
     """ behavior implementation """
     def __init__(self, context):
         self.context = context
 
     @property
     def component_title(self):
+        """ getter """
         if safe_hasattr(self.context, "component_title"):
             return self.context.component_title
         return None
 
     @component_title.setter
     def component_title(self, value):
+        """ setter """
         self.context.component_title = value
