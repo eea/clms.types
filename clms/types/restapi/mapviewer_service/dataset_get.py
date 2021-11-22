@@ -36,11 +36,19 @@ class DataSetMapViewerServiceGet(Service):
         components = {}
         datasets = [self.context]
         for dataset in datasets:
-            component = components.get(dataset.mapviewer_component, [])
+            product = aq_parent(dataset)
+            if product.portal_type == "Product":
+                # get the component title from the Product
+                component_title = product.component_title
+            else:
+                # This should not happen
+                # Add to the 'Default' component
+                component_title = "Default"
+            component = components.get(component_title, [])
             serialized_dataset = self.serialize_dataset(dataset)
             if serialized_dataset:
                 component.append(serialized_dataset)
-                components[dataset.mapviewer_component] = component
+                components[component_title] = component
 
         for component_name, component_datasets in components.items():
 
@@ -86,10 +94,12 @@ class DataSetMapViewerServiceGet(Service):
                     }
                 )
 
+            parent = aq_parent(dataset)
             return {
                 # Datasets are saved inside product, so the Title name is its
                 # parent's name
-                "Product": aq_parent(dataset).Title(),
+                # pylint: disable=line-too-long
+                "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
                 "DatasetId": api.content.get_uuid(obj=dataset),
                 "DatasetTitle": dataset.Title(),
                 "DatasetDescription": dataset.Description(),

@@ -17,8 +17,6 @@ Main features
 =============
 
 1. Easy to install/uninstall via Site Setup > Add-ons
-2.
-3.
 
 Install
 =======

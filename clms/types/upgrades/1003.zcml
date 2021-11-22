@@ -1,0 +1,28 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+  <genericsetup:registerProfile
+    name="1003"
+    title="Add new behavior to products"
+    directory="1003"
+    description='Configuration for version 1003'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <genericsetup:upgradeSteps
+    source="1002"
+    destination="1003"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="Add new behavior to products"
+      description=""
+      handler=".v1003.upgrade" />
+
+
+      <genericsetup:upgradeDepends title="Add new behavior to products"
+      description=""
+      import_profile="clms.types.upgrades:1003" />
+
+  </genericsetup:upgradeSteps>
+</configure>
