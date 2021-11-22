@@ -3,7 +3,7 @@
 
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
-from clms.types.behaviors.product_relation import IProductRelationMarker
+from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 
 
 @indexer(IDexterityContent)
@@ -12,7 +12,7 @@ def dummy(obj):
     raise AttributeError("This field should not indexed here!")
 
 
-@indexer(IProductRelationMarker)
-def associated_products_behavior(obj):
+@indexer(IDataSetRelationMarker)
+def associated_datasets_behavior(obj):
     """Calculate and return the value for the indexer"""
-    return obj.products
+    return obj.datasets

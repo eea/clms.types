@@ -3,4 +3,7 @@
   <index name="associated_products" meta_type="KeywordIndex">
         <indexed_attr value="associated_products" />
   </index>
+  <index name="associated_datasets" meta_type="KeywordIndex">
+        <indexed_attr value="associated_datasets" />
+  </index>
 </object>

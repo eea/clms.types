@@ -27,4 +27,14 @@
         marker=".product_relation.IProductRelationMarker"
         />
 
+
+    <plone:behavior
+        name="clms.types.dataset_relations"
+        title="A field to relate Plone elements to dataset"
+        description="This field will be used to relate elements to DataSet portal_type"
+        provides=".dataset_relation.IDataSetRelation"
+        factory=".dataset_relation.DataSetRelation"
+        marker=".dataset_relation.IDataSetRelationMarker"
+        />
+
 </configure>
