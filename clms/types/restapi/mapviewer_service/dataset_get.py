@@ -60,7 +60,7 @@ class DataSetMapViewerServiceGet(Service):
             }
 
     def group_by_products(self, datasets):
-        """ group all datasets by product """
+        """group all datasets by product"""
         products = {}
         for dataset in datasets:
             product = products.get(dataset.get("Product"), [])
@@ -99,8 +99,9 @@ class DataSetMapViewerServiceGet(Service):
                 # Datasets are saved inside product, so the Title name is its
                 # parent's name
                 # pylint: disable=line-too-long
-                "Product": parent.portal_type == "Product" and \
-                           parent.Title() or "Default",
+                "Product": parent.portal_type == "Product"
+                and parent.Title()
+                or "Default",
                 "DatasetId": api.content.get_uuid(obj=dataset),
                 "DatasetTitle": dataset.Title(),
                 "DatasetDescription": dataset.Description(),
