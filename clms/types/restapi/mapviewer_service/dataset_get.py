@@ -100,7 +100,7 @@ class DataSetMapViewerServiceGet(Service):
                 # parent's name
                 # pylint: disable=line-too-long
                 "Product": parent.portal_type == "Product" and \
-                    parent.Title() or "Default",
+                           parent.Title() or "Default",
                 "DatasetId": api.content.get_uuid(obj=dataset),
                 "DatasetTitle": dataset.Title(),
                 "DatasetDescription": dataset.Description(),

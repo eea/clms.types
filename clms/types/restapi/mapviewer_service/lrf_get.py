@@ -107,7 +107,7 @@ class RootMapViewerServiceGet(Service):
                 # parent's name
                 # pylint: disable=line-too-long
                 "Product": parent.portal_type == "Product" and \
-                    parent.Title() or "Default",  # no-qa
+                           parent.Title() or "Default",  # no-qa
                 "DatasetId": api.content.get_uuid(obj=dataset),
                 "DatasetTitle": dataset.Title(),
                 "DatasetDescription": dataset.Description(),
