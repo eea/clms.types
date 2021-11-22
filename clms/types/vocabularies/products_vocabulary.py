@@ -17,7 +17,10 @@ class ProductsVocabulary:
     """
 
     def __call__(self, context):
-        products = api.content.find(portal_type="Product")
+        products = api.content.find(
+            context=api.portal.get_navigation_root(context),
+            portal_type="Product",
+        )
         productsList = [
             (p.getObject().id, p.getObject().title) for p in products
         ]
