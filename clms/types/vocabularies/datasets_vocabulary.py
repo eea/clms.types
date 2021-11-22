@@ -11,24 +11,24 @@ from plone import api
 
 
 @implementer(IVocabularyFactory)
-class ProductsVocabulary:
+class DataSetsVocabulary:
     """
-    Products vocabulary class
+    DataSets vocabulary class
     """
 
     def __call__(self, context):
-        products = api.content.find(
+        datasets = api.content.find(
             context=api.portal.get_navigation_root(context),
-            portal_type="Product",
+            portal_type="DataSet",
         )
-        productsList = [
-            (p.getObject().id, p.getObject().title) for p in products
+        datasetsList = [
+            (p.getObject().id, p.getObject().title) for p in datasets
         ]
         terms = [
             SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
-            for pair in productsList
+            for pair in datasetsList
         ]
         return SimpleVocabulary(terms)
 
 
-ProductsVocabularyFactory = ProductsVocabulary()
+DataSetsVocabularyFactory = DataSetsVocabulary()

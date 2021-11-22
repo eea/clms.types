@@ -19,25 +19,6 @@ class IUseCase(model.Schema):
 
     # model.load('use_case.xml')
 
-    products = schema.List(
-        title=_(
-            u"CLMS products used",
-        ),
-        description=_(
-            u"Multiple selection allowed",
-        ),
-        value_type=schema.Choice(
-            title=_(
-                u"CLMS products used",
-            ),
-            vocabulary=u"clms.types.ProductsVocabulary",
-            required=True,
-            readonly=False,
-        ),
-        required=True,
-        readonly=False,
-    )
-
     responsibleOrganization = schema.TextLine(
         title=_(u"Responsible organization"),
         required=True,
@@ -99,4 +80,4 @@ class IUseCase(model.Schema):
 
 @implementer(IUseCase)
 class UseCase(Container):
-    """ UseCase content-type class """
+    """UseCase content-type class"""
