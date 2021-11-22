@@ -15,6 +15,7 @@ class HiddenProfiles:
         ]
 
     def getNonInstallableProducts(self):
+        """ Hide upgrade stepts from installable product list """
         return ["clms.types.upgrades"]
 
 
