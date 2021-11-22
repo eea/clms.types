@@ -99,9 +99,7 @@ class DataSetMapViewerServiceGet(Service):
                 # Datasets are saved inside product, so the Title name is its
                 # parent's name
                 # pylint: disable=line-too-long
-                "Product": parent.portal_type == "Product"
-                and parent.Title()
-                or "Default",
+                "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
                 "DatasetId": api.content.get_uuid(obj=dataset),
                 "DatasetTitle": dataset.Title(),
                 "DatasetDescription": dataset.Description(),
