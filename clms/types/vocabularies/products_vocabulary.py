@@ -8,6 +8,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from plone import api
+from plone.uuid.interfaces import IUUID
 
 
 @implementer(IVocabularyFactory)
@@ -22,7 +23,7 @@ class ProductsVocabulary:
             portal_type="Product",
         )
         productsList = [
-            (p.getObject().id, p.getObject().title) for p in products
+            (IUUID(p.getObject(), None), p.getObject().title) for p in products
         ]
         terms = [
             SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
