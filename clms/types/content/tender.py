@@ -10,13 +10,13 @@ from zope import schema
 from clms.types import _
 
 
-class IWorkOpportunity(model.Schema):
+class ITender(model.Schema):
     """Marker interface and Dexterity Python Schema for WorkOpportunity"""
 
     # If you want, you can load a xml model created TTW here
     # and customize it in Python:
 
-    # model.load('work_oportunity.xml')
+    # model.load('tender.xml')
 
     procurement_no = schema.TextLine(
         title=_(
@@ -86,6 +86,6 @@ class IWorkOpportunity(model.Schema):
     # )
 
 
-@implementer(IWorkOpportunity)
-class WorkOpportunity(Container):
-    """WorkOpportunity content type class"""
+@implementer(ITender)
+class Tender(Container):
+    """Tender content type class"""
