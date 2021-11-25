@@ -15,6 +15,11 @@
     />
 
     <utility
+        component=".datasets_vocabulary.DataSetsVocabularyFactory"
+        name="clms.types.DataSetsVocabulary"
+    />
+
+    <utility
         component=".conformity_pass_vocabulary.ConformityPassVocabularyFactory"
         name="clms.types.ConformityPassVocabulary"
     />

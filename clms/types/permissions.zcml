@@ -13,6 +13,8 @@
 
     <permission id="clms.types.AddWorkOpportunity" title="clms.types: Add WorkOpportunity" />
 
+    <permission id="clms.types.AddTender" title="clms.types: Add Tender" />
+
     <permission id="clms.types.AddTechnicalLibrary" title="clms.types: Add TechnicalLibrary" />
 
 

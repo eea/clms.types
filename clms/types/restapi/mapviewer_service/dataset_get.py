@@ -60,7 +60,7 @@ class DataSetMapViewerServiceGet(Service):
             }
 
     def group_by_products(self, datasets):
-        """ group all datasets by product """
+        """group all datasets by product"""
         products = {}
         for dataset in datasets:
             product = products.get(dataset.get("Product"), [])

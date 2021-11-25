@@ -7,7 +7,7 @@ from plone.restapi.services import Service
 
 
 class RootMapViewerServiceGet(Service):
-    """ Return the mapviewer configuration"""
+    """Return the mapviewer configuration"""
 
     def reply(self):
         """main method"""
@@ -68,7 +68,7 @@ class RootMapViewerServiceGet(Service):
             }
 
     def group_by_products(self, datasets):
-        """ group all datasets by product """
+        """group all datasets by product"""
         products = {}
         for dataset in datasets:
             product = products.get(dataset.get("Product"), [])

@@ -4,8 +4,11 @@
 
   -*- extra stuff goes here -*-
 
-  <adapter factory=".associated_products.associated_products"
+  <adapter factory=".associated_products.associated_products_behavior"
     name="associated_products" />
+
+  <adapter factory=".associated_datasets.associated_datasets_behavior"
+    name="associated_datasets" />
 
 
 </configure>
