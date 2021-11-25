@@ -37,7 +37,7 @@ class IDataSetRelation(model.Schema):
             required=True,
             readonly=False,
         ),
-        required=True,
+        required=False,
         readonly=False,
     )
 
