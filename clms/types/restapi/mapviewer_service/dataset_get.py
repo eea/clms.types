@@ -65,7 +65,7 @@ class DataSetMapViewerServiceGet(Service):
         for dataset in datasets:
             product = products.get(dataset.get("Product"), [])
             product.append(dataset)
-            products[(dataset.get("Product"), dataset.get("ProductId")]] = product  # noqa: E501
+            products[(dataset.get("Product"), dataset.get("ProductId"))] = product  # noqa: E501
 
         prepared_products = []
         for product, product_datasets in products.items():
