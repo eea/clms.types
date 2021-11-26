@@ -4,6 +4,7 @@
   i18n_domain="clms.types">
 
   <i18n:registerTranslations directory="locales" />
+  <include package="collective.taxonomy" />
 
   <include file="profiles.zcml" />
   <include file="permissions.zcml" />
