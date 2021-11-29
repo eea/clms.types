@@ -52,6 +52,8 @@ setup(
         "collective.volto.dropdownmenu",
         "plone.schema>=1.3.0",
         "eea.api.coremetadata",
+        "collective.taxonomy",
+        "eea.api.taxonomy",
     ],
     extras_require={
         "test": [

@@ -73,13 +73,16 @@ class RootMapViewerServiceGet(Service):
         for dataset in datasets:
             product = products.get(dataset.get("Product"), [])
             product.append(dataset)
-            products[dataset.get("Product")] = product
+            product_key = (dataset.get("Product"), dataset.get("ProductId"))
+            products[product_key] = product
 
         prepared_products = []
-        for product_name, product_datasets in products.items():
+        for product, product_datasets in products.items():
+            product_name, product_id = product
             prepared_products.append(
                 {
                     "ProductTitle": product_name,
+                    "ProductID": product_id,
                     "Datasets": product_datasets,
                 }
             )
@@ -107,6 +110,7 @@ class RootMapViewerServiceGet(Service):
                 # parent's name
                 # pylint: disable=line-too-long
                 "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
+                "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
                 "DatasetId": api.content.get_uuid(obj=dataset),
                 "DatasetTitle": dataset.Title(),
                 "DatasetDescription": dataset.Description(),

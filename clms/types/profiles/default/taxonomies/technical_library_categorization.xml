@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" orderSignificant="false" profileType="hierarchicalTokenTerms" language="en">
+  <vocabName>
+    <langstring language="en">Technical Library Categorization</langstring>
+  </vocabName>
+  <vocabIdentifier>technical_library_categorization</vocabIdentifier>
+  <term>
+    <termIdentifier>18fdjdprkq</termIdentifier>
+    <caption>
+      <langstring language="en">Product methodological descriptions, algorighms, scripts</langstring>
+    </caption>
+    <term>
+      <termIdentifier>pvwxi0tmyr</termIdentifier>
+      <caption>
+        <langstring language="en">Methodology documentation</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>cvlh7ur10y</termIdentifier>
+      <caption>
+        <langstring language="en">Description of data processing algorithms</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>p35b7fh1ng</termIdentifier>
+      <caption>
+        <langstring language="en">Links to scripts</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>qbbdaeny9r</termIdentifier>
+      <caption>
+        <langstring language="en">and similar...</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>x0ho7are9n</termIdentifier>
+    <caption>
+      <langstring language="en">Product QCQA, validation reports and data</langstring>
+    </caption>
+    <term>
+      <termIdentifier>i2223921k5</termIdentifier>
+      <caption>
+        <langstring language="en">Assessment report</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>3awub96pqx</termIdentifier>
+      <caption>
+        <langstring language="en">Validation report</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>obvwrtdeqx</termIdentifier>
+      <caption>
+        <langstring language="en">Sample validation data</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>0xs7rsp6cw</termIdentifier>
+      <caption>
+        <langstring language="en">and similar...</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>63qwxkfcrx</termIdentifier>
+    <caption>
+      <langstring language="en">Product manuals, guidelines, specifications</langstring>
+    </caption>
+    <term>
+      <termIdentifier>c5ifc5oxei</termIdentifier>
+      <caption>
+        <langstring language="en">Technical specifications</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>6o561w24t7</termIdentifier>
+      <caption>
+        <langstring language="en">User manual</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>xfh4funakh</termIdentifier>
+      <caption>
+        <langstring language="en">Mapping guide</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>33tmub0shd</termIdentifier>
+      <caption>
+        <langstring language="en">Nomenclature guide</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ee0iurm8uh</termIdentifier>
+      <caption>
+        <langstring language="en">Technical guidelines</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>gtcg0dlku6</termIdentifier>
+      <caption>
+        <langstring language="en">and similar...</langstring>
+      </caption>
+    </term>
+  </term>
+  <term>
+    <termIdentifier>nmxu54oq9q</termIdentifier>
+    <caption>
+      <langstring language="bs"></langstring>
+      <langstring language="cs"></langstring>
+      <langstring language="da"></langstring>
+      <langstring language="de"></langstring>
+      <langstring language="en">Other publications</langstring>
+      <langstring language="es"></langstring>
+      <langstring language="et"></langstring>
+      <langstring language="fi"></langstring>
+      <langstring language="fr"></langstring>
+      <langstring language="hr"></langstring>
+      <langstring language="hu"></langstring>
+      <langstring language="it"></langstring>
+      <langstring language="lt"></langstring>
+      <langstring language="lv"></langstring>
+      <langstring language="mt"></langstring>
+      <langstring language="nl"></langstring>
+      <langstring language="pl"></langstring>
+      <langstring language="pt"></langstring>
+      <langstring language="ro"></langstring>
+      <langstring language="sk"></langstring>
+      <langstring language="sl"></langstring>
+      <langstring language="sv"></langstring>
+    </caption>
+    <term>
+      <termIdentifier>4nreudjbnv</termIdentifier>
+      <caption>
+        <langstring language="en">Articles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>4pxtalb09h</termIdentifier>
+      <caption>
+        <langstring language="en">Studies</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>ptt660ie4v</termIdentifier>
+      <caption>
+        <langstring language="bs"></langstring>
+        <langstring language="cs"></langstring>
+        <langstring language="da"></langstring>
+        <langstring language="de"></langstring>
+        <langstring language="en">Technical papers</langstring>
+        <langstring language="es"></langstring>
+        <langstring language="et"></langstring>
+        <langstring language="fi"></langstring>
+        <langstring language="fr"></langstring>
+        <langstring language="hr"></langstring>
+        <langstring language="hu"></langstring>
+        <langstring language="it"></langstring>
+        <langstring language="lt"></langstring>
+        <langstring language="lv"></langstring>
+        <langstring language="mt"></langstring>
+        <langstring language="nl"></langstring>
+        <langstring language="pl"></langstring>
+        <langstring language="pt"></langstring>
+        <langstring language="ro"></langstring>
+        <langstring language="sk"></langstring>
+        <langstring language="sl"></langstring>
+        <langstring language="sv"></langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>
