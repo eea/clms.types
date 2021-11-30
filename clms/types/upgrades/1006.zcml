@@ -6,7 +6,7 @@
 
   <genericsetup:registerProfile
     name="1006"
-    title="install collective.taxonomy and import taxonomy"
+    title="add behaviors to content-types"
     directory="1006"
     description='Configuration for version 1006'
     for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
@@ -16,12 +16,12 @@
     source="1005"
     destination="1006"
     profile="clms.types:default">
-      <genericsetup:upgradeStep title="install collective.taxonomy and import taxonomy"
+      <genericsetup:upgradeStep title="add behaviors to content-types"
       description=""
       handler=".v1006.upgrade" />
 
 
-      <genericsetup:upgradeDepends title="install collective.taxonomy and import taxonomy"
+      <genericsetup:upgradeDepends title="add behaviors to content-types"
       description=""
       import_profile="clms.types.upgrades:1006" />
 

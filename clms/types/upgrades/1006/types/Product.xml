@@ -3,5 +3,6 @@
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="behaviors" purge="false">
   <element value="clms.types.mapviewer_component"/>
+
  </property>
 </object>

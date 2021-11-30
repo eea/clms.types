@@ -3,4 +3,8 @@
   <property name="title">Controls the available contenttypes in your portal</property>
   <!--<object name="example_ct" meta_type="Dexterity FTI"/>-->
   <object name="Product" meta_type="Dexterity FTI" />
+  <object name="News Item" meta_type="Dexterity FTI" />
+  <object name="Event" meta_type="Dexterity FTI" />
+  <object name="TechnicalLibrary" meta_type="Dexterity FTI" />
+  <object name="UseCase" meta_type="Dexterity FTI" />
 </object>
