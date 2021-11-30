@@ -32,6 +32,7 @@
   <element value="plone.translatable"/>
   <element value="plone.leadimage"/>
   <element value="plone.richtext"/>
+  <element value="clms.types.mapviewer_component"/>
  </property>
  <property name="schema" purge="true"></property>
  <property
