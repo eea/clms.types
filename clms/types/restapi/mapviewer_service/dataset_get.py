@@ -27,7 +27,7 @@ class DataSetMapViewerServiceGet(Service):
                 "center": [15, 50],
                 "zoom": 3,
             },
-            "Download": False,
+            "Download": True,
             "Components": components,
         }
 
