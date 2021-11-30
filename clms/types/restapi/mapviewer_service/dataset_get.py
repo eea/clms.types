@@ -27,59 +27,46 @@ class DataSetMapViewerServiceGet(Service):
                 "center": [15, 50],
                 "zoom": 3,
             },
-            "Download": True,
+            "Download": False,
             "Components": components,
         }
 
+    def get_datasets(self):
+        """get all datasets"""
+        brains = api.content.find(
+            portal_type="DataSet",
+            context=api.portal.get_navigation_root(self.context),
+        )
+        return [brain.getObject() for brain in brains]
+
     def get_map_components(self):
-        """get dataset information grouped by components"""
+        """get product information grouped by components"""
         components = {}
-        datasets = [self.context]
-        for dataset in datasets:
-            product = aq_parent(dataset)
-            if product.portal_type == "Product":
-                # get the component title from the Product
-                component_title = product.component_title
-            else:
-                # This should not happen
-                # Add to the 'Default' component
-                component_title = "Default"
-            component = components.get(component_title, [])
-            serialized_dataset = self.serialize_dataset(dataset)
-            if serialized_dataset:
-                component.append(serialized_dataset)
-                components[component_title] = component
+        products = self.get_products()
+        for product_info in products:
+            product_key = product_info.get("Component")
+            del product_info["Component"]
+            product = components.get(product_key, [])
+            product.append(product_info)
+            components[product_key] = product
 
-        for component_name, component_datasets in components.items():
-
-            products = self.group_by_products(component_datasets)
-
+        for component, products in components.items():
             yield {
-                "title": component_name,
+                "title": component,
                 "products": products,
             }
 
-    def group_by_products(self, datasets):
-        """group all datasets by product"""
-        products = {}
-        for dataset in datasets:
-            product = products.get(dataset.get("Product"), [])
-            product.append(dataset)
-            product_key = (dataset.get("Product"), dataset.get("ProductId"))
-            products[product_key] = product
-
-        prepared_products = []
-        for product, product_datasets in products.items():
-            product_name, product_id = product
-            prepared_products.append(
-                {
-                    "ProductTitle": product_name,
-                    "ProductId": product_id,
-                    "Datasets": product_datasets,
-                }
-            )
-
-        return prepared_products
+    def get_products(self):
+        """get all products"""
+        product = aq_parent(self.context)
+        if product.portal_type == "Product":
+            datasets = [self.serialize_dataset(self.context)]
+            yield {
+                "Component": product.component_title,
+                "ProductTitle": product.Title(),
+                "ProductId": product.UID(),
+                "Datasets": datasets,
+            }
 
     def serialize_dataset(self, dataset):
         """serialize one dataset using the keys needed by the mapviewer"""
@@ -96,7 +83,6 @@ class DataSetMapViewerServiceGet(Service):
                         ),
                     }
                 )
-
             parent = aq_parent(dataset)
             return {
                 # Datasets are saved inside product, so the Title name is its
@@ -115,4 +101,5 @@ class DataSetMapViewerServiceGet(Service):
                 "IsTimeSeries": dataset.mapviewer_istimeseries,
                 "TimeSeriesService": dataset.mapviewer_timeseriesservice,
             }
+
         return None

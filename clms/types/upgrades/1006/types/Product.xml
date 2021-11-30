@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="Product" meta_type="Dexterity FTI" i18n:domain="clms.types"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="behaviors" purge="false">
+  <element value="clms.types.mapviewer_component"/>
+
+ </property>
+</object>
