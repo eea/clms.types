@@ -43,6 +43,7 @@ class IDataSet(model.Schema):
         "metadata",
         label=_(u"Metadata"),
         fields=[
+            "validation",
             "dataResourceTitle",
             "resourceEffective",
             "resourceModified",
@@ -87,6 +88,8 @@ class IDataSet(model.Schema):
     #     Topic of category: classificationTopicCategory
     #     Bounding Box: geographicBoundingBox
     #     Temporal extent: temporalCoverage
+
+    validation = RichText(title=_(u"Validation status"), required=False)
 
     dataResourceTitle = schema.TextLine(
         title=_(
