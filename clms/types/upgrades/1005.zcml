@@ -1,0 +1,30 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:registerProfile
+    name="1005"
+    title="install collective.taxonomy and import taxonomy"
+    directory="1005"
+    description='Configuration for version 1005'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <genericsetup:upgradeSteps
+    source="1004"
+    destination="1005"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="install collective.taxonomy and import taxonomy"
+      description=""
+      handler=".v1005.upgrade" />
+
+
+      <genericsetup:upgradeDepends title="install collective.taxonomy and import taxonomy"
+      description=""
+      import_profile="clms.types.upgrades:1005" />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

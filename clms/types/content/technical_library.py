@@ -20,24 +20,68 @@ class ITechnicalLibrary(model.Schema):
     # model.load('product.xml')
     file = NamedBlobFile(title=_(u"File"), required=True)
 
-    products = schema.List(
+    document_product = schema.TextLine(
         title=_(
-            u"CLMS associated products",
+            u"document_product (used for import from old site",
         ),
         description=_(
-            u"Multiple selection allowed",
+            u"",
         ),
-        value_type=schema.Choice(
-            title=_(
-                u"CLMS products used",
-            ),
-            vocabulary=u"clms.types.ProductsVocabulary",
-            required=True,
-            readonly=False,
-        ),
-        required=True,
+        default=u"",
+        required=False,
         readonly=False,
     )
+    document_type = schema.TextLine(
+        title=_(
+            u"document_type (used for import from old site",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+    document_title = schema.TextLine(
+        title=_(
+            u"document_title (used for import from old site",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+    document_url = schema.TextLine(
+        title=_(
+            u"document_url (used for import from old site",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+    document_file = schema.TextLine(
+        title=_(
+            u"document_file (used for import from old site",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+
+# document_product
+# document_type
+# document_title
+# document_url
+# document_file
 
 
 @implementer(ITechnicalLibrary)

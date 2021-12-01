@@ -208,6 +208,25 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    inspireThemes = schema.List(
+        title=_(
+            u"Inspire Themes",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.Choice(
+            title=_(
+                u"Inspire theme",
+            ),
+            vocabulary=u"clms.types.InspireThemesVocabulary",
+            required=False,
+            readonly=False,
+        ),
+        required=False,
+        readonly=False,
+    )
+
     geographicBoundingBox = JSONField(
         title=u"Bounding box dataGrid field",
         required=False,
@@ -277,7 +296,7 @@ class IDataSet(model.Schema):
             "conformant, or null - if not evaluated)",
         ),
         vocabulary=u"clms.types.ConformityPassVocabulary",
-        default=u"",
+        # default=u"",
         # defaultFactory=get_default_name,
         required=False,
         readonly=False,
@@ -385,9 +404,9 @@ class IDataSet(model.Schema):
         "mapviewer",
         label=_(u"Mapviewer"),
         fields=[
-            "mapviewer_component",
-            "mapviewer_datasetid",
+            # "mapviewer_component",
             "mapviewer_viewservice",
+            "mapviewer_default_active",
             "mapviewer_downloadservice",
             "mapviewer_layers",
             "mapviewer_downloadtype",
@@ -396,29 +415,17 @@ class IDataSet(model.Schema):
         ],
     )
 
-    mapviewer_component = schema.TextLine(
-        title=_(
-            u"Component Title",
-        ),
-        description=_(
-            u"This field is used to group datasets under a singel component",
-        ),
-        default=u"Default",
-        required=True,
-        readonly=False,
-    )
-
-    mapviewer_datasetid = schema.TextLine(
-        title=_(
-            u"Dataset id",
-        ),
-        description=_(
-            u"This field is used to identify this dataset in the map viewer",
-        ),
-        default=u"",
-        required=True,
-        readonly=False,
-    )
+    # mapviewer_component = schema.TextLine(
+    #     title=_(
+    #         u"Component Title",
+    #     ),
+    #     description=_(
+    #         u"This field is used to group datasets under a singel component",
+    #     ),
+    #     default=u"Default",
+    #     required=False,
+    #     readonly=False,
+    # )
 
     mapviewer_viewservice = schema.TextLine(
         title=_(
@@ -428,13 +435,23 @@ class IDataSet(model.Schema):
             u"Enter the service url (WMS)",
         ),
         default=u"",
-        required=True,
+        required=False,
+        readonly=False,
+    )
+
+    mapviewer_default_active = schema.Bool(
+        title=_(
+            u"Default active?",
+        ),
+        description=_(u"Enter whether is dataset should be active by default"),
+        required=False,
+        default=False,
         readonly=False,
     )
 
     mapviewer_layers = JSONField(
         title=_("Layers available in the map viewer"),
-        required=True,
+        required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="layer_widget",
         default={"items": []},
@@ -450,7 +467,7 @@ class IDataSet(model.Schema):
             "should come from",
         ),
         default=u"EEA",
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -498,23 +515,30 @@ class IDataSet(model.Schema):
         label=_(u"Downloads"),
         fields=[
             "downloadable_files",
+            "dataset_full_path",
         ],
+    )
+
+    dataset_full_path = schema.TextLine(
+        title=_(
+            u"Enter the path to the full dataset download file",
+        ),
+        description=_(
+            u"This is used when requesting the download from the map viewer",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
     )
 
     downloadable_files = JSONField(
         title=_("Downloadable files"),
         description=_("Add one line per file"),
-        required=True,
+        required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="downloadable_files_widget",
         default={"items": []},
         missing_value={"items": []},
-    )
-
-    model.fieldset(
-        "geonetwork",
-        label=_(u"GeoNetwork Sync"),
-        fields=[],
     )
 
 
@@ -530,7 +554,7 @@ class IDataSet(model.Schema):
 
 # download = RichText(title=_(u"download"), required=False)
 
-# embed = schema.SourceText(title=_(u"embed"), required=True)
+# embed = schema.SourceText(title=_(u"embed"), required=False)
 
 # geographicAccuracy = RichText(
 #     title=_(u"geographicAccuracy"), required=False

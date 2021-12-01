@@ -43,17 +43,17 @@ class IWorkOpportunity(model.Schema):
         readonly=False,
     )
 
-    is_open = schema.Bool(
-        title=_(
-            u"Are the tenders open?",
-        ),
-        description=_(
-            u"Mark this field if this work opportunity tenders " u"are open."
-        ),
-        required=False,
-        default=False,
-        readonly=False,
-    )
+    # is_open = schema.Bool(
+    #     title=_(
+    #         u"Are the tenders open?",
+    #     ),
+    #     description=_(
+    #         u"Mark this field if this work opportunity tenders " u"are open."
+    #     ),
+    #     required=False,
+    #     default=False,
+    #     readonly=False,
+    # )
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
     #     title=_(u'Sponsoring Level'),

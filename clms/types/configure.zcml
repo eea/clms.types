@@ -1,9 +1,12 @@
 <configure xmlns="http://namespaces.zope.org/zope" xmlns:i18n="http://namespaces.zope.org/i18n" i18n_domain="clms.types">
 
   <i18n:registerTranslations directory="locales" />
+  <include package="collective.taxonomy" />
+  <include package="eea.api.taxonomy" />
 
   <include file="profiles.zcml" />
   <include file="permissions.zcml" />
+  <include package=".behaviors" />
   <include package=".browser" />
   <include package=".upgrades" />
   <include package=".content" />
@@ -11,5 +14,6 @@
   <include package=".views" />
   <include package=".restapi" />
   <include package=".indexers" />
+  <include package=".searchservice" />
 
 </configure>
