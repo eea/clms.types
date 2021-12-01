@@ -69,7 +69,7 @@ class IDataSet(model.Schema):
             "update_frequency",
             "distribution_format",
             "hierarchy_level",
-            "geonetwork_identifier",
+            "geonetwork_identifiers",
         ],
     )
 
@@ -388,16 +388,25 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    geonetwork_identifier = schema.TextLine(
-        title=_(
-            u"GeoNetwork id",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
+    # geonetwork_identifier = schema.TextLine(
+    #     title=_(
+    #         u"GeoNetwork id",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     default=u"",
+    #     required=False,
+    #     readonly=False,
+    # )
+
+    geonetwork_identifiers = JSONField(
+        title=_("Geonetwork identifier list"),
         required=False,
-        readonly=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="geonetwork_identifiers_widget",
+        default={"items": []},
+        missing_value={"items": []},
     )
 
     model.fieldset(
