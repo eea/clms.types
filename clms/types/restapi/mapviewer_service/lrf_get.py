@@ -17,6 +17,7 @@ class RootMapViewerServiceGet(Service):
             components.append(
                 {
                     "ComponentTitle": component.get("title"),
+                    # pylint: disable=line-too-long
                     "Products": sorted(component.get("products"), key=lambda x: x.get("ProductTitle")),  # noqa: E501
                 }
             )
@@ -28,6 +29,7 @@ class RootMapViewerServiceGet(Service):
                 "zoom": 3,
             },
             "Download": False,
+            # pylint: disable=line-too-long
             "Components": sorted(components, key=lambda x: x.get("ComponentTitle")),  # noqa: E501
         }
 
@@ -70,6 +72,7 @@ class RootMapViewerServiceGet(Service):
                     "Component": product.component_title,
                     "ProductTitle": product.Title(),
                     "ProductId": product.UID(),
+                    # pylint: disable=line-too-long
                     "Datasets": sorted(datasets, key=lambda x: x.get("DatasetTitle")),  # noqa: E501
                 }
 

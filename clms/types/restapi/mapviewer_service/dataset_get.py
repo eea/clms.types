@@ -17,6 +17,7 @@ class DataSetMapViewerServiceGet(Service):
             components.append(
                 {
                     "ComponentTitle": component.get("title"),
+                    # pylint: disable=line-too-long
                     "Products": sorted(component.get("products"), key=lambda x: x.get("ProductTitle")),  # noqa: E501
                 }
             )
@@ -28,6 +29,7 @@ class DataSetMapViewerServiceGet(Service):
                 "zoom": 3,
             },
             "Download": True,
+            # pylint: disable=line-too-long
             "Components": sorted(components, key=lambda x: x.get("ComponentTitle")),  # noqa: E501
         }
 
@@ -66,6 +68,7 @@ class DataSetMapViewerServiceGet(Service):
                     "Component": product.component_title,
                     "ProductTitle": product.Title(),
                     "ProductId": product.UID(),
+                    # pylint: disable=line-too-long
                     "Datasets": sorted(datasets, key=lambda x: x.get("DatasetTitle")),  # noqa: E501
                 }
 
