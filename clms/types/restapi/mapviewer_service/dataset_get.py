@@ -17,7 +17,7 @@ class DataSetMapViewerServiceGet(Service):
             components.append(
                 {
                     "ComponentTitle": component.get("title"),
-                    "Products": component.get("products"),
+                    "Products": sorted(component.get("products"), key=lambda x: x.get("ProductTitle")),  # noqa: E501
                 }
             )
 
@@ -28,7 +28,7 @@ class DataSetMapViewerServiceGet(Service):
                 "zoom": 3,
             },
             "Download": True,
-            "Components": components,
+            "Components": sorted(components, key=lambda x: x.get("ComponentTitle")),  # noqa: E501
         }
 
     def get_datasets(self):
@@ -61,12 +61,13 @@ class DataSetMapViewerServiceGet(Service):
         product = aq_parent(self.context)
         if product.portal_type == "Product":
             datasets = [self.serialize_dataset(self.context)]
-            yield {
-                "Component": product.component_title,
-                "ProductTitle": product.Title(),
-                "ProductId": product.UID(),
-                "Datasets": datasets,
-            }
+            if datasets:
+                yield {
+                    "Component": product.component_title,
+                    "ProductTitle": product.Title(),
+                    "ProductId": product.UID(),
+                    "Datasets": sorted(datasets, key=lambda x: x.get("DatasetTitle")),  # noqa: E501
+                }
 
     def serialize_dataset(self, dataset):
         """serialize one dataset using the keys needed by the mapviewer"""
@@ -83,23 +84,24 @@ class DataSetMapViewerServiceGet(Service):
                         ),
                     }
                 )
-            parent = aq_parent(dataset)
-            return {
-                # Datasets are saved inside product, so the Title name is its
-                # parent's name
-                # pylint: disable=line-too-long
-                "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
-                "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
-                "DatasetId": api.content.get_uuid(obj=dataset),
-                "DatasetTitle": dataset.Title(),
-                "DatasetDescription": dataset.Description(),
-                "ViewService": dataset.mapviewer_viewservice,
-                "Default_active": dataset.mapviewer_default_active,
-                "Layer": layers,
-                "DownloadService": dataset.mapviewer_downloadservice,
-                "DownloadType": dataset.mapviewer_downloadtype,
-                "IsTimeSeries": dataset.mapviewer_istimeseries,
-                "TimeSeriesService": dataset.mapviewer_timeseriesservice,
-            }
+            if layers:
+                parent = aq_parent(dataset)
+                return {
+                    # Datasets are saved inside product, so the Title name is its
+                    # parent's name
+                    # pylint: disable=line-too-long
+                    "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
+                    "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
+                    "DatasetId": api.content.get_uuid(obj=dataset),
+                    "DatasetTitle": dataset.Title(),
+                    "DatasetDescription": dataset.Description(),
+                    "ViewService": dataset.mapviewer_viewservice,
+                    "Default_active": dataset.mapviewer_default_active,
+                    "Layer": sorted(layers, key=lambda x: x.get("Title")),
+                    "DownloadService": dataset.mapviewer_downloadservice,
+                    "DownloadType": dataset.mapviewer_downloadtype,
+                    "IsTimeSeries": dataset.mapviewer_istimeseries,
+                    "TimeSeriesService": dataset.mapviewer_timeseriesservice,
+                }
 
         return None
