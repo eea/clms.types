@@ -15,4 +15,11 @@
     permission="zope2.View" 
   />
 
+    <browser:page name="import-from-geonetwork-view" 
+      for="clms.types.content.data_set.IDataSet"
+      class=".import_from_geonetwork.ImportFromGeoNetworkView" 
+      template="import_from_geonetwork.pt" 
+      permission="cmf.ModifyPortalContent"
+  />
+
 </configure>
