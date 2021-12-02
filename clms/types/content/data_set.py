@@ -39,6 +39,25 @@ class IDataSet(model.Schema):
         required=False,
     )
 
+    inspireThemes = schema.List(
+        title=_(
+            u"Inspire Themes",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.Choice(
+            title=_(
+                u"Inspire theme",
+            ),
+            vocabulary=u"clms.types.InspireThemesVocabulary",
+            required=False,
+            readonly=False,
+        ),
+        required=False,
+        readonly=False,
+    )
+
     model.fieldset(
         "metadata",
         label=_(u"Metadata"),
@@ -56,16 +75,19 @@ class IDataSet(model.Schema):
             "geographicBoundingBox",
             "temporalCoverage",
             "dataResourceType",
+            "responsiblePartyWithRole",
             "responsibleParty",
             "responsiblePartyRole",
             "coordinateReferenceSystem",
             "conformitySpecification",
             "conformityPass",
             "qualityLineage",
+            "distributionInfo",
             "dataResourceLocator",
             "dataServices",
             "identifier",
             "point_of_contact",
+            "point_of_contact_data",
             "update_frequency",
             "distribution_format",
             "hierarchy_level",
@@ -150,29 +172,17 @@ class IDataSet(model.Schema):
     )
 
     # geographicCoverage = schema.List(
-    #     title=_(
-    #         u"Geographic Coverage",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.TextLine(
-    #         title=u"",
-    #     ),
+    #     title=_(u"Geographic Coverage",),
+    #     description=_(u"",),
+    #     value_type=schema.TextLine(title=u"",),
     #     required=False,
     #     readonly=False,
     # )
 
     # geographicCoverageGT = schema.List(
-    #     title=_(
-    #         u"Geographic Coverage GT",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.TextLine(
-    #         title=u"",
-    #     ),
+    #     title=_(u"Geographic Coverage GT",),
+    #     description=_(u"",),
+    #     value_type=schema.TextLine(title=u"",),
     #     required=False,
     #     readonly=False,
     # )
@@ -201,25 +211,6 @@ class IDataSet(model.Schema):
                 u"Use case topics",
             ),
             vocabulary=u"clms.types.CategoryTopicsVocabulary",
-            required=False,
-            readonly=False,
-        ),
-        required=False,
-        readonly=False,
-    )
-
-    inspireThemes = schema.List(
-        title=_(
-            u"Inspire Themes",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.Choice(
-            title=_(
-                u"Inspire theme",
-            ),
-            vocabulary=u"clms.types.InspireThemesVocabulary",
             required=False,
             readonly=False,
         ),
@@ -265,12 +256,25 @@ class IDataSet(model.Schema):
     )
 
     # CONTACT
-    #     Responsible party: responsibleParty
-    #     Responsible party role: responsiblePartyRole
-    responsibleParty = RichText(title=_(u"Responsible Party"), required=False)
+    #     Responsible party with Role: responsiblePartyWithRole
+    #     Responsible party: responsibleParty (DEPRECATED)
+    #     Responsible party role: responsiblePartyRole (DEPRECATED)
+
+    responsiblePartyWithRole = JSONField(
+        title=u"Responsible Party with Role ",
+        required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="contact_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
+    responsibleParty = RichText(
+        title=_(u"Responsible Party (DEPRECATED)"), required=False
+    )
 
     responsiblePartyRole = RichText(
-        title=_(u"Responsible Party Role"), required=False
+        title=_(u"Responsible Party Role (DEPRECATED)"), required=False
     )
 
     # REFERENCE SYSTEM INFO
@@ -288,16 +292,13 @@ class IDataSet(model.Schema):
         title=_(u"Conformity Specification"), required=False
     )
 
-    # Make sure to import: plone.app.vocabularies as vocabs
     conformityPass = schema.Choice(
         title=_(u"conformityPass"),
         description=_(
             u"(true - if conformant, false - if not "
-            "conformant, or null - if not evaluated)",
+            "conformant, or Null - if not evaluated)",
         ),
         vocabulary=u"clms.types.ConformityPassVocabulary",
-        # default=u"",
-        # defaultFactory=get_default_name,
         required=False,
         readonly=False,
     )
@@ -305,15 +306,26 @@ class IDataSet(model.Schema):
     qualityLineage = RichText(title=_(u"Quality Lineage"), required=False)
 
     # DISTRIBUTION INFO
-    #     Resource Locator: dataResourceLocator
-    #     Services: dataServices
+    #     Distribution Info: distributionInfo
+    #     Resource Locator: dataResourceLocator (DEPRECATED)
+    #     Services: dataServices (DEPRECATED)
+
+    distributionInfo = JSONField(
+        title=u"Dataservices and each Resource Locator",
+        required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="distribution_info_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
     dataResourceLocator = schema.URI(
-        title=_(u"Data Resource Locator"), required=False
+        title=_(u"Data Resource Locator (DEPRECATED)"), required=False
     )
 
     dataServices = RichText(
         title=_(
-            u"Dataservices",
+            u"Dataservices (DEPRECATED)",
         ),
         required=False,
         readonly=False,
@@ -321,20 +333,15 @@ class IDataSet(model.Schema):
 
     # Non-visible metadata for the user
     #     Identifier: identifier
+    #     Point of contact: point_of_contact
+    #     Maintenance and update frequency: update_frequence
+    #     Distribution format: distribution_format
+    #     Hierarchy level: hierarchy_level
     #     Metadata language: AUTOMATIC
     #     Character Set: AUTOMATIC
     #     Date stamp: AUTOMATIC
     #     Metadata standard name: AUTOMATIC
     #     Metadata standard version: AUTOMATIC
-    #     Point of contact: point_of_contact
-    #     Maintenance and update frequency: update_frequence
-    #     Distribution format: distribution_format
-    #     Hierarchy level: hierarchy_level
-
-    # image = namedfile.NamedBlobImage(
-    #     title=_(u"Image"),
-    #     required=False,
-    # )
 
     identifier = schema.TextLine(
         title=_(
@@ -350,10 +357,19 @@ class IDataSet(model.Schema):
 
     point_of_contact = RichText(
         title=_(
-            u"Point of contact",
+            u"Point of contact (DEPRECATED)",
         ),
         required=False,
         readonly=False,
+    )
+
+    point_of_contact_data = JSONField(
+        title=u"Point of contact Data",
+        required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="contact_widget",
+        default={"items": []},
+        missing_value={"items": []},
     )
 
     update_frequency = schema.TextLine(
@@ -528,6 +544,16 @@ class IDataSet(model.Schema):
         ],
     )
 
+    downloadable_files = JSONField(
+        title=_("Downloadable files"),
+        description=_("Add one line per file"),
+        required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="downloadable_files_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
     dataset_full_path = schema.TextLine(
         title=_(
             u"Enter the path to the full dataset download file",
@@ -538,16 +564,6 @@ class IDataSet(model.Schema):
         default=u"",
         required=False,
         readonly=False,
-    )
-
-    downloadable_files = JSONField(
-        title=_("Downloadable files"),
-        description=_("Add one line per file"),
-        required=False,
-        schema=MIXEDFIELD_SCHEMA,
-        widget="downloadable_files_widget",
-        default={"items": []},
-        missing_value={"items": []},
     )
 
 
