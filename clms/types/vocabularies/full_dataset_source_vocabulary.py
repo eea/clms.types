@@ -5,7 +5,6 @@ Category Topics vocabulary definition
 
 # from plone import api
 from clms.downloadtool.utils import DATASET_SOURCES
-from clms.types import _
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
 from zope.interface import implementer
