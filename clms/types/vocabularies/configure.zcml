@@ -34,4 +34,14 @@
         name="clms.types.InspireThemesVocabulary"
     />
 
+    <utility
+        component=".full_dataset_format_vocabulary.FullDatasetFormatsVocabularyFactory"
+        name="clms.types.FullDatasetFormatsVocabulary"
+    />
+
+    <utility
+        component=".full_dataset_source_vocabulary.FullDatasetSourcesVocabularyFactory"
+        name="clms.types.FullDatasetSourcesVocabulary"
+    />
+
 </configure>
