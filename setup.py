@@ -54,6 +54,7 @@ setup(
         "eea.api.coremetadata",
         "collective.taxonomy",
         "eea.api.taxonomy",
+        "clms.donwloadtool",
     ],
     extras_require={
         "test": [
