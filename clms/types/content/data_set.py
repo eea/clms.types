@@ -528,6 +528,8 @@ class IDataSet(model.Schema):
         fields=[
             "downloadable_files",
             "dataset_full_path",
+            "dataset_full_format",
+            "dataset_full_source",
         ],
     )
 
@@ -539,6 +541,32 @@ class IDataSet(model.Schema):
             u"This is used when requesting the download from the map viewer",
         ),
         default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    dataset_full_format = schema.Choice(
+        title=_(
+            u"Enter the format of the full dataset file",
+        ),
+        description=_(
+            u"",
+        ),
+        vocabulary="clms.types.FullDatasetFormatsVocabulary",
+        # defaultFactory=get_default_name,
+        required=False,
+        readonly=False,
+    )
+
+    dataset_full_source = schema.Choice(
+        title=_(
+            u"Enter the source of the full dataset file",
+        ),
+        description=_(
+            u"",
+        ),
+        vocabulary=u"clms.types.FullDatasetSourcesVocabulary",
+        # defaultFactory=get_default_name,
         required=False,
         readonly=False,
     )
