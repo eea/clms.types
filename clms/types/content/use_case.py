@@ -2,7 +2,6 @@
 """
 UseCase content-type definition
 """
-import json
 
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
