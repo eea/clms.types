@@ -2,7 +2,8 @@
 """
 DataSet content-type definition
 """
-import json
+# pytlint: disable=unused-import
+import json  # noqa
 
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
@@ -13,6 +14,7 @@ from zope import schema
 from zope.interface import implementer
 
 from clms.types import _
+
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
@@ -526,11 +528,25 @@ class IDataSet(model.Schema):
         "downloads",
         label=_(u"Downloads"),
         fields=[
+            "downloadable_dataset",
             "downloadable_files",
             "dataset_full_path",
             "dataset_full_format",
             "dataset_full_source",
         ],
+    )
+
+    downloadable_dataset = schema.Bool(
+        title=_(
+            "Check if this dataset is downloadable",
+        ),
+        description=_(
+            "If selected, a button will be shown in the dataset page to "
+            "go to the download page of this dataset"
+        ),
+        required=False,
+        default=True,
+        readonly=False,
     )
 
     dataset_full_path = schema.TextLine(
