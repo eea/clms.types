@@ -2,12 +2,15 @@
 """
 UseCase content-type definition
 """
+import json
 
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
+from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
+
 from clms.types import _
 
 
@@ -75,6 +78,13 @@ class IUseCase(model.Schema):
     image = namedfile.NamedBlobImage(
         title=_(u"image"),
         required=False,
+    )
+
+    geographicCoverage = JSONField(
+        title=_(u"geographicCoverage"),
+        required=False,
+        widget="geolocation",
+        default={},
     )
 
 
