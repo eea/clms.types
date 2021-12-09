@@ -2,7 +2,7 @@
 """
 DataSet content-type definition
 """
-# pylint: disable-unused-import
+# pylint: W0611
 import json  # noqa
 
 from plone.app.textfield import RichText
