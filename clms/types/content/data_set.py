@@ -2,7 +2,7 @@
 """
 DataSet content-type definition
 """
-import json
+import json  # noqa
 
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
