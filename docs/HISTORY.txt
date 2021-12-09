@@ -5,7 +5,7 @@ Changelog
 ---------------------------
 * Change: remove unusued import [ionlizarazu]
 
-3.3-dev0 - (unreleased)
+3.3 - (2021-12-09)
 ---------------------------
 
 3.2 - (2021-12-03)
