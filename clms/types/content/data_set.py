@@ -542,7 +542,7 @@ class IDataSet(model.Schema):
             u"A button will be shown in the dataset page to go to the download page of this dataset"
         ),
         required=False,
-        default=False,
+        default=True,
         readonly=False,
     )
 
