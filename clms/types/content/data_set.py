@@ -2,7 +2,7 @@
 """
 DataSet content-type definition
 """
-from json import dumps
+import json
 
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
@@ -14,7 +14,8 @@ from zope.interface import implementer
 
 from clms.types import _
 
-MIXEDFIELD_SCHEMA = dumps(
+
+MIXEDFIELD_SCHEMA = json.dumps(
     {
         "type": "object",
         "properties": {
