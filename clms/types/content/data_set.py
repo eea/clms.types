@@ -536,10 +536,11 @@ class IDataSet(model.Schema):
 
     downloadable_dataset = schema.Bool(
         title=_(
-            u"Check if this dataset is downloadable",
+            "Check if this dataset is downloadable",
         ),
         description=_(
-            u"A button will be shown in the dataset page to go to the download page of this dataset"
+            "If selected, a button will be shown in the dataset page to "
+            "go to the download page of this dataset"
         ),
         required=False,
         default=True,
