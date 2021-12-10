@@ -8,12 +8,5 @@
     permission="zope2.View" 
   />
 
-  <browser:page name="write-to-geonetwork-view" 
-    for="clms.types.content.data_set.IDataSet"
-    class=".write_to_geonetwork.WriteToGeoNetworkView" 
-    template="write_to_geonetwork.pt" 
-    permission="zope2.View" 
-  />
-
 
 </configure>
