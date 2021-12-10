@@ -86,8 +86,8 @@ class IDataSet(model.Schema):
             "dataResourceLocator",
             "dataServices",
             "identifier",
-            "point_of_contact",
             "point_of_contact_data",
+            "point_of_contact",
             "update_frequency",
             "distribution_format",
             "hierarchy_level",
@@ -187,7 +187,7 @@ class IDataSet(model.Schema):
     #     readonly=False,
     # )
 
-    accessAndUseLimitationPublic = RichText(
+    accessAndUseLimitationPublic = schema.TextLine(
         title=_(u"Access And Use Limitation Public"), required=False
     )
 
@@ -279,8 +279,14 @@ class IDataSet(model.Schema):
 
     # REFERENCE SYSTEM INFO
     #     Coordinate Reference System: coordinateReferenceSystem
-    coordinateReferenceSystem = schema.TextLine(
+    coordinateReferenceSystem = schema.List(
         title=_(u"Coordinate Reference System"),
+        description=_(
+            u"",
+        ),
+        value_type=schema.TextLine(
+            title=u"Reference",
+        ),
         required=False,
     )
 
@@ -355,14 +361,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    point_of_contact = RichText(
-        title=_(
-            u"Point of contact (DEPRECATED)",
-        ),
-        required=False,
-        readonly=False,
-    )
-
     point_of_contact_data = JSONField(
         title=u"Point of contact Data",
         required=False,
@@ -370,6 +368,14 @@ class IDataSet(model.Schema):
         widget="contact_widget",
         default={"items": []},
         missing_value={"items": []},
+    )
+
+    point_of_contact = RichText(
+        title=_(
+            u"Point of contact (DEPRECATED)",
+        ),
+        required=False,
+        readonly=False,
     )
 
     update_frequency = schema.TextLine(
@@ -384,7 +390,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    distribution_format = RichText(
+    distribution_format = schema.TextLine(
         title=_(
             u"Distribution format",
         ),
