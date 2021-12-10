@@ -529,7 +529,8 @@ class ImportFromGeoNetwork(Service):
                             namespaces=NAMESPACES,
                         )
                         services = item.xpath(
-                            f"{field['xml_key']}/gmd:protocol/gco:CharacterString",
+                            f"{field['xml_key']}/gmd:protocol/"
+                            "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         distribution_items.append(
