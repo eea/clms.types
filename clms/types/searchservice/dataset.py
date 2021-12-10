@@ -17,33 +17,42 @@ from zope.interface import implementer
 @adapter(IDataSet)
 @implementer(ICoreMetadata)
 class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
-    """ Specific adapter for datasets """
+    """Specific adapter for datasets"""
 
     def render_metadata(self):
-        """ render all metadata for datasets """
+        """render all metadata for datasets"""
         metadata = super().render_metadata()
 
         metadata["SearchableText"] = " ".join(
             [
-                self.context.dataResourceAbstract and
-                self.context.dataResourceAbstract.output or "",
+                self.context.dataResourceAbstract
+                and self.context.dataResourceAbstract.output
+                or "",
                 self.context.accessAndUseLimitationPublic,
-                self.context.accessAndUseConstraints and
-                self.context.accessAndUseConstraints.output or "",
-                self.context.qualitySpatialResolution and
-                self.context.qualitySpatialResolution.output or "",
-                self.context.responsibleParty and
-                self.context.responsibleParty.output or "",
-                self.context.responsiblePartyRole and
-                self.context.responsiblePartyRole.output or "",
-                self.context.conformitySpecification and
-                self.context.conformitySpecification.output or "",
-                self.context.qualityLineage and
-                self.context.qualityLineage.output or "",
-                self.context.dataServices and
-                self.context.dataServices.output or "",
-                self.context.point_of_contact and
-                self.context.point_of_contact.output or "",
+                self.context.accessAndUseConstraints
+                and self.context.accessAndUseConstraints.output
+                or "",
+                self.context.qualitySpatialResolution
+                and self.context.qualitySpatialResolution.output
+                or "",
+                self.context.responsibleParty
+                and self.context.responsibleParty.output
+                or "",
+                self.context.responsiblePartyRole
+                and self.context.responsiblePartyRole.output
+                or "",
+                self.context.conformitySpecification
+                and self.context.conformitySpecification.output
+                or "",
+                self.context.qualityLineage
+                and self.context.qualityLineage.output
+                or "",
+                self.context.dataServices
+                and self.context.dataServices.output
+                or "",
+                self.context.point_of_contact
+                and self.context.point_of_contact.output
+                or "",
                 self.context.distribution_format,
             ]
         )
@@ -51,7 +60,9 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
         metadata["language"] = ILanguage(self.context).get_language()
 
         # Limitation of public access: accessAndUseLimitationPublic
-        metadata["limitation_of_public_access"] = self.context.accessAndUseLimitationPublic
+        metadata[
+            "limitation_of_public_access"
+        ] = self.context.accessAndUseLimitationPublic
 
         # Type of resources
         metadata["resource_type"] = self.context.dataResourceType

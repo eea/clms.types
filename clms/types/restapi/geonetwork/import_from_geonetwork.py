@@ -43,9 +43,9 @@ class ImportFromGeoNetwork(Service):
 
         alsoProvides(self.request, IDisableCSRFProtection)
 
-        body_json = json.loads(self.request.get('BODY'))
-        id = body_json.get('id')
-        type = body_json.get('type')
+        body_json = json.loads(self.request.get("BODY"))
+        id = body_json.get("id")
+        type = body_json.get("type")
         # self.geonetwork_ids = self.extract_ids_from_field(
         #     self.context.geonetwork_identifiers
         # )
@@ -53,12 +53,10 @@ class ImportFromGeoNetwork(Service):
             self.xml_data = self.get_xml_data(id, type)
         except:
             return {"status": "error", "message": "No data found"}
-        self.json_data = self.get_json_data(
-            self.xml_data, id
-        )
+        self.json_data = self.get_json_data(self.xml_data, id)
 
         self.save_data()
-        self.json_data['requested_geonetwork_id'] = id
+        self.json_data["requested_geonetwork_id"] = id
         return json.dumps(self.json_data)
 
     # def extract_ids_from_field(self, jsondata):
@@ -468,7 +466,9 @@ class ImportFromGeoNetwork(Service):
                             "data": [item.text for item in fields_data],
                             "type": field["type"],
                         }
-                    print(f"    OK DATA for {field['type']} field {field['field_id']}")
+                    print(
+                        f"    OK DATA for {field['type']} field {field['field_id']}"
+                    )
             else:
                 result[field["field_id"]] = {
                     "data": "####################### NOT TESTED ########################",
@@ -493,7 +493,7 @@ class ImportFromGeoNetwork(Service):
                 )
             elif type == "date":
                 try:
-                    date_data = datetime.strptime(data, '%Y-%m-%d')
+                    date_data = datetime.strptime(data, "%Y-%m-%d")
                     setattr(self.context, key, date_data)
                 except:
                     continue
