@@ -22,37 +22,62 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
     def render_metadata(self):
         """render all metadata for datasets"""
         metadata = super().render_metadata()
-
+        dataResourceAbstract = (
+            self.context.dataResourceAbstract.output
+            if self.context.dataResourceAbstract
+            else ""
+        )
+        accessAndUseConstraints = (
+            self.context.accessAndUseConstraints.output
+            if self.context.accessAndUseConstraints
+            else ""
+        )
+        qualitySpatialResolution = (
+            self.context.qualitySpatialResolution.output
+            if self.context.qualitySpatialResolution
+            else ""
+        )
+        responsibleParty = (
+            self.context.responsibleParty.output
+            if self.context.responsibleParty
+            else ""
+        )
+        responsiblePartyRole = (
+            self.context.responsiblePartyRole.output
+            if self.context.responsiblePartyRole
+            else ""
+        )
+        conformitySpecification = (
+            self.context.conformitySpecification.output
+            if self.context.conformitySpecification
+            else ""
+        )
+        qualityLineage = (
+            self.context.qualityLineage.output
+            if self.context.qualityLineage
+            else ""
+        )
+        dataServices = (
+            self.context.dataServices.output
+            if self.context.dataServices
+            else ""
+        )
+        point_of_contact = (
+            self.context.point_of_contact.output
+            if self.context.point_of_contact
+            else ""
+        )
         metadata["SearchableText"] = " ".join(
             [
-                self.context.dataResourceAbstract
-                and self.context.dataResourceAbstract.output
-                or "",
-                self.context.accessAndUseLimitationPublic,
-                self.context.accessAndUseConstraints
-                and self.context.accessAndUseConstraints.output
-                or "",
-                self.context.qualitySpatialResolution
-                and self.context.qualitySpatialResolution.output
-                or "",
-                self.context.responsibleParty
-                and self.context.responsibleParty.output
-                or "",
-                self.context.responsiblePartyRole
-                and self.context.responsiblePartyRole.output
-                or "",
-                self.context.conformitySpecification
-                and self.context.conformitySpecification.output
-                or "",
-                self.context.qualityLineage
-                and self.context.qualityLineage.output
-                or "",
-                self.context.dataServices
-                and self.context.dataServices.output
-                or "",
-                self.context.point_of_contact
-                and self.context.point_of_contact.output
-                or "",
+                dataResourceAbstract,
+                accessAndUseConstraints,
+                qualitySpatialResolution,
+                responsibleParty,
+                responsiblePartyRole,
+                conformitySpecification,
+                qualityLineage,
+                dataServices,
+                point_of_contact,
                 self.context.distribution_format,
             ]
         )

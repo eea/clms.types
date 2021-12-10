@@ -364,23 +364,23 @@ class ImportFromGeoNetwork(Service):
                     i = 0
                     for item in fields_data:
                         west = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:westBoundLongitude/gco:Decimal",
+                            f"{field['xml_key']}/gmd:westBoundLongitude"
+                            "/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
                         east = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:eastBoundLongitude/gco:Decimal",
+                            f"{field['xml_key']}/gmd:eastBoundLongitude"
+                            "/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
                         south = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:southBoundLatitude/gco:Decimal",
+                            f"{field['xml_key']}/gmd:southBoundLatitude"
+                            "/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
                         north = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:northBoundLatitude/gco:Decimal",
+                            f"{field['xml_key']}/gmd:northBoundLatitude"
+                            "/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
 
@@ -414,62 +414,64 @@ class ImportFromGeoNetwork(Service):
                     i = 0
                     for item in fields_data:
                         organisationName = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:organisationName/gco:CharacterString",
+                            f"{field['xml_key']}/gmd:organisationName/"
+                            "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         deliveryPoint = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
-                            "gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString",
+                            f"{field['xml_key']}/gmd:contactInfo/"
+                            "gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:deliveryPoint/"
+                            "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         city = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            f"{field['xml_key']}/gmd:contactInfo/"
+                            "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:city/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         administrativeArea = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            f"{field['xml_key']}/gmd:contactInfo/"
+                            "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:administrativeArea/"
                             "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         postalCode = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
-                            "gmd:CI_Address/gmd:postalCode/gco:CharacterString",
+                            f"{field['xml_key']}/gmd:contactInfo/"
+                            "gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:postalCode/"
+                            "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         country = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            f"{field['xml_key']}/gmd:contactInfo/"
+                            "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:country/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         electronicMailAddress = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            f"{field['xml_key']}/gmd:contactInfo/"
+                            "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:electronicMailAddress/"
                             "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         url = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:onlineResource/gmd:CI_OnlineResource/"
+                            f"{field['xml_key']}/gmd:onlineResource/"
+                            "gmd:CI_OnlineResource/"
                             "gmd:linkage/gmd:URL",
                             namespaces=NAMESPACES,
                         )
                         urlTitle = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:onlineResource/gmd:CI_OnlineResource/"
+                            f"{field['xml_key']}/gmd:onlineResource/"
+                            "gmd:CI_OnlineResource/"
                             "gmd:name/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         roleCode = item.xpath(
-                            field["xml_key"] + "/gmd:role/gmd:CI_RoleCode",
+                            f"{field['xml_key']}/gmd:role/gmd:CI_RoleCode",
                             namespaces=NAMESPACES,
                         )
                         contact_items.append(
@@ -527,8 +529,7 @@ class ImportFromGeoNetwork(Service):
                             namespaces=NAMESPACES,
                         )
                         services = item.xpath(
-                            field["xml_key"]
-                            + "/gmd:protocol/gco:CharacterString",
+                            f"{field['xml_key']}/gmd:protocol/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         distribution_items.append(
