@@ -4,18 +4,36 @@ Import from geonetwork
 """
 
 import json
-from datetime import datetime
+from datetime import (
+    datetime,
+)
 
 import requests
 import transaction
-from lxml import etree
-from plone.app.textfield.value import RichTextValue
-from plone.protect.interfaces import IDisableCSRFProtection
-from plone.restapi.services import Service
-from zope.interface import alsoProvides
+from lxml import (
+    etree,
+)
+from plone.app.textfield.value import (
+    RichTextValue,
+)
+from plone.protect.interfaces import (
+    IDisableCSRFProtection,
+)
+from plone.restapi.services import (
+    Service,
+)
+from zope.interface import (
+    alsoProvides,
+)
 
-EEA_GEONETWORK_BASE_URL = "https://sdi.eea.europa.eu/catalogue/copernicus/api/records/{uid}/formatters/xml?approved=true"
-VITO_GEONETWORK_BASE_URL = "https://land.copernicus.vgt.vito.be/geonetwork/srv/api/records/{uid}/formatters/xml?approved=true"
+EEA_GEONETWORK_BASE_URL = (
+    "https://sdi.eea.europa.eu/catalogue/copernicus/"
+    "api/records/{uid}/formatters/xml?approved=true"
+)
+VITO_GEONETWORK_BASE_URL = (
+    "https://land.copernicus.vgt.vito.be/geonetwork/"
+    "srv/api/records/{uid}/formatters/xml?approved=true"
+)
 
 NAMESPACES = {
     "gmd": "http://www.isotc211.org/2005/gmd",
@@ -29,7 +47,10 @@ NAMESPACES = {
     "gml": "http://www.opengis.net/gml/3.2",
     "xlink": "http://www.w3.org/1999/xlink",
     "xsi": "http://www.w3.org/2001/XMLSchema-instance",
-    "schemaLocation": "http://www.isotc211.org/2005/gmd http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd",
+    "schemaLocation": (
+        "http://www.isotc211.org/2005/gmd"
+        " http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd"
+    ),
 }
 
 
@@ -38,10 +59,15 @@ class ImportFromGeoNetwork(Service):
     ImportFromGeoNetwork
     """
 
-    def __call__(self):
+    def __call__(
+        self,
+    ):
         # Implement your own actions:
 
-        alsoProvides(self.request, IDisableCSRFProtection)
+        alsoProvides(
+            self.request,
+            IDisableCSRFProtection,
+        )
 
         body_json = json.loads(self.request.get("BODY"))
         id = body_json.get("id")
@@ -50,10 +76,19 @@ class ImportFromGeoNetwork(Service):
         #     self.context.geonetwork_identifiers
         # )
         try:
-            self.xml_data = self.get_xml_data(id, type)
+            self.xml_data = self.get_xml_data(
+                id,
+                type,
+            )
         except:
-            return {"status": "error", "message": "No data found"}
-        self.json_data = self.get_json_data(self.xml_data, id)
+            return {
+                "status": "error",
+                "message": "No data found",
+            }
+        self.json_data = self.get_json_data(
+            self.xml_data,
+            id,
+        )
 
         self.save_data()
         self.json_data["requested_geonetwork_id"] = id
@@ -68,7 +103,11 @@ class ImportFromGeoNetwork(Service):
     #         result.append(item.get("id"))
     #     return result
 
-    def get_xml_data(self, uid, type):
+    def get_xml_data(
+        self,
+        uid,
+        type,
+    ):
         """
         xml data from geonetwork
         """
@@ -82,7 +121,11 @@ class ImportFromGeoNetwork(Service):
             return result.text
         return ""
 
-    def get_json_data(self, xml_data, geo_id):
+    def get_json_data(
+        self,
+        xml_data,
+        geo_id,
+    ):
         """
         json data from xml data
         """
@@ -93,17 +136,33 @@ class ImportFromGeoNetwork(Service):
         fields_to_get = [
             {
                 "field_id": "dataResourceTitle",
-                "xml_key": "//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:title/gco:CharacterString",
+                "xml_key": (
+                    "//gmd:identificationInfo/"
+                    "gmd:MD_DataIdentification/gmd:citation/"
+                    "gmd:CI_Citation/gmd:title/gco:CharacterString"
+                ),
                 "type": "string",
             },
             {
                 "field_id": "resourceEffective",
-                "xml_key": "//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date[gmd:dateType/gmd:CI_DateTypeCode[@codeListValue='publication']]/gmd:date/gco:Date",
+                "xml_key": (
+                    "//gmd:identificationInfo/"
+                    "gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation"
+                    "/gmd:date/gmd:CI_Date[gmd:dateType/"
+                    "gmd:CI_DateTypeCode[@codeListValue='publication']]/"
+                    "gmd:date/gco:Date"
+                ),
                 "type": "date",
             },
             {
                 "field_id": "resourceModified",
-                "xml_key": "//gmd:identificationInfo/gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation/gmd:date/gmd:CI_Date[gmd:dateType/gmd:CI_DateTypeCode[@codeListValue='revision']]/gmd:date/gco:Date",
+                "xml_key": (
+                    "//gmd:identificationInfo/"
+                    "gmd:MD_DataIdentification/gmd:citation/"
+                    "gmd:CI_Citation/gmd:date/gmd:CI_Date[gmd:dateType/"
+                    "gmd:CI_DateTypeCode[@codeListValue='revision']]/"
+                    "gmd:date/gco:Date"
+                ),
                 "type": "date",
             },
             {
@@ -114,7 +173,8 @@ class ImportFromGeoNetwork(Service):
             # {
             #     "field_id": "keywords",
             #     "xml_key": "",
-            #     # "xml_key": "//gmd:descriptiveKeywords/gmd:MD_Keywords/gmd:keyword/gco:CharacterString",
+            #     # "xml_key": "//gmd:descriptiveKeywords/" \
+            #       "gmd:MD_Keywords/gmd:keyword/gco:CharacterString",
             #     "type": "string",
             # },
             # {
@@ -124,12 +184,19 @@ class ImportFromGeoNetwork(Service):
             # },
             {
                 "field_id": "accessAndUseLimitationPublic",
-                "xml_key": "//gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor",
+                "xml_key": (
+                    "//gmd:resourceConstraints/"
+                    "gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor"
+                ),
                 "type": "string",
             },
             {
                 "field_id": "accessAndUseConstraints",
-                "xml_key": "//gmd:resourceConstraints/gmd:MD_LegalConstraints/gmd:otherConstraints/gco:CharacterString",
+                "xml_key": (
+                    "//gmd:resourceConstraints/"
+                    "gmd:MD_LegalConstraints/gmd:otherConstraints/"
+                    "gco:CharacterString"
+                ),
                 "type": "text",
             },
             {
@@ -139,17 +206,27 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "classificationTopicCategory",
-                "xml_key": "//gmd:MD_DataIdentification/gmd:topicCategory/gmd:MD_TopicCategoryCode",
+                "xml_key": (
+                    "//gmd:MD_DataIdentification/gmd:topicCategory/"
+                    "gmd:MD_TopicCategoryCode"
+                ),
                 "type": "list",
             },
             {
                 "field_id": "geographicBoundingBox",
-                "xml_key": "//gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_GeographicBoundingBox",
+                "xml_key": (
+                    "//gmd:extent/gmd:EX_Extent/"
+                    "gmd:geographicElement/gmd:EX_GeographicBoundingBox"
+                ),
                 "type": "json",
             },
             {
                 "field_id": "temporalExtent",
-                "xml_key": "//gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent/gmd:extent/gml:TimePeriod",
+                "xml_key": (
+                    "//gmd:extent/gmd:EX_Extent/"
+                    "gmd:temporalElement/gmd:EX_TemporalExtent/"
+                    "gmd:extent/gml:TimePeriod"
+                ),
                 "type": "list",
             },
             {
@@ -175,27 +252,45 @@ class ImportFromGeoNetwork(Service):
             # },
             {
                 "field_id": "coordinateReferenceSystem",
-                "xml_key": "//gmd:referenceSystemInfo/gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/gmd:RS_Identifier/gmd:code/gmx:Anchor",
+                "xml_key": (
+                    "//gmd:referenceSystemInfo/"
+                    "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
+                    "gmd:RS_Identifier/gmd:code/gmx:Anchor"
+                ),
                 "type": "list",
             },
             {
                 "field_id": "conformitySpecification",
-                "xml_key": "//gmd:report/gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:specification/gmd:CI_Citation/gmd:title/gco:CharacterString",
+                "xml_key": (
+                    "//gmd:report/gmd:DQ_DomainConsistency/"
+                    "gmd:result/gmd:DQ_ConformanceResult/gmd:specification/"
+                    "gmd:CI_Citation/gmd:title/gco:CharacterString"
+                ),
                 "type": "text",
             },
             {
                 "field_id": "conformityPass",
-                "xml_key": "//gmd:DQ_DomainConsistency/gmd:result/gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean",
+                "xml_key": (
+                    "//gmd:DQ_DomainConsistency/gmd:result/"
+                    "gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"
+                ),
                 "type": "choice",
             },
             {
                 "field_id": "qualityLineage",
-                "xml_key": "//gmd:lineage/gmd:LI_Lineage/gmd:statement/gco:CharacterString",
+                "xml_key": (
+                    "//gmd:lineage/gmd:LI_Lineage/"
+                    "gmd:statement/gco:CharacterString"
+                ),
                 "type": "text",
             },
             {
                 "field_id": "distributionInfo",
-                "xml_key": "//gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource",
+                "xml_key": (
+                    "//gmd:distributionInfo/gmd:MD_Distribution/"
+                    "gmd:transferOptions/gmd:MD_DigitalTransferOptions/"
+                    "gmd:onLine/gmd:CI_OnlineResource"
+                ),
                 "type": "distribution",
             },
             # {
@@ -206,23 +301,37 @@ class ImportFromGeoNetwork(Service):
             # {"field_id": "dataServices", "xml_key": "", "type": "text"},
             {
                 "field_id": "identifier",
-                "xml_key": "//gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString",
+                "xml_key": (
+                    "//gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString"
+                ),
                 "type": "string",
             },
             {
                 "field_id": "point_of_contact_data",
-                "xml_key": "//gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode[@codeListValue='pointOfContact']]",
+                "xml_key": (
+                    "//gmd:contact/gmd:CI_ResponsibleParty[gmd:role/"
+                    "gmd:CI_RoleCode[@codeListValue='pointOfContact']]"
+                ),
                 "type": "contact",
             },
             {
                 "field_id": "update_frequency",
-                "xml_key": "//gmd:resourceMaintenance/gmd:MD_MaintenanceInformation/gmd:maintenanceAndUpdateFrequency/gmd:MD_MaintenanceFrequencyCode",
+                "xml_key": (
+                    "//gmd:resourceMaintenance/"
+                    "gmd:MD_MaintenanceInformation/"
+                    "gmd:maintenanceAndUpdateFrequency/"
+                    "gmd:MD_MaintenanceFrequencyCode"
+                ),
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "distribution_format",
-                "xml_key": "//gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:name/gco:CharacterString",
+                "xml_key": (
+                    "//gmd:distributionInfo/gmd:MD_Distribution/"
+                    "gmd:distributionFormat/"
+                    "gmd:MD_Format/gmd:name/gco:CharacterString"
+                ),
                 "type": "string",
             },
             {
@@ -236,7 +345,8 @@ class ImportFromGeoNetwork(Service):
         for field in fields_to_get:
             if field.get("xml_key"):
                 fields_data = doc.xpath(
-                    field["xml_key"], namespaces=NAMESPACES
+                    field["xml_key"],
+                    namespaces=NAMESPACES,
                 )
                 if len(fields_data) == 0:
                     # result[field["field_id"]] = {
@@ -244,7 +354,9 @@ class ImportFromGeoNetwork(Service):
                     #     "type": field["type"],
                     # }
                     print(
-                        f"    WARNING!!! No DATA for field {field['field_id']} with search key {field['xml_key']}"
+                        "    WARNING!!! No DATA for field"
+                        f" {field['field_id']} with search key"
+                        f" {field['xml_key']}"
                     )
                 elif field["field_id"] == "geographicBoundingBox":
                     bbox_data = {"items": []}
@@ -308,42 +420,52 @@ class ImportFromGeoNetwork(Service):
                         )
                         deliveryPoint = item.xpath(
                             field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString",
+                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:deliveryPoint/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         city = item.xpath(
                             field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:city/gco:CharacterString",
+                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:city/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         administrativeArea = item.xpath(
                             field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:administrativeArea/gco:CharacterString",
+                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:administrativeArea/"
+                            "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         postalCode = item.xpath(
                             field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:postalCode/gco:CharacterString",
+                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:postalCode/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         country = item.xpath(
                             field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:country/gco:CharacterString",
+                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:country/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         electronicMailAddress = item.xpath(
                             field["xml_key"]
-                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/gmd:CI_Address/gmd:electronicMailAddress/gco:CharacterString",
+                            + "/gmd:contactInfo/gmd:CI_Contact/gmd:address/"
+                            "gmd:CI_Address/gmd:electronicMailAddress/"
+                            "gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         url = item.xpath(
                             field["xml_key"]
-                            + "/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage/gmd:URL",
+                            + "/gmd:onlineResource/gmd:CI_OnlineResource/"
+                            "gmd:linkage/gmd:URL",
                             namespaces=NAMESPACES,
                         )
                         urlTitle = item.xpath(
                             field["xml_key"]
-                            + "/gmd:onlineResource/gmd:CI_OnlineResource/gmd:name/gco:CharacterString",
+                            + "/gmd:onlineResource/gmd:CI_OnlineResource/"
+                            "gmd:name/gco:CharacterString",
                             namespaces=NAMESPACES,
                         )
                         roleCode = item.xpath(
@@ -443,17 +565,24 @@ class ImportFromGeoNetwork(Service):
                         temporalExtent = []
                         item = fields_data[0]
                         start = item.xpath(
-                            "gml:beginPosition", namespaces=NAMESPACES
+                            "gml:beginPosition",
+                            namespaces=NAMESPACES,
                         )
                         end = item.xpath(
-                            "gml:endPosition", namespaces=NAMESPACES
+                            "gml:endPosition",
+                            namespaces=NAMESPACES,
                         )
                         dt_start_obj = datetime.strptime(
-                            start[0].text, "%Y-%m-%d"
+                            start[0].text,
+                            "%Y-%m-%d",
                         )
-                        dt_end_obj = datetime.strptime(end[0].text, "%Y-%m-%d")
+                        dt_end_obj = datetime.strptime(
+                            end[0].text,
+                            "%Y-%m-%d",
+                        )
                         for year in range(
-                            dt_start_obj.year, dt_end_obj.year + 1
+                            dt_start_obj.year,
+                            dt_end_obj.year + 1,
                         ):
                             temporalExtent.append(str(year))
                         result[field["field_id"]] = {
@@ -467,17 +596,20 @@ class ImportFromGeoNetwork(Service):
                             "type": field["type"],
                         }
                     print(
-                        f"    OK DATA for {field['type']} field {field['field_id']}"
+                        f"    OK DATA for {field['type']} field"
+                        f" {field['field_id']}"
                     )
             else:
                 result[field["field_id"]] = {
-                    "data": "####################### NOT TESTED ########################",
+                    "data": "### NOT TESTED ###",
                     "type": field["type"],
                 }
                 print(f"    No XML Key for {field['field_id']}")
         return result
 
-    def save_data(self):
+    def save_data(
+        self,
+    ):
         """
         Save data into Plone
         """
@@ -489,17 +621,32 @@ class ImportFromGeoNetwork(Service):
                 setattr(
                     self.context,
                     key,
-                    RichTextValue(data, "text/html", "text/x-html-safe"),
+                    RichTextValue(
+                        data,
+                        "text/html",
+                        "text/x-html-safe",
+                    ),
                 )
             elif type == "date":
                 try:
-                    date_data = datetime.strptime(data, "%Y-%m-%d")
-                    setattr(self.context, key, date_data)
+                    date_data = datetime.strptime(
+                        data,
+                        "%Y-%m-%d",
+                    )
+                    setattr(
+                        self.context,
+                        key,
+                        date_data,
+                    )
                 except:
                     continue
             else:
                 try:
-                    setattr(self.context, key, data)
+                    setattr(
+                        self.context,
+                        key,
+                        data,
+                    )
                 except:
                     continue
 
