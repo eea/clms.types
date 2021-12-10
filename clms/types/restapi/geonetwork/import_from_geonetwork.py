@@ -183,7 +183,7 @@ class ImportFromGeoNetwork(Service):
             #     "type": "string",
             # },
             {
-                "field_id": "accessAndUseLimitationPublic",
+                "field_id": "accessAndUseLimitationPublic_line",
                 "xml_key": (
                     "//gmd:resourceConstraints/"
                     "gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor"
@@ -326,7 +326,7 @@ class ImportFromGeoNetwork(Service):
                 "attribute": "codeListValue",
             },
             {
-                "field_id": "distribution_format",
+                "field_id": "distribution_format_line",
                 "xml_key": (
                     "//gmd:distributionInfo/gmd:MD_Distribution/"
                     "gmd:distributionFormat/"

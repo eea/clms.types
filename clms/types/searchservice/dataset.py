@@ -67,6 +67,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             if self.context.point_of_contact
             else ""
         )
+
         metadata["SearchableText"] = " ".join(
             [
                 dataResourceAbstract,
@@ -78,7 +79,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
                 qualityLineage,
                 dataServices,
                 point_of_contact,
-                self.context.distribution_format,
+                " ".join(self.context.distribution_format_line) or "",
             ]
         )
 
@@ -87,7 +88,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
         # Limitation of public access: accessAndUseLimitationPublic
         metadata[
             "limitation_of_public_access"
-        ] = self.context.accessAndUseLimitationPublic
+        ] = self.context.accessAndUseLimitationPublic_line
 
         # Type of resources
         metadata["resource_type"] = self.context.dataResourceType
@@ -105,7 +106,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
 
         # This is a RichText
         # # Formats
-        metadata["distribution_format"] = self.context.distribution_format
+        metadata["distribution_format"] = self.context.distribution_format_line
 
         # Representation types
         # ???

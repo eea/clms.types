@@ -71,7 +71,7 @@ class IDataSet(model.Schema):
             "dataResourceAbstract",
             "keywords",
             "geographicCoverage",
-            "accessAndUseLimitationPublic",
+            "accessAndUseLimitationPublic_line",
             "accessAndUseConstraints",
             "qualitySpatialResolution",
             "classificationTopicCategory",
@@ -92,7 +92,7 @@ class IDataSet(model.Schema):
             "point_of_contact_data",
             "point_of_contact",
             "update_frequency",
-            "distribution_format",
+            "distribution_format_line",
             "hierarchy_level",
             "geonetwork_identifiers",
         ],
@@ -192,7 +192,7 @@ class IDataSet(model.Schema):
     #     readonly=False,
     # )
 
-    accessAndUseLimitationPublic = schema.TextLine(
+    accessAndUseLimitationPublic_line = schema.TextLine(
         title=_(u"Access And Use Limitation Public"), required=False
     )
 
@@ -395,12 +395,13 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    distribution_format = schema.TextLine(
+    distribution_format_line = schema.TextLine(
         title=_(
             u"Distribution format",
         ),
         required=False,
         readonly=False,
+        default="",
     )
 
     hierarchy_level = schema.TextLine(
