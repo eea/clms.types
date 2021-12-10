@@ -80,7 +80,7 @@ class ImportFromGeoNetwork(Service):
                 geonetwork_id,
                 geonetwork_type,
             )
-        except:
+        except Exception:
             return {
                 "status": "error",
                 "message": "No data found",
@@ -616,10 +616,10 @@ class ImportFromGeoNetwork(Service):
         Save data into Plone
         """
 
-        for key in self.json_data:
-            data = self.json_data[key]["data"]
-            type = self.json_data[key]["type"]
-            if type == "text":
+        for key, value in self.json_data.items():
+            data = value["data"]
+            field_type = value["type"]
+            if field_type == "text":
                 setattr(
                     self.context,
                     key,
@@ -629,7 +629,7 @@ class ImportFromGeoNetwork(Service):
                         "text/x-html-safe",
                     ),
                 )
-            elif type == "date":
+            elif field_type == "date":
                 try:
                     date_data = datetime.strptime(
                         data,
@@ -640,7 +640,7 @@ class ImportFromGeoNetwork(Service):
                         key,
                         date_data,
                     )
-                except Exception as e:
+                except Exception:
                     continue
             else:
                 try:
@@ -649,7 +649,7 @@ class ImportFromGeoNetwork(Service):
                         key,
                         data,
                     )
-                except Exception as e:
+                except Exception:
                     continue
 
         transaction.commit()
