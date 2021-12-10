@@ -11,7 +11,6 @@
   <include package=".upgrades" />
   <include package=".content" />
   <include package=".vocabularies" />
-  <include package=".views" />
   <include package=".restapi" />
   <include package=".indexers" />
   <include package=".searchservice" />
