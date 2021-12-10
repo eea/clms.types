@@ -27,8 +27,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             [
                 self.context.dataResourceAbstract and
                 self.context.dataResourceAbstract.output or "",
-                self.context.accessAndUseLimitationPublic and
-                self.context.accessAndUseLimitationPublic.output or "",
+                self.context.accessAndUseLimitationPublic,
                 self.context.accessAndUseConstraints and
                 self.context.accessAndUseConstraints.output or "",
                 self.context.qualitySpatialResolution and
@@ -45,12 +44,14 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
                 self.context.dataServices.output or "",
                 self.context.point_of_contact and
                 self.context.point_of_contact.output or "",
-                self.context.distribution_format and
-                self.context.distribution_format.output or "",
+                self.context.distribution_format,
             ]
         )
 
         metadata["language"] = ILanguage(self.context).get_language()
+
+        # Limitation of public access: accessAndUseLimitationPublic
+        metadata["limitation_of_public_access"] = self.context.accessAndUseLimitationPublic
 
         # Type of resources
         metadata["resource_type"] = self.context.dataResourceType
@@ -68,7 +69,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
 
         # This is a RichText
         # # Formats
-        # metadata["distribution_format"] = self.context.distribution_format
+        metadata["distribution_format"] = self.context.distribution_format
 
         # Representation types
         # ???
