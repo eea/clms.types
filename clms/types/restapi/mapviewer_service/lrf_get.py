@@ -17,7 +17,8 @@ class RootMapViewerServiceGet(Service):
             components.append(
                 {
                     "ComponentTitle": component.get("title"),
-                    "Products": component.get("products"),
+                    # pylint: disable=line-too-long
+                    "Products": sorted(component.get("products"), key=lambda x: x.get("ProductTitle")),  # noqa: E501
                 }
             )
 
@@ -28,7 +29,8 @@ class RootMapViewerServiceGet(Service):
                 "zoom": 3,
             },
             "Download": False,
-            "Components": components,
+            # pylint: disable=line-too-long
+            "Components": sorted(components, key=lambda x: x.get("ComponentTitle")),  # noqa: E501
         }
 
     def get_datasets(self):
@@ -65,12 +67,14 @@ class RootMapViewerServiceGet(Service):
         for brain in brains:
             product = brain.getObject()
             datasets = self.get_datasets_for_product(product)
-            yield {
-                "Component": product.component_title,
-                "ProductTitle": product.Title(),
-                "ProductId": product.UID(),
-                "Datasets": datasets,
-            }
+            if datasets:
+                yield {
+                    "Component": product.component_title,
+                    "ProductTitle": product.Title(),
+                    "ProductId": product.UID(),
+                    # pylint: disable=line-too-long
+                    "Datasets": sorted(datasets, key=lambda x: x.get("DatasetTitle")),  # noqa: E501
+                }
 
     def get_datasets_for_product(self, product):
         """get all datasets for a product"""
@@ -102,23 +106,24 @@ class RootMapViewerServiceGet(Service):
                         ),
                     }
                 )
-            parent = aq_parent(dataset)
-            return {
-                # Datasets are saved inside product, so the Title name is its
-                # parent's name
-                # pylint: disable=line-too-long
-                "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
-                "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
-                "DatasetId": api.content.get_uuid(obj=dataset),
-                "DatasetTitle": dataset.Title(),
-                "DatasetDescription": dataset.Description(),
-                "ViewService": dataset.mapviewer_viewservice,
-                "Default_active": dataset.mapviewer_default_active,
-                "Layer": layers,
-                "DownloadService": dataset.mapviewer_downloadservice,
-                "DownloadType": dataset.mapviewer_downloadtype,
-                "IsTimeSeries": dataset.mapviewer_istimeseries,
-                "TimeSeriesService": dataset.mapviewer_timeseriesservice,
-            }
+            if layers:
+                parent = aq_parent(dataset)
+                return {
+                    # Datasets are saved inside product, so the Title name is
+                    # its parent's name
+                    # pylint: disable=line-too-long
+                    "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
+                    "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
+                    "DatasetId": api.content.get_uuid(obj=dataset),
+                    "DatasetTitle": dataset.Title(),
+                    "DatasetDescription": dataset.Description(),
+                    "ViewService": dataset.mapviewer_viewservice,
+                    "Default_active": dataset.mapviewer_default_active,
+                    "Layer": sorted(layers, key=lambda x: x.get("Title")),
+                    "DownloadService": dataset.mapviewer_downloadservice,
+                    "DownloadType": dataset.mapviewer_downloadtype,
+                    "IsTimeSeries": dataset.mapviewer_istimeseries,
+                    "TimeSeriesService": dataset.mapviewer_timeseriesservice,
+                }
 
         return None

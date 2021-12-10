@@ -2,7 +2,8 @@
 """
 DataSet content-type definition
 """
-import json
+# pytlint: disable=unused-import
+import json  # noqa
 
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
@@ -13,6 +14,7 @@ from zope import schema
 from zope.interface import implementer
 
 from clms.types import _
+
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
@@ -62,6 +64,7 @@ class IDataSet(model.Schema):
         "metadata",
         label=_(u"Metadata"),
         fields=[
+            "validation",
             "dataResourceTitle",
             "resourceEffective",
             "resourceModified",
@@ -109,6 +112,8 @@ class IDataSet(model.Schema):
     #     Topic of category: classificationTopicCategory
     #     Bounding Box: geographicBoundingBox
     #     Temporal extent: temporalCoverage
+
+    validation = RichText(title=_(u"Validation status"), required=False)
 
     dataResourceTitle = schema.TextLine(
         title=_(
@@ -545,19 +550,25 @@ class IDataSet(model.Schema):
         "downloads",
         label=_(u"Downloads"),
         fields=[
+            "downloadable_dataset",
             "downloadable_files",
             "dataset_full_path",
+            "dataset_full_format",
+            "dataset_full_source",
         ],
     )
 
-    downloadable_files = JSONField(
-        title=_("Downloadable files"),
-        description=_("Add one line per file"),
+    downloadable_dataset = schema.Bool(
+        title=_(
+            "Check if this dataset is downloadable",
+        ),
+        description=_(
+            "If selected, a button will be shown in the dataset page to "
+            "go to the download page of this dataset"
+        ),
         required=False,
-        schema=MIXEDFIELD_SCHEMA,
-        widget="downloadable_files_widget",
-        default={"items": []},
-        missing_value={"items": []},
+        default=True,
+        readonly=False,
     )
 
     dataset_full_path = schema.TextLine(
@@ -570,6 +581,42 @@ class IDataSet(model.Schema):
         default=u"",
         required=False,
         readonly=False,
+    )
+
+    dataset_full_format = schema.Choice(
+        title=_(
+            u"Enter the format of the full dataset file",
+        ),
+        description=_(
+            u"",
+        ),
+        vocabulary="clms.types.FullDatasetFormatsVocabulary",
+        # defaultFactory=get_default_name,
+        required=False,
+        readonly=False,
+    )
+
+    dataset_full_source = schema.Choice(
+        title=_(
+            u"Enter the source of the full dataset file",
+        ),
+        description=_(
+            u"",
+        ),
+        vocabulary=u"clms.types.FullDatasetSourcesVocabulary",
+        # defaultFactory=get_default_name,
+        required=False,
+        readonly=False,
+    )
+
+    downloadable_files = JSONField(
+        title=_("Downloadable files"),
+        description=_("Add one line per file"),
+        required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="downloadable_files_widget",
+        default={"items": []},
+        missing_value={"items": []},
     )
 
 
