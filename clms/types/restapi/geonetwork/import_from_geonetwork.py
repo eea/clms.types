@@ -70,15 +70,15 @@ class ImportFromGeoNetwork(Service):
         )
 
         body_json = json.loads(self.request.get("BODY"))
-        id = body_json.get("id")
-        type = body_json.get("type")
+        geonetwork_id = body_json.get("id")
+        geonetwork_type = body_json.get("type")
         # self.geonetwork_ids = self.extract_ids_from_field(
         #     self.context.geonetwork_identifiers
         # )
         try:
             self.xml_data = self.get_xml_data(
-                id,
-                type,
+                geonetwork_id,
+                geonetwork_type,
             )
         except:
             return {
@@ -87,11 +87,11 @@ class ImportFromGeoNetwork(Service):
             }
         self.json_data = self.get_json_data(
             self.xml_data,
-            id,
+            geonetwork_id,
         )
 
         self.save_data()
-        self.json_data["requested_geonetwork_id"] = id
+        self.json_data["requested_geonetwork_id"] = geonetwork_id
         return json.dumps(self.json_data)
 
     # def extract_ids_from_field(self, jsondata):
@@ -106,14 +106,14 @@ class ImportFromGeoNetwork(Service):
     def get_xml_data(
         self,
         uid,
-        type,
+        geonetwork_type,
     ):
         """
         xml data from geonetwork
         """
-        if type == "EEA":
+        if geonetwork_type == "EEA":
             url = EEA_GEONETWORK_BASE_URL.format(uid=uid)
-        elif type == "VITO":
+        elif geonetwork_type == "VITO":
             url = VITO_GEONETWORK_BASE_URL.format(uid=uid)
         print(f"    Getting {url}")
         result = requests.get(url)
@@ -640,7 +640,7 @@ class ImportFromGeoNetwork(Service):
                         key,
                         date_data,
                     )
-                except:
+                except Exception as e:
                     continue
             else:
                 try:
@@ -649,7 +649,7 @@ class ImportFromGeoNetwork(Service):
                         key,
                         data,
                     )
-                except:
+                except Exception as e:
                     continue
 
         transaction.commit()
