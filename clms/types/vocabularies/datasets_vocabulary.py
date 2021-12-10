@@ -21,6 +21,7 @@ class DataSetsVocabulary:
         datasets = api.content.find(
             context=api.portal.get_navigation_root(context),
             portal_type="DataSet",
+            sort_on="sortable_title",
         )
         datasetsList = [
             (IUUID(p.getObject(), None), p.getObject().title) for p in datasets

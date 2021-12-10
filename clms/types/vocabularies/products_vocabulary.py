@@ -21,6 +21,7 @@ class ProductsVocabulary:
         products = api.content.find(
             context=api.portal.get_navigation_root(context),
             portal_type="Product",
+            sort_on="sortable_title",
         )
         productsList = [
             (IUUID(p.getObject(), None), p.getObject().title) for p in products
