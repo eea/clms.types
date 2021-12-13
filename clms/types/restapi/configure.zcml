@@ -4,6 +4,7 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="clms.types">
 
+  <include package=".geonetwork" />
   <include package=".mapviewer_service" />
 
 </configure>
