@@ -33,8 +33,8 @@ class ConformityPassVocabulary:
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u"False", _(u"False")),
-            VocabItem(u"True", _(u"True")),
+            VocabItem(u"false", _(u"False")),
+            VocabItem(u"true", _(u"True")),
             VocabItem(u"Null", _(u"Null")),
         ]
 
