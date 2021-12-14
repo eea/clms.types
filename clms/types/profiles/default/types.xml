@@ -11,5 +11,5 @@
   <object name="Tender" meta_type="Dexterity FTI" />
   <object name="News Item" meta_type="Dexterity FTI" />
   <object name="Event" meta_type="Dexterity FTI" />
-  <object name="Factsheets" meta_type="Dexterity FTI" />
+  <object name="factsheets" meta_type="Dexterity FTI" />
 </object>
