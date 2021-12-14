@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="factsheets" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title" i18n:translate="">Factsheets</property>
+ <property name="description" i18n:translate=""></property>
+ <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+ <property name="factory">factsheets</property>
+ <property
+    name="add_view_expr">string:${folder_url}/++add++factsheets</property>
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">view</property>
+ <property name="view_methods">
+  <element value="view"/>
+ </property>
+ <property name="default_view_fallback">False</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
+ <property name="klass">plone.dexterity.content.Container</property>
+ <property name="behaviors">
+  <element value="plone.dublincore"/>
+  <element value="plone.namefromtitle"/>
+  <element value="plone.leadimage"/>
+  <element value="clms.types.dataset_relations"/>
+  <element value="clms.types.product_relations"/>
+ </property>
+ <property name="schema"></property>
+ <property
+    name="model_source">&lt;model xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns:users=&quot;http://namespaces.plone.org/supermodel/users&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
+    &lt;schema&gt;
+      &lt;field name=&quot;File&quot; type=&quot;plone.namedfile.field.NamedBlobFile&quot;&gt;
+        &lt;description/&gt;
+        &lt;title&gt;File&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;fieldset name=&quot;layout&quot; label=&quot;Layout&quot;&gt;
+        &lt;field name=&quot;blocks&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
+          &lt;default&gt;{&#x27;1e78e271-29a6-4584-81f8-aa240888273c&#x27;: {&#x27;@type&#x27;: &#x27;title&#x27;}, &#x27;3227832b-6dca-47d7-a095-b5c7b8a7a371&#x27;: {&#x27;@type&#x27;: &#x27;columnsBlock&#x27;, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;55d44231-4f29-4834-9fe5-c35c26594624&#x27;: {&#x27;blocks&#x27;: {&#x27;bb499dcd-0bc0-4419-91e1-aac7b9786898&#x27;: {&#x27;@type&#x27;: &#x27;metadata&#x27;, &#x27;data&#x27;: {&#x27;id&#x27;: &#x27;File&#x27;, &#x27;widget&#x27;: &#x27;file&#x27;}}, &#x27;b4ef28c2-47e8-457e-8cca-013c8689f161&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;value&#x27;: [{&#x27;type&#x27;: &#x27;p&#x27;, &#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;&#x27;}]}], &#x27;plaintext&#x27;: &#x27;&#x27;}, &#x27;1bf431a2-12dc-4d7b-b0cd-c48355e230ba&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;value&#x27;: [{&#x27;type&#x27;: &#x27;h3&#x27;, &#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;Download the factsheet&#x27;}]}], &#x27;plaintext&#x27;: &#x27;Download the factsheet&#x27;}, &#x27;0499d77e-ddf4-4dc2-9360-fcf7a2989303&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;value&#x27;: [{&#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque  sodales, metus sit amet finibus blandit, felis nisl hendrerit magna, at  cursus ipsum dolor et quam. Praesent tincidunt, diam in congue porta,  quam odio pulvinar magna, sit amet luctus ligula velit eu nibh. Praesent  cursus fringilla dui, suscipit dignissim elit suscipi&#x27;}], &#x27;type&#x27;: &#x27;p&#x27;}], &#x27;plaintext&#x27;: &#x27;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque  sodales, metus sit amet finibus blandit, felis nisl hendrerit magna, at  cursus ipsum dolor et quam. Praesent tincidunt, diam in congue porta,  quam odio pulvinar magna, sit amet luctus ligula velit eu nibh. Praesent  cursus fringilla dui, suscipit dignissim elit suscipi&#x27;}, &#x27;88ab8da5-c970-4051-8b82-aacb56cbeea3&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;value&#x27;: [{&#x27;type&#x27;: &#x27;p&#x27;, &#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;&#x27;}]}], &#x27;plaintext&#x27;: &#x27;&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;0499d77e-ddf4-4dc2-9360-fcf7a2989303&#x27;, &#x27;88ab8da5-c970-4051-8b82-aacb56cbeea3&#x27;, &#x27;1bf431a2-12dc-4d7b-b0cd-c48355e230ba&#x27;, &#x27;bb499dcd-0bc0-4419-91e1-aac7b9786898&#x27;, &#x27;b4ef28c2-47e8-457e-8cca-013c8689f161&#x27;]}}, &#x27;acb127ef-fbfc-47b3-b3dd-22b7a78b8f2a&#x27;: {&#x27;blocks&#x27;: {&#x27;1f96b8c0-debc-4f91-8b19-4db52614d949&#x27;: {&#x27;@type&#x27;: &#x27;metadata&#x27;, &#x27;data&#x27;: {&#x27;id&#x27;: &#x27;image&#x27;, &#x27;widget&#x27;: &#x27;image&#x27;}}, &#x27;63445c2f-3472-47fa-9c10-46670456ef76&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;plaintext&#x27;: &#x27;&#x27;, &#x27;value&#x27;: [{&#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;&#x27;}], &#x27;type&#x27;: &#x27;p&#x27;}]}, &#x27;6a8b7d79-d98e-4f19-98fd-718e4b93365c&#x27;: {&#x27;@type&#x27;: &#x27;metadata&#x27;, &#x27;data&#x27;: {&#x27;id&#x27;: &#x27;image_caption&#x27;, &#x27;widget&#x27;: &#x27;string&#x27;}}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;1f96b8c0-debc-4f91-8b19-4db52614d949&#x27;, &#x27;6a8b7d79-d98e-4f19-98fd-718e4b93365c&#x27;, &#x27;63445c2f-3472-47fa-9c10-46670456ef76&#x27;]}}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;55d44231-4f29-4834-9fe5-c35c26594624&#x27;, &#x27;acb127ef-fbfc-47b3-b3dd-22b7a78b8f2a&#x27;]}}, &#x27;gridCols&#x27;: [&#x27;twoThirds&#x27;, &#x27;oneThird&#x27;], &#x27;gridSize&#x27;: 12}, &#x27;82a5b929-ad4e-4d42-83a8-0346ee1378a3&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;plaintext&#x27;: &#x27;&#x27;, &#x27;value&#x27;: [{&#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;&#x27;}], &#x27;type&#x27;: &#x27;p&#x27;}]}}&lt;/default&gt;
+          &lt;description/&gt;
+          &lt;required&gt;False&lt;/required&gt;
+          &lt;title&gt;Blocks&lt;/title&gt;
+        &lt;/field&gt;
+        &lt;field name=&quot;blocks_layout&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
+          &lt;default&gt;{&#x27;items&#x27;: [&#x27;1e78e271-29a6-4584-81f8-aa240888273c&#x27;, &#x27;3227832b-6dca-47d7-a095-b5c7b8a7a371&#x27;, &#x27;82a5b929-ad4e-4d42-83a8-0346ee1378a3&#x27;]}&lt;/default&gt;
+          &lt;description/&gt;
+          &lt;required&gt;False&lt;/required&gt;
+          &lt;title&gt;Blocks Layout&lt;/title&gt;
+        &lt;/field&gt;
+      &lt;/fieldset&gt;
+    &lt;/schema&gt;
+  &lt;/model&gt;</property>
+ <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="@@edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    icon_expr="" link_target="" url_expr="string:${object_url}"
+    visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>
