@@ -81,6 +81,7 @@ class IDataSet(model.Schema):
             "responsiblePartyWithRole",
             "responsibleParty",
             "responsiblePartyRole",
+            "coordinateReferenceSystemList",
             "coordinateReferenceSystem",
             "conformitySpecification",
             "conformityPass",
@@ -284,7 +285,7 @@ class IDataSet(model.Schema):
 
     # REFERENCE SYSTEM INFO
     #     Coordinate Reference System: coordinateReferenceSystem
-    coordinateReferenceSystem = schema.List(
+    coordinateReferenceSystemList = schema.List(
         title=_(u"Coordinate Reference System"),
         description=_(
             u"",
@@ -292,6 +293,11 @@ class IDataSet(model.Schema):
         value_type=schema.TextLine(
             title=u"Reference",
         ),
+        required=False,
+    )
+
+    coordinateReferenceSystem = schema.TextLine(
+        title=_(u"Coordinate Reference System (DEPRECATED)"),
         required=False,
     )
 

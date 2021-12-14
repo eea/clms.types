@@ -251,7 +251,7 @@ class ImportFromGeoNetwork(Service):
             #     "type": "text",
             # },
             {
-                "field_id": "coordinateReferenceSystem",
+                "field_id": "coordinateReferenceSystemList",
                 "xml_key": (
                     "//gmd:referenceSystemInfo/"
                     "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
