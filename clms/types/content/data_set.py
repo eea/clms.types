@@ -77,24 +77,31 @@ class IDataSet(model.Schema):
             "classificationTopicCategory",
             "geographicBoundingBox",
             "temporalCoverage",
+            # HIERARCHY LEVEL
             "dataResourceType",
+            # CONTACT
             "responsiblePartyWithRole",
             "responsibleParty",
             "responsiblePartyRole",
+            # REFERENCE SYSTEM INFO
             "coordinateReferenceSystemList",
             "coordinateReferenceSystem",
+            # DATA QUALITY INFO
             "conformitySpecification",
             "conformityPass",
             "qualityLineage",
+            # DISTRIBUTION INFO
             "distributionInfo",
             "dataResourceLocator",
             "dataServices",
+            # Non-visible metadata for the user
             "identifier",
             "point_of_contact_data",
             "point_of_contact",
             "update_frequency",
             "distribution_format_line",
             "hierarchy_level",
+            # identifiers for the importation
             "geonetwork_identifiers",
         ],
     )
@@ -130,7 +137,7 @@ class IDataSet(model.Schema):
 
     resourceEffective = schema.Date(
         title=_(
-            u"Effective date",
+            u"Date of publication",
         ),
         description=_(
             u"",
@@ -142,7 +149,7 @@ class IDataSet(model.Schema):
 
     resourceModified = schema.Date(
         title=_(
-            u"Modified date",
+            u"Revision date",
         ),
         description=_(
             u"",
@@ -194,20 +201,20 @@ class IDataSet(model.Schema):
     # )
 
     accessAndUseLimitationPublic_line = schema.TextLine(
-        title=_(u"Access And Use Limitation Public"), required=False
+        title=_(u"Limitation of public access"), required=False
     )
 
     accessAndUseConstraints = RichText(
-        title=_(u"Access And Use Constraints"), required=False
+        title=_(u"Conditions applying to access and use"), required=False
     )
 
     qualitySpatialResolution = RichText(
-        title=_(u"Quality Spatial Resolution"), required=False
+        title=_(u"Spatial Resolution"), required=False
     )
 
     classificationTopicCategory = schema.List(
         title=_(
-            u"Classification Topic Category",
+            u"Topic of Category",
         ),
         description=_(
             u"",
@@ -225,7 +232,7 @@ class IDataSet(model.Schema):
     )
 
     geographicBoundingBox = JSONField(
-        title=u"Bounding box dataGrid field",
+        title=_(u"Bounding Box"),
         required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="bounding_widget",
@@ -235,7 +242,7 @@ class IDataSet(model.Schema):
 
     temporalCoverage = schema.List(
         title=_(
-            u"Temporal Coverage",
+            u"Temporal Extent",
         ),
         description=_(
             u"",
@@ -251,7 +258,7 @@ class IDataSet(model.Schema):
     #     Resource type: dataResourceType
     dataResourceType = schema.TextLine(
         title=_(
-            u"Data Resource Type",
+            u"Resource Type",
         ),
         description=_(
             u"",
@@ -306,11 +313,11 @@ class IDataSet(model.Schema):
     #     Pass: conformityPass (conformityDegree)
     #     Lineage: qualityLineage
     conformitySpecification = RichText(
-        title=_(u"Conformity Specification"), required=False
+        title=_(u"Specification"), required=False
     )
 
     conformityPass = schema.Choice(
-        title=_(u"conformityPass"),
+        title=_(u"Pass"),
         description=_(
             u"(true - if conformant, false - if not "
             "conformant, or Null - if not evaluated)",
@@ -320,7 +327,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    qualityLineage = RichText(title=_(u"Quality Lineage"), required=False)
+    qualityLineage = RichText(title=_(u"Lineage"), required=False)
 
     # DISTRIBUTION INFO
     #     Distribution Info: distributionInfo
