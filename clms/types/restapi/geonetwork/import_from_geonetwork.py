@@ -200,9 +200,10 @@ class ImportFromGeoNetwork(Service):
                 "type": "text",
             },
             {
-                "field_id": "qualitySpatialResolution",
-                "xml_key": "//gmd:supplementalInformation/gco:CharacterString",
-                "type": "text",
+                "field_id": "qualitySpatialResolution_line",
+                "xml_key": "//gmd:spatialResolution/gmd:MD_Resolution/gmd:distance/gco:Distance",
+                "type": "resolution",
+                "attribute": "uom",
             },
             {
                 "field_id": "classificationTopicCategory",
@@ -326,13 +327,13 @@ class ImportFromGeoNetwork(Service):
                 "attribute": "codeListValue",
             },
             {
-                "field_id": "distribution_format_line",
+                "field_id": "distribution_format_list",
                 "xml_key": (
                     "//gmd:distributionInfo/gmd:MD_Distribution/"
                     "gmd:distributionFormat/"
                     "gmd:MD_Format/gmd:name/gco:CharacterString"
                 ),
-                "type": "string",
+                "type": "list",
             },
             {
                 "field_id": "hierarchy_level",
@@ -551,6 +552,13 @@ class ImportFromGeoNetwork(Service):
                         "type": field["type"],
                     }
                     print(f"    OK DATA for field {field['field_id']}")
+                elif field["type"] == "resolution":
+                    item = fields_data[0]
+                    resolution = item.attrib.get(field.get("attribute"))
+                    result[field["field_id"]] = {
+                        "data": f"{item.text} {resolution}",
+                        "type": field["type"],
+                    }
                 elif len(fields_data) == 1 and not field["type"] == "list":
                     item = fields_data[0]
                     if field.get("attribute"):
@@ -559,6 +567,15 @@ class ImportFromGeoNetwork(Service):
                         data = item.text
                     result[field["field_id"]] = {
                         "data": data,
+                        "type": field["type"],
+                    }
+                    print(f"    OK DATA for field {field['field_id']}")
+                elif len(fields_data) > 1 and not field["type"] == "list":
+                    fields_data_array = []
+                    for field_data in fields_data:
+                        fields_data_array.append(field_data.text)
+                    result[field["field_id"]] = {
+                        "data": ", ".join(fields_data_array),
                         "type": field["type"],
                     }
                     print(f"    OK DATA for field {field['field_id']}")

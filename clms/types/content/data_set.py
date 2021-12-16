@@ -73,7 +73,7 @@ class IDataSet(model.Schema):
             "geographicCoverage",
             "accessAndUseLimitationPublic_line",
             "accessAndUseConstraints",
-            "qualitySpatialResolution",
+            "qualitySpatialResolution_line",
             "classificationTopicCategory",
             "geographicBoundingBox",
             "temporalCoverage",
@@ -99,7 +99,7 @@ class IDataSet(model.Schema):
             "point_of_contact_data",
             "point_of_contact",
             "update_frequency",
-            "distribution_format_line",
+            "distribution_format_list",
             "hierarchy_level",
             # identifiers for the importation
             "geonetwork_identifiers",
@@ -208,7 +208,7 @@ class IDataSet(model.Schema):
         title=_(u"Conditions applying to access and use"), required=False
     )
 
-    qualitySpatialResolution = RichText(
+    qualitySpatialResolution_line = schema.TextLine(
         title=_(u"Spatial Resolution"), required=False
     )
 
@@ -408,13 +408,15 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    distribution_format_line = schema.TextLine(
+    distribution_format_list = schema.List(
         title=_(
             u"Distribution format",
         ),
+        value_type=schema.TextLine(
+            title=u"Format",
+        ),
         required=False,
         readonly=False,
-        default="",
     )
 
     hierarchy_level = schema.TextLine(
