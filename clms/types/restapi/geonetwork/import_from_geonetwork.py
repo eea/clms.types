@@ -201,7 +201,10 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "qualitySpatialResolution_line",
-                "xml_key": "//gmd:spatialResolution/gmd:MD_Resolution/gmd:distance/gco:Distance",
+                "xml_key": (
+                    "//gmd:spatialResolution/gmd:MD_Resolution/"
+                    "gmd:distance/gco:Distance"
+                ),
                 "type": "resolution",
                 "attribute": "uom",
             },
