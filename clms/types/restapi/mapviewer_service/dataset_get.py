@@ -93,16 +93,12 @@ class DataSetMapViewerServiceGet(Service):
                 )
             if layers:
                 parent = aq_parent(dataset)
-                title = (
-                    parent.portal_type == "Product"
-                    and parent.Title()
-                    or "Default"
-                )
-                productId = (
-                    parent.portal_type == "Product"
-                    and api.content.get_uuid(obj=parent)
-                    or ""
-                )
+                if parent.portal_type == "Product":
+                    title = parent.Title()
+                    productId = api.content.get_uuid(obj=parent)
+                else:
+                    title = "Default"
+                    productId = ""
                 return {
                     # Datasets are saved inside product, so the Title name is
                     # its parent's name
