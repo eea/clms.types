@@ -32,11 +32,6 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             if self.context.accessAndUseConstraints
             else ""
         )
-        qualitySpatialResolution = (
-            self.context.qualitySpatialResolution.output
-            if self.context.qualitySpatialResolution
-            else ""
-        )
         responsibleParty = (
             self.context.responsibleParty.output
             if self.context.responsibleParty
@@ -72,7 +67,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             [
                 dataResourceAbstract,
                 accessAndUseConstraints,
-                qualitySpatialResolution,
+                self.context.qualitySpatialResolution_line or "",
                 responsibleParty,
                 responsiblePartyRole,
                 conformitySpecification,
@@ -106,7 +101,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
 
         # This is a RichText
         # # Formats
-        metadata["distribution_format"] = self.context.distribution_format_line
+        metadata["distribution_format"] = self.context.distribution_format_list
 
         # Representation types
         # ???

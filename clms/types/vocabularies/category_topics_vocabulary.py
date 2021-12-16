@@ -33,32 +33,32 @@ class CategoryTopicsVocabulary:
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u"Farming", _(u"Farming")),
-            VocabItem(u"Biota", _(u"Biota")),
-            VocabItem(u"Boundaries", _(u"Boundaries")),
+            VocabItem(u"farming", _(u"Farming")),
+            VocabItem(u"biota", _(u"Biota")),
+            VocabItem(u"boundaries", _(u"Boundaries")),
             VocabItem(
-                u"Climatology/Meteorology/Atmosphere",
+                u"climatologyMeteorologyAtmosphere",
                 _(u"Climatology/Meteorology/Atmosphere"),
             ),
-            VocabItem(u"Economy", _(u"Economy")),
-            VocabItem(u"Environment", _(u"Environment")),
+            VocabItem(u"economy", _(u"Economy")),
+            VocabItem(u"environment", _(u"Environment")),
             VocabItem(
-                u"Geoscientific Information", _(u"Geoscientific Information")
+                u"geoscientificInformation", _(u"Geoscientific Information")
             ),
-            VocabItem(u"Health", _(u"Health")),
+            VocabItem(u"health", _(u"Health")),
             VocabItem(
-                u"Imagery/Base Maps/Earth Cover",
+                u"imageryBaseMapsEarthCover",
                 _(u"Imagery/Base Maps/Earth Cover"),
             ),
-            VocabItem(u"Intelligence", _(u"Intelligence")),
-            VocabItem(u"Inland Water", _(u"Inland Water")),
-            VocabItem(u"Location", _(u"Location")),
-            VocabItem(u"Oceans", _(u"Oceans")),
-            VocabItem(u"Planning/Cadastre", _(u"Planning/Cadastre")),
-            VocabItem(u"Society", _(u"Society")),
-            VocabItem(u"Transportation", _(u"Transportation")),
+            VocabItem(u"intelligence", _(u"Intelligence")),
+            VocabItem(u"inlandWater", _(u"Inland Water")),
+            VocabItem(u"location", _(u"Location")),
+            VocabItem(u"oceans", _(u"Oceans")),
+            VocabItem(u"planningCadastre", _(u"Planning/Cadastre")),
+            VocabItem(u"society", _(u"Society")),
+            VocabItem(u"transportation", _(u"Transportation")),
             VocabItem(
-                u"Utilities/Communication", _(u"Utilities/Communication")
+                u"utilitiesCommunication", _(u"Utilities/Communication")
             ),
         ]
 

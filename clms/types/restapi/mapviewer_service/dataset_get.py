@@ -17,8 +17,10 @@ class DataSetMapViewerServiceGet(Service):
             components.append(
                 {
                     "ComponentTitle": component.get("title"),
-                    # pylint: disable=line-too-long
-                    "Products": sorted(component.get("products"), key=lambda x: x.get("ProductTitle")),  # noqa: E501
+                    "Products": sorted(
+                        component.get("products"),
+                        key=lambda x: x.get("ProductTitle"),
+                    ),  # noqa: E501
                 }
             )
 
@@ -29,8 +31,9 @@ class DataSetMapViewerServiceGet(Service):
                 "zoom": 3,
             },
             "Download": True,
-            # pylint: disable=line-too-long
-            "Components": sorted(components, key=lambda x: x.get("ComponentTitle")),  # noqa: E501
+            "Components": sorted(
+                components, key=lambda x: x.get("ComponentTitle")
+            ),  # noqa: E501
         }
 
     def get_datasets(self):
@@ -68,8 +71,9 @@ class DataSetMapViewerServiceGet(Service):
                     "Component": product.component_title,
                     "ProductTitle": product.Title(),
                     "ProductId": product.UID(),
-                    # pylint: disable=line-too-long
-                    "Datasets": sorted(datasets, key=lambda x: x.get("DatasetTitle")),  # noqa: E501
+                    "Datasets": sorted(
+                        datasets, key=lambda x: x.get("DatasetTitle")
+                    ),  # noqa: E501
                 }
 
     def serialize_dataset(self, dataset):
@@ -89,12 +93,17 @@ class DataSetMapViewerServiceGet(Service):
                 )
             if layers:
                 parent = aq_parent(dataset)
+                if parent.portal_type == "Product":
+                    title = parent.Title()
+                    productId = api.content.get_uuid(obj=parent)
+                else:
+                    title = "Default"
+                    productId = ""
                 return {
                     # Datasets are saved inside product, so the Title name is
                     # its parent's name
-                    # pylint: disable=line-too-long
-                    "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
-                    "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
+                    "Product": title,
+                    "ProductId": productId,  # noqa: E501
                     "DatasetId": api.content.get_uuid(obj=dataset),
                     "DatasetTitle": dataset.Title(),
                     "DatasetDescription": dataset.Description(),
