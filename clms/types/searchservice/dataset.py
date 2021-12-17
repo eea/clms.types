@@ -74,7 +74,6 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
                 qualityLineage,
                 dataServices,
                 point_of_contact,
-                self.context.distribution_format_line or "",
             ]
         )
 
