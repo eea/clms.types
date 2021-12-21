@@ -177,11 +177,11 @@ class ImportFromGeoNetwork(Service):
             #       "gmd:MD_Keywords/gmd:keyword/gco:CharacterString",
             #     "type": "string",
             # },
-            # {
-            #     "field_id": "geographicCoverage",
-            #     "xml_key": "",
-            #     "type": "string",
-            # },
+            {
+                "field_id": "geographicCoverage",
+                "xml_key": "//gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode[@codeListValue='place']]/gmd:keyword/gco:CharacterString",
+                "type": "json",
+            },
             {
                 "field_id": "accessAndUseLimitationPublic_line",
                 "xml_key": (
@@ -409,6 +409,22 @@ class ImportFromGeoNetwork(Service):
                     bbox_data["items"] = bbox_items
                     result[field["field_id"]] = {
                         "data": bbox_data,
+                        "type": field["type"],
+                    }
+                    print(f"    OK DATA for field {field['field_id']}")
+                elif field["field_id"] == "geographicCoverage":
+                    geo_data = {}
+                    geo_items = []
+                    for item in fields_data:
+                        geo_items.append(
+                            {
+                                "label": item.text,
+                                "value": item.text.lower(),
+                            }
+                        )
+                    geo_data["geolocation"] = geo_items
+                    result[field["field_id"]] = {
+                        "data": geo_data,
                         "type": field["type"],
                     }
                     print(f"    OK DATA for field {field['field_id']}")
