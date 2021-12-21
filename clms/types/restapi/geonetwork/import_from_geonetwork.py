@@ -179,7 +179,12 @@ class ImportFromGeoNetwork(Service):
             # },
             {
                 "field_id": "geographicCoverage",
-                "xml_key": "//gmd:descriptiveKeywords/gmd:MD_Keywords[gmd:type/gmd:MD_KeywordTypeCode[@codeListValue='place']]/gmd:keyword/gco:CharacterString",
+                "xml_key": (
+                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                    "[gmd:type/gmd:MD_KeywordTypeCode"
+                    "[@codeListValue='place']]/gmd:keyword/"
+                    "gco:CharacterString"
+                ),
                 "type": "json",
             },
             {
@@ -610,19 +615,20 @@ class ImportFromGeoNetwork(Service):
                             "gml:endPosition",
                             namespaces=NAMESPACES,
                         )
-                        dt_start_obj = datetime.strptime(
-                            start[0].text,
-                            "%Y-%m-%d",
-                        )
-                        dt_end_obj = datetime.strptime(
-                            end[0].text,
-                            "%Y-%m-%d",
-                        )
-                        for year in range(
-                            dt_start_obj.year,
-                            dt_end_obj.year + 1,
-                        ):
-                            temporalExtent.append(str(year))
+                        if len(start) > 0 and start[0].text and len(end) > 0 and end[0].text:
+                            dt_start_obj = datetime.strptime(
+                                start[0].text,
+                                "%Y-%m-%d",
+                            )
+                            dt_end_obj = datetime.strptime(
+                                end[0].text,
+                                "%Y-%m-%d",
+                            )
+                            for year in range(
+                                dt_start_obj.year,
+                                dt_end_obj.year + 1,
+                            ):
+                                temporalExtent.append(str(year))
                         result[field["field_id"]] = {
                             "data": temporalExtent,
                             "type": field["type"],
