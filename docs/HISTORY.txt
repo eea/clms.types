@@ -1,6 +1,10 @@
 Changelog
 =========
 
+4.1 - (2021-12-21)
+---------------------------
+* Change: [WIP] import countries [ionlizarazu]
+
 4.0 - (2021-12-17)
 ---------------------------
 * Change: Develop
