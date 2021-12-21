@@ -177,11 +177,16 @@ class ImportFromGeoNetwork(Service):
             #       "gmd:MD_Keywords/gmd:keyword/gco:CharacterString",
             #     "type": "string",
             # },
-            # {
-            #     "field_id": "geographicCoverage",
-            #     "xml_key": "",
-            #     "type": "string",
-            # },
+            {
+                "field_id": "geographicCoverage",
+                "xml_key": (
+                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                    "[gmd:type/gmd:MD_KeywordTypeCode"
+                    "[@codeListValue='place']]/gmd:keyword/"
+                    "gco:CharacterString"
+                ),
+                "type": "json",
+            },
             {
                 "field_id": "accessAndUseLimitationPublic_line",
                 "xml_key": (
@@ -412,6 +417,60 @@ class ImportFromGeoNetwork(Service):
                         "type": field["type"],
                     }
                     print(f"    OK DATA for field {field['field_id']}")
+                elif field["field_id"] == "geographicCoverage":
+                    geo_data = {}
+                    geo_items = []
+                    for item in fields_data:
+                        geo_items.append(
+                            {
+                                "label": item.text,
+                                "value": item.text.lower(),
+                            }
+                        )
+                    geo_data["geolocation"] = geo_items
+                    result[field["field_id"]] = {
+                        "data": geo_data,
+                        "type": field["type"],
+                    }
+                    print(f"    OK DATA for field {field['field_id']}")
+                elif field["field_id"] == "temporalExtent":
+                    temporalExtent = []
+                    item = fields_data[0]
+                    start = item.xpath(
+                        "gml:beginPosition",
+                        namespaces=NAMESPACES,
+                    )
+                    end = item.xpath(
+                        "gml:endPosition",
+                        namespaces=NAMESPACES,
+                    )
+                    dt_start_obj = None
+                    dt_end_obj = None
+                    if start[0].text:
+                        dt_start_obj = datetime.strptime(
+                            start[0].text,
+                            "%Y-%m-%d",
+                        )
+                    if end[0].text:
+                        dt_end_obj = datetime.strptime(
+                            end[0].text,
+                            "%Y-%m-%d",
+                        )
+                    if dt_start_obj and dt_end_obj:
+                        for year in range(
+                            dt_start_obj.year,
+                            dt_end_obj.year + 1,
+                        ):
+                            temporalExtent.append(str(year))
+                        result[field["field_id"]] = {
+                            "data": temporalExtent,
+                            "type": field["type"],
+                        }
+                        print(f"    OK DATA for field {field['field_id']}")
+                    else:
+                        print(
+                            f"    ERROR DATA for field {field['field_id']}"
+                        )
                 elif field["type"] == "contact":
                     contact_data = {"items": []}
                     contact_items = []
@@ -583,40 +642,10 @@ class ImportFromGeoNetwork(Service):
                     }
                     print(f"    OK DATA for field {field['field_id']}")
                 else:
-                    if field["field_id"] == "temporalExtent":
-                        temporalExtent = []
-                        item = fields_data[0]
-                        start = item.xpath(
-                            "gml:beginPosition",
-                            namespaces=NAMESPACES,
-                        )
-                        end = item.xpath(
-                            "gml:endPosition",
-                            namespaces=NAMESPACES,
-                        )
-                        dt_start_obj = datetime.strptime(
-                            start[0].text,
-                            "%Y-%m-%d",
-                        )
-                        dt_end_obj = datetime.strptime(
-                            end[0].text,
-                            "%Y-%m-%d",
-                        )
-                        for year in range(
-                            dt_start_obj.year,
-                            dt_end_obj.year + 1,
-                        ):
-                            temporalExtent.append(str(year))
-                        result[field["field_id"]] = {
-                            "data": temporalExtent,
-                            "type": field["type"],
-                        }
-                        print(f"    OK DATA for field {field['field_id']}")
-                    else:
-                        result[field["field_id"]] = {
-                            "data": [item.text for item in fields_data],
-                            "type": field["type"],
-                        }
+                    result[field["field_id"]] = {
+                        "data": [item.text for item in fields_data],
+                        "type": field["type"],
+                    }
                     print(
                         f"    OK DATA for {field['type']} field"
                         f" {field['field_id']}"
