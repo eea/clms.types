@@ -433,6 +433,44 @@ class ImportFromGeoNetwork(Service):
                         "type": field["type"],
                     }
                     print(f"    OK DATA for field {field['field_id']}")
+                elif field["field_id"] == "temporalExtent":
+                        temporalExtent = []
+                        item = fields_data[0]
+                        start = item.xpath(
+                            "gml:beginPosition",
+                            namespaces=NAMESPACES,
+                        )
+                        end = item.xpath(
+                            "gml:endPosition",
+                            namespaces=NAMESPACES,
+                        )
+                        dt_start_obj = None
+                        dt_end_obj = None
+                        if start[0].text:
+                            dt_start_obj = datetime.strptime(
+                                start[0].text,
+                                "%Y-%m-%d",
+                            )
+                        if end[0].text:
+                            dt_end_obj = datetime.strptime(
+                                end[0].text,
+                                "%Y-%m-%d",
+                            )
+                        if dt_start_obj and dt_end_obj:
+                            for year in range(
+                                dt_start_obj.year,
+                                dt_end_obj.year + 1,
+                            ):
+                                temporalExtent.append(str(year))
+                            result[field["field_id"]] = {
+                                "data": temporalExtent,
+                                "type": field["type"],
+                            }
+                            print(f"    OK DATA for field {field['field_id']}")
+                        else:
+                            print(
+                                f"    ERROR DATA for field {field['field_id']}"
+                            )
                 elif field["type"] == "contact":
                     contact_data = {"items": []}
                     contact_items = []
@@ -604,49 +642,10 @@ class ImportFromGeoNetwork(Service):
                     }
                     print(f"    OK DATA for field {field['field_id']}")
                 else:
-                    if field["field_id"] == "temporalExtent":
-                        temporalExtent = []
-                        item = fields_data[0]
-                        start = item.xpath(
-                            "gml:beginPosition",
-                            namespaces=NAMESPACES,
-                        )
-                        end = item.xpath(
-                            "gml:endPosition",
-                            namespaces=NAMESPACES,
-                        )
-                        dt_start_obj = None
-                        dt_end_obj = None
-                        if start[0].text:
-                            dt_start_obj = datetime.strptime(
-                                start[0].text,
-                                "%Y-%m-%d",
-                            )
-                        if end[0].text:
-                            dt_end_obj = datetime.strptime(
-                                end[0].text,
-                                "%Y-%m-%d",
-                            )
-                        if dt_start_obj and dt_end_obj:
-                            for year in range(
-                                dt_start_obj.year,
-                                dt_end_obj.year + 1,
-                            ):
-                                temporalExtent.append(str(year))
-                            result[field["field_id"]] = {
-                                "data": temporalExtent,
-                                "type": field["type"],
-                            }
-                            print(f"    OK DATA for field {field['field_id']}")
-                        else:
-                            print(
-                                f"    ERROR DATA for field {field['field_id']}"
-                            )
-                    else:
-                        result[field["field_id"]] = {
-                            "data": [item.text for item in fields_data],
-                            "type": field["type"],
-                        }
+                    result[field["field_id"]] = {
+                        "data": [item.text for item in fields_data],
+                        "type": field["type"],
+                    }
                     print(
                         f"    OK DATA for {field['type']} field"
                         f" {field['field_id']}"
