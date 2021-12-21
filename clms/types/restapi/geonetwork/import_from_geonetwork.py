@@ -615,25 +615,33 @@ class ImportFromGeoNetwork(Service):
                             "gml:endPosition",
                             namespaces=NAMESPACES,
                         )
-                        if len(start) > 0 and start[0].text and len(end) > 0 and end[0].text:
+                        dt_start_obj = None
+                        dt_end_obj = None
+                        if start[0].text:
                             dt_start_obj = datetime.strptime(
                                 start[0].text,
                                 "%Y-%m-%d",
                             )
+                        if end[0].text:
                             dt_end_obj = datetime.strptime(
                                 end[0].text,
                                 "%Y-%m-%d",
                             )
+                        if dt_start_obj and dt_end_obj:
                             for year in range(
                                 dt_start_obj.year,
                                 dt_end_obj.year + 1,
                             ):
                                 temporalExtent.append(str(year))
-                        result[field["field_id"]] = {
-                            "data": temporalExtent,
-                            "type": field["type"],
-                        }
-                        print(f"    OK DATA for field {field['field_id']}")
+                            result[field["field_id"]] = {
+                                "data": temporalExtent,
+                                "type": field["type"],
+                            }
+                            print(f"    OK DATA for field {field['field_id']}")
+                        else:
+                            print(
+                                f"    ERROR DATA for field {field['field_id']}"
+                            )
                     else:
                         result[field["field_id"]] = {
                             "data": [item.text for item in fields_data],
