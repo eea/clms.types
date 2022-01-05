@@ -6,4 +6,10 @@
   <index name="associated_datasets" meta_type="KeywordIndex">
         <indexed_attr value="associated_datasets" />
   </index>
+
+  <index name="submission_deadline" meta_type="DateIndex">
+        <indexed_attr value="submission_deadline" />
+  </index>
+
+
 </object>
