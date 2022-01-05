@@ -20,7 +20,7 @@ class IWorkOpportunity(model.Schema):
 
     procurement_no = schema.TextLine(
         title=_(
-            u"Procurement No",
+            u"Reference No",
         ),
         description=_(
             u"",
