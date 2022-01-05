@@ -44,4 +44,20 @@
         name="clms.types.FullDatasetSourcesVocabulary"
     />
 
+    <utility
+        component=".temporal_coverage_vocabulary.TemporalCoverageVocabularyFactory"
+        name="clms.types.TemporalCoverageVocabulary"
+    />
+
+    <utility
+        component=".keywords_vocabulary.KeywordsVocabularyFactory"
+        name="clms.types.KeywordsVocabulary"
+    />
+
+    <utility
+        component=".update_frequency_vocabulary.UpdateFrequencyVocabularyFactory"
+        name="clms.types.UpdateFrequencyVocabulary"
+    />
+
+
 </configure>

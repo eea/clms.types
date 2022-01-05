@@ -24,6 +24,61 @@
     <value key="group">Dates</value>
   </records>
 
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.classificationTopicCategory">
+      <value key="title" i18n:translate="">Topic of Category</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.CategoryTopicsVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.temporalCoverage">
+      <value key="title" i18n:translate="">Temporal Coverage</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.TemporalCoverageVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.keywords">
+      <value key="title" i18n:translate="">Keywords</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.KeywordsVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.update_frequency">
+      <value key="title" i18n:translate="">Update frequency</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.UpdateFrequencyVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
 
 
 </registry>
