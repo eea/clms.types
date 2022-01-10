@@ -5,9 +5,6 @@ WorkOpportunity content-type definition
 from plone.dexterity.content import Container
 from plone.supermodel import model
 from zope.interface import implementer
-from zope import schema
-
-from clms.types import _
 
 
 class IWorkOpportunity(model.Schema):
@@ -18,31 +15,31 @@ class IWorkOpportunity(model.Schema):
 
     # model.load('work_oportunity.xml')
 
-    procurement_no = schema.TextLine(
-        title=_(
-            u"Reference No",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=True,
-        readonly=False,
-    )
+    # procurement_no = schema.TextLine(
+    #     title=_(
+    #         u"Reference No",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     default=u"",
+    #     required=True,
+    #     readonly=False,
+    # )
 
-    url = schema.URI(title=_(u"Link"), required=False)
+    # url = schema.URI(title=_(u"Link"), required=False)
 
-    submission_deadline = schema.Datetime(
-        title=_(
-            u"Submission deadline",
-        ),
-        description=_(
-            u"",
-        ),
-        # defaultFactory=get_default_name,
-        required=False,
-        readonly=False,
-    )
+    # submission_deadline = schema.Datetime(
+    #     title=_(
+    #         u"Submission deadline",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     # defaultFactory=get_default_name,
+    #     required=False,
+    #     readonly=False,
+    # )
 
     # is_open = schema.Bool(
     #     title=_(
