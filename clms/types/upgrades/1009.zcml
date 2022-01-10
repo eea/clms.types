@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:upgradeSteps
+    source="1008"
+    destination="1009"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="Modify WorkOpportunity and Tender Content-types"
+      description=""
+      handler=".v1009.upgrade" />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>
