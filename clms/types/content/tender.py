@@ -18,31 +18,31 @@ class ITender(model.Schema):
 
     # model.load('tender.xml')
 
-    procurement_no = schema.TextLine(
-        title=_(
-            u"Procurement No",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=True,
-        readonly=False,
-    )
+    # procurement_no = schema.TextLine(
+    #     title=_(
+    #         u"Procurement No",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     default=u"",
+    #     required=True,
+    #     readonly=False,
+    # )
 
-    url = schema.URI(title=_(u"Link"), required=False)
+    # url = schema.URI(title=_(u"Link"), required=False)
 
-    submission_deadline = schema.Datetime(
-        title=_(
-            u"Submission deadline",
-        ),
-        description=_(
-            u"",
-        ),
-        # defaultFactory=get_default_name,
-        required=False,
-        readonly=False,
-    )
+    # submission_deadline = schema.Datetime(
+    #     title=_(
+    #         u"Submission deadline",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     # defaultFactory=get_default_name,
+    #     required=False,
+    #     readonly=False,
+    # )
 
     # is_open = schema.Bool(
     #     title=_(
