@@ -6,4 +6,26 @@
   <index name="associated_datasets" meta_type="KeywordIndex">
         <indexed_attr value="associated_datasets" />
   </index>
+
+  <index name="submission_deadline" meta_type="DateIndex">
+        <indexed_attr value="submission_deadline" />
+  </index>
+
+  <index name="classificationTopicCategory" meta_type="KeywordIndex">
+        <indexed_attr value="classificationTopicCategory" />
+  </index>
+
+  <index name="temporalCoverage" meta_type="KeywordIndex">
+        <indexed_attr value="temporalCoverage" />
+  </index>
+
+  <index name="keywords" meta_type="KeywordIndex">
+        <indexed_attr value="keywords" />
+  </index>
+
+  <index name="update_frequency" meta_type="FieldIndex">
+        <indexed_attr value="update_frequency" />
+  </index>
+
+
 </object>

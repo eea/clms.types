@@ -20,7 +20,7 @@ class IWorkOpportunity(model.Schema):
 
     procurement_no = schema.TextLine(
         title=_(
-            u"Procurement No",
+            u"Reference No",
         ),
         description=_(
             u"",
@@ -32,13 +32,14 @@ class IWorkOpportunity(model.Schema):
 
     url = schema.URI(title=_(u"Link"), required=False)
 
-    submission_deadline = schema.Date(
+    submission_deadline = schema.Datetime(
         title=_(
             u"Submission deadline",
         ),
         description=_(
             u"",
         ),
+        # defaultFactory=get_default_name,
         required=False,
         readonly=False,
     )

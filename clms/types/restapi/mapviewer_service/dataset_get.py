@@ -114,6 +114,7 @@ class DataSetMapViewerServiceGet(Service):
                     "DownloadType": dataset.mapviewer_downloadtype,
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
                     "TimeSeriesService": dataset.mapviewer_timeseriesservice,
+                    "Downloadable": bool(dataset.downloadable_dataset),
                 }
 
         return None

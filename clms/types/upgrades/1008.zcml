@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:upgradeSteps
+    source="1007"
+    destination="1008"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="new content-type"
+      description=""
+      handler=".v1008.upgrade" />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>

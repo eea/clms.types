@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="clms.types">
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+          prefix="plone.app.querystring.field.submission_deadline">
+    <value key="title">Submission deadline</value>
+    <value key="description">Submission deadline for Vacancies and Tenders</value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.date.lessThan</element>
+      <element>plone.app.querystring.operation.date.largerThan</element>
+      <element>plone.app.querystring.operation.date.between</element>
+      <element>plone.app.querystring.operation.date.lessThanRelativeDate</element>
+      <element>plone.app.querystring.operation.date.largerThanRelativeDate</element>
+      <element>plone.app.querystring.operation.date.today</element>
+      <element>plone.app.querystring.operation.date.beforeToday</element>
+      <element>plone.app.querystring.operation.date.afterToday</element>
+      <element>plone.app.querystring.operation.date.beforeRelativeDate</element>
+      <element>plone.app.querystring.operation.date.afterRelativeDate</element>
+    </value>
+    <value key="group">Dates</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.classificationTopicCategory">
+      <value key="title" i18n:translate="">Topic of Category</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.CategoryTopicsVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.temporalCoverage">
+      <value key="title" i18n:translate="">Temporal Coverage</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.TemporalCoverageVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.keywords">
+      <value key="title" i18n:translate="">Keywords</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.KeywordsVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.update_frequency">
+      <value key="title" i18n:translate="">Update frequency</value>
+      <value key="description" i18n:translate=""></value>
+      <value key="enabled">True</value>
+      <value key="sortable">False</value>
+      <value key="operations">
+          <element>plone.app.querystring.operation.selection.any</element>
+          <element>plone.app.querystring.operation.selection.all</element>
+      </value>
+      <value key="vocabulary">clms.types.UpdateFrequencyVocabulary</value>
+      <value key="group" i18n:translate="">Metadata</value>
+  </records>
+
+
+</registry>
