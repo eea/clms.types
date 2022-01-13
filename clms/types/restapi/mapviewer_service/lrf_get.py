@@ -1,9 +1,18 @@
 """
 REST API endpoint to get the mapviewer configuration data
 """
-from Acquisition import aq_parent
+from Acquisition import aq_inner, aq_parent
+from OFS.interfaces import IOrderedContainer
 from plone import api
 from plone.restapi.services import Service
+
+
+def getObjPositionInParent(obj):
+    parent = aq_parent(aq_inner(obj))
+    ordered = IOrderedContainer(parent, None)
+    if ordered is not None:
+        return ordered.getObjectPosition(obj.getId())
+    return 0
 
 
 class RootMapViewerServiceGet(Service):
@@ -18,7 +27,7 @@ class RootMapViewerServiceGet(Service):
                 {
                     "ComponentTitle": component.get("title"),
                     # pylint: disable=line-too-long
-                    "Products": sorted(component.get("products"), key=lambda x: x.get("ProductTitle")),  # noqa: E501
+                    "Products": sorted(component.get("products"), key=lambda x: x.get("PositionInParent")),  # noqa: E501
                 }
             )
 
@@ -73,7 +82,8 @@ class RootMapViewerServiceGet(Service):
                     "ProductTitle": product.Title(),
                     "ProductId": product.UID(),
                     # pylint: disable=line-too-long
-                    "Datasets": sorted(datasets, key=lambda x: x.get("DatasetTitle")),  # noqa: E501
+                    "Datasets": sorted(datasets, key=lambda x: x.get("PositionInParent")),  # noqa: E501
+                    "PositionInParent": getObjPositionInParent(product),
                 }
 
     def get_datasets_for_product(self, product):
@@ -125,6 +135,7 @@ class RootMapViewerServiceGet(Service):
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
                     "TimeSeriesService": dataset.mapviewer_timeseriesservice,
                     "Downloadable": bool(dataset.downloadable_dataset),
+                    "PositionInParent": getObjPositionInParent(dataset),
                 }
 
         return None

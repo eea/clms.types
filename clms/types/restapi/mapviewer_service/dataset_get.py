@@ -1,9 +1,18 @@
 """
 REST API endpoint to get the mapviewer configuration data for a given dataset
 """
-from Acquisition import aq_parent
+from Acquisition import aq_inner, aq_parent
+from OFS.interfaces import IOrderedContainer
 from plone import api
 from plone.restapi.services import Service
+
+
+def getObjPositionInParent(obj):
+    parent = aq_parent(aq_inner(obj))
+    ordered = IOrderedContainer(parent, None)
+    if ordered is not None:
+        return ordered.getObjectPosition(obj.getId())
+    return 0
 
 
 class DataSetMapViewerServiceGet(Service):
@@ -19,7 +28,7 @@ class DataSetMapViewerServiceGet(Service):
                     "ComponentTitle": component.get("title"),
                     "Products": sorted(
                         component.get("products"),
-                        key=lambda x: x.get("ProductTitle"),
+                        key=lambda x: x.get("PositionInParent"),
                     ),  # noqa: E501
                 }
             )
@@ -32,7 +41,7 @@ class DataSetMapViewerServiceGet(Service):
             },
             "Download": True,
             "Components": sorted(
-                components, key=lambda x: x.get("ComponentTitle")
+                components, key=lambda x: x.get("PositionInParent")
             ),  # noqa: E501
         }
 
@@ -74,6 +83,7 @@ class DataSetMapViewerServiceGet(Service):
                     "Datasets": sorted(
                         datasets, key=lambda x: x.get("DatasetTitle")
                     ),  # noqa: E501
+                    "PositionInParent": getObjPositionInParent(product),
                 }
 
     def serialize_dataset(self, dataset):
@@ -115,6 +125,7 @@ class DataSetMapViewerServiceGet(Service):
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
                     "TimeSeriesService": dataset.mapviewer_timeseriesservice,
                     "Downloadable": bool(dataset.downloadable_dataset),
+                    "PositionInParent": getObjPositionInParent(dataset),
                 }
 
         return None
