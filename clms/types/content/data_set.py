@@ -567,6 +567,7 @@ class IDataSet(model.Schema):
         label=_(u"Downloads"),
         fields=[
             "downloadable_dataset",
+            "downloadable_full_dataset",
             "downloadable_files",
             "dataset_full_path",
             "dataset_full_format",
