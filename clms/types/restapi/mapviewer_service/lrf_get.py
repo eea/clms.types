@@ -8,6 +8,7 @@ from plone.restapi.services import Service
 
 
 def getObjPositionInParent(obj):
+    """get the position of the object in the parent"""
     parent = aq_parent(aq_inner(obj))
     ordered = IOrderedContainer(parent, None)
     if ordered is not None:
