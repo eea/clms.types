@@ -587,6 +587,19 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    downloadable_full_dataset = schema.Bool(
+        title=_(
+            "Check if this dataset can be downloaded as a full dataset ",
+        ),
+        description=_(
+            "If selected, an icon will be shown next to this dataset the map "
+            " viewer to be able to download the full dataset"
+        ),
+        required=False,
+        default=True,
+        readonly=False,
+    )
+
     dataset_full_path = schema.TextLine(
         title=_(
             u"Enter the path to the full dataset download file",
