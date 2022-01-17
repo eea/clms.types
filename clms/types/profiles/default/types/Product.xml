@@ -1,73 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<object name="Product" meta_type="Dexterity FTI" i18n:domain="clms.types"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">Product</property>
- <property name="description" i18n:translate=""></property>
- <property name="icon_expr"></property>
- <property name="factory">Product</property>
- <property name="add_view_expr">string:${folder_url}/++add++Product</property>
- <property name="link_target"></property>
- <property name="immediate_view">view</property>
- <property name="global_allow">True</property>
- <property name="filter_content_types">False</property>
- <property name="allowed_content_types"/>
- <property name="allow_discussion">False</property>
- <property name="default_view">view</property>
- <property name="view_methods">
-  <element value="view"/>
- </property>
- <property name="default_view_fallback">False</property>
- <property name="add_permission">clms.types.AddProduct</property>
- <property name="klass">clms.types.content.product.Product</property>
- <property name="behaviors">
-  <element value="plone.namefromtitle"/>
-  <element value="plone.allowdiscussion"/>
-  <element value="plone.excludefromnavigation"/>
-  <element value="plone.shortname"/>
-  <element value="plone.ownership"/>
-  <element value="plone.publication"/>
-  <element value="plone.categorization"/>
-  <element value="plone.basic"/>
-  <element value="plone.locking"/>
-  <element value="plone.translatable"/>
-  <element value="plone.leadimage"/>
-  <element value="plone.richtext"/>
-  <element value="clms.types.mapviewer_component"/>
-
- </property>
- <property name="schema" purge="true"></property>
- <property
-    name="model_source">&lt;model xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns:users=&quot;http://namespaces.plone.org/supermodel/users&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
+<object name="Product" meta_type="Dexterity FTI" i18n:domain="clms.types" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  <property name="title" i18n:translate="">Product</property>
+  <property name="description" i18n:translate=""></property>
+  <property name="icon_expr"></property>
+  <property name="factory">Product</property>
+  <property name="add_view_expr">string:${folder_url}/++add++Product</property>
+  <property name="link_target"></property>
+  <property name="immediate_view">view</property>
+  <property name="global_allow">True</property>
+  <property name="filter_content_types">False</property>
+  <property name="allowed_content_types" />
+  <property name="allow_discussion">False</property>
+  <property name="default_view">view</property>
+  <property name="view_methods">
+    <element value="view" />
+  </property>
+  <property name="default_view_fallback">False</property>
+  <property name="add_permission">clms.types.AddProduct</property>
+  <property name="klass">clms.types.content.product.Product</property>
+  <property name="behaviors">
+    <element value="plone.namefromtitle" />
+    <element value="plone.allowdiscussion" />
+    <element value="plone.excludefromnavigation" />
+    <element value="plone.shortname" />
+    <element value="plone.ownership" />
+    <element value="plone.publication" />
+    <element value="plone.categorization" />
+    <element value="plone.basic" />
+    <element value="plone.locking" />
+    <element value="plone.translatable" />
+    <element value="plone.leadimage" />
+    <element value="plone.richtext" />
+    <element value="clms.types.mapviewer_component" />
+  </property>
+  <property name="schema"></property>
+  <property name="model_source">&lt;model xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns:users=&quot;http://namespaces.plone.org/supermodel/users&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
     &lt;schema&gt;
       &lt;fieldset name=&quot;layout&quot; label=&quot;Layout&quot;&gt;
         &lt;field name=&quot;blocks&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
-          &lt;default&gt;{&#x27;250fcf76-7b52-4bec-bd66-7b50e0dd6613&#x27;: {&#x27;@type&#x27;: &#x27;text&#x27;}, &#x27;398c8de2-f6ff-40ad-8345-8524871bfabb&#x27;: {&#x27;@type&#x27;: &#x27;columnsBlock&#x27;, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;89499475-b9e2-40da-a741-41988c98f4dc&#x27;: {&#x27;blocks&#x27;: {&#x27;17ae5036-fd59-45c8-af85-7ea831f3215c&#x27;: {&#x27;@type&#x27;: &#x27;text&#x27;}, &#x27;527949bb-d35f-437b-a179-bfa11699acc3&#x27;: {&#x27;@type&#x27;: &#x27;cclButtonComponent&#x27;, &#x27;title&#x27;: &#x27;View product on map viewer&#x27;}, &#x27;5e367339-8bdb-4c71-9163-4c9ad69217e1&#x27;: {&#x27;@type&#x27;: &#x27;cclButtonComponent&#x27;, &#x27;title&#x27;: &#x27;Go to Use cases&#x27;}, &#x27;8874c81a-0278-465d-af77-c42acd7dcd8f&#x27;: {&#x27;@type&#x27;: &#x27;metadata&#x27;, &#x27;data&#x27;: {&#x27;id&#x27;: &#x27;image&#x27;, &#x27;widget&#x27;: &#x27;image&#x27;}}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;8874c81a-0278-465d-af77-c42acd7dcd8f&#x27;, &#x27;527949bb-d35f-437b-a179-bfa11699acc3&#x27;, &#x27;5e367339-8bdb-4c71-9163-4c9ad69217e1&#x27;, &#x27;17ae5036-fd59-45c8-af85-7ea831f3215c&#x27;]}}, &#x27;fb378cd1-4685-430e-bc7b-87e5e78cfddf&#x27;: {&#x27;blocks&#x27;: {&#x27;2912d427-4c95-444b-8867-3cddf9f9b6c4&#x27;: {&#x27;@type&#x27;: &#x27;metadata&#x27;, &#x27;data&#x27;: {&#x27;id&#x27;: &#x27;description&#x27;, &#x27;widget&#x27;: &#x27;description&#x27;}}, &#x27;402dcb37-7851-48aa-9b31-184df124342e&#x27;: {&#x27;@type&#x27;: &#x27;text&#x27;}, &#x27;63dca903-10bc-4de7-b542-2b9cabbdc30d&#x27;: {&#x27;@type&#x27;: &#x27;accordion&#x27;, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;6c30b739-bc92-46a3-8082-57342e3860c9&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;20be94a4-4532-4d27-a459-7d2d34f5c4bd&#x27;: {&#x27;@type&#x27;: &#x27;cardContainer&#x27;, &#x27;cardOrigin&#x27;: &#x27;current&#x27;, &#x27;cardStyle&#x27;: &#x27;line&#x27;, &#x27;contentTypes&#x27;: [&#x27;DataSet&#x27;], &#x27;customCards&#x27;: {&#x27;blocks&#x27;: {&#x27;b0c65b49-f98e-4687-a6b1-1e15b2a13bb5&#x27;: {&#x27;@type&#x27;: &#x27;customCard&#x27;, &#x27;description&#x27;: &#x27;Custom description for the card 1&#x27;, &#x27;title&#x27;: &#x27;Custom title 1&#x27;}, &#x27;e9937553-fa16-4131-8be0-60650e60bcc0&#x27;: {&#x27;@type&#x27;: &#x27;customCard&#x27;, &#x27;description&#x27;: &#x27;Custom description for the card 0&#x27;, &#x27;title&#x27;: &#x27;Custom title 0&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;e9937553-fa16-4131-8be0-60650e60bcc0&#x27;, &#x27;b0c65b49-f98e-4687-a6b1-1e15b2a13bb5&#x27;]}}}, &#x27;24168246-19dc-448b-b36c-fe0aa2249ccf&#x27;: {&#x27;@type&#x27;: &#x27;text&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;20be94a4-4532-4d27-a459-7d2d34f5c4bd&#x27;, &#x27;24168246-19dc-448b-b36c-fe0aa2249ccf&#x27;]}, &#x27;title&#x27;: &#x27;Datasets in Product detail&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;6c30b739-bc92-46a3-8082-57342e3860c9&#x27;]}}, &#x27;instructions&#x27;: {&#x27;content-type&#x27;: &#x27;text/html&#x27;, &#x27;data&#x27;: &#x27;&amp;lt;p&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;/p&amp;gt;&#x27;, &#x27;encoding&#x27;: &#x27;utf8&#x27;}}, &#x27;a185e507-ca05-43b5-b678-32967a466c31&#x27;: {&#x27;@type&#x27;: &#x27;accordion&#x27;, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;5f900908-5981-489e-8b36-c0784d339918&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;73d85453-7a51-4fc0-8a4b-77581dc8ab24&#x27;: {&#x27;@type&#x27;: &#x27;text&#x27;}, &#x27;e2e54e51-f393-430c-9762-8b4c84b049f8&#x27;: {&#x27;@type&#x27;: &#x27;cardContainer&#x27;, &#x27;cardOrigin&#x27;: &#x27;custom&#x27;, &#x27;cardStyle&#x27;: &#x27;doc&#x27;, &#x27;customCards&#x27;: {&#x27;blocks&#x27;: {&#x27;458f5143-ae2e-406d-b9d4-a9cd36f9c156&#x27;: {&#x27;blocks&#x27;: {&#x27;3738c9e6-2c6d-41da-a3cd-b9780b0f9523&#x27;: {&#x27;@type&#x27;: &#x27;text&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;3738c9e6-2c6d-41da-a3cd-b9780b0f9523&#x27;]}, &#x27;description&#x27;: &#x27;Third doc description&#x27;, &#x27;title&#x27;: &#x27;Third document&#x27;}, &#x27;e2ecf822-863d-416b-91b4-f46dc8b0120f&#x27;: {&#x27;@type&#x27;: &#x27;customCard&#x27;, &#x27;description&#x27;: &#x27;Second doc description&#x27;, &#x27;title&#x27;: &#x27;Second document&#x27;}, &#x27;e50fcd0d-5553-4680-b055-2f1720d40226&#x27;: {&#x27;@type&#x27;: &#x27;customCard&#x27;, &#x27;description&#x27;: &#x27;First doc description&#x27;, &#x27;title&#x27;: &#x27;First document&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;e50fcd0d-5553-4680-b055-2f1720d40226&#x27;, &#x27;e2ecf822-863d-416b-91b4-f46dc8b0120f&#x27;, &#x27;458f5143-ae2e-406d-b9d4-a9cd36f9c156&#x27;]}}}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;e2e54e51-f393-430c-9762-8b4c84b049f8&#x27;, &#x27;73d85453-7a51-4fc0-8a4b-77581dc8ab24&#x27;]}, &#x27;title&#x27;: &#x27;Technical documents&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;5f900908-5981-489e-8b36-c0784d339918&#x27;]}}, &#x27;instructions&#x27;: {&#x27;content-type&#x27;: &#x27;text/html&#x27;, &#x27;data&#x27;: &#x27;&amp;lt;p&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;/p&amp;gt;&#x27;, &#x27;encoding&#x27;: &#x27;utf8&#x27;}}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;2912d427-4c95-444b-8867-3cddf9f9b6c4&#x27;, &#x27;63dca903-10bc-4de7-b542-2b9cabbdc30d&#x27;, &#x27;a185e507-ca05-43b5-b678-32967a466c31&#x27;, &#x27;402dcb37-7851-48aa-9b31-184df124342e&#x27;]}}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;89499475-b9e2-40da-a741-41988c98f4dc&#x27;, &#x27;fb378cd1-4685-430e-bc7b-87e5e78cfddf&#x27;]}}, &#x27;gridCols&#x27;: [&#x27;oneFifth&#x27;, &#x27;fourFifths&#x27;], &#x27;gridSize&#x27;: 12, &#x27;instructions&#x27;: {&#x27;content-type&#x27;: &#x27;text/html&#x27;, &#x27;data&#x27;: &#x27;&amp;lt;p&amp;gt;&amp;lt;br/&amp;gt;&amp;lt;/p&amp;gt;&#x27;, &#x27;encoding&#x27;: &#x27;utf8&#x27;}, &#x27;title&#x27;: &#x27;View product on map viewer&#x27;}, &#x27;82008ae8-dbe9-4d85-b411-c5a5712bf337&#x27;: {&#x27;@type&#x27;: &#x27;title&#x27;}}&lt;/default&gt;
+          &lt;default&gt;{&#x27;250fcf76-7b52-4bec-bd66-7b50e0dd6613&#x27;: {&#x27;@type&#x27;: &#x27;text&#x27;}, &#x27;82008ae8-dbe9-4d85-b411-c5a5712bf337&#x27;: {&#x27;@type&#x27;: &#x27;title&#x27;}, &#x27;ee3e46d4-6edd-485c-8b6f-bfab8a68c57d&#x27;: {&#x27;@type&#x27;: &#x27;tabs_block&#x27;, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;4369cdcf-e5da-47bd-aed6-bbeda18e7058&#x27;: {&#x27;@type&#x27;: &#x27;tab&#x27;, &#x27;blocks&#x27;: {&#x27;a32b9945-a113-427b-9869-2c6cca8d61d0&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}, &#x27;d03381ad-6888-4906-9e00-020d04738bae&#x27;: {&#x27;@type&#x27;: &#x27;accordion&#x27;, &#x27;collapsed&#x27;: True, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;cfa85bd8-232f-4c42-8a2e-9b56ad376ddf&#x27;: {&#x27;blocks&#x27;: {&#x27;930887b1-07be-4f3a-aed0-21a6d74ea634&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;930887b1-07be-4f3a-aed0-21a6d74ea634&#x27;]}}, &#x27;f1d71fe4-f017-4377-bfd7-b2cc982f8d0b&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;89d6f9e7-fc21-4a4e-ad0f-ac6eea194e9c&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;89d6f9e7-fc21-4a4e-ad0f-ac6eea194e9c&#x27;]}, &#x27;title&#x27;: &#x27;Application area&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;f1d71fe4-f017-4377-bfd7-b2cc982f8d0b&#x27;, &#x27;cfa85bd8-232f-4c42-8a2e-9b56ad376ddf&#x27;]}}, &#x27;non_exclusive&#x27;: True, &#x27;right_arrows&#x27;: True, &#x27;title_size&#x27;: &#x27;h2&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;d03381ad-6888-4906-9e00-020d04738bae&#x27;, &#x27;a32b9945-a113-427b-9869-2c6cca8d61d0&#x27;]}, &#x27;title&#x27;: &#x27;Application areas&#x27;}, &#x27;47b6370b-5d71-4268-bd9c-f15223229307&#x27;: {&#x27;@type&#x27;: &#x27;tab&#x27;, &#x27;blocks&#x27;: {&#x27;2ce6c7ce-5f5e-4054-bce6-59a393d1c87c&#x27;: {&#x27;@type&#x27;: &#x27;accordion&#x27;, &#x27;collapsed&#x27;: True, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;0ebf3614-6709-4e72-b848-6206cf0a369e&#x27;: {&#x27;blocks&#x27;: {&#x27;70e7a129-5b8e-4060-bf34-6f863082b4de&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;70e7a129-5b8e-4060-bf34-6f863082b4de&#x27;]}}, &#x27;ab28b752-9d95-416a-a22a-345c0b1e8d02&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;b3fde412-4630-43f5-b298-9c4058f42eb2&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;b3fde412-4630-43f5-b298-9c4058f42eb2&#x27;]}, &#x27;title&#x27;: &#x27;User uptake&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;ab28b752-9d95-416a-a22a-345c0b1e8d02&#x27;, &#x27;0ebf3614-6709-4e72-b848-6206cf0a369e&#x27;]}}, &#x27;non_exclusive&#x27;: True, &#x27;right_arrows&#x27;: True, &#x27;title_size&#x27;: &#x27;h2&#x27;}, &#x27;74010e6d-c09e-4b71-b7ab-a551d013df59&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;2ce6c7ce-5f5e-4054-bce6-59a393d1c87c&#x27;, &#x27;74010e6d-c09e-4b71-b7ab-a551d013df59&#x27;]}, &#x27;title&#x27;: &#x27;User uptake&#x27;}, &#x27;59d7a243-472c-4962-884b-71903ae783d1&#x27;: {&#x27;@type&#x27;: &#x27;tab&#x27;, &#x27;blocks&#x27;: {&#x27;8a558bd4-18db-49c8-b40c-db338e1f9d6f&#x27;: {&#x27;@type&#x27;: &#x27;relatedListing&#x27;, &#x27;variation&#x27;: &#x27;CclCardsnews&#x27;, &#x27;content_type&#x27;: &#x27;News Item&#x27;}, &#x27;42c54fe8-7b79-485a-b4d9-ba0b24680dd2&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;8a558bd4-18db-49c8-b40c-db338e1f9d6f&#x27;, &#x27;42c54fe8-7b79-485a-b4d9-ba0b24680dd2&#x27;]}, &#x27;title&#x27;: &#x27;News&#x27;}, &#x27;8e01ded9-9fed-403b-b5ec-27b0424aceaa&#x27;: {&#x27;@type&#x27;: &#x27;tab&#x27;, &#x27;blocks&#x27;: {&#x27;7f6fb98b-30f4-4bc1-823d-23de69614c3c&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}, &#x27;eb5a8e3e-6276-47fa-aa7b-83d0f4276029&#x27;: {&#x27;@type&#x27;: &#x27;accordion&#x27;, &#x27;collapsed&#x27;: True, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;1b9f7c0c-a275-46eb-b24f-d773cb8e5def&#x27;: {&#x27;blocks&#x27;: {&#x27;eb455e39-cc82-4a9a-8df6-107fe3dbf428&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;eb455e39-cc82-4a9a-8df6-107fe3dbf428&#x27;]}}, &#x27;8f20c524-8563-46e1-a22a-8b98ff5b42f6&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;7828f647-5c82-4699-b05a-b34cb6c70e2f&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;7828f647-5c82-4699-b05a-b34cb6c70e2f&#x27;]}, &#x27;title&#x27;: &#x27;on-going&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;8f20c524-8563-46e1-a22a-8b98ff5b42f6&#x27;, &#x27;1b9f7c0c-a275-46eb-b24f-d773cb8e5def&#x27;]}}, &#x27;non_exclusive&#x27;: True, &#x27;right_arrows&#x27;: True, &#x27;title_size&#x27;: &#x27;h2&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;eb5a8e3e-6276-47fa-aa7b-83d0f4276029&#x27;, &#x27;7f6fb98b-30f4-4bc1-823d-23de69614c3c&#x27;]}, &#x27;title&#x27;: &#x27;On-going and planned updates&#x27;}, &#x27;bc6a63c4-6d77-4381-bc4e-54a10a35a7f8&#x27;: {&#x27;@type&#x27;: &#x27;tab&#x27;, &#x27;blocks&#x27;: {&#x27;a2fb3e85-16c2-48b9-8496-0b72e0b06934&#x27;: {&#x27;@type&#x27;: &#x27;relatedListing&#x27;, &#x27;variation&#x27;: &#x27;CclCardsdoc&#x27;, &#x27;content_type&#x27;: &#x27;UseCase&#x27;}, &#x27;95c78c8e-e4f9-4ee6-8693-628acaf7b1c2&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;a2fb3e85-16c2-48b9-8496-0b72e0b06934&#x27;, &#x27;95c78c8e-e4f9-4ee6-8693-628acaf7b1c2&#x27;]}, &#x27;title&#x27;: &#x27;Use cases&#x27;}, &#x27;eb0c8a22-44cf-489d-bd6d-e48db52dc07c&#x27;: {&#x27;@type&#x27;: &#x27;tab&#x27;, &#x27;blocks&#x27;: {&#x27;3d181ed2-6b64-4c4f-9cb7-c6a333403fad&#x27;: {&#x27;@type&#x27;: &#x27;accordion&#x27;, &#x27;collapsed&#x27;: True, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;10af3800-4071-495f-a70f-3978ed3862b6&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;382d6010-3cf0-40aa-9a11-dc0a01b0e001&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;382d6010-3cf0-40aa-9a11-dc0a01b0e001&#x27;]}, &#x27;title&#x27;: &#x27;Extra documentation&#x27;}, &#x27;9388ff8f-6c49-463b-9ecb-e7f44b7809bb&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;89f7d6c4-c262-4183-a8cb-c335a61bd655&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;89f7d6c4-c262-4183-a8cb-c335a61bd655&#x27;]}, &#x27;title&#x27;: &#x27;Technical Information&#x27;}, &#x27;adffa341-e4b1-4678-8ebb-a844bf1b4537&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;f2505176-5d3d-4d70-b163-04c2fa5d3a49&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;f2505176-5d3d-4d70-b163-04c2fa5d3a49&#x27;]}, &#x27;title&#x27;: &#x27;More documentation&#x27;}, &#x27;b77fb68f-2679-4e77-b911-47ba5ffd5c8f&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;d3b6efee-e1a9-4672-a29f-70b3c16ccd5c&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;d3b6efee-e1a9-4672-a29f-70b3c16ccd5c&#x27;]}, &#x27;title&#x27;: &#x27;Overview&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;b77fb68f-2679-4e77-b911-47ba5ffd5c8f&#x27;, &#x27;9388ff8f-6c49-463b-9ecb-e7f44b7809bb&#x27;, &#x27;adffa341-e4b1-4678-8ebb-a844bf1b4537&#x27;, &#x27;10af3800-4071-495f-a70f-3978ed3862b6&#x27;]}}, &#x27;non_exclusive&#x27;: True, &#x27;right_arrows&#x27;: True, &#x27;title_size&#x27;: &#x27;h2&#x27;}, &#x27;544b4df7-509f-4b2a-88e2-5c179a61a9e7&#x27;: {&#x27;@type&#x27;: &#x27;metadata&#x27;, &#x27;data&#x27;: {&#x27;id&#x27;: &#x27;description&#x27;, &#x27;widget&#x27;: &#x27;description&#x27;}}, &#x27;77f6432e-f8e1-4226-a855-96340fdd31db&#x27;: {&#x27;@type&#x27;: &#x27;accordion&#x27;, &#x27;collapsed&#x27;: False, &#x27;data&#x27;: {&#x27;blocks&#x27;: {&#x27;5d6a4a6b-6fb0-46fa-85d3-5529c700f7d1&#x27;: {&#x27;@type&#x27;: &#x27;accordionPanel&#x27;, &#x27;blocks&#x27;: {&#x27;c8f2820a-e8e0-4feb-a801-718b6f4284f6&#x27;: {&#x27;@type&#x27;: &#x27;listing&#x27;, &#x27;block&#x27;: &#x27;c8f2820a-e8e0-4feb-a801-718b6f4284f6&#x27;, &#x27;query&#x27;: [], &#x27;querystring&#x27;: {&#x27;query&#x27;: [{&#x27;i&#x27;: &#x27;portal_type&#x27;, &#x27;o&#x27;: &#x27;plone.app.querystring.operation.selection.any&#x27;, &#x27;v&#x27;: [&#x27;Product&#x27;]}, {&#x27;i&#x27;: &#x27;path&#x27;, &#x27;o&#x27;: &#x27;plone.app.querystring.operation.string.relativePath&#x27;, &#x27;v&#x27;: &#x27;&#x27;}, {&#x27;i&#x27;: &#x27;review_state&#x27;, &#x27;o&#x27;: &#x27;plone.app.querystring.operation.selection.any&#x27;, &#x27;v&#x27;: [&#x27;published&#x27;]}], &#x27;sort_order&#x27;: &#x27;ascending&#x27;}, &#x27;variation&#x27;: &#x27;CclCardsline&#x27;}, &#x27;dd4bedcd-24c5-40aa-bdfd-dccd8781a6bb&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;plaintext&#x27;: &#x27;&#x27;, &#x27;value&#x27;: [{&#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;&#x27;}], &#x27;type&#x27;: &#x27;p&#x27;}]}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;c8f2820a-e8e0-4feb-a801-718b6f4284f6&#x27;, &#x27;dd4bedcd-24c5-40aa-bdfd-dccd8781a6bb&#x27;]}, &#x27;title&#x27;: &#x27;Products&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;5d6a4a6b-6fb0-46fa-85d3-5529c700f7d1&#x27;]}}, &#x27;non_exclusive&#x27;: True, &#x27;right_arrows&#x27;: True, &#x27;title_size&#x27;: &#x27;h2&#x27;}, &#x27;d2afd518-909b-4f22-a917-7dbf8904496c&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}, &#x27;dbce85e8-e218-4255-9b9b-336bef77ab00&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;544b4df7-509f-4b2a-88e2-5c179a61a9e7&#x27;, &#x27;d2afd518-909b-4f22-a917-7dbf8904496c&#x27;, &#x27;3d181ed2-6b64-4c4f-9cb7-c6a333403fad&#x27;, &#x27;77f6432e-f8e1-4226-a855-96340fdd31db&#x27;, &#x27;dbce85e8-e218-4255-9b9b-336bef77ab00&#x27;]}, &#x27;title&#x27;: &#x27;Product detail&#x27;}}, &#x27;blocks_layout&#x27;: {&#x27;items&#x27;: [&#x27;eb0c8a22-44cf-489d-bd6d-e48db52dc07c&#x27;, &#x27;4369cdcf-e5da-47bd-aed6-bbeda18e7058&#x27;, &#x27;bc6a63c4-6d77-4381-bc4e-54a10a35a7f8&#x27;, &#x27;59d7a243-472c-4962-884b-71903ae783d1&#x27;, &#x27;47b6370b-5d71-4268-bd9c-f15223229307&#x27;, &#x27;8e01ded9-9fed-403b-b5ec-27b0424aceaa&#x27;]}}, &#x27;menuAlign&#x27;: &#x27;left&#x27;, &#x27;menuPosition&#x27;: &#x27;inline&#x27;, &#x27;template&#x27;: &#x27;CCLProductTabs&#x27;, &#x27;verticalAlign&#x27;: &#x27;flex-start&#x27;}}&lt;/default&gt;
           &lt;required&gt;False&lt;/required&gt;
           &lt;title&gt;Blocks&lt;/title&gt;
         &lt;/field&gt;
         &lt;field name=&quot;blocks_layout&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
-          &lt;default&gt;{&#x27;items&#x27;: [&#x27;82008ae8-dbe9-4d85-b411-c5a5712bf337&#x27;, &#x27;398c8de2-f6ff-40ad-8345-8524871bfabb&#x27;, &#x27;250fcf76-7b52-4bec-bd66-7b50e0dd6613&#x27;]}&lt;/default&gt;
+          &lt;default&gt;{&#x27;items&#x27;: [&#x27;82008ae8-dbe9-4d85-b411-c5a5712bf337&#x27;, &#x27;ee3e46d4-6edd-485c-8b6f-bfab8a68c57d&#x27;, &#x27;250fcf76-7b52-4bec-bd66-7b50e0dd6613&#x27;]}&lt;/default&gt;
           &lt;required&gt;False&lt;/required&gt;
           &lt;title&gt;Blocks Layout&lt;/title&gt;
         &lt;/field&gt;
       &lt;/fieldset&gt;
     &lt;/schema&gt;
   &lt;/model&gt;</property>
- <property name="model_file" purge="true"></property>
- <property name="schema_policy">dexterity</property>
- <alias from="(Default)" to="(dynamic view)"/>
- <alias from="edit" to="@@edit"/>
- <alias from="sharing" to="@@sharing"/>
- <alias from="view" to="(selected layout)"/>
- <action title="View" action_id="view" category="object" condition_expr=""
-    icon_expr="" link_target="" url_expr="string:${object_url}"
-    visible="True">
-  <permission value="View"/>
- </action>
- <action title="Edit" action_id="edit" category="object"
-    condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True"
-    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
-    visible="True">
-  <permission value="Modify portal content"/>
- </action>
+  <property name="model_file"></property>
+  <property name="schema_policy">dexterity</property>
+  <alias from="(Default)" to="(dynamic view)" />
+  <alias from="edit" to="@@edit" />
+  <alias from="sharing" to="@@sharing" />
+  <alias from="view" to="(selected layout)" />
+  <action title="View" action_id="view" category="object" condition_expr="" icon_expr="" link_target="" url_expr="string:${object_url}" visible="True">
+    <permission value="View" />
+  </action>
+  <action title="Edit" action_id="edit" category="object" condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True" icon_expr="" link_target="" url_expr="string:${object_url}/edit" visible="True">
+    <permission value="Modify portal content" />
+  </action>
 </object>
