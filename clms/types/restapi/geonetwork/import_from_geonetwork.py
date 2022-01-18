@@ -4,27 +4,15 @@ Import from geonetwork
 """
 
 import json
-from datetime import (
-    datetime,
-)
+from datetime import datetime
 
 import requests
 import transaction
-from lxml import (
-    etree,
-)
-from plone.app.textfield.value import (
-    RichTextValue,
-)
-from plone.protect.interfaces import (
-    IDisableCSRFProtection,
-)
-from plone.restapi.services import (
-    Service,
-)
-from zope.interface import (
-    alsoProvides,
-)
+from lxml import etree
+from plone.app.textfield.value import RichTextValue
+from plone.protect.interfaces import IDisableCSRFProtection
+from plone.restapi.services import Service
+from zope.interface import alsoProvides
 
 EEA_GEONETWORK_BASE_URL = (
     "https://sdi.eea.europa.eu/catalogue/copernicus/"
@@ -230,11 +218,41 @@ class ImportFromGeoNetwork(Service):
                 "type": "json",
             },
             {
-                "field_id": "temporalExtent",
+                "field_id": "temporalCoverage",
                 "xml_key": (
                     "//gmd:extent/gmd:EX_Extent/"
                     "gmd:temporalElement/gmd:EX_TemporalExtent/"
                     "gmd:extent/gml:TimePeriod"
+                ),
+                "type": "list",
+            },
+            {
+                "field_id": "gemet",
+                "xml_key": (
+                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                    "[gmd:thesaurusName/gmd:CI_Citation/"
+                    "gmd:title/gco:CharacterString"
+                    "[contains(text(),'GEMET')]]"
+                    "/gmd:keyword/gco:CharacterString"
+                ),
+                "type": "list",
+            },
+            {
+                "field_id": "gemetInspireThemes",
+                "xml_key": (
+                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                    "[gmd:thesaurusName/gmd:CI_Citation/"
+                    "gmd:title/gmx:Anchor"
+                    "[@xlink:href='http://inspire.ec.europa.eu/theme']]"
+                    "/gmd:keyword/gco:CharacterString"
+                ),
+                "if_not_xml_key": (
+                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                    "[gmd:thesaurusName/gmd:CI_Citation/"
+                    "gmd:title/gco:CharacterString"
+                    "[contains(text(),"
+                    "'GEMET - INSPIRE themes, version 1.0')]]"
+                    "/gmd:keyword/gco:CharacterString"
                 ),
                 "type": "list",
             },
@@ -349,6 +367,43 @@ class ImportFromGeoNetwork(Service):
                 "type": "string",
                 "attribute": "codeListValue",
             },
+            {
+                "field_id": "metadata_language",
+                "xml_key": (
+                    "//gmd:MD_Metadata/gmd:language/gmd:LanguageCode"
+                ),
+                "type": "string",
+                "attribute": "codeListValue",
+            },
+            {
+                "field_id": "character_set",
+                "xml_key": (
+                    "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode"
+                ),
+                "type": "string",
+                "attribute": "codeListValue",
+            },
+            {
+                "field_id": "date_stamp",
+                "xml_key": (
+                    "//gmd:MD_Metadata/gmd:dateStamp/gco:DateTime"
+                ),
+                "type": "string",
+            },
+            {
+                "field_id": "metadata_standard_name",
+                "xml_key": (
+                    "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString"
+                ),
+                "type": "string",
+            },
+            {
+                "field_id": "metadata_standard_version",
+                "xml_key": (
+                    "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString"
+                ),
+                "type": "string",
+            },
         ]
 
         for field in fields_to_get:
@@ -357,7 +412,28 @@ class ImportFromGeoNetwork(Service):
                     field["xml_key"],
                     namespaces=NAMESPACES,
                 )
-                if len(fields_data) == 0:
+                if len(fields_data) == 0 and field.get("if_not_xml_key"):
+                    fields_data = doc.xpath(
+                        field["if_not_xml_key"],
+                        namespaces=NAMESPACES,
+                    )
+                    if len(fields_data) > 0:
+                        result[field["field_id"]] = {
+                            "data": [item.text for item in fields_data],
+                            "type": field["type"],
+                        }
+                        print(
+                            f"    OK DATA for {field['type']} field"
+                            f" {field['field_id']}"
+                        )
+                    else:
+                        print(
+                        "    WARNING!!! No DATA for field"
+                        f" {field['field_id']} with search keys"
+                        f" {field['xml_key']} first attempt with 0 results and"
+                        f" {field['if_not_xml_key']}"
+                    )
+                elif len(fields_data) == 0:
                     # result[field["field_id"]] = {
                     #     "data": "Null",
                     #     "type": field["type"],
@@ -433,7 +509,7 @@ class ImportFromGeoNetwork(Service):
                         "type": field["type"],
                     }
                     print(f"    OK DATA for field {field['field_id']}")
-                elif field["field_id"] == "temporalExtent":
+                elif field["field_id"] == "temporalCoverage":
                     temporalExtent = []
                     item = fields_data[0]
                     start = item.xpath(
@@ -451,12 +527,22 @@ class ImportFromGeoNetwork(Service):
                             start[0].text,
                             "%Y-%m-%d",
                         )
+                        result["temporalExtentStart"] = {
+                            "data": start[0].text,
+                            "type": "string",
+                        }
                     if end[0].text:
                         dt_end_obj = datetime.strptime(
                             end[0].text,
                             "%Y-%m-%d",
                         )
-                    if dt_start_obj and dt_end_obj:
+                        result["temporalExtentEnd"] = {
+                            "data": end[0].text,
+                            "type": "string",
+                        }
+                    if dt_start_obj:
+                        if not dt_end_obj:
+                            dt_end_obj = datetime.now()
                         for year in range(
                             dt_start_obj.year,
                             dt_end_obj.year + 1,
@@ -468,9 +554,7 @@ class ImportFromGeoNetwork(Service):
                         }
                         print(f"    OK DATA for field {field['field_id']}")
                     else:
-                        print(
-                            f"    ERROR DATA for field {field['field_id']}"
-                        )
+                        print(f"    ERROR DATA for field {field['field_id']}")
                 elif field["type"] == "contact":
                     contact_data = {"items": []}
                     contact_items = []

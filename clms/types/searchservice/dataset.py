@@ -91,7 +91,7 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             "classification_topic_category"
         ] = self.context.classificationTopicCategory
         # INSPIRE THEMEs
-        metadata["inspire_themes"] = self.context.inspireThemes
+        metadata["inspire_themes"] = self.context.gemetInspireThemes
         # Keywords
         # They come from Plone field 'tags'
 

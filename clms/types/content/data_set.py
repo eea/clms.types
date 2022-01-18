@@ -41,24 +41,24 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    inspireThemes = schema.List(
-        title=_(
-            u"Inspire Themes",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.Choice(
-            title=_(
-                u"Inspire theme",
-            ),
-            vocabulary=u"clms.types.InspireThemesVocabulary",
-            required=False,
-            readonly=False,
-        ),
-        required=False,
-        readonly=False,
-    )
+    # inspireThemes = schema.List(
+    #     title=_(
+    #         u"Inspire Themes",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.Choice(
+    #         title=_(
+    #             u"Inspire theme",
+    #         ),
+    #         vocabulary=u"clms.types.InspireThemesVocabulary",
+    #         required=False,
+    #         readonly=False,
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
 
     model.fieldset(
         "metadata",
@@ -77,6 +77,10 @@ class IDataSet(model.Schema):
             "classificationTopicCategory",
             "geographicBoundingBox",
             "temporalCoverage",
+            "temporalExtentStart",
+            "temporalExtentEnd",
+            "gemet",
+            "gemetInspireThemes",
             # HIERARCHY LEVEL
             "dataResourceType",
             # CONTACT
@@ -101,6 +105,11 @@ class IDataSet(model.Schema):
             "update_frequency",
             "distribution_format_list",
             "hierarchy_level",
+            "metadata_language",
+            "character_set",
+            "date_stamp",
+            "metadata_standard_name",
+            "metadata_standard_version",
             # identifiers for the importation
             "geonetwork_identifiers",
         ],
@@ -254,6 +263,56 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    temporalExtentStart = schema.TextLine(
+        title=_(
+            u"Temporal Extent Start",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    temporalExtentEnd = schema.TextLine(
+        title=_(
+            u"Temporal Extent End",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    gemet = schema.List(
+        title=_(
+            u"GEMET",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.TextLine(
+            title=u"THEME",
+        ),
+        required=False,
+    )
+
+    gemetInspireThemes = schema.List(
+        title=_(
+            u"GEMET INSPIRE Themes",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.TextLine(
+            title=u"INSPIRE THEME",
+        ),
+        required=False,
+    )
+
     # HIERARCHY LEVEL
     #     Resource type: dataResourceType
     dataResourceType = schema.TextLine(
@@ -361,11 +420,11 @@ class IDataSet(model.Schema):
     #     Maintenance and update frequency: update_frequence
     #     Distribution format: distribution_format
     #     Hierarchy level: hierarchy_level
-    #     Metadata language: AUTOMATIC
-    #     Character Set: AUTOMATIC
-    #     Date stamp: AUTOMATIC
-    #     Metadata standard name: AUTOMATIC
-    #     Metadata standard version: AUTOMATIC
+    #     Metadata language: metadata_language
+    #     Character Set: character_set
+    #     Date stamp: date_stamp
+    #     Metadata standard name: metadata_standard_name
+    #     Metadata standard version: metadata_standard_version
 
     identifier = schema.TextLine(
         title=_(
@@ -430,6 +489,67 @@ class IDataSet(model.Schema):
         required=False,
         readonly=False,
     )
+
+    metadata_language = schema.TextLine(
+        title=_(
+            u"Metadata Language",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    character_set = schema.TextLine(
+        title=_(
+            u"Character Set",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    date_stamp = schema.TextLine(
+        title=_(
+            u"Date Stamp",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    metadata_standard_name = schema.TextLine(
+        title=_(
+            u"Metadata Standard Name",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    metadata_standard_version = schema.TextLine(
+        title=_(
+            u"Metadata Standard Version",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
 
     # geonetwork_identifier = schema.TextLine(
     #     title=_(
