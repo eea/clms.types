@@ -375,7 +375,8 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "character_set",
-                "xml_key": "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",
+                # pylint: disable=line-too-long
+                "xml_key": "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",  # noqa: E501
                 "type": "string",
                 "attribute": "codeListValue",
             },
@@ -386,12 +387,14 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "metadata_standard_name",
-                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",
+                # pylint: disable=line-too-long
+                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",  # noqa: E501
                 "type": "string",
             },
             {
                 "field_id": "metadata_standard_version",
-                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",
+                # pylint: disable=line-too-long
+                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",  # noqa: E501
                 "type": "string",
             },
         ]
