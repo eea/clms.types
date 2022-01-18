@@ -369,39 +369,29 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "metadata_language",
-                "xml_key": (
-                    "//gmd:MD_Metadata/gmd:language/gmd:LanguageCode"
-                ),
+                "xml_key": "//gmd:MD_Metadata/gmd:language/gmd:LanguageCode",
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "character_set",
-                "xml_key": (
-                    "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode"
-                ),
+                "xml_key": "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "date_stamp",
-                "xml_key": (
-                    "//gmd:MD_Metadata/gmd:dateStamp/gco:DateTime"
-                ),
+                "xml_key": "//gmd:MD_Metadata/gmd:dateStamp/gco:DateTime",
                 "type": "string",
             },
             {
                 "field_id": "metadata_standard_name",
-                "xml_key": (
-                    "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString"
-                ),
+                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",
                 "type": "string",
             },
             {
                 "field_id": "metadata_standard_version",
-                "xml_key": (
-                    "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString"
-                ),
+                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",
                 "type": "string",
             },
         ]
@@ -428,11 +418,11 @@ class ImportFromGeoNetwork(Service):
                         )
                     else:
                         print(
-                        "    WARNING!!! No DATA for field"
-                        f" {field['field_id']} with search keys"
-                        f" {field['xml_key']} first attempt with 0 results and"
-                        f" {field['if_not_xml_key']}"
-                    )
+                            "    WARNING!!! No DATA for field"
+                            f" {field['field_id']} with search keys"
+                            f" {field['xml_key']} first attempt with 0 results"
+                            f" and {field['if_not_xml_key']}"
+                        )
                 elif len(fields_data) == 0:
                     # result[field["field_id"]] = {
                     #     "data": "Null",
