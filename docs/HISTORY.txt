@@ -1,6 +1,11 @@
 Changelog
 =========
 
+4.7 - (2022-01-18)
+---------------------------
+* Change: Develop
+  [erral]
+
 4.6 - (2022-01-14)
 ---------------------------
 * Change: add field to dataset [erral]

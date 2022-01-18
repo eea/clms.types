@@ -27,5 +27,44 @@
         <indexed_attr value="update_frequency" />
   </index>
 
+  <index name="inspireThemes" meta_type="KeywordIndex">
+        <indexed_attr value="inspireThemes" />
+  </index>
+
+  <index name="geographic_coverage" meta_type="KeywordIndex">
+        <indexed_attr value="geographic_coverage" />
+  </index>
+
+  <index name="spatial_resolution" meta_type="KeywordIndex">
+        <indexed_attr value="spatial_resolution" />
+  </index>
+
+  <index name="coordinateReferenceSystemList" meta_type="KeywordIndex">
+        <indexed_attr value="coordinateReferenceSystemList" />
+  </index>
+
+  <index name="distribution_format_list" meta_type="KeywordIndex">
+        <indexed_attr value="distribution_format_list" />
+  </index>
+
+  <index name="custodian_information" meta_type="KeywordIndex">
+        <indexed_attr value="custodian_information" />
+  </index>
+
+ <index name="gemet" meta_type="KeywordIndex">
+        <indexed_attr value="gemet" />
+  </index>
+
+ <index name="gemetInspireThemes" meta_type="KeywordIndex">
+        <indexed_attr value="gemetInspireThemes" />
+  </index>
+
+ <index name="temporal_extent" meta_type="KeywordIndex">
+        <indexed_attr value="temporal_extent" />
+  </index>
+
+
+
+
 
 </object>

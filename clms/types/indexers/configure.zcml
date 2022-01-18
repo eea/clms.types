@@ -10,5 +10,16 @@
   <adapter factory=".associated_datasets.associated_datasets_behavior"
     name="associated_datasets" />
 
+  <adapter factory=".geographic_coverage.geographic_coverage"
+    name="geographic_coverage" />
+
+  <adapter factory=".spatial_resolution.spatial_resolution"
+    name="spatial_resolution" />
+
+  <adapter factory=".custodian_information.custodian_information"
+    name="custodian_information" />
+
+  <adapter factory=".temporal_extent.temporal_extent"
+    name="temporal_extent" />
 
 </configure>

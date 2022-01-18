@@ -59,5 +59,46 @@
         name="clms.types.UpdateFrequencyVocabulary"
     />
 
+    <utility
+        component=".geographic_coverage_vocabulary.GeographicCoverageVocabularyFactory"
+        name="clms.types.GeographicCoverageVocabulary"
+    />
+
+    <utility
+        component=".spatial_resolution_vocabulary.SpatialResolutionVocabularyFactory"
+        name="clms.types.SpatialResolutionVocabulary"
+    />
+
+    <utility
+        component=".coordinate_reference_system_vocabulary.CoordinateReferenceSystemVocabularyFactory"
+        name="clms.types.CoordinateReferenceSystemVocabulary"
+    />
+
+    <utility
+        component=".distribution_format_list_vocabulary.DistributionFormatListVocabularyFactory"
+        name="clms.types.DistributionFormatListVocabulary"
+    />
+
+    <utility
+        component=".custodian_information_vocabulary.CustodianInformationVocabularyFactory"
+        name="clms.types.CustodianInformationVocabulary"
+    />
+
+    <utility
+        component=".gemet_vocabulary.GemetVocabularyFactory"
+        name="clms.types.GemetVocabulary"
+    />
+
+    <utility
+        component=".gemet_inspire_themes_vocabulary.GemetInspireThemesVocabularyFactory"
+        name="clms.types.GemetInspireThemesVocabulary"
+    />
+
+    <utility
+        component=".temporal_extent_vocabulary.TemporalExtentVocabularyFactory"
+        name="clms.types.TemporalExtentVocabulary"
+    />
+
+
 
 </configure>
