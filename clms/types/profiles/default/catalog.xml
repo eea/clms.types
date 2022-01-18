@@ -51,6 +51,19 @@
         <indexed_attr value="custodian_information" />
   </index>
 
+ <index name="gemet" meta_type="KeywordIndex">
+        <indexed_attr value="gemet" />
+  </index>
+
+ <index name="gemetInspireThemes" meta_type="KeywordIndex">
+        <indexed_attr value="gemetInspireThemes" />
+  </index>
+
+ <index name="temporal_extent" meta_type="KeywordIndex">
+        <indexed_attr value="temporal_extent" />
+  </index>
+
+
 
 
 

@@ -84,4 +84,21 @@
         name="clms.types.CustodianInformationVocabulary"
     />
 
+    <utility
+        component=".gemet_vocabulary.GemetVocabularyFactory"
+        name="clms.types.GemetVocabulary"
+    />
+
+    <utility
+        component=".gemet_inspire_themes_vocabulary.GemetInspireThemesVocabularyFactory"
+        name="clms.types.GemetInspireThemesVocabulary"
+    />
+
+    <utility
+        component=".temporal_extent_vocabulary.TemporalExtentVocabularyFactory"
+        name="clms.types.TemporalExtentVocabulary"
+    />
+
+
+
 </configure>
