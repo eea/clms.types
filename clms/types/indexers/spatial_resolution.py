@@ -16,4 +16,4 @@ def dummy(obj):
 def spatial_resolution(obj):
     """Calculate and return the value for the indexer"""
     items = obj.qualitySpatialResolution_line
-    return items and items.split(",") or []
+    return items.split(",") if items else []
