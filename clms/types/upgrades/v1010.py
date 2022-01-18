@@ -12,4 +12,5 @@ def upgrade(setup_tool=None):
     setup = api.portal.get_tool("portal_setup")
     setup.runImportStepFromProfile("clms.types:default", "catalog")
     setup.runImportStepFromProfile("clms.types:default", "plone.app.registry")
+    setup.runImportStepFromProfile("clms.types:default", "typeinfo")
     logger.info("Done")
