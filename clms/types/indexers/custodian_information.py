@@ -16,4 +16,5 @@ def dummy(obj):
 def custodian_information(obj):
     """Calculate and return the value for the indexer"""
     items = obj.responsiblePartyWithRole.get("items", [])
-    return [item.get("organisationName", "") for item in items if item.get("roleCode", "") == "custodian"]
+    # pylint: disable=line-too-long
+    return [item.get("organisationName", "") for item in items if item.get("roleCode", "") == "custodian"]  # noqa: E501

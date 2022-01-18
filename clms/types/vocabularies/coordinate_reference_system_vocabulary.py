@@ -54,4 +54,4 @@ class CoordinateReferenceSystemVocabulary:
 
 
 # pylint: disable=line-too-long
-CoordinateReferenceSystemVocabularyFactory = CoordinateReferenceSystemVocabulary() # noqa: E501
+CoordinateReferenceSystemVocabularyFactory = CoordinateReferenceSystemVocabulary()  # noqa: E501
