@@ -20,19 +20,19 @@ def temporal_extent(obj):
         dt_temporalExtentStart = datetime.strptime(
             obj.temporalExtentStart, "%Y-%m-%d"
         )
-    except:
+    except ValueError:
         return []
 
     try:
         dt_temporalExtentEnd = datetime.strptime(
             obj.temporalExtentEnd, "%Y-%m-%d"
         )
-    except:
+    except ValueError:
         dt_temporalExtentEnd = datetime.now()
 
     try:
         return range(
             dt_temporalExtentStart.year, dt_temporalExtentEnd.year + 1
         )
-    except:
+    except ValueError:
         return []
