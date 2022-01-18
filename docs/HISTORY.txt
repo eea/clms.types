@@ -1,8 +1,10 @@
 Changelog
 =========
 
-4.8-dev0 - (unreleased)
+4.8 - (2022-01-18)
 ---------------------------
+* Change: format measure units that come as an xml namespace values
+  [erral]
 
 4.7 - (2022-01-18)
 ---------------------------
