@@ -550,7 +550,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-
     # geonetwork_identifier = schema.TextLine(
     #     title=_(
     #         u"GeoNetwork id",
