@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """Associated products indexers"""
 
+from datetime import datetime
+
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
+
 from clms.types.content.data_set import IDataSet
-from datetime import datetime
 
 
 @indexer(IDexterityContent)
