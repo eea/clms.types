@@ -137,6 +137,7 @@ class RootMapViewerServiceGet(Service):
                     "TimeSeriesService": dataset.mapviewer_timeseriesservice,
                     "Downloadable": bool(dataset.downloadable_full_dataset),
                     "PositionInParent": getObjPositionInParent(dataset),
+                    "HandlingLevel": bool(dataset.mapviewer_handlinglevel),
                 }
 
         return None

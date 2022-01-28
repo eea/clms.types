@@ -583,6 +583,7 @@ class IDataSet(model.Schema):
             "mapviewer_downloadtype",
             "mapviewer_istimeseries",
             "mapviewer_timeseriesservice",
+            "mapviewer_handlinglevel",
         ],
     )
 
@@ -681,6 +682,16 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    mapviewer_handlinglevel = schema.Bool(
+        title=_(
+            u"Handling level",
+        ),
+        description=_(""),
+        required=False,
+        default=False,
+        readonly=False,
+    )
+
     model.fieldset(
         "downloads",
         label=_(u"Downloads"),
@@ -691,6 +702,7 @@ class IDataSet(model.Schema):
             "dataset_full_path",
             "dataset_full_format",
             "dataset_full_source",
+            "wekeo_choices",
         ],
     )
 
@@ -766,6 +778,16 @@ class IDataSet(model.Schema):
         widget="downloadable_files_widget",
         default={"items": []},
         missing_value={"items": []},
+    )
+
+    wekeo_choices = schema.Text(
+        title=_(
+            "WEKEO choices",
+        ),
+        description=_(""),
+        default=u"",
+        required=False,
+        readonly=False,
     )
 
 
