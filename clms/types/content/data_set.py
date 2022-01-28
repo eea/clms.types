@@ -686,7 +686,7 @@ class IDataSet(model.Schema):
         title=_(
             u"Handling level",
         ),
-        description=_(),
+        description=_(""),
         required=False,
         default=False,
         readonly=False,
@@ -702,6 +702,7 @@ class IDataSet(model.Schema):
             "dataset_full_path",
             "dataset_full_format",
             "dataset_full_source",
+            "wekeo_choices",
         ],
     )
 
@@ -777,6 +778,16 @@ class IDataSet(model.Schema):
         widget="downloadable_files_widget",
         default={"items": []},
         missing_value={"items": []},
+    )
+
+    wekeo_choices = schema.Text(
+        title=_(
+            "WEKEO choices",
+        ),
+        description=_(""),
+        default=u"",
+        required=False,
+        readonly=False,
     )
 
 
