@@ -583,6 +583,7 @@ class IDataSet(model.Schema):
             "mapviewer_downloadtype",
             "mapviewer_istimeseries",
             "mapviewer_timeseriesservice",
+            "mapviewer_handlinglevel",
         ],
     )
 
@@ -678,6 +679,16 @@ class IDataSet(model.Schema):
         ),
         default=u"",
         required=False,
+        readonly=False,
+    )
+
+    mapviewer_handlinglevel = schema.Bool(
+        title=_(
+            u"Handling level",
+        ),
+        description=_(),
+        required=False,
+        default=False,
         readonly=False,
     )
 
