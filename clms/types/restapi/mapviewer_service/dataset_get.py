@@ -93,15 +93,16 @@ class DataSetMapViewerServiceGet(Service):
             layers = []
             layers_value = dataset.mapviewer_layers
             for layer_item in layers_value.get("items", []):
-                layers.append(
-                    {
-                        "LayerId": layer_item.get("id", ""),
-                        "Title": layer_item.get("title", ""),
-                        "Default_active": layer_item.get(
-                            "default_active", False
-                        ),
-                    }
-                )
+                if "hide" not in layer_item or not layer_item["hide"]:
+                    layers.append(
+                        {
+                            "LayerId": layer_item.get("id", ""),
+                            "Title": layer_item.get("title", ""),
+                            "Default_active": layer_item.get(
+                                "default_active", False
+                            ),
+                        }
+                    )
             if layers:
                 parent = aq_parent(dataset)
                 if parent.portal_type == "Product":
