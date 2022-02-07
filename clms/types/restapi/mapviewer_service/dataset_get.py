@@ -121,7 +121,7 @@ class DataSetMapViewerServiceGet(Service):
                     "DatasetURL": self.get_item_volto_url(dataset),
                     "ViewService": dataset.mapviewer_viewservice,
                     "Default_active": dataset.mapviewer_default_active,
-                    "Layer": sorted(layers, key=lambda x: x.get("Title")),
+                    "Layer": layers,
                     "DownloadService": dataset.mapviewer_downloadservice,
                     "DownloadType": dataset.mapviewer_downloadtype,
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
