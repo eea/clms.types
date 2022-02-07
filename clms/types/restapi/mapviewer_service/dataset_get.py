@@ -118,6 +118,7 @@ class DataSetMapViewerServiceGet(Service):
                     "DatasetId": api.content.get_uuid(obj=dataset),
                     "DatasetTitle": dataset.Title(),
                     "DatasetDescription": dataset.Description(),
+                    "DatasetURL": self.get_item_volto_url(dataset),
                     "ViewService": dataset.mapviewer_viewservice,
                     "Default_active": dataset.mapviewer_default_active,
                     "Layer": sorted(layers, key=lambda x: x.get("Title")),
@@ -131,3 +132,15 @@ class DataSetMapViewerServiceGet(Service):
                 }
 
         return None
+
+    def get_item_volto_url(self, dataset):
+        """get the volto url for a given dataset"""
+        context_url = dataset.absolute_url()
+        plone_domain = api.portal.get().absolute_url()
+        frontend_domain = api.portal.get_registry_record(
+            "volto.frontend_domain"
+        )
+        if frontend_domain.endswith("/"):
+            frontend_domain = frontend_domain[:-1]
+
+        return context_url.replace(plone_domain, frontend_domain)
