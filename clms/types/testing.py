@@ -5,14 +5,16 @@ testing basics
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import (
-    applyProfile,
+    SITE_OWNER_NAME,
+    SITE_OWNER_PASSWORD,
     FunctionalTesting,
     IntegrationTesting,
     PloneSandboxLayer,
+    applyProfile,
     quickInstallProduct,
 )
 from plone.testing.zope import WSGI_SERVER_FIXTURE
-
+from plone.app.testing import login
 import clms.types
 
 
@@ -34,6 +36,11 @@ class ClmstypesLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         """ setup Plone site"""
+        portal.acl_users.userFolderAddUser(
+            SITE_OWNER_NAME, SITE_OWNER_PASSWORD, ["Manager"], []
+        )
+        login(portal, SITE_OWNER_NAME)
+
         applyProfile(portal, "clms.types:default")
 
 
