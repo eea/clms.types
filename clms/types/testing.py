@@ -11,7 +11,6 @@ from plone.app.testing import (
     IntegrationTesting,
     PloneSandboxLayer,
     applyProfile,
-    quickInstallProduct,
 )
 from plone.testing.zope import WSGI_SERVER_FIXTURE
 from plone.app.testing import login

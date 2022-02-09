@@ -4,11 +4,8 @@ import unittest
 
 from plone import api
 from plone.app.testing import TEST_USER_ID, setRoles
-from plone.uuid.interfaces import IUUID
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory, IVocabularyTokenized
-from clms.downloadtool.utils import DATASET_SOURCES
-from clms.types import _
 from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 
 

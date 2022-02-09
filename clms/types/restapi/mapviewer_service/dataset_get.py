@@ -46,14 +46,6 @@ class DataSetMapViewerServiceGet(Service):
             ),  # noqa: E501
         }
 
-    def get_datasets(self):
-        """get all datasets"""
-        brains = api.content.find(
-            portal_type="DataSet",
-            context=api.portal.get_navigation_root(self.context),
-        )
-        return [brain.getObject() for brain in brains]
-
     def get_map_components(self):
         """get product information grouped by components"""
         components = {}

@@ -2,13 +2,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from plone import api
 from plone.app.testing import TEST_USER_ID, setRoles
-from plone.uuid.interfaces import IUUID
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory, IVocabularyTokenized
 from clms.downloadtool.utils import DATASET_FORMATS
-from clms.types import _
 from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 
 
@@ -33,5 +30,5 @@ class TestFullDatasetFormatVocabularyIntegrationTest(unittest.TestCase):
         vocabulary = factory(self.portal)
         self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
 
-        for format in DATASET_FORMATS:
-            self.assertIn(format, vocabulary)
+        for datset_format in DATASET_FORMATS:
+            self.assertIn(datset_format, vocabulary)

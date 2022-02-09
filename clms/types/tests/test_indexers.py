@@ -1,17 +1,19 @@
 """
 Tests indexers on this package
 """
+# -*- coding: utf-8 -*-
+import datetime
 import unittest
 
 from plone import api
-
-# -*- coding: utf-8 -*-
 from plone.app.testing import SITE_OWNER_NAME, login
+from plone.indexer.interfaces import IIndexer
 from plone.uuid.interfaces import IUUID
+from zope.component import getMultiAdapter
 
-from clms.types.content.data_set import IDataSet
 from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
+from clms.types.content.data_set import IDataSet
 from clms.types.indexers.associated_datasets import (
     associated_datasets_behavior,
 )
@@ -23,10 +25,6 @@ from clms.types.indexers.geographic_coverage import geographic_coverage
 from clms.types.indexers.spatial_resolution import spatial_resolution
 from clms.types.indexers.temporal_extent import temporal_extent
 from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
-
-from zope.component import getMultiAdapter
-from plone.indexer.interfaces import IIndexer
-import datetime
 
 
 class TestAssociatedDatasetsIndexer(unittest.TestCase):
@@ -183,7 +181,8 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(indexed_value[0], "The Organization")
 
     def test_dataset_custodian_information_adapter_fials(self):
-        """ test the value of the custodian information indexer adapter with a document"""
+        """test the value of the custodian information indexer adapter with
+        a document"""
         self.assertFalse(IDataSet.providedBy(self.document))
         adapter = getMultiAdapter(
             (self.document, self.portal_catalog),
