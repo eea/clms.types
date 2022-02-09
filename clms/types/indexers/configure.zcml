@@ -2,24 +2,42 @@
     xmlns="http://namespaces.zope.org/zope"
     i18n_domain="clms.types">
 
-  -*- extra stuff goes here -*-
+  <!-- -*- extra stuff goes here -*- -->
 
   <adapter factory=".associated_products.associated_products_behavior"
+    name="associated_products" />
+
+  <adapter factory=".associated_products.dummy"
     name="associated_products" />
 
   <adapter factory=".associated_datasets.associated_datasets_behavior"
     name="associated_datasets" />
 
+  <adapter factory=".associated_datasets.dummy"
+    name="associated_datasets" />
+
   <adapter factory=".geographic_coverage.geographic_coverage"
+    name="geographic_coverage" />
+
+  <adapter factory=".geographic_coverage.dummy"
     name="geographic_coverage" />
 
   <adapter factory=".spatial_resolution.spatial_resolution"
     name="spatial_resolution" />
 
+  <adapter factory=".spatial_resolution.dummy"
+    name="spatial_resolution" />
+
   <adapter factory=".custodian_information.custodian_information"
     name="custodian_information" />
 
+  <adapter factory=".custodian_information.dummy"
+    name="custodian_information" />
+
   <adapter factory=".temporal_extent.temporal_extent"
+    name="temporal_extent" />
+
+  <adapter factory=".temporal_extent.dummy"
     name="temporal_extent" />
 
 </configure>
