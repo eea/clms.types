@@ -108,15 +108,16 @@ class RootMapViewerServiceGet(Service):
             layers = []
             layers_value = dataset.mapviewer_layers
             for layer_item in layers_value.get("items", []):
-                layers.append(
-                    {
-                        "LayerId": layer_item.get("id", ""),
-                        "Title": layer_item.get("title", ""),
-                        "Default_active": layer_item.get(
-                            "default_active", False
-                        ),
-                    }
-                )
+                if "hide" not in layer_item or not layer_item["hide"]:
+                    layers.append(
+                        {
+                            "LayerId": layer_item.get("id", ""),
+                            "Title": layer_item.get("title", ""),
+                            "Default_active": layer_item.get(
+                                "default_active", False
+                            ),
+                        }
+                    )
             if layers:
                 parent = aq_parent(dataset)
                 return {
@@ -128,9 +129,10 @@ class RootMapViewerServiceGet(Service):
                     "DatasetId": api.content.get_uuid(obj=dataset),
                     "DatasetTitle": dataset.Title(),
                     "DatasetDescription": dataset.Description(),
+                    "DatasetURL": self.get_item_volto_url(dataset),
                     "ViewService": dataset.mapviewer_viewservice,
                     "Default_active": dataset.mapviewer_default_active,
-                    "Layer": sorted(layers, key=lambda x: x.get("Title")),
+                    "Layer": layers,
                     "DownloadService": dataset.mapviewer_downloadservice,
                     "DownloadType": dataset.mapviewer_downloadtype,
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
@@ -141,3 +143,15 @@ class RootMapViewerServiceGet(Service):
                 }
 
         return None
+
+    def get_item_volto_url(self, dataset):
+        """get the volto url for a given dataset"""
+        context_url = dataset.absolute_url()
+        plone_domain = api.portal.get().absolute_url()
+        frontend_domain = api.portal.get_registry_record(
+            "volto.frontend_domain"
+        )
+        if frontend_domain.endswith("/"):
+            frontend_domain = frontend_domain[:-1]
+
+        return context_url.replace(plone_domain, frontend_domain)

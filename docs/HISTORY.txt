@@ -1,6 +1,11 @@
 Changelog
 =========
 
+5.1 - (2022-02-11)
+---------------------------
+* Change: Add citation field to DataSet
+  [ionlizarazu]
+
 5.0 - (2022-01-28)
 ---------------------------
 * Change: Develop

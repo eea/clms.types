@@ -64,11 +64,11 @@ class IDataSet(model.Schema):
         "metadata",
         label=_(u"Metadata"),
         fields=[
-            "validation",
+            # "validation",
             "dataResourceTitle",
             "resourceEffective",
             "resourceModified",
-            "dataResourceAbstract",
+            # "dataResourceAbstract",
             "keywords",
             "geographicCoverage",
             "accessAndUseLimitationPublic_line",
@@ -111,7 +111,7 @@ class IDataSet(model.Schema):
             "metadata_standard_name",
             "metadata_standard_version",
             # identifiers for the importation
-            "geonetwork_identifiers",
+            # "geonetwork_identifiers",
         ],
     )
 
@@ -561,6 +561,8 @@ class IDataSet(model.Schema):
     #     required=False,
     #     readonly=False,
     # )
+
+    citation = RichText(title=_(u"Dataset citation"), required=False)
 
     geonetwork_identifiers = JSONField(
         title=_("Geonetwork identifier list"),
