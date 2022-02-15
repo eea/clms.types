@@ -28,11 +28,8 @@ class ImportWMSLayers(Service):
     def reply(self):
         """ Reply to the request """
         alsoProvides(self.request, IDisableCSRFProtection)
-
-        if (
-            self.context.mapviewer_viewservice
-            and self.context.mapviewer_viewservice.startswith("http")
-        ):
+        # pylint: disable=line-too-long
+        if (self.context.mapviewer_viewservice and self.context.mapviewer_viewservice.startswith("http")):  # noqa: E501
             result = self.import_wms_from_mapviewer_viewservice()
             if result:
                 self.request.response.setStatus(200)
