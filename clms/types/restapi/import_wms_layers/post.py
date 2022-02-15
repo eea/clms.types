@@ -12,8 +12,11 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.restapi.services import Service
 from zope.interface import alsoProvides
 
-from clms.types.utils import (EEA_GEONETWORK_BASE_URL, NAMESPACES,
-                              VITO_GEONETWORK_BASE_URL)
+from clms.types.utils import (
+    EEA_GEONETWORK_BASE_URL,
+    NAMESPACES,
+    VITO_GEONETWORK_BASE_URL,
+)
 
 REQUEST_TIMEOUT = 10
 
@@ -180,6 +183,9 @@ class ImportWMSLayers(Service):
             log = getLogger(__name__)
             log.info("Could not import WMS layers from %s", new_url)
         except requests.exceptions.ReadTimeout:
+            log = getLogger(__name__)
+            log.info("Could not import WMS layers from %s", new_url)
+        except etree.XMLSyntaxError:
             log = getLogger(__name__)
             log.info("Could not import WMS layers from %s", new_url)
 
