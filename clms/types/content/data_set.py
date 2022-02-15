@@ -674,7 +674,7 @@ class IDataSet(model.Schema):
 
     mapviewer_timeseriesservice = schema.TextLine(
         title=_(
-            u"Time series service URL",
+            u"Time series and information service URL",
         ),
         description=_(
             u"",

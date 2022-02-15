@@ -17,11 +17,9 @@ setup(
     version=VERSION,
     description="An add-on with content-types for CLMS site",
     long_description_content_type="text/x-rst",
-    long_description=(
-        "{}\n{}".format(
-            readme,
-            history,
-        )
+    long_description="{}\n{}".format(
+        readme,
+        history,
     ),
     classifiers=[
         "Environment :: Web Environment",
@@ -55,6 +53,8 @@ setup(
         "collective.taxonomy",
         "eea.api.taxonomy",
         "clms.downloadtool",
+        "lxml",
+        "requests",
     ],
     extras_require={
         "test": [
