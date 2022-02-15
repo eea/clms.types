@@ -41,24 +41,7 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    # inspireThemes = schema.List(
-    #     title=_(
-    #         u"Inspire Themes",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.Choice(
-    #         title=_(
-    #             u"Inspire theme",
-    #         ),
-    #         vocabulary=u"clms.types.InspireThemesVocabulary",
-    #         required=False,
-    #         readonly=False,
-    #     ),
-    #     required=False,
-    #     readonly=False,
-    # )
+    
 
     model.fieldset(
         "metadata",
@@ -81,6 +64,7 @@ class IDataSet(model.Schema):
             "temporalExtentEnd",
             "gemet",
             "gemetInspireThemes",
+            "inspireThemes",
             # HIERARCHY LEVEL
             "dataResourceType",
             # CONTACT
@@ -303,6 +287,19 @@ class IDataSet(model.Schema):
     gemetInspireThemes = schema.List(
         title=_(
             u"GEMET INSPIRE Themes",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.TextLine(
+            title=u"INSPIRE THEME",
+        ),
+        required=False,
+    )
+
+    inspireThemes = schema.List(
+        title=_(
+            u"Inspire Themes",
         ),
         description=_(
             u"",
