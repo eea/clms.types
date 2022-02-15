@@ -98,6 +98,9 @@
         component=".temporal_extent_vocabulary.TemporalExtentVocabularyFactory"
         name="clms.types.TemporalExtentVocabulary"
     />
+    <utility 
+        component=".component_title_vocabulary.ComponentTitleVocabularyFactory" 
+        name="clms.types.ComponentTitleVocabulary" />
 
 
 

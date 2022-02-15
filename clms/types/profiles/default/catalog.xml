@@ -59,6 +59,10 @@
         <indexed_attr value="temporal_extent" />
   </index>
 
+<index name="component_title" meta_type="KeywordIndex">
+        <indexed_attr value="component_title" />
+  </index>
+
 
 
 
