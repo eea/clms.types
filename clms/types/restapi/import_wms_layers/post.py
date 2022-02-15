@@ -99,6 +99,9 @@ class ImportWMSLayers(Service):
             for wms_url in wms_urls:
                 result = self.import_wms_layers(wms_url)
                 if result:
+                    # The import was successful
+                    # update the mapviewer_viewservice
+                    self.context.mapviewer_viewservice = wms_url
                     return True
 
         return False
