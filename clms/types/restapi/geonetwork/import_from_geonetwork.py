@@ -781,4 +781,4 @@ class ImportFromGeoNetwork(Service):
                 except Exception:
                     continue
 
-        transaction.commit()
+        self.context.reindexObject()
