@@ -81,7 +81,7 @@ class ImportWMSLayers(Service):
         """Build the URL to the geonetwork service"""
         if geonetwork_type == "EEA":
             return EEA_GEONETWORK_BASE_URL.format(uid=geonetwork_id)
-        elif geonetwork_type == "VITO":
+        if geonetwork_type == "VITO":
             return VITO_GEONETWORK_BASE_URL.format(uid=geonetwork_id)
         return None
 
@@ -106,6 +106,7 @@ class ImportWMSLayers(Service):
     def extract_wms_urls(self, url):
         """ given a geonetwork metadata url, extract the WMS urls """
         wms_urls = []
+        # pylint: disable=too-many-nested-blocks
         try:
             response = requests.get(url, timeout=REQUEST_TIMEOUT)
             if response.ok:
