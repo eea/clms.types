@@ -674,8 +674,7 @@ class ImportFromGeoNetwork(Service):
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
                     if (
-                        resolution.startswith("http")
-                        and resolution.find("#") != -1
+                        resolution.startswith("http") and resolution.find("#") != -1
                     ):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
