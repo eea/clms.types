@@ -15,7 +15,6 @@ from zope.interface import implementer
 
 from clms.types import _
 
-
 MIXEDFIELD_SCHEMA = json.dumps(
     {
         "type": "object",
@@ -41,25 +40,6 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    # inspireThemes = schema.List(
-    #     title=_(
-    #         u"Inspire Themes",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.Choice(
-    #         title=_(
-    #             u"Inspire theme",
-    #         ),
-    #         vocabulary=u"clms.types.InspireThemesVocabulary",
-    #         required=False,
-    #         readonly=False,
-    #     ),
-    #     required=False,
-    #     readonly=False,
-    # )
-
     model.fieldset(
         "metadata",
         label=_(u"Metadata"),
@@ -81,6 +61,7 @@ class IDataSet(model.Schema):
             "temporalExtentEnd",
             "gemet",
             "gemetInspireThemes",
+            # "inspireThemes",
             # HIERARCHY LEVEL
             "dataResourceType",
             # CONTACT
@@ -228,11 +209,10 @@ class IDataSet(model.Schema):
         description=_(
             u"",
         ),
-        value_type=schema.Choice(
+        value_type=schema.TextLine(
             title=_(
                 u"Use case topics",
             ),
-            vocabulary=u"clms.types.CategoryTopicsVocabulary",
             required=False,
             readonly=False,
         ),
@@ -312,6 +292,19 @@ class IDataSet(model.Schema):
         ),
         required=False,
     )
+
+    # inspireThemes = schema.List(
+    #     title=_(
+    #         u"Inspire Themes",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.TextLine(
+    #         title=u"INSPIRE THEME",
+    #     ),
+    #     required=False,
+    # )
 
     # HIERARCHY LEVEL
     #     Resource type: dataResourceType
@@ -674,7 +667,7 @@ class IDataSet(model.Schema):
 
     mapviewer_timeseriesservice = schema.TextLine(
         title=_(
-            u"Time series service URL",
+            u"Time series and information service URL",
         ),
         description=_(
             u"",

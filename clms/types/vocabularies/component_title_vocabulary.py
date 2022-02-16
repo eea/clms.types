@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Conformity pass vocabulary definition
+Component Title vocabulary definition
 """
 
+from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
-
-# from plone import api
-from clms.types import _
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 class VocabItem:
@@ -24,19 +23,16 @@ class VocabItem:
 
 
 @implementer(IVocabularyFactory)
-class ConformityPassVocabulary:
+class ComponentTitleVocabulary:
     """
-    ConformityPass vocabulary class
+    Component Title vocabulary class
     """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
-        items = [
-            VocabItem(u"false", _(u"False")),
-            VocabItem(u"true", _(u"True")),
-            VocabItem(u"Null", _(u"Null")),
-        ]
+        catalog = api.portal.get_tool("portal_catalog")
+        items = catalog.uniqueValuesFor("component_title")
 
         # Fix context if you are using the vocabulary in DataGridField.
         if not IDexterityContent.providedBy(context):
@@ -48,13 +44,13 @@ class ConformityPassVocabulary:
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=str(item.token),
-                    title=item.value,
+                    value=item,
+                    token=str(item),
+                    title=item,
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)
 
 
-ConformityPassVocabularyFactory = ConformityPassVocabulary()
+ComponentTitleVocabularyFactory = ComponentTitleVocabulary()

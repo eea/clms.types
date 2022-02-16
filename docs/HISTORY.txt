@@ -1,6 +1,10 @@
 Changelog
 =========
 
+5.2 - (2022-02-16)
+---------------------------
+* Change: Develop [erral]
+
 5.1 - (2022-02-11)
 ---------------------------
 * Change: Add citation field to DataSet

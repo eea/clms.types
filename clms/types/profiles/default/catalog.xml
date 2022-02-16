@@ -27,10 +27,6 @@
         <indexed_attr value="update_frequency" />
   </index>
 
-  <index name="inspireThemes" meta_type="KeywordIndex">
-        <indexed_attr value="inspireThemes" />
-  </index>
-
   <index name="geographic_coverage" meta_type="KeywordIndex">
         <indexed_attr value="geographic_coverage" />
   </index>
@@ -61,6 +57,14 @@
 
  <index name="temporal_extent" meta_type="KeywordIndex">
         <indexed_attr value="temporal_extent" />
+  </index>
+
+  <index name="component_title" meta_type="KeywordIndex">
+        <indexed_attr value="component_title" />
+  </index>
+
+  <index name="inspireThemes" meta_type="KeywordIndex">
+        <indexed_attr value="inspireThemes" />
   </index>
 
 
