@@ -10,7 +10,6 @@ from plone.app.testing import TEST_USER_ID, setRoles
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory, IVocabularyTokenized
 
-from clms.types import _
 from clms.types.testing import CLMS_TYPES_FUNCTIONAL_TESTING
 
 
