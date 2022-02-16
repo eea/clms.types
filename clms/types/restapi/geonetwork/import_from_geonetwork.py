@@ -7,7 +7,6 @@ import json
 from datetime import datetime
 
 import requests
-import transaction
 from lxml import etree
 from plone.app.textfield.value import RichTextValue
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -674,7 +673,10 @@ class ImportFromGeoNetwork(Service):
                     item = fields_data[0]
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
-                    if (resolution.startswith("http") and resolution.find("#") != -1):  # noqa: E501
+                    if (
+                        resolution.startswith("http")
+                        and resolution.find("#") != -1
+                    ):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
                         "data": f"{item.text} {resolution}",

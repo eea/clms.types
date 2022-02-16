@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Searchable text indexers"""
 
-from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 
 from clms.types.content.data_set import IDataSet
