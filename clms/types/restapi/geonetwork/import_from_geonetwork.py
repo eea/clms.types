@@ -14,32 +14,11 @@ from plone.protect.interfaces import IDisableCSRFProtection
 from plone.restapi.services import Service
 from zope.interface import alsoProvides
 
-EEA_GEONETWORK_BASE_URL = (
-    "https://sdi.eea.europa.eu/catalogue/copernicus/"
-    "api/records/{uid}/formatters/xml?approved=true"
+from clms.types.utils import (
+    EEA_GEONETWORK_BASE_URL,
+    NAMESPACES,
+    VITO_GEONETWORK_BASE_URL,
 )
-VITO_GEONETWORK_BASE_URL = (
-    "https://land.copernicus.vgt.vito.be/geonetwork/"
-    "srv/api/records/{uid}/formatters/xml?approved=true"
-)
-
-NAMESPACES = {
-    "gmd": "http://www.isotc211.org/2005/gmd",
-    "gco": "http://www.isotc211.org/2005/gco",
-    "wms_default": "http://www.opengis.net/wms",
-    "srv": "http://www.isotc211.org/2005/srv",
-    "gmx": "http://www.isotc211.org/2005/gmx",
-    "gts": "http://www.isotc211.org/2005/gts",
-    "gsr": "http://www.isotc211.org/2005/gsr",
-    "gmi": "http://www.isotc211.org/2005/gmi",
-    "gml": "http://www.opengis.net/gml/3.2",
-    "xlink": "http://www.w3.org/1999/xlink",
-    "xsi": "http://www.w3.org/2001/XMLSchema-instance",
-    "schemaLocation": (
-        "http://www.isotc211.org/2005/gmd"
-        " http://schemas.opengis.net/csw/2.0.2/profiles/apiso/1.0.0/apiso.xsd"
-    ),
-}
 
 
 class ImportFromGeoNetwork(Service):
@@ -695,7 +674,7 @@ class ImportFromGeoNetwork(Service):
                     item = fields_data[0]
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
-                    if resolution.startswith("http") and resolution.find("#") != -1:  # noqa: E501
+                    if (resolution.startswith("http") and resolution.find("#") != -1):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
                         "data": f"{item.text} {resolution}",
