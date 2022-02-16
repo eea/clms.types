@@ -15,7 +15,6 @@ from zope.interface import implementer
 
 from clms.types import _
 
-
 MIXEDFIELD_SCHEMA = json.dumps(
     {
         "type": "object",
@@ -62,7 +61,7 @@ class IDataSet(model.Schema):
             "temporalExtentEnd",
             "gemet",
             "gemetInspireThemes",
-            "inspireThemes",
+            # "inspireThemes",
             # HIERARCHY LEVEL
             "dataResourceType",
             # CONTACT
@@ -210,11 +209,10 @@ class IDataSet(model.Schema):
         description=_(
             u"",
         ),
-        value_type=schema.Choice(
+        value_type=schema.TextLine(
             title=_(
                 u"Use case topics",
             ),
-            vocabulary=u"clms.types.CategoryTopicsVocabulary",
             required=False,
             readonly=False,
         ),
@@ -295,18 +293,18 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    inspireThemes = schema.List(
-        title=_(
-            u"Inspire Themes",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.TextLine(
-            title=u"INSPIRE THEME",
-        ),
-        required=False,
-    )
+    # inspireThemes = schema.List(
+    #     title=_(
+    #         u"Inspire Themes",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.TextLine(
+    #         title=u"INSPIRE THEME",
+    #     ),
+    #     required=False,
+    # )
 
     # HIERARCHY LEVEL
     #     Resource type: dataResourceType
