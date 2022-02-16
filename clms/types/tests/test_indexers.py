@@ -14,12 +14,14 @@ from zope.component import getMultiAdapter
 from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.content.data_set import IDataSet
+from clms.types.content.product import IProduct
 from clms.types.indexers.associated_datasets import (
     associated_datasets_behavior,
 )
 from clms.types.indexers.associated_products import (
     associated_products_behavior,
 )
+from clms.types.indexers.component_title import component_title_behavior
 from clms.types.indexers.custodian_information import custodian_information
 from clms.types.indexers.geographic_coverage import geographic_coverage
 from clms.types.indexers.spatial_resolution import spatial_resolution
@@ -41,8 +43,18 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
             container=self.portal, type="News Item", id="newsitem1"
         )
         self.product = api.content.create(
-            container=self.portal, type="Product", id="product1"
+            container=self.portal,
+            type="Product",
+            id="product1",
+            component_title="This component",
         )
+        self.product2 = api.content.create(
+            container=self.portal,
+            type="Product",
+            id="product2",
+            component_title="That component",
+        )
+
         self.dataset = api.content.create(
             container=self.product, type="DataSet", id="dataset1"
         )
@@ -329,3 +341,33 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
 
         indexed_value = temporal_extent(self.dataset)()
         self.assertEqual(indexed_value, [])
+
+    def test_component_title_indexer(self):
+        """ test the spatial resolution indexer in a dataset"""
+        self.assertTrue(IProduct.providedBy(self.product))
+        indexed_value = component_title_behavior(self.product)()
+
+        self.assertEqual("This component", indexed_value)
+
+    def test_component_title_indexer_adapter(self):
+        """ test the spatial resolution indexer adapter in a dataset"""
+        self.assertTrue(IProduct.providedBy(self.product))
+
+        adapter = getMultiAdapter(
+            (self.product, self.portal_catalog),
+            interface=IIndexer,
+            name="component_title",
+        )
+        indexed_value = adapter()
+
+        self.assertEqual("This component", indexed_value)
+
+    def test_component_title_indexer_adapter_fails(self):
+        """ test the spatial resolution indexer in a document"""
+        self.assertFalse(IProduct.providedBy(self.document))
+        adapter = getMultiAdapter(
+            (self.document, self.portal_catalog),
+            interface=IIndexer,
+            name="component_title",
+        )
+        self.assertRaises(AttributeError, adapter)
