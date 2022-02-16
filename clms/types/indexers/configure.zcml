@@ -40,11 +40,15 @@
   <adapter factory=".temporal_extent.dummy"
     name="temporal_extent" />
 
-  <adapter factory=".searchable_text.searchable_text" 
+  <adapter factory=".searchable_text.searchable_text"
     name="SearchableText" />
 
   <adapter factory=".component_title.component_title_behavior"
     name="component_title" />
+
+  <adapter factory=".component_title.dummy"
+    name="component_title" />
+
 
 
 </configure>
