@@ -214,6 +214,10 @@ class TestLRFMapViewer(unittest.TestCase):
 
         transaction.commit()
 
+    def tearDown(self):
+        """ teardown """
+        self.api_session.close()
+
     def test_response(self):
         """ test response"""
         response = self.api_session.get(
