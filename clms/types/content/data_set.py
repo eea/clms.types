@@ -41,8 +41,6 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    
-
     model.fieldset(
         "metadata",
         label=_(u"Metadata"),
