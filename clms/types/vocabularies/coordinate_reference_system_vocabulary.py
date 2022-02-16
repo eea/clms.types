@@ -8,18 +8,7 @@ from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
-
-
-class VocabItem:
-    """
-    VocabItem class
-    """
-
-    def __init__(self, token, value):
-        self.token = token
-        self.value = value
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 
 @implementer(IVocabularyFactory)
@@ -54,4 +43,6 @@ class CoordinateReferenceSystemVocabulary:
 
 
 # pylint: disable=line-too-long
-CoordinateReferenceSystemVocabularyFactory = CoordinateReferenceSystemVocabulary()  # noqa: E501
+CoordinateReferenceSystemVocabularyFactory = (
+    CoordinateReferenceSystemVocabulary()
+)  # noqa: E501

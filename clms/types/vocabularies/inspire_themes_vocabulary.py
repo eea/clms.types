@@ -44,9 +44,9 @@ class InspireThemesVocabulary:
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=str(item.token),
-                    title=item.value,
+                    value=item,
+                    token=str(item),
+                    title=item,
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

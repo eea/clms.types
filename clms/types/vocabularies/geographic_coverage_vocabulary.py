@@ -12,16 +12,6 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
-class VocabItem:
-    """
-    VocabItem class
-    """
-
-    def __init__(self, token, value):
-        self.token = token
-        self.value = value
-
-
 @implementer(IVocabularyFactory)
 class GeographicCoverageVocabulary:
     """

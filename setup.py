@@ -53,12 +53,16 @@ setup(
         "collective.taxonomy",
         "eea.api.taxonomy",
         "clms.downloadtool",
+        "clms.statstool",
+        "plone.volto",
         "lxml",
         "requests",
     ],
     extras_require={
         "test": [
             "plone.app.testing",
+            "plone.app.robotframework[debug]",
+            "plone.restapi[test]",
         ],
     },
     entry_points="""
