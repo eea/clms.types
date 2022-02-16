@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Category Topics vocabulary definition
+Component Title vocabulary definition
 """
 
 from plone import api
@@ -23,16 +23,16 @@ class VocabItem:
 
 
 @implementer(IVocabularyFactory)
-class InspireThemesVocabulary:
+class ComponentTitleVocabulary:
     """
-    InspireTheme vocabulary class
+    Component Title vocabulary class
     """
 
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         catalog = api.portal.get_tool("portal_catalog")
-        items = catalog.uniqueValuesFor("inspireThemes")
+        items = catalog.uniqueValuesFor("component_title")
 
         # Fix context if you are using the vocabulary in DataGridField.
         if not IDexterityContent.providedBy(context):
@@ -44,13 +44,13 @@ class InspireThemesVocabulary:
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item.token,
-                    token=str(item.token),
-                    title=item.value,
+                    value=item,
+                    token=str(item),
+                    title=item,
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)
 
 
-InspireThemesVocabularyFactory = InspireThemesVocabulary()
+ComponentTitleVocabularyFactory = ComponentTitleVocabulary()

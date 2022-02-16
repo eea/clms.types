@@ -55,6 +55,8 @@ setup(
         "clms.downloadtool",
         "clms.statstool",
         "plone.volto",
+        "lxml",
+        "requests",
     ],
     extras_require={
         "test": [

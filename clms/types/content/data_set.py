@@ -41,34 +41,17 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    # inspireThemes = schema.List(
-    #     title=_(
-    #         u"Inspire Themes",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.Choice(
-    #         title=_(
-    #             u"Inspire theme",
-    #         ),
-    #         vocabulary=u"clms.types.InspireThemesVocabulary",
-    #         required=False,
-    #         readonly=False,
-    #     ),
-    #     required=False,
-    #     readonly=False,
-    # )
+    
 
     model.fieldset(
         "metadata",
         label=_(u"Metadata"),
         fields=[
-            "validation",
+            # "validation",
             "dataResourceTitle",
             "resourceEffective",
             "resourceModified",
-            "dataResourceAbstract",
+            # "dataResourceAbstract",
             "keywords",
             "geographicCoverage",
             "accessAndUseLimitationPublic_line",
@@ -81,6 +64,7 @@ class IDataSet(model.Schema):
             "temporalExtentEnd",
             "gemet",
             "gemetInspireThemes",
+            "inspireThemes",
             # HIERARCHY LEVEL
             "dataResourceType",
             # CONTACT
@@ -111,7 +95,7 @@ class IDataSet(model.Schema):
             "metadata_standard_name",
             "metadata_standard_version",
             # identifiers for the importation
-            "geonetwork_identifiers",
+            # "geonetwork_identifiers",
         ],
     )
 
@@ -303,6 +287,19 @@ class IDataSet(model.Schema):
     gemetInspireThemes = schema.List(
         title=_(
             u"GEMET INSPIRE Themes",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.TextLine(
+            title=u"INSPIRE THEME",
+        ),
+        required=False,
+    )
+
+    inspireThemes = schema.List(
+        title=_(
+            u"Inspire Themes",
         ),
         description=_(
             u"",
@@ -562,6 +559,8 @@ class IDataSet(model.Schema):
     #     readonly=False,
     # )
 
+    citation = RichText(title=_(u"Dataset citation"), required=False)
+
     geonetwork_identifiers = JSONField(
         title=_("Geonetwork identifier list"),
         required=False,
@@ -672,7 +671,7 @@ class IDataSet(model.Schema):
 
     mapviewer_timeseriesservice = schema.TextLine(
         title=_(
-            u"Time series service URL",
+            u"Time series and information service URL",
         ),
         description=_(
             u"",
