@@ -67,6 +67,11 @@
         <indexed_attr value="inspireThemes" />
   </index>
 
+  <index name="documentation_sorting" meta_type="FieldIndex">
+        <indexed_attr value="documentation_sorting" />
+  </index>
+
+
 
 
 
