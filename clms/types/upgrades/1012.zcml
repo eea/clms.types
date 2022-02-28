@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:upgradeSteps
+    source="1011"
+    destination="1012"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="New indexes and Collection fields"
+      description=""
+      handler=".v1012.upgrade" />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>

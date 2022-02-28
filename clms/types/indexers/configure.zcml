@@ -49,6 +49,14 @@
   <adapter factory=".component_title.dummy"
     name="component_title" />
 
+  <adapter factory=".documentation_sorting.documentation_sorting"
+    name="documentation_sorting" />
+
+  <adapter factory=".documentation_sorting.dummy"
+    name="documentation_sorting" />
+
+
+
 
 
 </configure>
