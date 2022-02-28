@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-An indexer to index the position of the taxonomy selected in a Technical Library
-to be able to sort on it.
+An indexer to index the position of the taxonomy selected in a
+Technical Library to be able to sort on it.
 """
 
 
