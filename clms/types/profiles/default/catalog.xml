@@ -67,8 +67,14 @@
         <indexed_attr value="inspireThemes" />
   </index>
 
+  <index name="documentation_sorting" meta_type="FieldIndex">
+        <indexed_attr value="documentation_sorting" />
+  </index>
 
 
+  <!-- Metadata columns for Work Opportunities and Tenders -->
+  <column value="procurement_no" />
+  <column value="submission_deadline" />
 
 
 </object>
