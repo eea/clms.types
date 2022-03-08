@@ -694,6 +694,7 @@ class IDataSet(model.Schema):
             "downloadable_dataset",
             "downloadable_full_dataset",
             "downloadable_files",
+            "dataset_download_information",
             "dataset_full_path",
             "dataset_full_format",
             "dataset_full_source",
@@ -727,9 +728,18 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    dataset_download_information = JSONField(
+        title=_("Dataset download information"),
+        required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="dataset_download_information_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
     dataset_full_path = schema.TextLine(
         title=_(
-            u"Enter the path to the full dataset download file",
+            u"(DEPRECATED) Enter the path to the full dataset download file",
         ),
         description=_(
             u"This is used when requesting the download from the map viewer",
@@ -741,7 +751,7 @@ class IDataSet(model.Schema):
 
     dataset_full_format = schema.Choice(
         title=_(
-            u"Enter the format of the full dataset file",
+            u"(DEPRECATED) Enter the format of the full dataset file",
         ),
         description=_(
             u"",
@@ -754,7 +764,7 @@ class IDataSet(model.Schema):
 
     dataset_full_source = schema.Choice(
         title=_(
-            u"Enter the source of the full dataset file",
+            u"(DEPRECATED) Enter the source of the full dataset file",
         ),
         description=_(
             u"",
@@ -765,6 +775,16 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    wekeo_choices = schema.Text(
+        title=_(
+            "(DEPRECATED) WEKEO choices",
+        ),
+        description=_(""),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+    
     downloadable_files = JSONField(
         title=_("Downloadable files"),
         description=_("Add one line per file"),
@@ -775,15 +795,6 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    wekeo_choices = schema.Text(
-        title=_(
-            "WEKEO choices",
-        ),
-        description=_(""),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
 
 
 # Unused fields
