@@ -784,7 +784,7 @@ class IDataSet(model.Schema):
         required=False,
         readonly=False,
     )
-    
+
     downloadable_files = JSONField(
         title=_("Downloadable files"),
         description=_("Add one line per file"),
@@ -794,7 +794,6 @@ class IDataSet(model.Schema):
         default={"items": []},
         missing_value={"items": []},
     )
-
 
 
 # Unused fields
