@@ -81,6 +81,7 @@ class RootMapViewerServiceGet(Service):
                 yield {
                     "Component": product.component_title,
                     "ProductTitle": product.Title(),
+                    "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
                     # pylint: disable=line-too-long
                     "Datasets": sorted(datasets, key=lambda x: x.get("PositionInParent")),  # noqa: E501
