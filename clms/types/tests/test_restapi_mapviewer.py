@@ -262,7 +262,10 @@ class TestLRFMapViewer(unittest.TestCase):
         result = response.json()
         products = result["Components"][0]["Products"]
         self.assertEqual(len(products), 1)
-        self.assertEqual(products[0]["ProductTitle"], "Product 1")
+        self.assertEqual(products[0]["ProductTitle"], self.product1.Title())
+        self.assertEqual(
+            products[0]["ProductDescription"], self.product1.Description()
+        )
         self.assertEqual(products[0]["ProductId"], IUUID(self.product1))
         self.assertIn("Datasets", products[0])
 
@@ -559,7 +562,10 @@ class TestDataSetMapViewer(unittest.TestCase):
         result = response.json()
         products = result["Components"][0]["Products"]
         self.assertEqual(len(products), 1)
-        self.assertEqual(products[0]["ProductTitle"], "Product 1")
+        self.assertEqual(products[0]["ProductTitle"], self.product1.Title())
+        self.assertEqual(
+            products[0]["ProductDescription"], self.product1.Description()
+        )
         self.assertEqual(products[0]["ProductId"], IUUID(self.product1))
         self.assertIn("Datasets", products[0])
 
