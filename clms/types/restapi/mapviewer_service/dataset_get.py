@@ -72,6 +72,7 @@ class DataSetMapViewerServiceGet(Service):
                 yield {
                     "Component": product.component_title,
                     "ProductTitle": product.Title(),
+                    "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
                     "Datasets": sorted(
                         datasets, key=lambda x: x.get("DatasetTitle")
