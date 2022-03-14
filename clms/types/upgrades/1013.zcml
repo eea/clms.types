@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:upgradeSteps
+    source="1012"
+    destination="1013"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="New control panel and registry item"
+      description=""
+      handler=".v1013.upgrade" />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>
