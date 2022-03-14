@@ -1,10 +1,14 @@
 """
 REST API endpoint to get the mapviewer configuration data
 """
+import json
+
 from Acquisition import aq_inner, aq_parent
 from OFS.interfaces import IOrderedContainer
 from plone import api
 from plone.restapi.services import Service
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 
 
 def getObjPositionInParent(obj):
@@ -27,6 +31,7 @@ class RootMapViewerServiceGet(Service):
             components.append(
                 {
                     "ComponentTitle": component.get("title"),
+                    "ComponentDescription": component.get("description"),
                     # pylint: disable=line-too-long
                     "Products": sorted(component.get("products"), key=lambda x: x.get("PositionInParent")),  # noqa: E501
                 }
@@ -63,8 +68,10 @@ class RootMapViewerServiceGet(Service):
             components[product_key] = product
 
         for component, products in components.items():
+            component_title, component_description = component
             yield {
-                "title": component,
+                "title": component_title,
+                "description": component_description,
                 "products": products,
             }
 
@@ -78,8 +85,9 @@ class RootMapViewerServiceGet(Service):
             product = brain.getObject()
             datasets = self.get_datasets_for_product(product)
             if datasets:
+                component_title, component_description = self.get_component_info(product)
                 yield {
-                    "Component": product.component_title,
+                    "Component": (component_title, component_description),
                     "ProductTitle": product.Title(),
                     "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
@@ -87,6 +95,28 @@ class RootMapViewerServiceGet(Service):
                     "Datasets": sorted(datasets, key=lambda x: x.get("PositionInParent")),  # noqa: E501
                     "PositionInParent": getObjPositionInParent(product),
                 }
+
+    def get_component_description(self, term):
+        """get the component description"""
+        available_components = api.portal.get_registry_record('clms.types.product_component.product_components')  # noqa: E501
+        components = json.loads(available_components).get('items', [])
+        for item in components:
+            if item.get('@id') == term:
+                return item.get('description', "")
+
+        return ""
+
+    def get_component_info(self, product):
+        """get the component information for a product"""
+        vocab = getUtility(IVocabularyFactory, name="clms.types.ComponentTitleVocabulary")
+        terms = vocab(product)
+        try:
+            term = terms.getTerm(product.mapviewer_component)
+            description = self.get_component_description(term.value)
+            return term.title, description
+
+        except LookupError:
+            return "", ""
 
     def get_datasets_for_product(self, product):
         """get all datasets for a product"""

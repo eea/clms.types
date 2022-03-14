@@ -2,6 +2,7 @@
 Test the @mapviewer service
 """
 # -*- coding: utf-8 -*-
+import json
 import unittest
 
 import transaction
@@ -43,12 +44,32 @@ class TestLRFMapViewer(unittest.TestCase):
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
 
+        product_components = {
+            "items": [
+                {
+                    "@id": "id-1",
+                    "name": "Component 1",
+                    "description": "Component 1 description",
+                },
+                {
+                    "@id": "id-2",
+                    "name": "Component 2",
+                    "description": "Component 2 description",
+                },
+            ]
+        }
+
+        api.portal.set_registry_record(
+            "clms.types.product_component.product_components",
+            json.dumps(product_components),
+        )
+
         self.product1 = api.content.create(
             container=self.portal.en,
             type="Product",
             id="product1",
             title="Product 1",
-            component_title="Component 1",
+            mapviewer_component="id-1",
         )
 
         self.dataset1_1 = api.content.create(
@@ -129,7 +150,7 @@ class TestLRFMapViewer(unittest.TestCase):
             type="Product",
             id="product2",
             title="Product 2",
-            component_title="Component 2",
+            mapviewer_component="id-2",
         )
         self.dataset2_1 = api.content.create(
             container=self.product1,
@@ -209,7 +230,7 @@ class TestLRFMapViewer(unittest.TestCase):
             type="Product",
             id="product3",
             title="Product 3",
-            component_title="Component 1",
+            mapviewer_component="id-1",
         )
 
         transaction.commit()
@@ -347,12 +368,32 @@ class TestDataSetMapViewer(unittest.TestCase):
         self.api_session.headers.update({"Accept": "application/json"})
         self.api_session.auth = (SITE_OWNER_NAME, SITE_OWNER_PASSWORD)
 
+        product_components = {
+            "items": [
+                {
+                    "@id": "id-1",
+                    "name": "Component 1",
+                    "description": "Component 1 description",
+                },
+                {
+                    "@id": "id-2",
+                    "name": "Component 2",
+                    "description": "Component 2 description",
+                },
+            ]
+        }
+
+        api.portal.set_registry_record(
+            "clms.types.product_component.product_components",
+            json.dumps(product_components),
+        )
+
         self.product1 = api.content.create(
             container=self.portal,
             type="Product",
             id="product1",
             title="Product 1",
-            component_title="Component 1",
+            mapviewer_component="id-1",
         )
 
         self.dataset1_1 = api.content.create(
@@ -433,7 +474,7 @@ class TestDataSetMapViewer(unittest.TestCase):
             type="Product",
             id="product2",
             title="Product 2",
-            component_title="Component 2",
+            mapviewer_component="id-2",
         )
         self.dataset2_1 = api.content.create(
             container=self.product1,
@@ -513,7 +554,7 @@ class TestDataSetMapViewer(unittest.TestCase):
             type="Product",
             id="product3",
             title="Product 3",
-            component_title="Component 1",
+            mapviewer_component="id-1",
         )
 
         transaction.commit()
