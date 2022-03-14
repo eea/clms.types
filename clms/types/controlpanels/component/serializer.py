@@ -17,7 +17,5 @@ class ProductComponentControlpanelSerializeToJson(ControlpanelSerializeToJson):
         ).__call__()
         conf = json_data["data"].get("product_components", "")
         if conf:
-            json_data["data"]["product_components"] = json.loads(
-                json.loads(conf)
-            )
+            json_data["data"]["product_components"] = json.loads(conf)
         return json_data

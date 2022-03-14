@@ -37,7 +37,7 @@ class ProductComponentControlpanelDeserializeFromJson(
             raise BadRequest(errors)
         try:
             value = json.dumps(configurations)
-            setattr(proxy, "product_components", json.dumps(value))
+            setattr(proxy, "product_components", value)
         except ValueError as e:
             errors.append(
                 {
