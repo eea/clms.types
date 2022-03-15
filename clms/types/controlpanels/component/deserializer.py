@@ -1,17 +1,16 @@
+""" specific deserializer for the control panel"""
 # -*- coding: utf-8 -*-
+import json
+
 from plone.restapi.deserializer import json_body
-from plone.restapi.deserializer.controlpanels import (
-    ControlpanelDeserializeFromJson,
-)
-from plone.restapi.deserializer.blocks import path2uid
+from plone.restapi.deserializer.controlpanels import \
+    ControlpanelDeserializeFromJson
 from plone.restapi.interfaces import IDeserializeFromJson
-from Products.CMFPlone.utils import safe_unicode
 from zExceptions import BadRequest
 from zope.component import adapter
 from zope.interface import implementer
+
 from .controlpanel import IProductComponentControlPanel
-import json
-import lxml
 
 
 @implementer(IDeserializeFromJson)
@@ -19,7 +18,9 @@ import lxml
 class ProductComponentControlpanelDeserializeFromJson(
     ControlpanelDeserializeFromJson
 ):
+    """ deserializer class """
     def __call__(self):
+        """ deserializer call """
         req = json_body(self.controlpanel.request)
         proxy = self.registry.forInterface(
             self.schema, prefix=self.schema_prefix

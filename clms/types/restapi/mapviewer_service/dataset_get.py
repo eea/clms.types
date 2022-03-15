@@ -1,14 +1,10 @@
 """
 REST API endpoint to get the mapviewer configuration data for a given dataset
 """
-import json
 
 from Acquisition import aq_inner, aq_parent
 from OFS.interfaces import IOrderedContainer
 from plone import api
-from plone.restapi.services import Service
-from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
 from .lrf_get import RootMapViewerServiceGet
 
 

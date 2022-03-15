@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Run upgrade"""
 
-from plone import api
 
 from . import logger
 

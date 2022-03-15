@@ -85,7 +85,8 @@ class RootMapViewerServiceGet(Service):
             product = brain.getObject()
             datasets = self.get_datasets_for_product(product)
             if datasets:
-                component_title, component_description = self.get_component_info(product)
+                # pylint: disable=line-too-long
+                component_title, component_description = self.get_component_info(product)  # noqa: E501
                 yield {
                     "Component": (component_title, component_description),
                     "ProductTitle": product.Title(),
@@ -98,7 +99,8 @@ class RootMapViewerServiceGet(Service):
 
     def get_component_description(self, term):
         """get the component description"""
-        available_components = api.portal.get_registry_record('clms.types.product_component.product_components')  # noqa: E501
+        available_components = api.portal.get_registry_record(
+            'clms.types.product_component.product_components')
         components = json.loads(available_components).get('items', [])
         for item in components:
             if item.get('@id') == term:
@@ -108,7 +110,10 @@ class RootMapViewerServiceGet(Service):
 
     def get_component_info(self, product):
         """get the component information for a product"""
-        vocab = getUtility(IVocabularyFactory, name="clms.types.ComponentTitleVocabulary")
+        vocab = getUtility(
+            IVocabularyFactory,
+            name="clms.types.ComponentTitleVocabulary"
+        )
         terms = vocab(product)
         try:
             term = terms.getTerm(product.mapviewer_component)

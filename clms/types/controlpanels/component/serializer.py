@@ -1,17 +1,21 @@
-from plone import api
+""" specific serializer for the control panel"""
+# -*- coding: utf-8 -*-
+import json
+
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.serializer.controlpanels import ControlpanelSerializeToJson
-from plone.restapi.serializer.converters import json_compatible
 from zope.component import adapter
 from zope.interface import implementer
+
 from .controlpanel import IProductComponentControlPanel
-import json
 
 
 @implementer(ISerializeToJson)
 @adapter(IProductComponentControlPanel)
 class ProductComponentControlpanelSerializeToJson(ControlpanelSerializeToJson):
+    """ serializer adapter """
     def __call__(self):
+        """ serializer call"""
         json_data = super(
             ProductComponentControlpanelSerializeToJson, self
         ).__call__()
