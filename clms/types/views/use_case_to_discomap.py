@@ -9,12 +9,13 @@ import json
 
 log = getLogger(__name__)
 
+
 class useCaseToDiscomap(BrowserView):
 
     def __call__(self):
 
         operation = dict(self.request)["REQUEST_METHOD"]
-        copernicus_land_monitoring_service_products_used = self.context.Copernicus_Land_Monitoring_Service_products_used
+        clms_products_used = self.context.Copernicus_Land_Monitoring_Service_products_used
         use_case_uid = self.context.UID()
         use_case_title = self.context.title
         use_case_summary = self.context.summary
@@ -79,7 +80,7 @@ class useCaseToDiscomap(BrowserView):
                     "value": use_case_title
                 }, {
                     "name": "Copernicus_Land_Monitoring_Service_products_used",
-                    "value": copernicus_land_monitoring_service_products_used
+                    "value": clms_products_used
                 }, {
                     "name": "Use_case_summary",
                     "value": use_case_summary
@@ -95,7 +96,7 @@ class useCaseToDiscomap(BrowserView):
                 }, {
                     "name": "Contact_person_email_",
                     "value": contact_person_email_
-                },{
+                }, {
                     "name": "Use_case_topics",
                     "value": "".join(use_case_topics)
                 }, {
@@ -148,13 +149,14 @@ class useCaseToDiscomap(BrowserView):
                     "value": use_case_uid
                 }, {
                     "name": "Operation",
-                    "value": operation 
+                    "value": operation
                 }
             ]
         }
 
         FME_TOKEN = "2d6aaef2df4ba3667c883884f57a8b6bab2efc5e"
-        FME_URL = "https://copernicus-fme.eea.europa.eu/fmerest/v3/transformations/submit/CLMS/CLMS_UseCases.fmw"
+        FME_URL_PATH = "/fmerest/v3/transformations/submit/CLMS/CLMS_UseCases.fmw"
+        FME_URL = "https://copernicus-fme.eea.europa.eu" + FME_URL_PATH
         headers = {
             "Content-Type": "application/json; charset=utf-8",
             "Accept": "application/json",
@@ -164,7 +166,7 @@ class useCaseToDiscomap(BrowserView):
         resp = requests.post(FME_URL, data, headers=headers)
         if resp.ok:
             fme_task_id = resp.json().get("id", None)
-        
+
         if not fme_task_id:
             self.request.response.setStatus(400)
             return {

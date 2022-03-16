@@ -35,7 +35,7 @@ class IUseCase(model.Schema):
         title=_(u"Submitting producion year of Use Case"),
         required=False
     )
-    
+
     responsibleOrganization = schema.TextLine(
         title=_(u"Responsible organization"),
         required=False,
@@ -140,8 +140,8 @@ class IUseCase(model.Schema):
     )
 
     copernicus_land_monitoring_service_products_used = schema.TextLine(
-        title= (u"Copernicus Land Monitoring Service products used"),
-        required=True
+        title=_(u"Copernicus Land Monitoring Service products used"),
+        required=True,
     )
 
     region = schema.TextLine(
@@ -168,7 +168,7 @@ class IUseCase(model.Schema):
         title=_(u"Use Case document upload"),
         required=False,
     )
-    
+
     upload_use_case_images = schema.TextLine(
         title=_(u"Use Case image upload"),
         required=False,
@@ -183,12 +183,6 @@ class IUseCase(model.Schema):
         title=_(u"Use Case origin name"),
         required=False,
     )
-
-    operation =  schema.TextLine(
-        title=_(u"Use Case operation"),
-        required=False,
-    )
-
 
 @implementer(IUseCase)
 class UseCase(Container):
