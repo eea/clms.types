@@ -47,10 +47,12 @@ def validate_cfg_json(value):
 
 
 class IProductComponentControlPanel(IControlpanel):
+    """ marker interface for the control panel"""
     pass
 
 
 class IProductComponent(Interface):
+    """ control panel schema"""
     product_components = SourceText(
         title=_("Product components"),
         description=_(
@@ -65,6 +67,7 @@ class IProductComponent(Interface):
 
 
 class ProductComponentView(RegistryEditForm):
+    """ control panel view"""
     schema = IProductComponent
     schema_prefix = "clms.types.product_component"
     label = _("Product Component Control Panel")
