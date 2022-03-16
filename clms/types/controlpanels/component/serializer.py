@@ -16,9 +16,7 @@ class ProductComponentControlpanelSerializeToJson(ControlpanelSerializeToJson):
     """ serializer adapter """
     def __call__(self):
         """ serializer call"""
-        json_data = super(
-            ProductComponentControlpanelSerializeToJson, self
-        ).__call__()
+        json_data = super().__call__()
         conf = json_data["data"].get("product_components", "")
         if conf:
             json_data["data"]["product_components"] = json.loads(conf)
