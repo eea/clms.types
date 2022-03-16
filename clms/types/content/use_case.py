@@ -184,6 +184,7 @@ class IUseCase(model.Schema):
         required=False,
     )
 
+
 @implementer(IUseCase)
 class UseCase(Container):
     """UseCase content-type class"""
