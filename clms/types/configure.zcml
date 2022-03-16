@@ -15,5 +15,6 @@
   <include package=".restapi" />
   <include package=".indexers" />
   <include package=".searchservice" />
+  <include package=".views" />
 
 </configure>
