@@ -3,13 +3,14 @@
 Component Title vocabulary definition
 """
 
+import json
+
 from plone import api
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 
 class VocabItem:
@@ -31,9 +32,11 @@ class ComponentTitleVocabulary:
     def __call__(self, context):
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
-        catalog = api.portal.get_tool("portal_catalog")
-        items = catalog.uniqueValuesFor("component_title")
-
+        items_raw = api.portal.get_registry_record(
+            "clms.types.product_component.product_components"
+        )
+        items = json.loads(items_raw)
+        items = items.get("items", [])
         # Fix context if you are using the vocabulary in DataGridField.
         if not IDexterityContent.providedBy(context):
             req = getRequest()
@@ -44,9 +47,9 @@ class ComponentTitleVocabulary:
         for item in items:
             terms.append(
                 SimpleTerm(
-                    value=item,
-                    token=str(item),
-                    title=item,
+                    value=item.get("@id"),
+                    token=str(item.get("name", "")),
+                    title=item.get("name", ""),
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:

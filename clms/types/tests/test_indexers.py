@@ -3,6 +3,7 @@ Tests indexers on this package
 """
 # -*- coding: utf-8 -*-
 import datetime
+import json
 import unittest
 
 from plone import api
@@ -42,17 +43,37 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.newsitem1 = api.content.create(
             container=self.portal, type="News Item", id="newsitem1"
         )
+        product_components = {
+            "items": [
+                {
+                    "@id": "id-1",
+                    "name": "This component",
+                    "description": "Component 1 description",
+                },
+                {
+                    "@id": "id-2",
+                    "name": "That component",
+                    "description": "Component 2 description",
+                },
+            ]
+        }
+
+        api.portal.set_registry_record(
+            "clms.types.product_component.product_components",
+            json.dumps(product_components),
+        )
+
         self.product = api.content.create(
             container=self.portal,
             type="Product",
             id="product1",
-            component_title="This component",
+            mapviewer_component="id-1",
         )
         self.product2 = api.content.create(
             container=self.portal,
             type="Product",
             id="product2",
-            component_title="That component",
+            mapviewer_component="id-2",
         )
 
         self.dataset = api.content.create(

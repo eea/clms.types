@@ -1,10 +1,11 @@
 """
 REST API endpoint to get the mapviewer configuration data for a given dataset
 """
+
 from Acquisition import aq_inner, aq_parent
 from OFS.interfaces import IOrderedContainer
 from plone import api
-from plone.restapi.services import Service
+from .lrf_get import RootMapViewerServiceGet
 
 
 def getObjPositionInParent(obj):
@@ -16,52 +17,14 @@ def getObjPositionInParent(obj):
     return 0
 
 
-class DataSetMapViewerServiceGet(Service):
+class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
     """Return the mapviewer configuration"""
 
     def reply(self):
-        """main method"""
-        components = []
-
-        for component in self.get_map_components():
-            components.append(
-                {
-                    "ComponentTitle": component.get("title"),
-                    "Products": sorted(
-                        component.get("products"),
-                        key=lambda x: x.get("PositionInParent"),
-                    ),  # noqa: E501
-                }
-            )
-
-        return {
-            "Map": {
-                "div": "mapDiv",
-                "center": [15, 50],
-                "zoom": 3,
-            },
-            "Download": True,
-            "Components": sorted(
-                components, key=lambda x: x.get("PositionInParent")
-            ),  # noqa: E501
-        }
-
-    def get_map_components(self):
-        """get product information grouped by components"""
-        components = {}
-        products = self.get_products()
-        for product_info in products:
-            product_key = product_info.get("Component")
-            del product_info["Component"]
-            product = components.get(product_key, [])
-            product.append(product_info)
-            components[product_key] = product
-
-        for component, products in components.items():
-            yield {
-                "title": component,
-                "products": products,
-            }
+        """ return the JSON """
+        result = super().reply()
+        result["Download"] = True
+        return result
 
     def get_products(self):
         """get all products"""
@@ -69,8 +32,15 @@ class DataSetMapViewerServiceGet(Service):
         if product.portal_type == "Product":
             datasets = [self.serialize_dataset(self.context)]
             if datasets:
+                # pylint: disable=line-too-long
+                (
+                    component_title,
+                    component_description,
+                ) = self.get_component_info(
+                    product
+                )  # noqa: E501
                 yield {
-                    "Component": product.component_title,
+                    "Component": (component_title, component_description),
                     "ProductTitle": product.Title(),
                     "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
@@ -126,15 +96,3 @@ class DataSetMapViewerServiceGet(Service):
                 }
 
         return None
-
-    def get_item_volto_url(self, dataset):
-        """get the volto url for a given dataset"""
-        context_url = dataset.absolute_url()
-        plone_domain = api.portal.get().absolute_url()
-        frontend_domain = api.portal.get_registry_record(
-            "volto.frontend_domain"
-        )
-        if frontend_domain.endswith("/"):
-            frontend_domain = frontend_domain[:-1]
-
-        return context_url.replace(plone_domain, frontend_domain)
