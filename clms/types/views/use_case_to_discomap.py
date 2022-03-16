@@ -13,32 +13,32 @@ log = getLogger(__name__)
 class useCaseToDiscomap(BrowserView):
 
     def __call__(self):
-        context = self.context
+
         operation = dict(self.request)["REQUEST_METHOD"]
-        clms_products = context.Copernicus_Land_Monitoring_Service_products_used
-        use_case_uid = context.UID()
-        use_case_title = context.title
-        use_case_summary = context.summary
-        submitting_production_year = context.submittingProducionYear
-        responsible_organisation = context.responsibleOrganization
-        contact_person_name_ = context.contactName
-        contact_person_email_ = context.contactEmail
-        use_case_topics = context.topics
-        spatial_coverage = context.geographicCoverage
-        latitude = context.latitude
-        longitude = context.longitude
-        region = context.region
-        lat_reg = context.lat_reg
-        lon_reg = context.lon_reg
-        bbox = context.bbox
-        user_case_outcome = context.outcome
-        links_to_documents = context.documentLinks
-        links_to_videos = context.videoLinks
-        links_to_web_sites = context.websiteLinks
-        upload_use_case_documents = context.upload_use_case_documents
-        upload_use_case_images = context.upload_use_case_images
-        upload_use_case_videos = context.upload_use_case_videos
-        origin_name = context.origin_name
+        clms_products_used = self.context.clms_products_used
+        use_case_uid = self.context.UID()
+        use_case_title = self.context.title
+        use_case_summary = self.context.summary
+        submitting_production_year = self.context.submittingProducionYear
+        responsible_organisation = self.context.responsibleOrganization
+        contact_person_name_ = self.context.contactName
+        contact_person_email_ = self.context.contactEmail
+        use_case_topics = self.context.topics
+        spatial_coverage = self.context.geographicCoverage
+        latitude = self.context.latitude
+        longitude = self.context.longitude
+        region = self.context.region
+        lat_reg = self.context.lat_reg
+        lon_reg = self.context.lon_reg
+        bbox = self.context.bbox
+        user_case_outcome = self.context.outcome
+        links_to_documents = self.context.documentLinks
+        links_to_videos = self.context.videoLinks
+        links_to_web_sites = self.context.websiteLinks
+        upload_use_case_documents = self.context.upload_use_case_documents
+        upload_use_case_images = self.context.upload_use_case_images
+        upload_use_case_videos = self.context.upload_use_case_videos
+        origin_name = self.context.origin_name
 
         if latitude > 90 and latitude < -90:
             self.request.response.setStatus(400)
@@ -80,7 +80,7 @@ class useCaseToDiscomap(BrowserView):
                     "value": use_case_title
                 }, {
                     "name": "Copernicus_Land_Monitoring_Service_products_used",
-                    "value": clms_products
+                    "value": clms_products_used
                 }, {
                     "name": "Use_case_summary",
                     "value": use_case_summary

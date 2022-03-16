@@ -139,7 +139,7 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    copernicus_land_monitoring_service_products_used = schema.TextLine(
+    clms_products_used = schema.TextLine(
         title=_(u"Copernicus Land Monitoring Service products used"),
         required=True,
     )
