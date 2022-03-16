@@ -41,15 +41,29 @@ class useCaseToDiscomap(BrowserView):
 
         if latitude > 90 and latitude < -90:
             self.request.response.setStatus(400)
-            return {""}
+            return {
+                "status": "error",
+                "msg": "Wrong latitude value",
+            }
         if longitude > 180 and longitude < -180:
             self.request.response.setStatus(400)
+            return {
+                "status": "error",
+                "msg": "Wrong longitude value",
+            }
 
         if lat_reg > 90 and lat_reg < -90:
             self.request.response.setStatus(400)
+            return {
+                "status": "error",
+                "msg": "Wrong region latitude value",
+            }
         if lon_reg > 180 and lon_reg < -180:
             self.request.response.setStatus(400)
-        
+            return {
+                "status": "error",
+                "msg": "Wrong region longitude value",
+            }
 
         log.info(operation)
         if operation == "POST":
@@ -150,4 +164,10 @@ class useCaseToDiscomap(BrowserView):
         resp = requests.post(FME_URL, data, headers=headers)
         if resp.ok:
             fme_task_id = resp.json().get("id", None)
-            log.info(fme_task_id)
+        
+        if not fme_task_id:
+            self.request.response.setStatus(400)
+            return {
+                "status": "error",
+                "msg": "Wrong request to FME",
+            }
