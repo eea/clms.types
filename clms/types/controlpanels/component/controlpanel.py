@@ -1,16 +1,18 @@
+"""
+control panel to save component configuration
+"""
 # -*- coding: utf-8 -*-
 import json
 
-from plone.app.registry.browser.controlpanel import (
-    ControlPanelFormWrapper,
-    RegistryEditForm,
-)
+from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
+                                                     RegistryEditForm)
 from plone.restapi.controlpanels import RegistryConfigletPanel
+from plone.restapi.controlpanels.interfaces import IControlpanel
 from plone.z3cform import layout
 from zope.component import adapter
 from zope.interface import Interface, Invalid, implementer
 from zope.schema import SourceText
-from plone.restapi.controlpanels.interfaces import IControlpanel
+
 from clms.types import _
 from clms.types.interfaces import IClmsTypesLayer
 
@@ -38,7 +40,7 @@ def validate_cfg_json(value):
                 "JSON is not valid, parser complained: ${message}",
                 mapping={"message": e.message},
             )
-        )
+        ) from e
     if not isinstance(jv, dict):
         raise Invalid(
             _("invalid_cfg_no_dict", "JSON root must be a mapping (dict)")
@@ -48,7 +50,6 @@ def validate_cfg_json(value):
 
 class IProductComponentControlPanel(IControlpanel):
     """ marker interface for the control panel"""
-    pass
 
 
 class IProductComponent(Interface):
