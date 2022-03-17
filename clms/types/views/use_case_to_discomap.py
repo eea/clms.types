@@ -62,7 +62,6 @@ class useCaseToDiscomap(BrowserView):
                 "msg": "Wrong region longitude value",
             }
 
-        log.info(operation)
         if operation == "POST":
             operation = "INSERT"
         elif operation == "DELETE":
