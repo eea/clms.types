@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
-from ast import operator
-from pydoc_data.topics import topics
+"""
+REST API endpoint to create update or delete use cases
+"""
 from Products.Five.browser import BrowserView
 import requests
 from logging import getLogger
@@ -11,9 +10,9 @@ log = getLogger(__name__)
 
 
 class useCaseToDiscomap(BrowserView):
-
+    """Start of the view containing the functionality"""
     def __call__(self):
-
+        """main method"""
         operation = dict(self.request)["REQUEST_METHOD"]
         clms_products_used = self.context.clms_products_used
         use_case_uid = self.context.UID()
@@ -40,26 +39,26 @@ class useCaseToDiscomap(BrowserView):
         upload_use_case_videos = self.context.upload_use_case_videos
         origin_name = self.context.origin_name
 
-        if latitude > 90 and latitude < -90:
+        if 90 < latitude < -90:
             self.request.response.setStatus(400)
             return {
                 "status": "error",
                 "msg": "Wrong latitude value",
             }
-        if longitude > 180 and longitude < -180:
+        if 180 < longitude < -180:
             self.request.response.setStatus(400)
             return {
                 "status": "error",
                 "msg": "Wrong longitude value",
             }
 
-        if lat_reg > 90 and lat_reg < -90:
+        if 90 < lat_reg < -90:
             self.request.response.setStatus(400)
             return {
                 "status": "error",
                 "msg": "Wrong region latitude value",
             }
-        if lon_reg > 180 and lon_reg < -180:
+        if 180 < lon_reg < -180:
             self.request.response.setStatus(400)
             return {
                 "status": "error",
