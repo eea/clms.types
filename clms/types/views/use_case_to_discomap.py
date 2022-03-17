@@ -1,9 +1,9 @@
 """
 REST API endpoint to create update or delete use cases
 """
-from Products.Five.browser import BrowserView
 import requests
 from logging import getLogger
+from Products.Five.browser import BrowserView
 import json
 
 log = getLogger(__name__)
@@ -172,3 +172,4 @@ class useCaseToDiscomap(BrowserView):
                 "status": "error",
                 "msg": "Wrong request to FME",
             }
+        return None
