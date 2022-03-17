@@ -62,7 +62,9 @@ setup(
         "test": [
             "plone.app.testing",
             "plone.app.robotframework[debug]",
-            "plone.restapi[test]",
+            "plone.restapi",
+            "collective.MockMailHost",
+            "coverage",
         ],
     },
     entry_points="""
