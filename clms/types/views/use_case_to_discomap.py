@@ -1,7 +1,6 @@
 """
 REST API endpoint to create update or delete use cases
 """
-from logging import getLogger
 import json
 import requests
 from Products.Five.browser import BrowserView
