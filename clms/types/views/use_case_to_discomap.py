@@ -1,10 +1,10 @@
 """
 REST API endpoint to create update or delete use cases
 """
-import requests
 from logging import getLogger
-from Products.Five.browser import BrowserView
 import json
+import requests
+from Products.Five.browser import BrowserView
 
 log = getLogger(__name__)
 
