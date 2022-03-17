@@ -5,8 +5,6 @@ import json
 import requests
 from Products.Five.browser import BrowserView
 
-log = getLogger(__name__)
-
 
 class useCaseToDiscomap(BrowserView):
     """Start of the view containing the functionality"""
