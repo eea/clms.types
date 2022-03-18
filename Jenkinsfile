@@ -3,7 +3,7 @@ pipeline {
 
   environment {
         GIT_NAME = "clms.types"
-        SONARQUBE_TAGS = "clms.land.copernicus.eu"
+        SONARQUBE_TAGS = "clmsdemo.devel6cph.eea.europa.eu"
     }
 
   stages {
@@ -116,7 +116,7 @@ pipeline {
                 }
                 junit testResults: 'xunit-reports/*.xml', allowEmptyResults: true
               }
-            }              
+            }
           }
         )
       }
