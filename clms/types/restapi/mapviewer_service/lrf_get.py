@@ -1,10 +1,14 @@
 """
 REST API endpoint to get the mapviewer configuration data
 """
+import json
+
 from Acquisition import aq_inner, aq_parent
 from OFS.interfaces import IOrderedContainer
 from plone import api
 from plone.restapi.services import Service
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 
 
 def getObjPositionInParent(obj):
@@ -27,6 +31,7 @@ class RootMapViewerServiceGet(Service):
             components.append(
                 {
                     "ComponentTitle": component.get("title"),
+                    "ComponentDescription": component.get("description"),
                     # pylint: disable=line-too-long
                     "Products": sorted(component.get("products"), key=lambda x: x.get("PositionInParent")),  # noqa: E501
                 }
@@ -63,8 +68,10 @@ class RootMapViewerServiceGet(Service):
             components[product_key] = product
 
         for component, products in components.items():
+            component_title, component_description = component
             yield {
-                "title": component,
+                "title": component_title,
+                "description": component_description,
                 "products": products,
             }
 
@@ -78,14 +85,43 @@ class RootMapViewerServiceGet(Service):
             product = brain.getObject()
             datasets = self.get_datasets_for_product(product)
             if datasets:
+                # pylint: disable=line-too-long
+                component_title, component_description = self.get_component_info(product)  # noqa: E501
                 yield {
-                    "Component": product.component_title,
+                    "Component": (component_title, component_description),
                     "ProductTitle": product.Title(),
+                    "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
                     # pylint: disable=line-too-long
                     "Datasets": sorted(datasets, key=lambda x: x.get("PositionInParent")),  # noqa: E501
                     "PositionInParent": getObjPositionInParent(product),
                 }
+
+    def get_component_description(self, term):
+        """get the component description"""
+        available_components = api.portal.get_registry_record(
+            'clms.types.product_component.product_components')
+        components = json.loads(available_components).get('items', [])
+        for item in components:
+            if item.get('@id') == term:
+                return item.get('description', "")
+
+        return ""
+
+    def get_component_info(self, product):
+        """get the component information for a product"""
+        vocab = getUtility(
+            IVocabularyFactory,
+            name="clms.types.ComponentTitleVocabulary"
+        )
+        terms = vocab(product)
+        try:
+            term = terms.getTerm(product.mapviewer_component)
+            description = self.get_component_description(term.value)
+            return term.title, description
+
+        except LookupError:
+            return "", ""
 
     def get_datasets_for_product(self, product):
         """get all datasets for a product"""
@@ -108,15 +144,16 @@ class RootMapViewerServiceGet(Service):
             layers = []
             layers_value = dataset.mapviewer_layers
             for layer_item in layers_value.get("items", []):
-                layers.append(
-                    {
-                        "LayerId": layer_item.get("id", ""),
-                        "Title": layer_item.get("title", ""),
-                        "Default_active": layer_item.get(
-                            "default_active", False
-                        ),
-                    }
-                )
+                if "hide" not in layer_item or not layer_item["hide"]:
+                    layers.append(
+                        {
+                            "LayerId": layer_item.get("id", ""),
+                            "Title": layer_item.get("title", ""),
+                            "Default_active": layer_item.get(
+                                "default_active", False
+                            ),
+                        }
+                    )
             if layers:
                 parent = aq_parent(dataset)
                 return {
@@ -131,13 +168,14 @@ class RootMapViewerServiceGet(Service):
                     "DatasetURL": self.get_item_volto_url(dataset),
                     "ViewService": dataset.mapviewer_viewservice,
                     "Default_active": dataset.mapviewer_default_active,
-                    "Layer": sorted(layers, key=lambda x: x.get("Title")),
+                    "Layer": layers,
                     "DownloadService": dataset.mapviewer_downloadservice,
                     "DownloadType": dataset.mapviewer_downloadtype,
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
                     "TimeSeriesService": dataset.mapviewer_timeseriesservice,
                     "Downloadable": bool(dataset.downloadable_full_dataset),
                     "PositionInParent": getObjPositionInParent(dataset),
+                    "HandlingLevel": bool(dataset.mapviewer_handlinglevel),
                 }
 
         return None

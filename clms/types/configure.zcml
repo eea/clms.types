@@ -4,6 +4,7 @@
   <include package="collective.taxonomy" />
   <include package="eea.api.taxonomy" />
   <include package="clms.downloadtool" />
+  <include package="plone.volto" />
 
   <include file="profiles.zcml" />
   <include file="permissions.zcml" />
@@ -16,5 +17,6 @@
   <include package=".indexers" />
   <include package=".searchservice" />
   <include package=".views" />
+  <include package=".controlpanels" />
 
 </configure>

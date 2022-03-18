@@ -15,7 +15,6 @@ from zope.interface import implementer
 
 from clms.types import _
 
-
 MIXEDFIELD_SCHEMA = json.dumps(
     {
         "type": "object",
@@ -41,34 +40,15 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    # inspireThemes = schema.List(
-    #     title=_(
-    #         u"Inspire Themes",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.Choice(
-    #         title=_(
-    #             u"Inspire theme",
-    #         ),
-    #         vocabulary=u"clms.types.InspireThemesVocabulary",
-    #         required=False,
-    #         readonly=False,
-    #     ),
-    #     required=False,
-    #     readonly=False,
-    # )
-
     model.fieldset(
         "metadata",
         label=_(u"Metadata"),
         fields=[
-            "validation",
+            # "validation",
             "dataResourceTitle",
             "resourceEffective",
             "resourceModified",
-            "dataResourceAbstract",
+            # "dataResourceAbstract",
             "keywords",
             "geographicCoverage",
             "accessAndUseLimitationPublic_line",
@@ -81,6 +61,7 @@ class IDataSet(model.Schema):
             "temporalExtentEnd",
             "gemet",
             "gemetInspireThemes",
+            # "inspireThemes",
             # HIERARCHY LEVEL
             "dataResourceType",
             # CONTACT
@@ -111,7 +92,7 @@ class IDataSet(model.Schema):
             "metadata_standard_name",
             "metadata_standard_version",
             # identifiers for the importation
-            "geonetwork_identifiers",
+            # "geonetwork_identifiers",
         ],
     )
 
@@ -228,11 +209,10 @@ class IDataSet(model.Schema):
         description=_(
             u"",
         ),
-        value_type=schema.Choice(
+        value_type=schema.TextLine(
             title=_(
                 u"Use case topics",
             ),
-            vocabulary=u"clms.types.CategoryTopicsVocabulary",
             required=False,
             readonly=False,
         ),
@@ -312,6 +292,19 @@ class IDataSet(model.Schema):
         ),
         required=False,
     )
+
+    # inspireThemes = schema.List(
+    #     title=_(
+    #         u"Inspire Themes",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.TextLine(
+    #         title=u"INSPIRE THEME",
+    #     ),
+    #     required=False,
+    # )
 
     # HIERARCHY LEVEL
     #     Resource type: dataResourceType
@@ -562,6 +555,8 @@ class IDataSet(model.Schema):
     #     readonly=False,
     # )
 
+    citation = RichText(title=_(u"Dataset citation"), required=False)
+
     geonetwork_identifiers = JSONField(
         title=_("Geonetwork identifier list"),
         required=False,
@@ -583,6 +578,7 @@ class IDataSet(model.Schema):
             "mapviewer_downloadtype",
             "mapviewer_istimeseries",
             "mapviewer_timeseriesservice",
+            "mapviewer_handlinglevel",
         ],
     )
 
@@ -671,13 +667,23 @@ class IDataSet(model.Schema):
 
     mapviewer_timeseriesservice = schema.TextLine(
         title=_(
-            u"Time series service URL",
+            u"Time series and information service URL",
         ),
         description=_(
             u"",
         ),
         default=u"",
         required=False,
+        readonly=False,
+    )
+
+    mapviewer_handlinglevel = schema.Bool(
+        title=_(
+            u"Handling level",
+        ),
+        description=_(""),
+        required=False,
+        default=False,
         readonly=False,
     )
 
@@ -688,9 +694,11 @@ class IDataSet(model.Schema):
             "downloadable_dataset",
             "downloadable_full_dataset",
             "downloadable_files",
+            "dataset_download_information",
             "dataset_full_path",
             "dataset_full_format",
             "dataset_full_source",
+            "wekeo_choices",
         ],
     )
 
@@ -720,9 +728,18 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    dataset_download_information = JSONField(
+        title=_("Dataset download information"),
+        required=False,
+        schema=MIXEDFIELD_SCHEMA,
+        widget="dataset_download_information_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
     dataset_full_path = schema.TextLine(
         title=_(
-            u"Enter the path to the full dataset download file",
+            u"(DEPRECATED) Enter the path to the full dataset download file",
         ),
         description=_(
             u"This is used when requesting the download from the map viewer",
@@ -734,7 +751,7 @@ class IDataSet(model.Schema):
 
     dataset_full_format = schema.Choice(
         title=_(
-            u"Enter the format of the full dataset file",
+            u"(DEPRECATED) Enter the format of the full dataset file",
         ),
         description=_(
             u"",
@@ -747,13 +764,23 @@ class IDataSet(model.Schema):
 
     dataset_full_source = schema.Choice(
         title=_(
-            u"Enter the source of the full dataset file",
+            u"(DEPRECATED) Enter the source of the full dataset file",
         ),
         description=_(
             u"",
         ),
         vocabulary=u"clms.types.FullDatasetSourcesVocabulary",
         # defaultFactory=get_default_name,
+        required=False,
+        readonly=False,
+    )
+
+    wekeo_choices = schema.Text(
+        title=_(
+            "(DEPRECATED) WEKEO choices",
+        ),
+        description=_(""),
+        default=u"",
         required=False,
         readonly=False,
     )
@@ -767,7 +794,6 @@ class IDataSet(model.Schema):
         default={"items": []},
         missing_value={"items": []},
     )
-
 
 # Unused fields
 
@@ -795,7 +821,6 @@ class IDataSet(model.Schema):
 #     label=_("Identification info"),
 #     fields=["title", "IPublication.effective"],
 # )
-
 
 @implementer(IDataSet)
 class DataSet(Container):
