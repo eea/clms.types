@@ -23,11 +23,6 @@ class CustodianInformationVocabulary:
         catalog = api.portal.get_tool("portal_catalog")
         items = catalog.uniqueValuesFor("custodian_information")
 
-        # Fix context if you are using the vocabulary in DataGridField.
-        if not IDexterityContent.providedBy(context):
-            req = getRequest()
-            context = req.PARENTS[0]
-
         # create a list of SimpleTerm items:
         terms = []
         for item in items:

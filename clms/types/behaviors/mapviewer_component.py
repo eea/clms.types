@@ -44,7 +44,6 @@ class IMapviewerComponent(model.Schema):
         ),
         vocabulary="clms.types.ComponentTitleVocabulary",
         default=u"",
-        # defaultFactory=get_default_mapviewer_component,
         required=False,
         readonly=False,
     )

@@ -31,10 +31,6 @@ MIXEDFIELD_SCHEMA = json.dumps(
 class IDataSet(model.Schema):
     """Marker interface and Dexterity Python Schema for DataSet"""
 
-    # If you want, you can load a xml model created TTW here
-    # and customize it in Python:
-
-    # model.load('product.xml')
     coverImage = namedfile.NamedBlobImage(
         title=_(u"coverImage"),
         required=False,
@@ -132,7 +128,6 @@ class IDataSet(model.Schema):
         description=_(
             u"",
         ),
-        # defaultFactory=get_default_name,
         required=False,
         readonly=False,
     )
@@ -144,7 +139,6 @@ class IDataSet(model.Schema):
         description=_(
             u"",
         ),
-        # defaultFactory=get_default_name,
         required=False,
         readonly=False,
     )
@@ -543,18 +537,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # geonetwork_identifier = schema.TextLine(
-    #     title=_(
-    #         u"GeoNetwork id",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     default=u"",
-    #     required=False,
-    #     readonly=False,
-    # )
-
     citation = RichText(title=_(u"Dataset citation"), required=False)
 
     geonetwork_identifiers = JSONField(
@@ -581,18 +563,6 @@ class IDataSet(model.Schema):
             "mapviewer_handlinglevel",
         ],
     )
-
-    # mapviewer_component = schema.TextLine(
-    #     title=_(
-    #         u"Component Title",
-    #     ),
-    #     description=_(
-    #         u"This field is used to group datasets under a singel component",
-    #     ),
-    #     default=u"Default",
-    #     required=False,
-    #     readonly=False,
-    # )
 
     mapviewer_viewservice = schema.TextLine(
         title=_(
@@ -757,7 +727,6 @@ class IDataSet(model.Schema):
             u"",
         ),
         vocabulary="clms.types.FullDatasetFormatsVocabulary",
-        # defaultFactory=get_default_name,
         required=False,
         readonly=False,
     )
@@ -770,7 +739,6 @@ class IDataSet(model.Schema):
             u"",
         ),
         vocabulary=u"clms.types.FullDatasetSourcesVocabulary",
-        # defaultFactory=get_default_name,
         required=False,
         readonly=False,
     )
@@ -794,6 +762,7 @@ class IDataSet(model.Schema):
         default={"items": []},
         missing_value={"items": []},
     )
+
 
 # Unused fields
 
@@ -821,6 +790,7 @@ class IDataSet(model.Schema):
 #     label=_("Identification info"),
 #     fields=["title", "IPublication.effective"],
 # )
+
 
 @implementer(IDataSet)
 class DataSet(Container):
