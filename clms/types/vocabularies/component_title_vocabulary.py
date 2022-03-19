@@ -6,8 +6,6 @@ Component Title vocabulary definition
 import json
 
 from plone import api
-from plone.dexterity.interfaces import IDexterityContent
-from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
@@ -37,10 +35,6 @@ class ComponentTitleVocabulary:
         )
         items = json.loads(items_raw)
         items = items.get("items", [])
-        # Fix context if you are using the vocabulary in DataGridField.
-        if not IDexterityContent.providedBy(context):
-            req = getRequest()
-            context = req.PARENTS[0]
 
         # create a list of SimpleTerm items:
         terms = []

@@ -6,7 +6,7 @@ from plone.indexer import indexer
 from clms.types.content.data_set import IDataSet
 
 
-def get_from_JSON(field, keys):
+def get_from_json(field, keys):
     """
     Get data from JSON
     """
@@ -41,11 +41,11 @@ def searchable_text(obj):
         else ""
     )
     qualityLineage = obj.qualityLineage.output if obj.qualityLineage else ""
-    distributionInfo = get_from_JSON(
+    distributionInfo = get_from_json(
         obj.distributionInfo, ["resourceLocator", "services"]
     )
 
-    responsiblePartyWithRole = get_from_JSON(
+    responsiblePartyWithRole = get_from_json(
         obj.responsiblePartyWithRole,
         [
             "organisationName",
@@ -61,7 +61,7 @@ def searchable_text(obj):
         ],
     )
 
-    point_of_contact_data = get_from_JSON(
+    point_of_contact_data = get_from_json(
         obj.point_of_contact_data,
         [
             "organisationName",

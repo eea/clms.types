@@ -5,12 +5,14 @@ from plone import api
 
 from . import logger
 
+PROFILE_ID = "clms.addon:default"
+
 
 def upgrade(setup_tool=None):
     """Run upgrade"""
     logger.info("Running upgrade (Python): New indexes and catalog fields")
     setup = api.portal.get_tool("portal_setup")
-    setup.runImportStepFromProfile("clms.types:default", "catalog")
-    setup.runImportStepFromProfile("clms.types:default", "plone.app.registry")
-    setup.runImportStepFromProfile("clms.types:default", "typeinfo")
+    setup.runImportStepFromProfile(PROFILE_ID, "catalog")
+    setup.runImportStepFromProfile(PROFILE_ID, "plone.app.registry")
+    setup.runImportStepFromProfile(PROFILE_ID, "typeinfo")
     logger.info("Done")
