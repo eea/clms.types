@@ -6,8 +6,6 @@ Component Title vocabulary definition
 import json
 
 from plone import api
-from plone.dexterity.interfaces import IDexterityContent
-from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
