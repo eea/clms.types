@@ -96,3 +96,15 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                 }
 
         return None
+
+    def get_item_volto_url(self, dataset):
+        """get the volto url for a given dataset"""
+        context_url = dataset.absolute_url()
+        plone_domain = api.portal.get().absolute_url()
+        frontend_domain = api.portal.get_registry_record(
+            "volto.frontend_domain"
+        )
+        if frontend_domain.endswith("/"):
+            frontend_domain = frontend_domain[:-1]
+
+        return context_url.replace(plone_domain, frontend_domain)

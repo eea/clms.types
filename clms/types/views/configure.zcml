@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="{{{ package.dottedname }}}">
+
+<browser:page
+    name="useCaseToDiscomap"
+    for="*"
+    class=".use_case_to_discomap.useCaseToDiscomap"
+    permission="cmf.ModifyPortalContent"
+    />
+
+</configure>
