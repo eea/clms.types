@@ -129,12 +129,12 @@ class IUseCase(model.Schema):
         default={},
     )
 
-    latitude = schema.Double(
+    latitude = schema.Float(
         title=_(u"Use Case latitude"),
         required=True,
     )
 
-    longitude = schema.Double(
+    longitude = schema.Float(
         title=_(u"Use Case longitude"),
         required=True,
     )
@@ -149,12 +149,12 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    lat_reg = schema.Double(
+    lat_reg = schema.Float(
         title=_(u"Use Case region latitude"),
         required=False,
     )
 
-    lon_reg = schema.Double(
+    lon_reg = schema.Float(
         title=_(u"Use Case region longitude"),
         required=False,
     )
