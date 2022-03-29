@@ -4,6 +4,7 @@ REST API endpoint to create update or delete use cases
 import json
 import requests
 from Products.Five.browser import BrowserView
+from plone import api
 
 
 class useCaseToDiscomap(BrowserView):
@@ -133,16 +134,19 @@ class useCaseToDiscomap(BrowserView):
             ]
         }
 
-        FME_TOKEN = "2d6aaef2df4ba3667c883884f57a8b6bab2efc5e"
-        FME_URL_PATH = "/v3/transformations/submit/CLMS/CLMS_UseCases.fmw"
-        FME_URL = "https://copernicus-fme.eea.europa.eu/fmerest" + FME_URL_PATH
+        fme_url = api.portal.get_registry_record(
+            "clms.types.usecase_fme.fme_url"
+        )
+        fme_token = api.portal.get_registry_record(
+            "clms.types.usecase_fme.token"
+        )
         headers = {
             "Content-Type": "application/json; charset=utf-8",
             "Accept": "application/json",
-            "Authorization": "fmetoken token={0}".format(FME_TOKEN),
+            "Authorization": "fmetoken token={0}".format(fme_token),
         }
         data = json.dumps(fme_data)
-        resp = requests.post(FME_URL, data, headers=headers)
+        resp = requests.post(fme_url, data, headers=headers)
         if resp.ok:
             fme_task_id = resp.json().get("id", None)
 
