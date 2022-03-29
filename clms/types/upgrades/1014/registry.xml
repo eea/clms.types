@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="clms.types">
+
+<!-- -*- extra stuff goes here -*- -->
+
+  <records interface="clms.types.controlpanels.usecase_fme.controlpanel.IUseCaseFMEControlPanel"
+           prefix="clms.types.usecase_fme" />
+
+
+</registry>
