@@ -1,0 +1,38 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone">
+
+    <!-- FME action -->
+
+    <adapter factory=".fme_action.FMEActionExecutor" />
+
+    <browser:page
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      name="clms.types.actions.FMEAction"
+      class=".fme_action.FMEActionAddFormView"
+      permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <browser:page
+      for=".fme_action.IFMEAction"
+      name="edit"
+      class=".fme_action.FMEActionEditFormView"
+      permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <plone:ruleAction
+        name="clms.types.actions.FMEAction"
+        title="FME Action"
+        description="Log a particular event"
+        for="*"
+        event="*"
+        addview="clms.types.actions.FMEAction"
+        editview="edit"
+        schema=".fme_action.IFMEAction"
+        factory=".fme_action.FMEAction"
+        />
+
+
+</configure>
