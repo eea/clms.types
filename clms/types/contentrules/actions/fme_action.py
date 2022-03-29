@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """ A content rule to make a FME request"""
+from logging import getLogger
+
 from OFS.SimpleItem import SimpleItem
 from plone.app.contentrules import PloneMessageFactory as _
 from plone.app.contentrules.actions import ActionAddForm, ActionEditForm
@@ -8,6 +10,8 @@ from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from zope import schema
 from zope.component import adapter
 from zope.interface import Interface, implementer
+
+from clms.types.contentrules.actions.fme_utils import usecase_to_discomap
 
 
 class IFMEAction(Interface):
@@ -38,6 +42,7 @@ class FMEAction(SimpleItem):
 
     @property
     def summary(self):
+        """ return the summary for the rule edit form """
         return _(
             u"Notify FME the following operation: ${operation}",
             mapping=dict(operation=self.operation),
@@ -46,7 +51,7 @@ class FMEAction(SimpleItem):
 
 @adapter(Interface, IFMEAction, Interface)
 @implementer(IExecutable)
-class FMEActionExecutor(object):
+class FMEActionExecutor:
     """The executor for this action.
 
     This is registered as an adapter in configure.zcml
@@ -62,11 +67,17 @@ class FMEActionExecutor(object):
         """
         execute the rule
         """
-        # self.context = The context where the rule is executed (the containing folder)
-        # self.element = The rule itself. self.element.operation is the operation
+        # self.context = The context where the rule is executed
+        # (the containing folder)
+        # self.element = The rule itself.
+        # self.element.operation is the operation
         # self.event = The event that triggered the action
         # self.event.object = The object upon the event was triggered
+        result = usecase_to_discomap(self.event.object, self.element.operation)
 
+        log = getLogger(__name__)
+        log.info(result.get("status", ""))
+        log.info(result.get("msg", ""))
         return True
 
 
