@@ -8,6 +8,7 @@ from Products.Five.browser import BrowserView
 
 class useCaseToDiscomap(BrowserView):
     """Start of the view containing the functionality"""
+
     def __call__(self):
         """main method"""
         operation = dict(self.request)["REQUEST_METHOD"]
@@ -70,82 +71,65 @@ class useCaseToDiscomap(BrowserView):
             operation = "UPDATE"
 
         fme_data = {
-            "publishedParameters": [{
-                    "name": "Use_case_title",
-                    "value": use_case_title
-                }, {
+            "publishedParameters": [
+                {"name": "Use_case_title", "value": use_case_title},
+                {
                     "name": "Copernicus_Land_Monitoring_Service_products_used",
-                    "value": clms_products_used
-                }, {
-                    "name": "Use_case_summary",
-                    "value": use_case_summary
-                }, {
+                    "value": clms_products_used,
+                },
+                {"name": "Use_case_summary", "value": use_case_summary},
+                {
                     "name": "Use_case_submitting_production_year",
-                    "value": submitting_production_year
-                }, {
+                    "value": submitting_production_year,
+                },
+                {
                     "name": "Responsible_organisation",
-                    "value": responsible_organisation
-                }, {
+                    "value": responsible_organisation,
+                },
+                {
                     "name": "Contact_person_name_",
-                    "value": contact_person_name_
-                }, {
+                    "value": contact_person_name_,
+                },
+                {
                     "name": "Contact_person_email_",
-                    "value": contact_person_email_
-                }, {
-                    "name": "Use_case_topics",
-                    "value": "".join(use_case_topics)
-                }, {
+                    "value": contact_person_email_,
+                },
+                {"name": "Use_case_topics", "value": "".join(use_case_topics)},
+                {
                     "name": "Spatial_coverage",
-                    "value": "".join(spatial_coverage)
-                }, {
-                    "name": "Latitude",
-                    "value": latitude
-                }, {
-                    "name": "Longitude",
-                    "value": longitude
-                }, {
-                    "name": "Region",
-                    "value": region
-                }, {
-                    "name": "lat_reg",
-                    "value": lat_reg
-                }, {
-                    "name": "lon_reg",
-                    "value": lon_reg
-                }, {
-                    "name": "BBOX",
-                    "value": bbox
-                }, {
-                    "name": "User_case_outcome",
-                    "value": user_case_outcome
-                }, {
+                    "value": "".join(spatial_coverage),
+                },
+                {"name": "Latitude", "value": latitude},
+                {"name": "Longitude", "value": longitude},
+                {"name": "Region", "value": region},
+                {"name": "lat_reg", "value": lat_reg},
+                {"name": "lon_reg", "value": lon_reg},
+                {"name": "BBOX", "value": bbox},
+                {"name": "User_case_outcome", "value": user_case_outcome},
+                {
                     "name": "Links_to_documents",
-                    "value": "".join(links_to_documents)
-                }, {
-                    "name": "Links_to_videos",
-                    "value": "".join(links_to_videos)
-                }, {
+                    "value": "".join(links_to_documents),
+                },
+                {"name": "Links_to_videos", "value": "".join(links_to_videos)},
+                {
                     "name": "Links_to_web_sites",
-                    "value": "".join(links_to_web_sites)
-                }, {
+                    "value": "".join(links_to_web_sites),
+                },
+                {
                     "name": "Upload_use_case_documents",
-                    "value": upload_use_case_documents
-                }, {
+                    "value": upload_use_case_documents,
+                },
+                {
                     "name": "Upload_use_case_images",
-                    "value": upload_use_case_images
-                }, {
+                    "value": upload_use_case_images,
+                },
+                {
                     "name": "Upload_use_case_videos",
-                    "value": upload_use_case_videos
-                }, {
-                    "name": "Origin_name",
-                    "value": origin_name
-                }, {
-                    "name": "Use_Case_id",
-                    "value": use_case_uid
-                }, {
-                    "name": "Operation",
-                    "value": operation
-                }
+                    "value": upload_use_case_videos,
+                },
+                {"name": "Origin_name", "value": origin_name},
+                {"name": "Use_Case_id", "value": use_case_uid},
+                {"name": "Operation", "value": operation},
             ]
         }
 
