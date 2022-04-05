@@ -80,8 +80,6 @@ class TestLRFMapViewer(unittest.TestCase):
             description="Dataset 1 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=False,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -115,8 +113,6 @@ class TestLRFMapViewer(unittest.TestCase):
             description="Dataset 2 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=True,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -160,8 +156,6 @@ class TestLRFMapViewer(unittest.TestCase):
             description="Dataset 1 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=False,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -195,8 +189,6 @@ class TestLRFMapViewer(unittest.TestCase):
             description="Dataset 2 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=True,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -316,13 +308,6 @@ class TestLRFMapViewer(unittest.TestCase):
             self.dataset1_1.mapviewer_default_active,
         )
         self.assertEqual(
-            dataset1["DownloadService"],
-            self.dataset1_1.mapviewer_downloadservice,
-        )
-        self.assertEqual(
-            dataset1["DownloadType"], self.dataset1_1.mapviewer_downloadtype
-        )
-        self.assertEqual(
             dataset1["IsTimeSeries"], self.dataset1_1.mapviewer_istimeseries
         )
         self.assertEqual(
@@ -404,8 +389,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             description="Dataset 1 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=False,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -439,8 +422,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             description="Dataset 2 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=True,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -484,8 +465,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             description="Dataset 1 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=False,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -519,8 +498,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             description="Dataset 2 description",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
-            mapviewer_downloadservice="EEA",
-            mapviewer_downloadtype="ESRI REST Service",
             mapviewer_istimeseries=True,
             mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
@@ -634,13 +611,6 @@ class TestDataSetMapViewer(unittest.TestCase):
         self.assertEqual(
             dataset1["Default_active"],
             self.dataset1_1.mapviewer_default_active,
-        )
-        self.assertEqual(
-            dataset1["DownloadService"],
-            self.dataset1_1.mapviewer_downloadservice,
-        )
-        self.assertEqual(
-            dataset1["DownloadType"], self.dataset1_1.mapviewer_downloadtype
         )
         self.assertEqual(
             dataset1["IsTimeSeries"], self.dataset1_1.mapviewer_istimeseries

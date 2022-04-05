@@ -86,8 +86,6 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                     "ViewService": dataset.mapviewer_viewservice,
                     "Default_active": dataset.mapviewer_default_active,
                     "Layer": layers,
-                    "DownloadService": dataset.mapviewer_downloadservice,
-                    "DownloadType": dataset.mapviewer_downloadtype,
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
                     "TimeSeriesService": dataset.mapviewer_timeseriesservice,
                     "Downloadable": bool(dataset.downloadable_full_dataset),
