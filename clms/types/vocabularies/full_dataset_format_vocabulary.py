@@ -5,8 +5,6 @@ Category Topics vocabulary definition
 
 # from plone import api
 from clms.downloadtool.utils import DATASET_FORMATS
-from plone.dexterity.interfaces import IDexterityContent
-from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -33,11 +31,6 @@ class FullDatasetFormatsVocabulary:
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [VocabItem(value, value) for value in DATASET_FORMATS]
-
-        # Fix context if you are using the vocabulary in DataGridField.
-        if not IDexterityContent.providedBy(context):
-            req = getRequest()
-            context = req.PARENTS[0]
 
         # create a list of SimpleTerm items:
         terms = []
