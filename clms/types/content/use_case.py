@@ -21,9 +21,24 @@ class IUseCase(model.Schema):
 
     # model.load('use_case.xml')
 
+    title = schema.TextLine(
+        title=_(u"Use Case Title"),
+        required=True
+    )
+
+    summary = schema.TextLine(
+        title=_(u"Use Case Summary"),
+        required=False
+    )
+
+    submittingProducionYear = schema.TextLine(
+        title=_(u"Submitting producion year of Use Case"),
+        required=False
+    )
+
     responsibleOrganization = schema.TextLine(
         title=_(u"Responsible organization"),
-        required=True,
+        required=False,
     )
 
     contactName = schema.TextLine(
@@ -57,12 +72,12 @@ class IUseCase(model.Schema):
 
     outcome = schema.TextLine(
         title=_(u"User case outcome"),
-        required=True,
+        required=False,
     )
 
-    links = schema.List(
+    documentLinks = schema.List(
         title=_(
-            u"Links to use case",
+            u"Links to use case documents",
         ),
         description=_(
             u"",
@@ -70,7 +85,35 @@ class IUseCase(model.Schema):
         value_type=schema.URI(
             title=u"",
         ),
-        required=True,
+        required=False,
+        readonly=False,
+    )
+
+    videoLinks = schema.List(
+        title=_(
+            u"Links to use case videos",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.URI(
+            title=u"",
+        ),
+        required=False,
+        readonly=False,
+    )
+
+    websiteLinks = schema.List(
+        title=_(
+            u"Links to use case websites",
+        ),
+        description=_(
+            u"",
+        ),
+        value_type=schema.URI(
+            title=u"",
+        ),
+        required=False,
         readonly=False,
     )
 
@@ -84,6 +127,61 @@ class IUseCase(model.Schema):
         required=False,
         widget="geolocation",
         default={},
+    )
+
+    latitude = schema.Float(
+        title=_(u"Use Case latitude"),
+        required=True,
+    )
+
+    longitude = schema.Float(
+        title=_(u"Use Case longitude"),
+        required=True,
+    )
+
+    clms_products_used = schema.TextLine(
+        title=_(u"Copernicus Land Monitoring Service products used"),
+        required=True,
+    )
+
+    region = schema.TextLine(
+        title=_(u"Use Case region"),
+        required=True,
+    )
+
+    lat_reg = schema.Float(
+        title=_(u"Use Case region latitude"),
+        required=False,
+    )
+
+    lon_reg = schema.Float(
+        title=_(u"Use Case region longitude"),
+        required=False,
+    )
+
+    bbox = schema.TextLine(
+        title=_(u"Use Case BoundigBox"),
+        required=False,
+    )
+
+    upload_use_case_documents = schema.TextLine(
+        title=_(u"Use Case document upload"),
+        required=False,
+    )
+
+    upload_use_case_images = schema.TextLine(
+        title=_(u"Use Case image upload"),
+        required=False,
+    )
+
+    upload_use_case_videos = schema.TextLine(
+        title=_(u"Use Case video upload"),
+        required=False,
+    )
+
+    origin_name = schema.TextLine(
+        title=_(u"Use Case origin name"),
+        required=False,
     )
 
 

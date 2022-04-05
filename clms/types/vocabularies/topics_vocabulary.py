@@ -3,10 +3,7 @@
 Topics vocabulary definition
 """
 
-# from plone import api
 from clms.types import _
-from plone.dexterity.interfaces import IDexterityContent
-from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -37,11 +34,6 @@ class TopicsVocabulary:
             VocabItem(u"Topic 2", _(u"Topic 2")),
             VocabItem(u"Topic 3", _(u"Topic 3")),
         ]
-
-        # Fix context if you are using the vocabulary in DataGridField.
-        if not IDexterityContent.providedBy(context):
-            req = getRequest()
-            context = req.PARENTS[0]
 
         # create a list of SimpleTerm items:
         terms = []

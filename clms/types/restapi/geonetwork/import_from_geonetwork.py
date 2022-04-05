@@ -19,6 +19,8 @@ from clms.types.utils import (
     VITO_GEONETWORK_BASE_URL,
 )
 
+ISO_DATETIME_FORMAT = "%Y-%m-%d"
+
 
 class ImportFromGeoNetwork(Service):
     """
@@ -38,9 +40,6 @@ class ImportFromGeoNetwork(Service):
         body_json = json.loads(self.request.get("BODY"))
         geonetwork_id = body_json.get("id")
         geonetwork_type = body_json.get("type")
-        # self.geonetwork_ids = self.extract_ids_from_field(
-        #     self.context.geonetwork_identifiers
-        # )
         try:
             self.xml_data = self.get_xml_data(
                 geonetwork_id,
@@ -59,15 +58,6 @@ class ImportFromGeoNetwork(Service):
         self.save_data()
         self.json_data["requested_geonetwork_id"] = geonetwork_id
         return json.dumps(self.json_data)
-
-    # def extract_ids_from_field(self, jsondata):
-    #     """
-    #     extract ids from plone field
-    #     """
-    #     result = []
-    #     for item in jsondata.get("items", []):
-    #         result.append(item.get("id"))
-    #     return result
 
     def get_xml_data(
         self,
@@ -245,16 +235,6 @@ class ImportFromGeoNetwork(Service):
                 "xml_key": "//gmd:pointOfContact/gmd:CI_ResponsibleParty",
                 "type": "contact",
             },
-            # {
-            #     "field_id": "responsibleParty",
-            #     "xml_key": "",
-            #     "type": "text",
-            # },
-            # {
-            #     "field_id": "responsiblePartyRole",
-            #     "xml_key": "",
-            #     "type": "text",
-            # },
             {
                 "field_id": "coordinateReferenceSystemList",
                 "xml_key": (
@@ -298,12 +278,6 @@ class ImportFromGeoNetwork(Service):
                 ),
                 "type": "distribution",
             },
-            # {
-            #     "field_id": "dataResourceLocator",
-            #     "xml_key": "",
-            #     "type": "string",
-            # },
-            # {"field_id": "dataServices", "xml_key": "", "type": "text"},
             {
                 "field_id": "identifier",
                 "xml_key": (
@@ -405,10 +379,6 @@ class ImportFromGeoNetwork(Service):
                             f" and {field['if_not_xml_key']}"
                         )
                 elif len(fields_data) == 0:
-                    # result[field["field_id"]] = {
-                    #     "data": "Null",
-                    #     "type": field["type"],
-                    # }
                     print(
                         "    WARNING!!! No DATA for field"
                         f" {field['field_id']} with search key"
@@ -496,7 +466,7 @@ class ImportFromGeoNetwork(Service):
                     if start[0].text:
                         dt_start_obj = datetime.strptime(
                             start[0].text,
-                            "%Y-%m-%d",
+                            ISO_DATETIME_FORMAT,
                         )
                         result["temporalExtentStart"] = {
                             "data": start[0].text,
@@ -505,7 +475,7 @@ class ImportFromGeoNetwork(Service):
                     if end[0].text:
                         dt_end_obj = datetime.strptime(
                             end[0].text,
-                            "%Y-%m-%d",
+                            ISO_DATETIME_FORMAT,
                         )
                         result["temporalExtentEnd"] = {
                             "data": end[0].text,
@@ -742,7 +712,7 @@ class ImportFromGeoNetwork(Service):
                 try:
                     date_data = datetime.strptime(
                         data,
-                        "%Y-%m-%d",
+                        ISO_DATETIME_FORMAT,
                     )
                     setattr(
                         self.context,

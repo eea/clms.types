@@ -2,8 +2,7 @@
 """
 DataSet content-type definition
 """
-# pytlint: disable=unused-import
-import json  # noqa
+import json
 
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
@@ -14,6 +13,7 @@ from zope import schema
 from zope.interface import implementer
 
 from clms.types import _
+
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
@@ -168,22 +168,6 @@ class IDataSet(model.Schema):
         default={},
     )
 
-    # geographicCoverage = schema.List(
-    #     title=_(u"Geographic Coverage",),
-    #     description=_(u"",),
-    #     value_type=schema.TextLine(title=u"",),
-    #     required=False,
-    #     readonly=False,
-    # )
-
-    # geographicCoverageGT = schema.List(
-    #     title=_(u"Geographic Coverage GT",),
-    #     description=_(u"",),
-    #     value_type=schema.TextLine(title=u"",),
-    #     required=False,
-    #     readonly=False,
-    # )
-
     accessAndUseLimitationPublic_line = schema.TextLine(
         title=_(u"Limitation of public access"), required=False
     )
@@ -286,19 +270,6 @@ class IDataSet(model.Schema):
         ),
         required=False,
     )
-
-    # inspireThemes = schema.List(
-    #     title=_(
-    #         u"Inspire Themes",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.TextLine(
-    #         title=u"INSPIRE THEME",
-    #     ),
-    #     required=False,
-    # )
 
     # HIERARCHY LEVEL
     #     Resource type: dataResourceType
@@ -552,12 +523,9 @@ class IDataSet(model.Schema):
         "mapviewer",
         label=_(u"Mapviewer"),
         fields=[
-            # "mapviewer_component",
             "mapviewer_viewservice",
             "mapviewer_default_active",
-            "mapviewer_downloadservice",
             "mapviewer_layers",
-            "mapviewer_downloadtype",
             "mapviewer_istimeseries",
             "mapviewer_timeseriesservice",
             "mapviewer_handlinglevel",
@@ -593,32 +561,6 @@ class IDataSet(model.Schema):
         widget="layer_widget",
         default={"items": []},
         missing_value={"items": []},
-    )
-
-    mapviewer_downloadservice = schema.TextLine(
-        title=_(
-            u"Download service",
-        ),
-        description=_(
-            u"This field is used to identify where the download files "
-            "should come from",
-        ),
-        default=u"EEA",
-        required=False,
-        readonly=False,
-    )
-
-    mapviewer_downloadtype = schema.TextLine(
-        title=_(
-            u"Download type",
-        ),
-        description=_(
-            u"This field is used to identify how the download should "
-            u"be handled",
-        ),
-        default=u"ESRI REST service",
-        required=False,
-        readonly=False,
     )
 
     mapviewer_istimeseries = schema.Bool(
@@ -762,34 +704,6 @@ class IDataSet(model.Schema):
         default={"items": []},
         missing_value={"items": []},
     )
-
-
-# Unused fields
-
-# dataCustodians = RichText(title=_(u"dataCustodians"), required=False)
-
-# dataSources = RichText(title=_(u"dataSources"), required=False)
-
-# descriptionDetailedMetadata = RichText(
-#     title=_(u"descriptionDetailedMetadata"), required=False
-# )
-
-# download = RichText(title=_(u"download"), required=False)
-
-# embed = schema.SourceText(title=_(u"embed"), required=False)
-
-# geographicAccuracy = RichText(
-#     title=_(u"geographicAccuracy"), required=False
-# )
-
-# owners = RichText(title=_(u"owners"), required=False)
-
-
-# model.fieldset(
-#     "default",
-#     label=_("Identification info"),
-#     fields=["title", "IPublication.effective"],
-# )
 
 
 @implementer(IDataSet)

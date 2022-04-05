@@ -23,12 +23,12 @@ class ProductsVocabulary:
             portal_type="Product",
             sort_on="sortable_title",
         )
-        productsList = [
+        products_list = [
             (IUUID(p.getObject(), None), p.getObject().title) for p in products
         ]
         terms = [
             SimpleTerm(value=pair[0], token=pair[0], title=pair[1])
-            for pair in productsList
+            for pair in products_list
         ]
         return SimpleVocabulary(terms)
 
