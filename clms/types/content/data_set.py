@@ -525,9 +525,7 @@ class IDataSet(model.Schema):
         fields=[
             "mapviewer_viewservice",
             "mapviewer_default_active",
-            "mapviewer_downloadservice",
             "mapviewer_layers",
-            "mapviewer_downloadtype",
             "mapviewer_istimeseries",
             "mapviewer_timeseriesservice",
             "mapviewer_handlinglevel",
@@ -563,32 +561,6 @@ class IDataSet(model.Schema):
         widget="layer_widget",
         default={"items": []},
         missing_value={"items": []},
-    )
-
-    mapviewer_downloadservice = schema.TextLine(
-        title=_(
-            u"Download service",
-        ),
-        description=_(
-            u"This field is used to identify where the download files "
-            "should come from",
-        ),
-        default=u"EEA",
-        required=False,
-        readonly=False,
-    )
-
-    mapviewer_downloadtype = schema.TextLine(
-        title=_(
-            u"Download type",
-        ),
-        description=_(
-            u"This field is used to identify how the download should "
-            u"be handled",
-        ),
-        default=u"ESRI REST service",
-        required=False,
-        readonly=False,
     )
 
     mapviewer_istimeseries = schema.Bool(
