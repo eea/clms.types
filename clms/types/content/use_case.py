@@ -21,15 +21,15 @@ class IUseCase(model.Schema):
 
     # model.load('use_case.xml')
 
-    title = schema.TextLine(
-        title=_(u"Use Case Title"),
-        required=True
-    )
+    # title = schema.TextLine(
+    #     title=_(u"Use Case Title"),
+    #     required=True
+    # )
 
-    summary = schema.TextLine(
-        title=_(u"Use Case Summary"),
-        required=False
-    )
+    # summary = schema.TextLine(
+    #     title=_(u"Use Case Summary"),
+    #     required=False
+    # )
 
     submittingProducionYear = schema.TextLine(
         title=_(u"Submitting producion year of Use Case"),
