@@ -122,20 +122,8 @@ class IUseCase(model.Schema):
         required=False,
     )
 
-    geographicCoverage = JSONField(
-        title=_(u"geographicCoverage"),
-        required=False,
-        widget="geolocation",
-        default={},
-    )
-
-    latitude = schema.Float(
-        title=_(u"Use Case latitude"),
-        required=True,
-    )
-
-    longitude = schema.Float(
-        title=_(u"Use Case longitude"),
+    geographicCoverage = schema.TextLine(
+        title=_(u"Spatial coverage"),
         required=True,
     )
 
@@ -144,23 +132,8 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    region = schema.TextLine(
-        title=_(u"Use Case region"),
-        required=True,
-    )
-
-    lat_reg = schema.Float(
-        title=_(u"Use Case region latitude"),
-        required=False,
-    )
-
-    lon_reg = schema.Float(
-        title=_(u"Use Case region longitude"),
-        required=False,
-    )
-
     bbox = schema.TextLine(
-        title=_(u"Use Case BoundigBox"),
+        title=_(u"Use Case BoundingBox"),
         required=False,
     )
 

@@ -5,6 +5,9 @@ import json
 
 import requests
 from plone import api
+import logging
+
+log = logging.getLogger("Plone")
 
 
 def usecase_to_discomap(usecase, operation):
@@ -21,12 +24,6 @@ def usecase_to_discomap(usecase, operation):
     contact_person_email_ = usecase.contactEmail
     use_case_topics = usecase.topics
     spatial_coverage = usecase.geographicCoverage
-    latitude = usecase.latitude
-    longitude = usecase.longitude
-    region = usecase.region
-    lat_reg = usecase.lat_reg
-    lon_reg = usecase.lon_reg
-    bbox = usecase.bbox
     user_case_outcome = usecase.outcome
     links_to_documents = usecase.documentLinks or []
     links_to_videos = usecase.videoLinks or []
@@ -34,34 +31,8 @@ def usecase_to_discomap(usecase, operation):
     upload_use_case_documents = usecase.upload_use_case_documents or []
     upload_use_case_images = usecase.upload_use_case_images or []
     upload_use_case_videos = usecase.upload_use_case_videos or []
-    origin_name = usecase.origin_name
 
-    if 90 < latitude < -90:
-
-        return {
-            "status": "error",
-            "msg": "Wrong latitude value",
-        }
-    if 180 < longitude < -180:
-
-        return {
-            "status": "error",
-            "msg": "Wrong longitude value",
-        }
-
-    if 90 < lat_reg < -90:
-
-        return {
-            "status": "error",
-            "msg": "Wrong region latitude value",
-        }
-    if 180 < lon_reg < -180:
-
-        return {
-            "status": "error",
-            "msg": "Wrong region longitude value",
-        }
-
+    log.info(spatial_coverage)
     fme_data = {
         "publishedParameters": [
             {"name": "Use_case_title", "value": use_case_title},
@@ -89,14 +60,8 @@ def usecase_to_discomap(usecase, operation):
             {"name": "Use_case_topics", "value": "".join(use_case_topics)},
             {
                 "name": "Spatial_coverage",
-                "value": "".join(spatial_coverage),
+                "value": "".join(str(x) + "," for x in spatial_coverage.split(",")),
             },
-            {"name": "Latitude", "value": latitude},
-            {"name": "Longitude", "value": longitude},
-            {"name": "Region", "value": region},
-            {"name": "lat_reg", "value": lat_reg},
-            {"name": "lon_reg", "value": lon_reg},
-            {"name": "BBOX", "value": bbox},
             {"name": "User_case_outcome", "value": user_case_outcome},
             {
                 "name": "Links_to_documents",
@@ -119,9 +84,8 @@ def usecase_to_discomap(usecase, operation):
                 "name": "Upload_use_case_videos",
                 "value": upload_use_case_videos,
             },
-            {"name": "Origin_name", "value": origin_name},
             {"name": "Use_Case_id", "value": use_case_uid},
-            {"name": "Operation", "value": operation},
+            {"name": "Operation", "value": operation}
         ]
     }
 
@@ -134,6 +98,8 @@ def usecase_to_discomap(usecase, operation):
     }
     data = json.dumps(fme_data)
     resp = requests.post(fme_url, data, headers=headers)
+    log.info(resp)
+    log.info(data)
     if resp.ok:
         fme_task_id = resp.json().get("id", None)
 
