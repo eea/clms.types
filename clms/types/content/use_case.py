@@ -5,7 +5,6 @@ UseCase content-type definition
 
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
-from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
@@ -32,8 +31,7 @@ class IUseCase(model.Schema):
     # )
 
     submittingProducionYear = schema.TextLine(
-        title=_(u"Submitting producion year of Use Case"),
-        required=False
+        title=_(u"Submitting producion year of Use Case"), required=False
     )
 
     responsibleOrganization = schema.TextLine(
