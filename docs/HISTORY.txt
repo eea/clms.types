@@ -1,8 +1,10 @@
 Changelog
 =========
 
-6.1-dev0 - (unreleased)
+6.1 - (2022-04-29)
 ---------------------------
+* Change: Use cases implementation
+  [KCarpinteroBM]
 
 6.0 - (2022-04-05)
 ---------------------------
