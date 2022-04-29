@@ -60,7 +60,9 @@ def usecase_to_discomap(usecase, operation):
             {"name": "Use_case_topics", "value": "".join(use_case_topics)},
             {
                 "name": "Spatial_coverage",
-                "value": "".join(str(x) + "," for x in spatial_coverage.split(",")),
+                "value": "".join(
+                    str(x) + "," for x in spatial_coverage.split(",")
+                ),
             },
             {"name": "User_case_outcome", "value": user_case_outcome},
             {
@@ -85,7 +87,7 @@ def usecase_to_discomap(usecase, operation):
                 "value": upload_use_case_videos,
             },
             {"name": "Use_Case_id", "value": use_case_uid},
-            {"name": "Operation", "value": operation}
+            {"name": "Operation", "value": operation},
         ]
     }
 
