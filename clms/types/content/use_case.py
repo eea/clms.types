@@ -5,7 +5,6 @@ UseCase content-type definition
 
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
-from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
@@ -21,19 +20,18 @@ class IUseCase(model.Schema):
 
     # model.load('use_case.xml')
 
-    title = schema.TextLine(
-        title=_(u"Use Case Title"),
-        required=True
-    )
+    # title = schema.TextLine(
+    #     title=_(u"Use Case Title"),
+    #     required=True
+    # )
 
-    summary = schema.TextLine(
-        title=_(u"Use Case Summary"),
-        required=False
-    )
+    # summary = schema.TextLine(
+    #     title=_(u"Use Case Summary"),
+    #     required=False
+    # )
 
     submittingProducionYear = schema.TextLine(
-        title=_(u"Submitting producion year of Use Case"),
-        required=False
+        title=_(u"Submitting producion year of Use Case"), required=False
     )
 
     responsibleOrganization = schema.TextLine(
@@ -122,20 +120,8 @@ class IUseCase(model.Schema):
         required=False,
     )
 
-    geographicCoverage = JSONField(
-        title=_(u"geographicCoverage"),
-        required=False,
-        widget="geolocation",
-        default={},
-    )
-
-    latitude = schema.Float(
-        title=_(u"Use Case latitude"),
-        required=True,
-    )
-
-    longitude = schema.Float(
-        title=_(u"Use Case longitude"),
+    geographicCoverage = schema.TextLine(
+        title=_(u"Spatial coverage"),
         required=True,
     )
 
@@ -144,23 +130,8 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    region = schema.TextLine(
-        title=_(u"Use Case region"),
-        required=True,
-    )
-
-    lat_reg = schema.Float(
-        title=_(u"Use Case region latitude"),
-        required=False,
-    )
-
-    lon_reg = schema.Float(
-        title=_(u"Use Case region longitude"),
-        required=False,
-    )
-
     bbox = schema.TextLine(
-        title=_(u"Use Case BoundigBox"),
+        title=_(u"Use Case BoundingBox"),
         required=False,
     )
 

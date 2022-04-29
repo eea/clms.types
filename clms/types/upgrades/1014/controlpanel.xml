@@ -3,19 +3,6 @@
     i18n:domain="clms.types">
   <configlet
       i18n:attributes="title"
-      title="Product Component Control Panel"
-      action_id="product-component-controlpanel"
-      appId="product-component-controlpanel"
-      category="Products"
-      condition_expr=""
-      icon_expr=""
-      url_expr="string:${portal_url}/@@product-component-controlpanel"
-      visible="True">
-    <permission>Manage Portal</permission>
-  </configlet>
-
-  <configlet
-      i18n:attributes="title"
       title="Use-case FME configuration"
       action_id="usecase-fme-controlpanel"
       appId="usecase-fme-controlpanel"

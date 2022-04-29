@@ -1,6 +1,11 @@
 Changelog
 =========
 
+6.1 - (2022-04-29)
+---------------------------
+* Change: Use cases implementation
+  [KCarpinteroBM]
+
 6.0 - (2022-04-05)
 ---------------------------
 * Change: Develop [erral]
