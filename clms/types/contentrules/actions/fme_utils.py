@@ -2,10 +2,10 @@
 REST API endpoint to create update or delete use cases
 """
 import json
+import logging
 
 import requests
 from plone import api
-import logging
 
 log = logging.getLogger("Plone")
 
