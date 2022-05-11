@@ -130,11 +130,6 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    bbox = schema.TextLine(
-        title=_(u"Use Case BoundingBox"),
-        required=False,
-    )
-
     upload_use_case_documents = schema.TextLine(
         title=_(u"Use Case document upload"),
         required=False,
