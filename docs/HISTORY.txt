@@ -1,6 +1,10 @@
 Changelog
 =========
 
+6.2 - (2022-05-11)
+---------------------------
+* Change: bbox field removal [KCarpinteroBM]
+
 6.1 - (2022-04-29)
 ---------------------------
 * Change: Use cases implementation
