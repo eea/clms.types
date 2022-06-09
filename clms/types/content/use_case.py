@@ -130,6 +130,7 @@ class IUseCase(model.Schema):
     #     required=True,
     # )
 
+
     bbox = schema.TextLine(
         title=_(u"Use Case BoundingBox"),
         required=False,
