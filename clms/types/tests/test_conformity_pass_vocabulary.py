@@ -13,7 +13,7 @@ from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 
 
 class TestConformityPassVocabularyIntegrationTest(unittest.TestCase):
-    """ test the vocabulary"""
+    """test the vocabulary"""
 
     layer = CLMS_TYPES_INTEGRATION_TESTING
 
@@ -23,7 +23,7 @@ class TestConformityPassVocabularyIntegrationTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
     def test_vocabulary(self):
-        """ test values are those defined"""
+        """test values are those defined"""
         vocab_name = "clms.types.ConformityPassVocabulary"
         factory = getUtility(IVocabularyFactory, vocab_name)
         self.assertTrue(IVocabularyFactory.providedBy(factory))
@@ -33,9 +33,11 @@ class TestConformityPassVocabularyIntegrationTest(unittest.TestCase):
 
         self.assertEqual(
             vocabulary.getTerm("false").title,
-            _(u"False"),
+            _(u"Not Conformant"),
         )
 
-        self.assertEqual(vocabulary.getTerm(u"true").title, _(u"True"))
+        self.assertEqual(vocabulary.getTerm(u"true").title, _(u"Conformant"))
 
-        self.assertEqual(vocabulary.getTerm(u"Null").title, _(u"Null"))
+        self.assertEqual(
+            vocabulary.getTerm(u"Null").title, _(u"Not evaluated")
+        )
