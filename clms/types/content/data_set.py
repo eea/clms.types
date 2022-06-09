@@ -62,23 +62,23 @@ class IDataSet(model.Schema):
             "dataResourceType",
             # CONTACT
             "responsiblePartyWithRole",
-            "responsibleParty",
-            "responsiblePartyRole",
+            # "responsibleParty",
+            # "responsiblePartyRole",
             # REFERENCE SYSTEM INFO
             "coordinateReferenceSystemList",
-            "coordinateReferenceSystem",
+            # "coordinateReferenceSystem",
             # DATA QUALITY INFO
             "conformitySpecification",
             "conformityPass",
             "qualityLineage",
             # DISTRIBUTION INFO
             "distributionInfo",
-            "dataResourceLocator",
-            "dataServices",
+            # "dataResourceLocator",
+            # "dataServices",
             # Non-visible metadata for the user
             "identifier",
             "point_of_contact_data",
-            "point_of_contact",
+            # "point_of_contact",
             "update_frequency",
             "distribution_format_list",
             "hierarchy_level",
@@ -299,13 +299,13 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    responsibleParty = RichText(
-        title=_(u"Responsible Party (DEPRECATED)"), required=False
-    )
+    # responsibleParty = RichText(
+    #     title=_(u"Responsible Party (DEPRECATED)"), required=False
+    # )
 
-    responsiblePartyRole = RichText(
-        title=_(u"Responsible Party Role (DEPRECATED)"), required=False
-    )
+    # responsiblePartyRole = RichText(
+    #     title=_(u"Responsible Party Role (DEPRECATED)"), required=False
+    # )
 
     # REFERENCE SYSTEM INFO
     #     Coordinate Reference System: coordinateReferenceSystem
@@ -320,10 +320,10 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    coordinateReferenceSystem = schema.TextLine(
-        title=_(u"Coordinate Reference System (DEPRECATED)"),
-        required=False,
-    )
+    # coordinateReferenceSystem = schema.TextLine(
+    #     title=_(u"Coordinate Reference System (DEPRECATED)"),
+    #     required=False,
+    # )
 
     # DATA QUALITY INFO
     #     Specification: conformitySpecification
@@ -360,17 +360,17 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    dataResourceLocator = schema.URI(
-        title=_(u"Data Resource Locator (DEPRECATED)"), required=False
-    )
+    # dataResourceLocator = schema.URI(
+    #     title=_(u"Data Resource Locator (DEPRECATED)"), required=False
+    # )
 
-    dataServices = RichText(
-        title=_(
-            u"Dataservices (DEPRECATED)",
-        ),
-        required=False,
-        readonly=False,
-    )
+    # dataServices = RichText(
+    #     title=_(
+    #         u"Dataservices (DEPRECATED)",
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
 
     # Non-visible metadata for the user
     #     Identifier: identifier
@@ -405,13 +405,13 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    point_of_contact = RichText(
-        title=_(
-            u"Point of contact (DEPRECATED)",
-        ),
-        required=False,
-        readonly=False,
-    )
+    # point_of_contact = RichText(
+    #     title=_(
+    #         u"Point of contact (DEPRECATED)",
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
 
     update_frequency = schema.TextLine(
         title=_(
@@ -607,10 +607,10 @@ class IDataSet(model.Schema):
             "downloadable_full_dataset",
             "downloadable_files",
             "dataset_download_information",
-            "dataset_full_path",
-            "dataset_full_format",
-            "dataset_full_source",
-            "wekeo_choices",
+            # "dataset_full_path",
+            # "dataset_full_format",
+            # "dataset_full_source",
+            # "wekeo_choices",
         ],
     )
 
@@ -649,51 +649,51 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    dataset_full_path = schema.TextLine(
-        title=_(
-            u"(DEPRECATED) Enter the path to the full dataset download file",
-        ),
-        description=_(
-            u"This is used when requesting the download from the map viewer",
-        ),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
+    # dataset_full_path = schema.TextLine(
+    #     title=_(
+    #         u"(DEPRECATED) Enter the path to the full dataset download file",
+    #     ),
+    #     description=_(
+    #         u"This is used when requesting the download from the map viewer",
+    #     ),
+    #     default=u"",
+    #     required=False,
+    #     readonly=False,
+    # )
 
-    dataset_full_format = schema.Choice(
-        title=_(
-            u"(DEPRECATED) Enter the format of the full dataset file",
-        ),
-        description=_(
-            u"",
-        ),
-        vocabulary="clms.types.FullDatasetFormatsVocabulary",
-        required=False,
-        readonly=False,
-    )
+    # dataset_full_format = schema.Choice(
+    #     title=_(
+    #         u"(DEPRECATED) Enter the format of the full dataset file",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     vocabulary="clms.types.FullDatasetFormatsVocabulary",
+    #     required=False,
+    #     readonly=False,
+    # )
 
-    dataset_full_source = schema.Choice(
-        title=_(
-            u"(DEPRECATED) Enter the source of the full dataset file",
-        ),
-        description=_(
-            u"",
-        ),
-        vocabulary=u"clms.types.FullDatasetSourcesVocabulary",
-        required=False,
-        readonly=False,
-    )
+    # dataset_full_source = schema.Choice(
+    #     title=_(
+    #         u"(DEPRECATED) Enter the source of the full dataset file",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     vocabulary=u"clms.types.FullDatasetSourcesVocabulary",
+    #     required=False,
+    #     readonly=False,
+    # )
 
-    wekeo_choices = schema.Text(
-        title=_(
-            "(DEPRECATED) WEKEO choices",
-        ),
-        description=_(""),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
+    # wekeo_choices = schema.Text(
+    #     title=_(
+    #         "(DEPRECATED) WEKEO choices",
+    #     ),
+    #     description=_(""),
+    #     default=u"",
+    #     required=False,
+    #     readonly=False,
+    # )
 
     downloadable_files = JSONField(
         title=_("Downloadable files"),
