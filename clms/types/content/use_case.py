@@ -73,47 +73,47 @@ class IUseCase(model.Schema):
         required=False,
     )
 
-    documentLinks = schema.List(
-        title=_(
-            u"Links to use case documents",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.URI(
-            title=u"",
-        ),
-        required=False,
-        readonly=False,
-    )
+    # documentLinks = schema.List(
+    #     title=_(
+    #         u"Links to use case documents",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.URI(
+    #         title=u"",
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
 
-    videoLinks = schema.List(
-        title=_(
-            u"Links to use case videos",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.URI(
-            title=u"",
-        ),
-        required=False,
-        readonly=False,
-    )
+    # videoLinks = schema.List(
+    #     title=_(
+    #         u"Links to use case videos",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.URI(
+    #         title=u"",
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
 
-    websiteLinks = schema.List(
-        title=_(
-            u"Links to use case websites",
-        ),
-        description=_(
-            u"",
-        ),
-        value_type=schema.URI(
-            title=u"",
-        ),
-        required=False,
-        readonly=False,
-    )
+    # websiteLinks = schema.List(
+    #     title=_(
+    #         u"Links to use case websites",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     value_type=schema.URI(
+    #         title=u"",
+    #     ),
+    #     required=False,
+    #     readonly=False,
+    # )
 
     image = namedfile.NamedBlobImage(
         title=_(u"image"),
@@ -125,35 +125,35 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    clms_products_used = schema.TextLine(
-        title=_(u"Copernicus Land Monitoring Service products used"),
-        required=True,
-    )
+    # clms_products_used = schema.TextLine(
+    #     title=_(u"Copernicus Land Monitoring Service products used"),
+    #     required=True,
+    # )
 
     bbox = schema.TextLine(
         title=_(u"Use Case BoundingBox"),
         required=False,
     )
 
-    upload_use_case_documents = schema.TextLine(
-        title=_(u"Use Case document upload"),
-        required=False,
-    )
+    # upload_use_case_documents = schema.TextLine(
+    #     title=_(u"Use Case document upload"),
+    #     required=False,
+    # )
 
-    upload_use_case_images = schema.TextLine(
-        title=_(u"Use Case image upload"),
-        required=False,
-    )
+    # upload_use_case_images = schema.TextLine(
+    #     title=_(u"Use Case image upload"),
+    #     required=False,
+    # )
 
-    upload_use_case_videos = schema.TextLine(
-        title=_(u"Use Case video upload"),
-        required=False,
-    )
+    # upload_use_case_videos = schema.TextLine(
+    #     title=_(u"Use Case video upload"),
+    #     required=False,
+    # )
 
-    origin_name = schema.TextLine(
-        title=_(u"Use Case origin name"),
-        required=False,
-    )
+    # origin_name = schema.TextLine(
+    #     title=_(u"Use Case origin name"),
+    #     required=False,
+    # )
 
 
 @implementer(IUseCase)
