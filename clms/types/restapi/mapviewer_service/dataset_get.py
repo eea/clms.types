@@ -21,7 +21,7 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
     """Return the mapviewer configuration"""
 
     def reply(self):
-        """ return the JSON """
+        """return the JSON"""
         result = super().reply()
         result["Download"] = True
         return result
@@ -63,6 +63,9 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                             "Title": layer_item.get("title", ""),
                             "Default_active": layer_item.get(
                                 "default_active", False
+                            ),
+                            "StaticImageLegend": layer_item.get(
+                                "static_legend_url", ""
                             ),
                         }
                     )

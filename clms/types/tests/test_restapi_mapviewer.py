@@ -21,12 +21,12 @@ from clms.types.testing import CLMS_TYPES_RESTAPI_TESTING
 
 
 class TestLRFMapViewer(unittest.TestCase):
-    """ test the @mapviewer endpoint applied to a LRF """
+    """test the @mapviewer endpoint applied to a LRF"""
 
     layer = CLMS_TYPES_RESTAPI_TESTING
 
     def setUp(self):
-        """ set up"""
+        """set up"""
         self.portal = self.layer["portal"]
 
         self.portal = self.layer["portal"]
@@ -90,16 +90,22 @@ class TestLRFMapViewer(unittest.TestCase):
                         "id": "layer1",
                         "title": "Layer 1",
                         "default_active": False,
+                        "hide": False,
+                        "static_legend_url": "http://myservice.com/service",
                     },
                     {
                         "id": "layer2",
                         "title": "Layer 2",
                         "default_active": True,
+                        "hide": False,
+                        "static_legend_url": "",
                     },
                     {
                         "id": "layer3",
                         "title": "Layer 3",
                         "default_active": False,
+                        "hide": False,
+                        "static_legend_url": "",
                     },
                 ]
             },
@@ -124,18 +130,21 @@ class TestLRFMapViewer(unittest.TestCase):
                         "title": "Layer 1",
                         "default_active": False,
                         "hide": True,
+                        "static_legend_url": "http://myservice.com/service",
                     },
                     {
                         "id": "layer2",
                         "title": "Layer 2",
                         "default_active": True,
                         "hide": False,
+                        "static_legend_url": "",
                     },
                     {
                         "id": "layer3",
                         "title": "Layer 3",
                         "default_active": False,
                         "hide": False,
+                        "static_legend_url": "",
                     },
                 ]
             },
@@ -166,16 +175,22 @@ class TestLRFMapViewer(unittest.TestCase):
                         "id": "layer1",
                         "title": "Layer 1",
                         "default_active": False,
+                        "hide": True,
+                        "static_legend_url": "http://myservice.com/service",
                     },
                     {
                         "id": "layer2",
                         "title": "Layer 2",
                         "default_active": True,
+                        "hide": False,
+                        "static_legend_url": "",
                     },
                     {
                         "id": "layer3",
                         "title": "Layer 3",
                         "default_active": False,
+                        "hide": False,
+                        "static_legend_url": "",
                     },
                 ]
             },
@@ -200,18 +215,21 @@ class TestLRFMapViewer(unittest.TestCase):
                         "title": "Layer 1",
                         "default_active": False,
                         "hide": True,
+                        "static_legend_url": "http://myservice.com/service",
                     },
                     {
                         "id": "layer2",
                         "title": "Layer 2",
                         "default_active": True,
                         "hide": False,
+                        "static_legend_url": "",
                     },
                     {
                         "id": "layer3",
                         "title": "Layer 3",
                         "default_active": False,
                         "hide": False,
+                        "static_legend_url": "",
                     },
                 ]
             },
@@ -228,11 +246,11 @@ class TestLRFMapViewer(unittest.TestCase):
         transaction.commit()
 
     def tearDown(self):
-        """ teardown """
+        """teardown"""
         self.api_session.close()
 
     def test_response(self):
-        """ test response"""
+        """test response"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.portal.en.absolute_url())
         )
@@ -249,7 +267,7 @@ class TestLRFMapViewer(unittest.TestCase):
         self.assertFalse(result["Download"])
 
     def test_component_in_response(self):
-        """ test the component is in the response """
+        """test the component is in the response"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.portal.en.absolute_url())
         )
@@ -268,7 +286,7 @@ class TestLRFMapViewer(unittest.TestCase):
         self.assertIn("Products", result["Components"][0])
 
     def test_product_info(self):
-        """ test product info in endpoint"""
+        """test product info in endpoint"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.portal.en.absolute_url())
         )
@@ -283,7 +301,7 @@ class TestLRFMapViewer(unittest.TestCase):
         self.assertIn("Datasets", products[0])
 
     def test_dataset_info(self):
-        """ test dataset info in endpoint"""
+        """test dataset info in endpoint"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.portal.en.absolute_url())
         )
@@ -322,7 +340,7 @@ class TestLRFMapViewer(unittest.TestCase):
         )
 
     def test_dataset_layers(self):
-        """ test layer info"""
+        """test layer info"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.portal.en.absolute_url())
         )
@@ -336,15 +354,16 @@ class TestLRFMapViewer(unittest.TestCase):
             self.assertIn("LayerId", layer)
             self.assertIn("Title", layer)
             self.assertIn("Default_active", layer)
+            self.assertIn("StaticImageLegend", layer)
 
 
 class TestDataSetMapViewer(unittest.TestCase):
-    """ test the @mapviewer endpoint applied to a DataSet """
+    """test the @mapviewer endpoint applied to a DataSet"""
 
     layer = CLMS_TYPES_RESTAPI_TESTING
 
     def setUp(self):
-        """ set up"""
+        """set up"""
         self.portal = self.layer["portal"]
         self.portal_url = self.portal.absolute_url()
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
@@ -537,7 +556,7 @@ class TestDataSetMapViewer(unittest.TestCase):
         transaction.commit()
 
     def test_mapviewer_response_json(self):
-        """ test the response defaults """
+        """test the response defaults"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.dataset1_1.absolute_url())
         )
@@ -554,7 +573,7 @@ class TestDataSetMapViewer(unittest.TestCase):
         self.assertTrue(result["Download"])
 
     def test_component_in_response(self):
-        """ test the component is in the response """
+        """test the component is in the response"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.dataset1_1.absolute_url())
         )
@@ -573,7 +592,7 @@ class TestDataSetMapViewer(unittest.TestCase):
         self.assertIn("Products", result["Components"][0])
 
     def test_product_info(self):
-        """ test product info in endpoint"""
+        """test product info in endpoint"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.dataset1_1.absolute_url())
         )
@@ -588,7 +607,7 @@ class TestDataSetMapViewer(unittest.TestCase):
         self.assertIn("Datasets", products[0])
 
     def test_dataset_info(self):
-        """ test dataset info in endpoint"""
+        """test dataset info in endpoint"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.dataset1_1.absolute_url())
         )
@@ -627,7 +646,7 @@ class TestDataSetMapViewer(unittest.TestCase):
         )
 
     def test_dataset_layers(self):
-        """ test layer info"""
+        """test layer info"""
         response = self.api_session.get(
             "{}/@mapviewer".format(self.dataset1_1.absolute_url())
         )
@@ -641,3 +660,4 @@ class TestDataSetMapViewer(unittest.TestCase):
             self.assertIn("LayerId", layer)
             self.assertIn("Title", layer)
             self.assertIn("Default_active", layer)
+            self.assertIn("StaticImageLegend", layer)
