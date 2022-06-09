@@ -25,12 +25,12 @@ def usecase_to_discomap(usecase, operation):
     use_case_topics = usecase.topics
     spatial_coverage = usecase.geographicCoverage
     user_case_outcome = usecase.outcome
-    links_to_documents = usecase.documentLinks or []
-    links_to_videos = usecase.videoLinks or []
-    links_to_web_sites = usecase.websiteLinks or []
-    upload_use_case_documents = usecase.upload_use_case_documents or []
-    upload_use_case_images = usecase.upload_use_case_images or []
-    upload_use_case_videos = usecase.upload_use_case_videos or []
+    # links_to_documents = usecase.documentLinks or []
+    # links_to_videos = usecase.videoLinks or []
+    # links_to_web_sites = usecase.websiteLinks or []
+    # upload_use_case_documents = usecase.upload_use_case_documents or []
+    # upload_use_case_images = usecase.upload_use_case_images or []
+    # upload_use_case_videos = usecase.upload_use_case_videos or []
 
     log.info(spatial_coverage)
     fme_data = {
@@ -65,27 +65,27 @@ def usecase_to_discomap(usecase, operation):
                 ),
             },
             {"name": "User_case_outcome", "value": user_case_outcome},
-            {
-                "name": "Links_to_documents",
-                "value": "".join(links_to_documents),
-            },
-            {"name": "Links_to_videos", "value": "".join(links_to_videos)},
-            {
-                "name": "Links_to_web_sites",
-                "value": "".join(links_to_web_sites),
-            },
-            {
-                "name": "Upload_use_case_documents",
-                "value": upload_use_case_documents,
-            },
-            {
-                "name": "Upload_use_case_images",
-                "value": upload_use_case_images,
-            },
-            {
-                "name": "Upload_use_case_videos",
-                "value": upload_use_case_videos,
-            },
+            # {
+            #     "name": "Links_to_documents",
+            #     "value": "".join(links_to_documents),
+            # },
+            # {"name": "Links_to_videos", "value": "".join(links_to_videos)},
+            # {
+            #     "name": "Links_to_web_sites",
+            #     "value": "".join(links_to_web_sites),
+            # },
+            # {
+            #     "name": "Upload_use_case_documents",
+            #     "value": upload_use_case_documents,
+            # },
+            # {
+            #     "name": "Upload_use_case_images",
+            #     "value": upload_use_case_images,
+            # },
+            # {
+            #     "name": "Upload_use_case_videos",
+            #     "value": upload_use_case_videos,
+            # },
             {"name": "Use_Case_id", "value": use_case_uid},
             {"name": "Operation", "value": operation},
         ]

@@ -27,12 +27,13 @@ class ConformityPassVocabulary:
     """
 
     def __call__(self, context):
-        # Just an example list of content for our vocabulary,
-        # this can be any static or dynamic data, a catalog result for example.
+        # pylint: disable=line-too-long
+        # item names taken from:
+        # https://inspire.ec.europa.eu/metadata-codelist/DegreeOfConformity
         items = [
-            VocabItem(u"false", _(u"False")),
-            VocabItem(u"true", _(u"True")),
-            VocabItem(u"Null", _(u"Null")),
+            VocabItem(u"false", _(u"Not Conformant")),
+            VocabItem(u"true", _(u"Conformant")),
+            VocabItem(u"Null", _(u"Not evaluated")),
         ]
 
         # create a list of SimpleTerm items:

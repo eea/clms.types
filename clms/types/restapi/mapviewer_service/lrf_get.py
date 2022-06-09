@@ -33,7 +33,10 @@ class RootMapViewerServiceGet(Service):
                     "ComponentTitle": component.get("title"),
                     "ComponentDescription": component.get("description"),
                     # pylint: disable=line-too-long
-                    "Products": sorted(component.get("products"), key=lambda x: x.get("PositionInParent")),  # noqa: E501
+                    "Products": sorted(
+                        component.get("products"),
+                        key=lambda x: x.get("PositionInParent"),
+                    ),  # noqa: E501
                 }
             )
 
@@ -45,7 +48,9 @@ class RootMapViewerServiceGet(Service):
             },
             "Download": False,
             # pylint: disable=line-too-long
-            "Components": sorted(components, key=lambda x: x.get("ComponentTitle")),  # noqa: E501
+            "Components": sorted(
+                components, key=lambda x: x.get("ComponentTitle")
+            ),  # noqa: E501
         }
 
     def get_datasets(self):
@@ -86,33 +91,40 @@ class RootMapViewerServiceGet(Service):
             datasets = self.get_datasets_for_product(product)
             if datasets:
                 # pylint: disable=line-too-long
-                component_title, component_description = self.get_component_info(product)  # noqa: E501
+                (
+                    component_title,
+                    component_description,
+                ) = self.get_component_info(
+                    product
+                )  # noqa: E501
                 yield {
                     "Component": (component_title, component_description),
                     "ProductTitle": product.Title(),
                     "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
                     # pylint: disable=line-too-long
-                    "Datasets": sorted(datasets, key=lambda x: x.get("PositionInParent")),  # noqa: E501
+                    "Datasets": sorted(
+                        datasets, key=lambda x: x.get("PositionInParent")
+                    ),  # noqa: E501
                     "PositionInParent": getObjPositionInParent(product),
                 }
 
     def get_component_description(self, term):
         """get the component description"""
         available_components = api.portal.get_registry_record(
-            'clms.types.product_component.product_components')
-        components = json.loads(available_components).get('items', [])
+            "clms.types.product_component.product_components"
+        )
+        components = json.loads(available_components).get("items", [])
         for item in components:
-            if item.get('@id') == term:
-                return item.get('description', "")
+            if item.get("@id") == term:
+                return item.get("description", "")
 
         return ""
 
     def get_component_info(self, product):
         """get the component information for a product"""
         vocab = getUtility(
-            IVocabularyFactory,
-            name="clms.types.ComponentTitleVocabulary"
+            IVocabularyFactory, name="clms.types.ComponentTitleVocabulary"
         )
         terms = vocab(product)
         try:
@@ -152,6 +164,9 @@ class RootMapViewerServiceGet(Service):
                             "Default_active": layer_item.get(
                                 "default_active", False
                             ),
+                            "StaticImageLegend": layer_item.get(
+                                "static_legend_url", ""
+                            ),
                         }
                     )
             if layers:
@@ -161,6 +176,7 @@ class RootMapViewerServiceGet(Service):
                     # its parent's name
                     # pylint: disable=line-too-long
                     "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
+                    # pylint: disable=line-too-long
                     "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
                     "DatasetId": api.content.get_uuid(obj=dataset),
                     "DatasetTitle": dataset.Title(),

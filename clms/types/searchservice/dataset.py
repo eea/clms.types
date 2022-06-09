@@ -32,16 +32,16 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             if self.context.accessAndUseConstraints
             else ""
         )
-        responsibleParty = (
-            self.context.responsibleParty.output
-            if self.context.responsibleParty
-            else ""
-        )
-        responsiblePartyRole = (
-            self.context.responsiblePartyRole.output
-            if self.context.responsiblePartyRole
-            else ""
-        )
+        # responsibleParty = (
+        #     self.context.responsibleParty.output
+        #     if self.context.responsibleParty
+        #     else ""
+        # )
+        # responsiblePartyRole = (
+        #     self.context.responsiblePartyRole.output
+        #     if self.context.responsiblePartyRole
+        #     else ""
+        # )
         conformitySpecification = (
             self.context.conformitySpecification.output
             if self.context.conformitySpecification
@@ -52,28 +52,28 @@ class DatasetMetadataAdapter(BaseDexterityCoreMetadataAdapter):
             if self.context.qualityLineage
             else ""
         )
-        dataServices = (
-            self.context.dataServices.output
-            if self.context.dataServices
-            else ""
-        )
-        point_of_contact = (
-            self.context.point_of_contact.output
-            if self.context.point_of_contact
-            else ""
-        )
+        # dataServices = (
+        #     self.context.dataServices.output
+        #     if self.context.dataServices
+        #     else ""
+        # )
+        # point_of_contact = (
+        #     self.context.point_of_contact.output
+        #     if self.context.point_of_contact
+        #     else ""
+        # )
 
         metadata["SearchableText"] = " ".join(
             [
                 dataResourceAbstract,
                 accessAndUseConstraints,
                 self.context.qualitySpatialResolution_line or "",
-                responsibleParty,
-                responsiblePartyRole,
+                # responsibleParty,
+                # responsiblePartyRole,
                 conformitySpecification,
                 qualityLineage,
-                dataServices,
-                point_of_contact,
+                # dataServices,
+                # point_of_contact,
             ]
         )
 
