@@ -27,6 +27,7 @@ class ConformityPassVocabulary:
     """
 
     def __call__(self, context):
+        # pylint: disable=line-too-long
         # item names taken from: https://inspire.ec.europa.eu/metadata-codelist/DegreeOfConformity
         items = [
             VocabItem(u"false", _(u"Not Conformant")),
