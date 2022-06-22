@@ -26,16 +26,21 @@ class IUseCase(model.Schema):
 
     responsibleOrganization = schema.TextLine(
         title=_(u"Responsible organization"),
+        description=_(
+            "Provide the name of the organisation that conducted the use case."
+        ),
         required=True,
     )
 
     contactName = schema.TextLine(
         title=_(u"Contact person name"),
+        description=_("Provide the use case focal point name."),
         required=False,
     )
 
     contactEmail = schema.TextLine(
         title=_(u"Contact person email"),
+        description=_("Provide the use case focal point email."),
         required=False,
     )
 
@@ -44,7 +49,9 @@ class IUseCase(model.Schema):
             u"Use case topics",
         ),
         description=_(
-            u"Multiple selection allowed",
+            u"Choose at least one topic from the drop-down list. You can"
+            u" consult more about the classification here:"
+            u" https://inspire.ec.europa.eu/glossary/MetadataElement-TopicCategory",
         ),
         value_type=schema.Choice(
             title=_(
@@ -60,16 +67,26 @@ class IUseCase(model.Schema):
 
     outcome = schema.TextLine(
         title=_(u"User case outcome"),
+        description=_(
+            "Specify the use case result: Monitoring system/Web"
+            " Application/Viewer/Modelling service, Bulletin, Publication,"
+            " Study, Indicator(s), etc. "
+        ),
         required=False,
     )
 
     image = namedfile.NamedBlobImage(
-        title=_(u"image"),
+        title=_(u"Image"),
+        description=_("Provide a representative picture of the use case."),
         required=False,
     )
 
     geographicCoverage = schema.List(
         title=_(u"Spatial coverage"),
+        description=_(
+            "Choose at least one value from the drop down list with the"
+            " location represented by the data."
+        ),
         required=True,
         value_type=schema.Choice(
             title=_(
