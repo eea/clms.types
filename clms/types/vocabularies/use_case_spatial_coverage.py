@@ -3,11 +3,9 @@
 Topics vocabulary definition
 """
 
-from clms.types import _
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleTerm
-from zope.schema.vocabulary import SimpleVocabulary
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 
 class VocabItem:
