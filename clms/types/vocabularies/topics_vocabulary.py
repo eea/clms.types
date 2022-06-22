@@ -30,9 +30,25 @@ class TopicsVocabulary:
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem(u"Topic 1", _(u"Topic 1")),
-            VocabItem(u"Topic 2", _(u"Topic 2")),
-            VocabItem(u"Topic 3", _(u"Topic 3")),
+            VocabItem("1", _("Biota")),
+            VocabItem("2", _("Boundaries")),
+            VocabItem("3", _("Climatology / Meteorology / Atmosphere")),
+            VocabItem("4", _("Economy")),
+            VocabItem("5", _("Elevation")),
+            VocabItem("6", _("Environment")),
+            VocabItem("7", _("Farming")),
+            VocabItem("8", _("Geoscientific Information")),
+            VocabItem("9", _("Health")),
+            VocabItem("10", _("Imagery / Base Maps / Earth Cover")),
+            VocabItem("11", _("Inland Waters")),
+            VocabItem("12", _("Intelligence / Military")),
+            VocabItem("13", _("Location")),
+            VocabItem("14", _("Oceans")),
+            VocabItem("15", _("Planning / Cadastre")),
+            VocabItem("16", _("Society")),
+            VocabItem("17", _("Structure")),
+            VocabItem("18", _("Transportation")),
+            VocabItem("19", _("Utilities / Communication")),
         ]
 
         # create a list of SimpleTerm items:

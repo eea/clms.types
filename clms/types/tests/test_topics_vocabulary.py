@@ -10,7 +10,7 @@ from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 
 
 class TestTopicsVocabularyIntegrationTest(unittest.TestCase):
-    """ test the vocabulary"""
+    """test the vocabulary"""
 
     layer = CLMS_TYPES_INTEGRATION_TESTING
 
@@ -30,6 +30,6 @@ class TestTopicsVocabularyIntegrationTest(unittest.TestCase):
         vocabulary = factory(self.portal)
         self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
 
-        self.assertIn("Topic 1", vocabulary)
-        self.assertIn("Topic 2", vocabulary)
-        self.assertIn("Topic 3", vocabulary)
+        self.assertIn("1", vocabulary)
+        self.assertIn("2", vocabulary)
+        self.assertIn("3", vocabulary)

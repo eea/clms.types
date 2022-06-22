@@ -15,37 +15,32 @@ from clms.types import _
 class IUseCase(model.Schema):
     """Marker interface for UseCase"""
 
-    # If you want, you can load a xml model created TTW here
-    # and customize it in Python:
-
-    # model.load('use_case.xml')
-
-    # title = schema.TextLine(
-    #     title=_(u"Use Case Title"),
-    #     required=True
-    # )
-
-    # summary = schema.TextLine(
-    #     title=_(u"Use Case Summary"),
-    #     required=False
-    # )
-
     submittingProducionYear = schema.TextLine(
-        title=_(u"Submitting producion year of Use Case"), required=False
+        title=_(u"Submitting producion year of Use Case"),
+        description=_(
+            "Provide the year or a year interval in which the use case was"
+            " produced, for example: 2019 or 2019-2022"
+        ),
+        required=True,
     )
 
     responsibleOrganization = schema.TextLine(
         title=_(u"Responsible organization"),
-        required=False,
+        description=_(
+            "Provide the name of the organisation that conducted the use case."
+        ),
+        required=True,
     )
 
     contactName = schema.TextLine(
         title=_(u"Contact person name"),
+        description=_("Provide the use case focal point name."),
         required=False,
     )
 
     contactEmail = schema.TextLine(
         title=_(u"Contact person email"),
+        description=_("Provide the use case focal point email."),
         required=False,
     )
 
@@ -54,7 +49,10 @@ class IUseCase(model.Schema):
             u"Use case topics",
         ),
         description=_(
-            u"Multiple selection allowed",
+            u"Choose at least one topic from the drop-down list. You can"
+            u" consult more about the classification here:"
+            # pylint: disable=line-too-long
+            u" https://inspire.ec.europa.eu/glossary/MetadataElement-TopicCategory",  # noqa
         ),
         value_type=schema.Choice(
             title=_(
@@ -70,90 +68,37 @@ class IUseCase(model.Schema):
 
     outcome = schema.TextLine(
         title=_(u"User case outcome"),
+        description=_(
+            "Specify the use case result: Monitoring system/Web"
+            " Application/Viewer/Modelling service, Bulletin, Publication,"
+            " Study, Indicator(s), etc. "
+        ),
         required=False,
     )
-
-    # documentLinks = schema.List(
-    #     title=_(
-    #         u"Links to use case documents",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.URI(
-    #         title=u"",
-    #     ),
-    #     required=False,
-    #     readonly=False,
-    # )
-
-    # videoLinks = schema.List(
-    #     title=_(
-    #         u"Links to use case videos",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.URI(
-    #         title=u"",
-    #     ),
-    #     required=False,
-    #     readonly=False,
-    # )
-
-    # websiteLinks = schema.List(
-    #     title=_(
-    #         u"Links to use case websites",
-    #     ),
-    #     description=_(
-    #         u"",
-    #     ),
-    #     value_type=schema.URI(
-    #         title=u"",
-    #     ),
-    #     required=False,
-    #     readonly=False,
-    # )
 
     image = namedfile.NamedBlobImage(
-        title=_(u"image"),
+        title=_(u"Image"),
+        description=_("Provide a representative picture of the use case."),
         required=False,
     )
 
-    geographicCoverage = schema.TextLine(
+    geographicCoverage = schema.List(
         title=_(u"Spatial coverage"),
+        description=_(
+            "Choose at least one value from the drop down list with the"
+            " location represented by the data."
+        ),
         required=True,
+        value_type=schema.Choice(
+            title=_(
+                u"Spatial coverage",
+            ),
+            vocabulary=u"clms.types.UseCaseSpatialCoverageVocabulary",
+            required=True,
+            readonly=False,
+        ),
+        readonly=False,
     )
-
-    # clms_products_used = schema.TextLine(
-    #     title=_(u"Copernicus Land Monitoring Service products used"),
-    #     required=True,
-    # )
-
-    bbox = schema.TextLine(
-        title=_(u"Use Case BoundingBox"),
-        required=False,
-    )
-
-    # upload_use_case_documents = schema.TextLine(
-    #     title=_(u"Use Case document upload"),
-    #     required=False,
-    # )
-
-    # upload_use_case_images = schema.TextLine(
-    #     title=_(u"Use Case image upload"),
-    #     required=False,
-    # )
-
-    # upload_use_case_videos = schema.TextLine(
-    #     title=_(u"Use Case video upload"),
-    #     required=False,
-    # )
-
-    # origin_name = schema.TextLine(
-    #     title=_(u"Use Case origin name"),
-    #     required=False,
-    # )
 
 
 @implementer(IUseCase)
