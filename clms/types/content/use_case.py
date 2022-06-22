@@ -51,7 +51,8 @@ class IUseCase(model.Schema):
         description=_(
             u"Choose at least one topic from the drop-down list. You can"
             u" consult more about the classification here:"
-            u" https://inspire.ec.europa.eu/glossary/MetadataElement-TopicCategory",
+            # pylint: disable=line-too-long
+            u" https://inspire.ec.europa.eu/glossary/MetadataElement-TopicCategory",  # noqa
         ),
         value_type=schema.Choice(
             title=_(
