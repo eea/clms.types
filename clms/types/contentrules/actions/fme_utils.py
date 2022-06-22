@@ -6,15 +6,24 @@ import logging
 
 import requests
 from plone import api
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 
-log = logging.getLogger("Plone")
+log = logging.getLogger("fme_utils")
 
 
 def usecase_to_discomap(usecase, operation):
     """
     notify FME the relevant operation on the usecase
     """
-    clms_products_used = usecase.clms_products_used
+    geograpicCoverageVocabulary = getUtility(
+        IVocabularyFactory, name="clms.types.UseCaseSpatialCoverageVocabulary"
+    )(usecase)
+
+    topicsVocabulary = getUtility(
+        IVocabularyFactory, name="clms.types.TopicsVocabulary"
+    )(usecase)
+
     use_case_uid = usecase.UID()
     use_case_title = usecase.title
     use_case_summary = usecase.description
@@ -22,24 +31,28 @@ def usecase_to_discomap(usecase, operation):
     responsible_organisation = usecase.responsibleOrganization
     contact_person_name_ = usecase.contactName
     contact_person_email_ = usecase.contactEmail
-    use_case_topics = usecase.topics
-    spatial_coverage = usecase.geographicCoverage
-    user_case_outcome = usecase.outcome
-    # links_to_documents = usecase.documentLinks or []
-    # links_to_videos = usecase.videoLinks or []
-    # links_to_web_sites = usecase.websiteLinks or []
-    # upload_use_case_documents = usecase.upload_use_case_documents or []
-    # upload_use_case_images = usecase.upload_use_case_images or []
-    # upload_use_case_videos = usecase.upload_use_case_videos or []
+    use_case_topics = ",".join(
+        [topicsVocabulary.getTerm(item).title for item in usecase.topics]
+    )
+    spatial_coverage = ",".join(
+        [
+            geograpicCoverageVocabulary.getTerm(item).title
+            for item in usecase.geographicCoverage
+        ]
+    )
+    use_case_outcome = usecase.outcome
 
-    log.info(spatial_coverage)
+    used_products = [
+        api.content.get(UID=item).Title() for item in usecase.products
+    ]
+    used_datasets = [
+        api.content.get(UID=item).Title() for item in usecase.datasets
+    ]
+    clms_products_used = ",".join(used_products + used_datasets)
+
     fme_data = {
         "publishedParameters": [
             {"name": "Use_case_title", "value": use_case_title},
-            {
-                "name": "Copernicus_Land_Monitoring_Service_products_used",
-                "value": clms_products_used,
-            },
             {"name": "Use_case_summary", "value": use_case_summary},
             {
                 "name": "Use_case_submitting_production_year",
@@ -58,38 +71,25 @@ def usecase_to_discomap(usecase, operation):
                 "value": contact_person_email_,
             },
             {"name": "Use_case_topics", "value": "".join(use_case_topics)},
+            {"name": "User_case_outcome", "value": use_case_outcome},
+            {"name": "Spatial_coverage", "value": spatial_coverage},
             {
-                "name": "Spatial_coverage",
-                "value": "".join(
-                    str(x) + "," for x in spatial_coverage.split(",")
-                ),
+                "name": "Copernicus_Land_Monitoring_Service_products_used",
+                "value": clms_products_used,
             },
-            {"name": "User_case_outcome", "value": user_case_outcome},
-            # {
-            #     "name": "Links_to_documents",
-            #     "value": "".join(links_to_documents),
-            # },
-            # {"name": "Links_to_videos", "value": "".join(links_to_videos)},
-            # {
-            #     "name": "Links_to_web_sites",
-            #     "value": "".join(links_to_web_sites),
-            # },
-            # {
-            #     "name": "Upload_use_case_documents",
-            #     "value": upload_use_case_documents,
-            # },
-            # {
-            #     "name": "Upload_use_case_images",
-            #     "value": upload_use_case_images,
-            # },
-            # {
-            #     "name": "Upload_use_case_videos",
-            #     "value": upload_use_case_videos,
-            # },
             {"name": "Use_Case_id", "value": use_case_uid},
             {"name": "Operation", "value": operation},
         ]
     }
+    if usecase.image:
+        fme_data["publishedParameters"].append(
+            {
+                "name": "Link_to_image",
+                "value": "{url}/@@download/image".format(
+                    url=usecase.absolute_url()
+                ),
+            },
+        )
 
     fme_url = api.portal.get_registry_record("clms.types.usecase_fme.fme_url")
     fme_token = api.portal.get_registry_record("clms.types.usecase_fme.token")

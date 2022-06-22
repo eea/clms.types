@@ -106,6 +106,12 @@
         component=".fme_operations_vocabulary.FMEOperationsVocabularyFactory"
         name="clms.types.FMEOperationsVocabulary" />
 
+    <utility
+        component=".use_case_spatial_coverage.UseCaseSpatialCoverageVocabularyFactory"
+        name="clms.types.UseCaseSpatialCoverageVocabulary" />
+
+
+
 
 
 </configure>
