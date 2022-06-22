@@ -90,7 +90,7 @@ class IUseCase(model.Schema):
         required=True,
         value_type=schema.Choice(
             title=_(
-                u"Spatial coverag",
+                u"Spatial coverage",
             ),
             vocabulary=u"clms.types.UseCaseSpatialCoverageVocabulary",
             required=True,
