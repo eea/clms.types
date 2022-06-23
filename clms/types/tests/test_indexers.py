@@ -16,6 +16,7 @@ from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.content.data_set import IDataSet
 from clms.types.content.product import IProduct
+from clms.types.content.technical_library import ITechnicalLibrary
 from clms.types.indexers.associated_datasets import (
     associated_datasets_behavior,
 )
@@ -24,6 +25,7 @@ from clms.types.indexers.associated_products import (
 )
 from clms.types.indexers.component_title import component_title_behavior
 from clms.types.indexers.custodian_information import custodian_information
+from clms.types.indexers.documentation_sorting import documentation_sorting
 from clms.types.indexers.geographic_coverage import geographic_coverage
 from clms.types.indexers.spatial_resolution import spatial_resolution
 from clms.types.indexers.temporal_extent import temporal_extent
@@ -31,7 +33,7 @@ from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 
 
 class TestAssociatedDatasetsIndexer(unittest.TestCase):
-    """ test associated_datasets indexer """
+    """test associated_datasets indexer"""
 
     layer = CLMS_TYPES_INTEGRATION_TESTING
 
@@ -81,6 +83,18 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         )
         self.document = api.content.create(
             container=self.portal, type="Document", id="document1"
+        )
+        self.technical_library1 = api.content.create(
+            container=self.portal,
+            type="TechnicalLibrary",
+            id="technical-1",
+            technical_library_categorization=["18fdjdprkq"],
+        )
+
+        self.technical_library2 = api.content.create(
+            container=self.portal,
+            type="TechnicalLibrary",
+            id="technical-2",
         )
 
     def test_newsitem_associated_datasets_indexer(self):
@@ -152,7 +166,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertRaises(AttributeError, adapter)
 
     def test_dataset_custodian_information_indexer(self):
-        """ test the value of the custodian information indexer """
+        """test the value of the custodian information indexer"""
         responsibleParty1 = {
             "organisationName": "The Organization",
             "roleCode": "custodian",
@@ -180,7 +194,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(indexed_value[0], "The Organization")
 
     def test_dataset_custodian_information_adapter(self):
-        """ test the value of the custodian information indexer adapter """
+        """test the value of the custodian information indexer adapter"""
         responsibleParty1 = {
             "organisationName": "The Organization",
             "roleCode": "custodian",
@@ -226,7 +240,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertRaises(AttributeError, adapter)
 
     def test_geographic_coverage_indexer(self):
-        """ test the geographic coverage indexer """
+        """test the geographic coverage indexer"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         self.dataset.geographicCoverage = {"geolocation": [{"label": "EEA39"}]}
 
@@ -235,7 +249,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(indexed_value[0], "EEA39")
 
     def test_geographic_coverage_indexer_adapter(self):
-        """ test the geographic coverage indexer adapter"""
+        """test the geographic coverage indexer adapter"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         self.dataset.geographicCoverage = {"geolocation": [{"label": "EEA39"}]}
 
@@ -249,7 +263,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(indexed_value[0], "EEA39")
 
     def test_geographic_coverage_indexer_adapter_fails(self):
-        """ test the geographic coverage indexer adapter in a document"""
+        """test the geographic coverage indexer adapter in a document"""
         self.assertFalse(IDataSet.providedBy(self.document))
         adapter = getMultiAdapter(
             (self.document, self.portal_catalog),
@@ -259,7 +273,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertRaises(AttributeError, adapter)
 
     def test_spatial_resolution_indexer(self):
-        """ test the spatial resolution indexer in a dataset"""
+        """test the spatial resolution indexer in a dataset"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         self.dataset.qualitySpatialResolution_line = "1 km,100 m"
         indexed_value = spatial_resolution(self.dataset)()
@@ -269,7 +283,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertIn("100 m", indexed_value)
 
     def test_spatial_resolution_indexer_adapter(self):
-        """ test the spatial resolution indexer adapter in a dataset"""
+        """test the spatial resolution indexer adapter in a dataset"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         self.dataset.qualitySpatialResolution_line = "1 km,100 m"
 
@@ -285,7 +299,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertIn("100 m", indexed_value)
 
     def test_spatial_resolution_indexer_adapter_fails(self):
-        """ test the spatial resolution indexer in a document"""
+        """test the spatial resolution indexer in a document"""
         self.assertFalse(IDataSet.providedBy(self.document))
         adapter = getMultiAdapter(
             (self.document, self.portal_catalog),
@@ -295,7 +309,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertRaises(AttributeError, adapter)
 
     def test_temporal_extent_indexer(self):
-        """ test the temporal extent indexer"""
+        """test the temporal extent indexer"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         self.dataset.temporalExtentStart = "2015-01-01"
         self.dataset.temporalExtentEnd = "2020-12-31"
@@ -304,7 +318,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(len(indexed_value), len(range(2015, 2021)))
 
     def test_temporal_extent_indexer_adapter(self):
-        """ test the temporal extent indexer"""
+        """test the temporal extent indexer"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         self.dataset.temporalExtentStart = "2015-01-01"
         self.dataset.temporalExtentEnd = "2020-12-31"
@@ -318,7 +332,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(len(indexed_value), len(range(2015, 2021)))
 
     def test_temporal_extent_indexer_adapter_fails(self):
-        """ test the temporal extent indexer"""
+        """test the temporal extent indexer"""
         self.assertFalse(IDataSet.providedBy(self.document))
 
         adapter = getMultiAdapter(
@@ -329,7 +343,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertRaises(AttributeError, adapter)
 
     def test_temporal_extend_invalid_end(self):
-        """ test with open end """
+        """test with open end"""
         self.dataset.temporalExtentStart = "2015-01-01"
         self.dataset.temporalExtentEnd = ""
 
@@ -340,7 +354,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         )
 
     def test_temporal_extent_invalid_start(self):
-        """ test with invalid start """
+        """test with invalid start"""
         self.dataset.temporalExtentStart = ""
         self.dataset.temporalExtentEnd = ""
 
@@ -348,7 +362,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(indexed_value, [])
 
     def test_temporal_extent_invalid_date_values(self):
-        """ test with invalid date values"""
+        """test with invalid date values"""
         self.dataset.temporalExtentStart = "2021-13-45"
         self.dataset.temporalExtentEnd = "2029-12-31"
 
@@ -356,7 +370,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(indexed_value, [])
 
     def test_temportal_extent_not_date_values(self):
-        """ test with not valid input"""
+        """test with not valid input"""
         self.dataset.temporalExtentStart = "Monday 23 of october 1998"
         self.dataset.temporalExtentEnd = "This is not a date"
 
@@ -364,14 +378,14 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual(indexed_value, [])
 
     def test_component_title_indexer(self):
-        """ test the spatial resolution indexer in a dataset"""
+        """test the spatial resolution indexer in a dataset"""
         self.assertTrue(IProduct.providedBy(self.product))
         indexed_value = component_title_behavior(self.product)()
 
         self.assertEqual("This component", indexed_value)
 
     def test_component_title_indexer_adapter(self):
-        """ test the spatial resolution indexer adapter in a dataset"""
+        """test the spatial resolution indexer adapter in a dataset"""
         self.assertTrue(IProduct.providedBy(self.product))
 
         adapter = getMultiAdapter(
@@ -384,11 +398,47 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertEqual("This component", indexed_value)
 
     def test_component_title_indexer_adapter_fails(self):
-        """ test the spatial resolution indexer in a document"""
+        """test the spatial resolution indexer in a document"""
         self.assertFalse(IProduct.providedBy(self.document))
         adapter = getMultiAdapter(
             (self.document, self.portal_catalog),
             interface=IIndexer,
             name="component_title",
+        )
+        self.assertRaises(AttributeError, adapter)
+
+    def test_documentation_sorting_indexer(self):
+        """test the documetnation sorting indexer in a Technical Library"""
+        self.assertTrue(ITechnicalLibrary.providedBy(self.technical_library1))
+        indexed_value = documentation_sorting(self.technical_library1)
+
+        self.assertTrue(isinstance(indexed_value(), int))
+
+    def test_documentation_sorting_indexer_adapter(self):
+        """test the adapter"""
+        self.assertTrue(ITechnicalLibrary.providedBy(self.technical_library1))
+
+        adapter = getMultiAdapter(
+            (self.technical_library1, self.portal_catalog),
+            interface=IIndexer,
+            name="documentation_sorting",
+        )
+        indexed_value = adapter()
+        self.assertTrue(isinstance(indexed_value, int))
+
+    def test_documentation_sorting_indexer_empty_field_value(self):
+        """test the indexer when the field is empty"""
+        self.assertTrue(ITechnicalLibrary.providedBy(self.technical_library2))
+        indexed_value = documentation_sorting(self.technical_library2)
+        self.assertTrue(isinstance(indexed_value(), int))
+
+    def test_documentation_sorting_indexer_elsewere(self):
+        """test in some other object type"""
+        self.assertFalse(ITechnicalLibrary.providedBy(self.document))
+
+        adapter = getMultiAdapter(
+            (self.document, self.portal_catalog),
+            interface=IIndexer,
+            name="documentation_sorting",
         )
         self.assertRaises(AttributeError, adapter)
