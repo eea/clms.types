@@ -26,17 +26,21 @@ def documentation_sorting(obj):
     and return the minimum, because documents may be related to more than
     one taxonomy item
     """
+
     items = obj.taxonomy_technical_library_categorization
-    factory = getUtility(
-        IVocabularyFactory,
-        name="collective.taxonomy.technical_library_categorization",
-    )
-    vocabulary = factory(obj)
+    if items:
+        factory = getUtility(
+            IVocabularyFactory,
+            name="collective.taxonomy.technical_library_categorization",
+        )
+        vocabulary = factory(obj)
 
-    result = []
+        result = []
 
-    for item in items:
-        for i, vocabulary_item in enumerate(vocabulary):
-            if vocabulary_item.value == item:
-                result.append(i)
-    return min(result)
+        for item in items:
+            for i, vocabulary_item in enumerate(vocabulary):
+                if vocabulary_item.value == item:
+                    result.append(i)
+        return min(result) or 1
+
+    return 1
