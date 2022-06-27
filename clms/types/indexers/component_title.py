@@ -19,12 +19,13 @@ def dummy(obj):
 def component_title_behavior(obj):
     """Calculate and return the value for the indexer"""
 
-    component = obj.mapviewer_component
-    vocabulary = getUtility(
-        IVocabularyFactory, name="clms.types.ComponentTitleVocabulary"
-    )
-    terms = vocabulary(obj)
-    try:
-        return terms.getTerm(component).title
-    except LookupError:
-        return ""
+    return obj.mapviewer_component
+    # component = obj.mapviewer_component
+    # vocabulary = getUtility(
+    #     IVocabularyFactory, name="clms.types.ComponentTitleVocabulary"
+    # )
+    # terms = vocabulary(obj)
+    # try:
+    #     return terms.getTerm(component).title
+    # except LookupError:
+    #     return ""
