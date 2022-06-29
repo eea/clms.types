@@ -382,7 +382,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertTrue(IProduct.providedBy(self.product))
         indexed_value = component_title_behavior(self.product)()
 
-        self.assertEqual("This component", indexed_value)
+        self.assertEqual("id-1", indexed_value)
 
     def test_component_title_indexer_adapter(self):
         """test the spatial resolution indexer adapter in a dataset"""
@@ -395,7 +395,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         )
         indexed_value = adapter()
 
-        self.assertEqual("This component", indexed_value)
+        self.assertEqual("id-1", indexed_value)
 
     def test_component_title_indexer_adapter_fails(self):
         """test the spatial resolution indexer in a document"""
@@ -408,7 +408,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertRaises(AttributeError, adapter)
 
     def test_documentation_sorting_indexer(self):
-        """test the documetnation sorting indexer in a Technical Library"""
+        """test the documentation sorting indexer in a Technical Library"""
         self.assertTrue(ITechnicalLibrary.providedBy(self.technical_library1))
         indexed_value = documentation_sorting(self.technical_library1)
 
