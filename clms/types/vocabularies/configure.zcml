@@ -110,8 +110,8 @@
         component=".use_case_spatial_coverage.UseCaseSpatialCoverageVocabularyFactory"
         name="clms.types.UseCaseSpatialCoverageVocabulary" />
 
-
-
-
+    <utility
+        component=".products_and_datasets_vocabulary.ProductsAndDatasetsVocabularyFactory"
+        name="clms.types.ProductsAndDatasetsVocabulary" />
 
 </configure>
