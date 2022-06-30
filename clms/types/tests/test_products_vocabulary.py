@@ -12,7 +12,7 @@ from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 
 
 class TestProductsVocabularyIntegrationTest(unittest.TestCase):
-    """ test the vocabulary"""
+    """test the vocabulary"""
 
     layer = CLMS_TYPES_INTEGRATION_TESTING
 
@@ -29,9 +29,7 @@ class TestProductsVocabularyIntegrationTest(unittest.TestCase):
         )
 
     def test_vocabulary(self):
-        """test that the values come from the custodian_information
-        index in the catalog (those with role=custodian)
-        """
+        """test that product UUIDs are in the vocabulary"""
         vocab_name = "clms.types.ProductsVocabulary"
         factory = getUtility(IVocabularyFactory, vocab_name)
         self.assertTrue(IVocabularyFactory.providedBy(factory))
