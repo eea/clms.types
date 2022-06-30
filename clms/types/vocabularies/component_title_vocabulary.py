@@ -42,7 +42,7 @@ class ComponentTitleVocabulary:
             terms.append(
                 SimpleTerm(
                     value=item.get("@id"),
-                    token=str(item.get("name", "")),
+                    token=str(item.get("@id")),
                     title=item.get("name", ""),
                 )
             )

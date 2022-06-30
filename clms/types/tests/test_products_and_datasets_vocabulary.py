@@ -28,9 +28,21 @@ class TestProductsVocabularyIntegrationTest(unittest.TestCase):
             container=self.portal, type="Product", id="product2"
         )
 
+        self.dataset1 = api.content.create(
+            container=self.product1, type="DataSet", id="dataset1"
+        )
+        self.dataset2 = api.content.create(
+            container=self.product1, type="DataSet", id="dataset2"
+        )
+        self.dataset3 = api.content.create(
+            container=self.product2, type="DataSet", id="dataset3"
+        )
+
     def test_vocabulary(self):
-        """test that product UUIDs are in the vocabulary"""
-        vocab_name = "clms.types.ProductsVocabulary"
+        """test that the values of the product and datasets are in the
+        vocabulary
+        """
+        vocab_name = "clms.types.ProductsAndDatasetsVocabulary"
         factory = getUtility(IVocabularyFactory, vocab_name)
         self.assertTrue(IVocabularyFactory.providedBy(factory))
 
@@ -39,3 +51,6 @@ class TestProductsVocabularyIntegrationTest(unittest.TestCase):
 
         self.assertIn(IUUID(self.product1), vocabulary)
         self.assertIn(IUUID(self.product2), vocabulary)
+        self.assertIn(IUUID(self.dataset1), vocabulary)
+        self.assertIn(IUUID(self.dataset2), vocabulary)
+        self.assertIn(IUUID(self.dataset3), vocabulary)
