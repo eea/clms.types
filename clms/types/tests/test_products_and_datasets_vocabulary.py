@@ -39,7 +39,9 @@ class TestProductsVocabularyIntegrationTest(unittest.TestCase):
         )
 
     def test_vocabulary(self):
-        """test that the values of the product and datasets are in the vocabulary" """
+        """test that the values of the product and datasets are in the
+        vocabulary
+        """
         vocab_name = "clms.types.ProductsAndDatasetsVocabulary"
         factory = getUtility(IVocabularyFactory, vocab_name)
         self.assertTrue(IVocabularyFactory.providedBy(factory))
