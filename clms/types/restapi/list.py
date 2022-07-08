@@ -12,12 +12,16 @@ from clms.types.interfaces import IClmsTypesLayer
 
 
 class BaseListFieldSerializer:
+    """base serializer for list-like fields"""
+
     def __init__(self, field, context, request):
+        """constructor"""
         self.context = context
         self.request = request
         self.field = field
 
     def __call__(self):
+        """serializer implementation"""
         value = self.get_value()
         new_value = []
         for item in value:
@@ -39,6 +43,7 @@ class BaseListFieldSerializer:
         return json_compatible(new_value)
 
     def get_value(self, default=None):
+        """get the value of the field"""
         return getattr(
             self.field.interface(self.context), self.field.__name__, default
         )
@@ -47,10 +52,10 @@ class BaseListFieldSerializer:
 @adapter(IList, IDataSetRelationMarker, IClmsTypesLayer)
 @implementer(IFieldSerializer)
 class DataSetRelationListFieldSerializer(BaseListFieldSerializer):
-    pass
+    """specific serializer for dataset relations"""
 
 
 @adapter(IList, IProductRelationMarker, IClmsTypesLayer)
 @implementer(IFieldSerializer)
 class ProductRelationListFieldSerializer(BaseListFieldSerializer):
-    pass
+    """specific serializer for product relations"""
