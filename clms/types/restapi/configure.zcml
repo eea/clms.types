@@ -8,4 +8,7 @@
   <include package=".mapviewer_service" />
   <include package=".import_wms_layers" />
 
+  <adapter factory=".list.DataSetRelationListFieldSerializer" />
+  <adapter factory=".list.ProductRelationListFieldSerializer" />
+
 </configure>
