@@ -1,6 +1,9 @@
 Changelog
 =========
 
+7.0-dev0 - (unreleased)
+---------------------------
+
 6.9 - (2022-07-08)
 ---------------------------
 * Change: provide specific serializer for related items [erral]
