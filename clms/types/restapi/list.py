@@ -1,3 +1,6 @@
+"""
+serializer for list-like fields
+"""
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.restapi.interfaces import IFieldSerializer
