@@ -1,0 +1,32 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:registerProfile
+    name="1015"
+    title="new control panel and registry"
+    directory="1015"
+    description='Configuration for version 1015'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+
+  <genericsetup:upgradeSteps
+    source="1014"
+    destination="1015"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="New control panel and registry item"
+      description=""
+      handler=".v1015.upgrade" />
+
+
+      <genericsetup:upgradeDepends title="new control panel and registry"
+      description=""
+      import_profile="clms.types.upgrades:1015" />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>
