@@ -27,21 +27,22 @@ class BaseListFieldSerializer:
         """serializer implementation"""
         value = self.get_value()
         new_value = []
-        for item in value:
-            referenced_object = api.content.get(UID=item)
-            if referenced_object:
-                new_item = {}
-                new_item.update(
-                    {
-                        "@id": referenced_object.absolute_url(),
-                        "description": referenced_object.Description(),
-                        "title": referenced_object.Title(),
-                        "UID": item,
-                        # hard-coded for now
-                        "image_field": "image",
-                    }
-                )
-                new_value.append(new_item)
+        if value:
+            for item in value:
+                referenced_object = api.content.get(UID=item)
+                if referenced_object:
+                    new_item = {}
+                    new_item.update(
+                        {
+                            "@id": referenced_object.absolute_url(),
+                            "description": referenced_object.Description(),
+                            "title": referenced_object.Title(),
+                            "UID": item,
+                            # hard-coded for now
+                            "image_field": "image",
+                        }
+                    )
+                    new_value.append(new_item)
 
         return json_compatible(new_value)
 
