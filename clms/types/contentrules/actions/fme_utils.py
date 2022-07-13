@@ -16,10 +16,6 @@ def usecase_to_discomap(usecase, operation):
     """
     notify FME the relevant operation on the usecase
     """
-    geograpicCoverageVocabulary = getUtility(
-        IVocabularyFactory, name="clms.types.UseCaseSpatialCoverageVocabulary"
-    )(usecase)
-
     topicsVocabulary = getUtility(
         IVocabularyFactory, name="clms.types.TopicsVocabulary"
     )(usecase)
@@ -34,20 +30,19 @@ def usecase_to_discomap(usecase, operation):
     use_case_topics = ",".join(
         [topicsVocabulary.getTerm(item).title for item in usecase.topics]
     )
-    spatial_coverage = ",".join(
-        [
-            geograpicCoverageVocabulary.getTerm(item).title
-            for item in usecase.geographicCoverage
-        ]
-    )
+    spatial_coverage = ",".join(usecase.geographicCoverage)
     use_case_outcome = usecase.outcome
+    used_products = []
+    if usecase.products:
+        used_products = [
+            api.content.get(UID=item).Title() for item in usecase.products
+        ]
+    used_datasets = []
+    if usecase.datasets:
+        used_datasets = [
+            api.content.get(UID=item).Title() for item in usecase.datasets
+        ]
 
-    used_products = [
-        api.content.get(UID=item).Title() for item in usecase.products
-    ]
-    used_datasets = [
-        api.content.get(UID=item).Title() for item in usecase.datasets
-    ]
     clms_products_used = ",".join(used_products + used_datasets)
 
     fme_data = {

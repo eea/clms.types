@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    name="UseCase"
+    meta_type="Dexterity FTI"
+    i18n:domain="clms.types">
+
+  <!-- Enabled behaviors -->
+  <property name="behaviors" purge="false">
+    <!-- Details about all standard behaviors following can be read at
+         https://docs.plone.org/external/plone.app.dexterity/docs/reference/standard-behaviours.html
+    -->
+    <element value="plone.basic" remove="true" />
+    <element value="clms.types.product_relations" remove="true" />
+    <element value="clms.types.dataset_relations" remove="true" />
+  </property>
+
+
+</object>
