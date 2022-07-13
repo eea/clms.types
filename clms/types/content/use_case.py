@@ -15,6 +15,24 @@ from clms.types import _
 class IUseCase(model.Schema):
     """Marker interface for UseCase"""
 
+    # default fieldset
+    title = schema.TextLine(
+        title=_(u"label_title", default=u"Title"),
+        description=_("Provide a descriptive use case title."),
+        required=True,
+    )
+
+    description = schema.Text(
+        title=_(u"label_description", default=u"Summary"),
+        description=_(
+            "Provide a short and complete abstract of the use case:"
+            " description, purpose, outcome, reference years, spatial coverage"
+            " or location…Provide extra links to documents, videos and"
+            " websites, if necessary."
+        ),
+        required=True,
+    )
+
     submittingProducionYear = schema.TextLine(
         title=_(u"Submitting producion year of Use Case"),
         description=_(
@@ -97,6 +115,47 @@ class IUseCase(model.Schema):
             required=True,
             readonly=False,
         ),
+        readonly=False,
+    )
+
+    products = schema.List(
+        title=_(
+            u"CLMS associated products (Copernicus Land Monitoring Service"
+            u" products used)",
+        ),
+        description=_(
+            u"Choose at least one value from the drop down list for the"
+            u" Copernicus land monitoring service products used to produce the"
+            u" use case.",
+        ),
+        value_type=schema.Choice(
+            title=_(
+                u"CLMS products used",
+            ),
+            vocabulary=u"clms.types.ProductsVocabulary",
+            required=True,
+            readonly=False,
+        ),
+        required=False,
+        readonly=False,
+    )
+
+    datasets = schema.List(
+        title=_(
+            u"CLMS associated datasets",
+        ),
+        description=_(
+            u"Choose at least one value from the drop down list for the Copernicus land monitoring service datasets used to produce the use case.",
+        ),
+        value_type=schema.Choice(
+            title=_(
+                u"CLMS datasets used",
+            ),
+            vocabulary=u"clms.types.DataSetsVocabulary",
+            required=True,
+            readonly=False,
+        ),
+        required=False,
         readonly=False,
     )
 
