@@ -16,10 +16,6 @@ def usecase_to_discomap(usecase, operation):
     """
     notify FME the relevant operation on the usecase
     """
-    geograpicCoverageVocabulary = getUtility(
-        IVocabularyFactory, name="clms.types.UseCaseSpatialCoverageVocabulary"
-    )(usecase)
-
     topicsVocabulary = getUtility(
         IVocabularyFactory, name="clms.types.TopicsVocabulary"
     )(usecase)
