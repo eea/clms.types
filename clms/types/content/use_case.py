@@ -2,14 +2,14 @@
 """
 UseCase content-type definition
 """
-
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
-from zope.interface import implementer
+from zope.interface import Invalid, implementer, invariant
 
 from clms.types import _
+from clms.types.content.utils import valid_email
 
 
 class IUseCase(model.Schema):
@@ -145,7 +145,9 @@ class IUseCase(model.Schema):
             u"CLMS associated datasets",
         ),
         description=_(
-            u"Choose at least one value from the drop down list for the Copernicus land monitoring service datasets used to produce the use case.",
+            u"Choose at least one value from the drop down list for the"
+            u" Copernicus land monitoring service datasets used to produce the"
+            u" use case.",
         ),
         value_type=schema.Choice(
             title=_(
@@ -158,6 +160,20 @@ class IUseCase(model.Schema):
         required=False,
         readonly=False,
     )
+
+    @invariant
+    def validate_products_and_datasets(data):
+        """validate that at least one product or dataset is filled"""
+        if not (data.datasets or data.products):
+            raise Invalid(
+                _("You need to provide at least one product or dataset")
+            )
+
+    @invariant
+    def validate_email(data):
+        """validate email"""
+        if data.contactEmail and not valid_email(data.contactEmail):
+            raise Invalid(_("The provided email address is not valid"))
 
 
 @implementer(IUseCase)
