@@ -2,6 +2,7 @@
 serializer for list-like fields
 """
 # -*- coding: utf-8 -*-
+from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone import api
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.serializer.converters import json_compatible
@@ -12,6 +13,7 @@ from zope.schema.interfaces import IList
 from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.interfaces import IClmsTypesLayer
+from zope.component import getMultiAdapter
 
 
 class BaseListFieldSerializer:
@@ -31,17 +33,12 @@ class BaseListFieldSerializer:
             for item in value:
                 referenced_object = api.content.get(UID=item)
                 if referenced_object:
-                    new_item = {}
-                    new_item.update(
-                        {
-                            "@id": referenced_object.absolute_url(),
-                            "description": referenced_object.Description(),
-                            "title": referenced_object.Title(),
-                            "UID": item,
-                            # hard-coded for now
-                            "image_field": "image",
-                        }
-                    )
+
+                    new_item = getMultiAdapter(
+                        (referenced_object, self.request),
+                        ISerializeToJsonSummary,
+                    )()
+
                     new_value.append(new_item)
 
         return json_compatible(new_value)
