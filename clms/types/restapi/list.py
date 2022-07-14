@@ -2,18 +2,16 @@
 serializer for list-like fields
 """
 # -*- coding: utf-8 -*-
-from plone.restapi.interfaces import ISerializeToJsonSummary
 from plone import api
-from plone.restapi.interfaces import IFieldSerializer
+from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
-from zope.component import adapter
+from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
 from zope.schema.interfaces import IList
 
 from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.interfaces import IClmsTypesLayer
-from zope.component import getMultiAdapter
 
 
 class BaseListFieldSerializer:
