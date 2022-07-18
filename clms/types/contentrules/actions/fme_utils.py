@@ -43,7 +43,7 @@ def usecase_to_discomap(usecase, operation):
             api.content.get(UID=item).Title() for item in usecase.datasets
         ]
 
-    clms_products_used = ",".join(used_products + used_datasets)
+    clms_products_used = "/".join(used_products + used_datasets)
 
     fme_data = {
         "publishedParameters": [
