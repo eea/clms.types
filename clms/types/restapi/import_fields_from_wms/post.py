@@ -46,6 +46,11 @@ class ImportWMSFields(Service):
                 "status": "error",
                 "message": "There was an error processing the request.",
             }
+        self.request.response.setStatus(200)
+        return {
+            "status": "ok",
+            "message": "There is nothing to import.",
+        }
 
     def import_wms_fields(self):
         """get the service URL, convert it to a REST endpoint and
