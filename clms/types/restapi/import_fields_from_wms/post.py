@@ -1,6 +1,7 @@
 """ Import fields from WMS REST API"""
 # -*- coding: utf-8 -*-
 import json
+from logging import getLogger
 
 import requests
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -50,35 +51,24 @@ class ImportWMSFields(Service):
             }
 
     def import_wms_fields(self):
-        import pdb
-
-        pdb.set_trace()
-        a = 1
-
+        """get the service URL, convert it to a REST endpoint and get the information"""
         base_url = self.context.mapviewer_viewservice
         if base_url.find("/arcgis/") != -1:
             layers = self.context.mapviewer_layers.get("items", [])
             new_layers = []
             for layer in layers:
                 rest_api_url = base_url.replace("/arcgis/", "/arcgis/rest/")
-                rest_api_url = rest_api_url.replace("/MapServer", "")
+                rest_api_url = rest_api_url.replace("/WmsServer", "")
                 rest_api_url = f"{rest_api_url}/{layer['id']}?f=pjson"
                 try:
                     field_data = extract_fields_from_rest_api(rest_api_url)
-                    from logging import getLogger
-
-                    log = getLogger(__name__)
-                    log.info(
-                        "Layer: {} field_data: {}".format(
-                            layer["id"], field_data
-                        )
-                    )
                     layer.update({"fields": field_data})
                     new_layers.append(layer)
                 except:
                     return ERROR
 
-            self.context.mapviewer_layers["items"] = new_layers
+            self.context.mapviewer_layers = {"items": new_layers}
+            self.context._p_changed = True
             return FIELDS_IMPORTED
 
         return FIELDS_NOT_IMPORTED
@@ -87,7 +77,13 @@ class ImportWMSFields(Service):
 def extract_fields_from_rest_api(url):
     """given an Arcgis server REST API url, extract the fields stated there
     and return the JSON"""
+
+    log = getLogger(__name__)
+    log.info("Querying %s", url)
+
     result = requests.get(url, timeout=5)
+    log.info("Result: %s", result.ok)
+
     fields = []
     if result.ok:
         data = result.json()
