@@ -11,4 +11,6 @@
   <adapter factory=".list.DataSetRelationListFieldSerializer" />
   <adapter factory=".list.ProductRelationListFieldSerializer" />
 
+  <adapter factory=".list.DataSetAndProductRelationListFieldSerializerUseCase" />
+
 </configure>

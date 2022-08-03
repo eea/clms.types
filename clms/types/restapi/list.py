@@ -12,6 +12,7 @@ from zope.schema.interfaces import IList
 from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.interfaces import IClmsTypesLayer
+from clms.types.content.use_case import IUseCase
 
 
 class BaseListFieldSerializer:
@@ -58,3 +59,11 @@ class DataSetRelationListFieldSerializer(BaseListFieldSerializer):
 @implementer(IFieldSerializer)
 class ProductRelationListFieldSerializer(BaseListFieldSerializer):
     """specific serializer for product relations"""
+
+
+@adapter(IList, IUseCase, IClmsTypesLayer)
+@implementer(IFieldSerializer)
+class DataSetAndProductRelationListFieldSerializerUseCase(
+    BaseListFieldSerializer
+):
+    """specific serializer for dataset relations"""
