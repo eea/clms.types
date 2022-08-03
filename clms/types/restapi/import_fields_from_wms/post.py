@@ -20,10 +20,7 @@ class ImportWMSFields(Service):
         """return"""
         alsoProvides(self.request, IDisableCSRFProtection)
         # pylint: disable=line-too-long
-        if (
-            self.context.mapviewer_viewservice
-            and self.context.mapviewer_viewservice.startswith("http")
-        ):  # noqa: E501
+        if self.context.mapviewer_viewservice and self.context.mapviewer_viewservice.startswith("http"):  # noqa: E501
             result = self.import_wms_fields()
             if result == FIELDS_IMPORTED:
                 self.request.response.setStatus(200)
@@ -34,7 +31,7 @@ class ImportWMSFields(Service):
                         " service"
                     ),
                 }
-            elif result == FIELDS_NOT_IMPORTED:
+            if result == FIELDS_NOT_IMPORTED:
                 self.request.response.setStatus(200)
                 return {
                     "status": "ok",
@@ -51,7 +48,9 @@ class ImportWMSFields(Service):
             }
 
     def import_wms_fields(self):
-        """get the service URL, convert it to a REST endpoint and get the information"""
+        """get the service URL, convert it to a REST endpoint and
+           get the information
+        """
         base_url = self.context.mapviewer_viewservice
         if base_url.find("/arcgis/") != -1:
             layers = self.context.mapviewer_layers.get("items", [])
@@ -64,7 +63,7 @@ class ImportWMSFields(Service):
                     field_data = extract_fields_from_rest_api(rest_api_url)
                     layer.update({"fields": field_data})
                     new_layers.append(layer)
-                except:
+                except Exception:
                     return ERROR
 
             self.context.mapviewer_layers = {"items": new_layers}
