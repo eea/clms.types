@@ -7,12 +7,23 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 
 from clms.types.content.data_set import IDataSet
+from clms.types.content.product import IProduct
 
 
 @indexer(IDexterityContent)
 def dummy(obj):
     """Dummy to prevent indexing other objects thru acquisition"""
     raise AttributeError("This field should not indexed here!")
+
+
+@indexer(IProduct)
+def temporal_extent_product(obj):
+    temporal_extents = []
+    for dataset in obj.values():
+        if dataset.portal_type == "DataSet":
+            temporal_extents.extend(temporal_extent(dataset))
+
+    return temporal_extents
 
 
 @indexer(IDataSet)
