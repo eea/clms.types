@@ -274,7 +274,7 @@ class UseCaseSpatialCoverageVocabulary:
 
         # create a list of SimpleTerm items:
         terms = []
-        for item in items:
+        for item in sorted(items, key=lambda x: x.value):
             terms.append(
                 SimpleTerm(
                     value=item.token,
