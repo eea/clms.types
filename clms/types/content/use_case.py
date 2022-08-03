@@ -34,7 +34,7 @@ class IUseCase(model.Schema):
     )
 
     submittingProducionYear = schema.TextLine(
-        title=_(u"Submitting producion year of Use Case"),
+        title=_(u"Submitting production year of Use Case"),
         description=_(
             "Provide the year or a year interval in which the use case was"
             " produced, for example: 2019 or 2019-2022"
