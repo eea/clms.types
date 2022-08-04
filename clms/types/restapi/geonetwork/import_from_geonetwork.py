@@ -242,6 +242,11 @@ class ImportFromGeoNetwork(Service):
                     "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
                     "gmd:RS_Identifier/gmd:code/gmx:Anchor"
                 ),
+                "if_not_xml_key": (
+                    "//gmd:referenceSystemInfo/"
+                    "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
+                    "gmd:RS_Identifier/gmd:code/gco:CharacterString"
+                ),
                 "type": "list",
             },
             {
@@ -644,7 +649,8 @@ class ImportFromGeoNetwork(Service):
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
                     if (
-                        resolution.startswith("http") and resolution.find("#") != -1  # noqa: E501
+                        resolution.startswith("http")
+                        and resolution.find("#") != -1  # noqa: E501
                     ):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
