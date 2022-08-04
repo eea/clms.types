@@ -19,7 +19,8 @@ def geographic_coverage_product(obj):
     geographic_coverages = []
     for dataset in obj.values():
         if dataset.portal_type == "DataSet":
-            value = geographic_coverage(dataset)
+            # pylint: disable=not-callable
+            value = geographic_coverage(dataset)()
             if value:
                 geographic_coverages.extend(value)
 
