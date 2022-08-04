@@ -167,6 +167,7 @@ class RootMapViewerServiceGet(Service):
                             "StaticImageLegend": layer_item.get(
                                 "static_legend_url", ""
                             ),
+                            "Fields": layer_item.get("fields", ""),
                         }
                     )
             if layers:
