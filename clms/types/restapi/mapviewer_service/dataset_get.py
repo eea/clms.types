@@ -36,11 +36,16 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                 (
                     component_title,
                     component_description,
+                    component_position,
                 ) = self.get_component_info(
                     product
                 )  # noqa: E501
                 yield {
-                    "Component": (component_title, component_description),
+                    "Component": (
+                        component_title,
+                        component_description,
+                        component_position,
+                    ),
                     "ProductTitle": product.Title(),
                     "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
