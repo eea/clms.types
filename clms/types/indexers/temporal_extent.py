@@ -22,7 +22,7 @@ def temporal_extent_product(obj):
     temporal_extents = []
     for dataset in obj.values():
         if dataset.portal_type == "DataSet":
-            # pylint disable=not-callable
+            # pylint: disable=not-callable
             values = temporal_extent(dataset)()
             if values:
                 temporal_extents.extend(values)
