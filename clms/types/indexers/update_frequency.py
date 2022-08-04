@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 """Associated products indexers"""
-
-from datetime import datetime
-
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 
@@ -38,6 +35,7 @@ def update_frequency_product(obj):
     update_frequencies = []
     for dataset in obj.values():
         if dataset.portal_type == "DataSet":
+            # pytlint: disable-not-callable
             value = update_frequency_dataset(dataset)()
             if value is not None:
                 update_frequencies.extend(value)
