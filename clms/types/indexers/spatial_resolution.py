@@ -23,7 +23,8 @@ def convert_spatial_resolution(value):
     """convert from degrees to meters"""
     numeric_value = value.replace("deg", "").strip()
     decimal_numeric_value = Decimal(numeric_value)
-    decimal_numeric_value_quantized = decimal_numeric_value.quantize(Decimal('1.0000'))
+    # pylint: disable=line-too-long
+    decimal_numeric_value_quantized = decimal_numeric_value.quantize(Decimal('1.0000'))  # noqa
     result = decimal_numeric_value_quantized * Decimal('10007566.8') / 90
     return f'{result.to_integral()} m'
 
