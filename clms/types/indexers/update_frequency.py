@@ -35,7 +35,7 @@ def update_frequency_product(obj):
     update_frequencies = []
     for dataset in obj.values():
         if dataset.portal_type == "DataSet":
-            # pytlint: disable-not-callable
+            # pylint disable=not-callable
             value = update_frequency_dataset(dataset)()
             if value is not None:
                 update_frequencies.extend(value)
