@@ -37,6 +37,7 @@ class BaseListFieldSerializer:
                         (referenced_object, self.request),
                         ISerializeToJsonSummary,
                     )()
+                    new_item["token"] = item
 
                     new_value.append(new_item)
 
