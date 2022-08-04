@@ -276,6 +276,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         """test the spatial resolution indexer in a dataset"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         self.dataset.qualitySpatialResolution_line = "1 km,100 m"
+        # pylint: disable=not-callable
         indexed_value = spatial_resolution(self.dataset)()
 
         self.assertEqual(len(indexed_value), 2)

@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """Associated products indexers"""
 
+from decimal import Decimal
+
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
+
 from clms.types.content.data_set import IDataSet
-from decimal import Decimal
 
 
 def convert_spatial_resolutions(values):
