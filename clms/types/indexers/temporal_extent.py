@@ -18,10 +18,13 @@ def dummy(obj):
 
 @indexer(IProduct)
 def temporal_extent_product(obj):
+    """index value for products"""
     temporal_extents = []
     for dataset in obj.values():
         if dataset.portal_type == "DataSet":
-            temporal_extents.extend(temporal_extent(dataset))
+            values = temporal_extent(dataset)()
+            if values:
+                temporal_extents.extend(values)
 
     return temporal_extents
 
