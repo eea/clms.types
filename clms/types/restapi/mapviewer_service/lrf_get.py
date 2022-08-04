@@ -32,6 +32,7 @@ class RootMapViewerServiceGet(Service):
                 {
                     "ComponentTitle": component.get("title"),
                     "ComponentDescription": component.get("description"),
+                    "ComponentPosition": component.get("position"),
                     # pylint: disable=line-too-long
                     "Products": sorted(
                         component.get("products"),
@@ -49,7 +50,7 @@ class RootMapViewerServiceGet(Service):
             "Download": False,
             # pylint: disable=line-too-long
             "Components": sorted(
-                components, key=lambda x: x.get("ComponentTitle")
+                components, key=lambda x: x.get("ComponentPosition")
             ),  # noqa: E501
         }
 
@@ -73,10 +74,15 @@ class RootMapViewerServiceGet(Service):
             components[product_key] = product
 
         for component, products in components.items():
-            component_title, component_description = component
+            (
+                component_title,
+                component_description,
+                component_position,
+            ) = component
             yield {
                 "title": component_title,
                 "description": component_description,
+                "position": component_position,
                 "products": products,
             }
 
@@ -94,11 +100,16 @@ class RootMapViewerServiceGet(Service):
                 (
                     component_title,
                     component_description,
+                    component_position,
                 ) = self.get_component_info(
                     product
                 )  # noqa: E501
                 yield {
-                    "Component": (component_title, component_description),
+                    "Component": (
+                        component_title,
+                        component_description,
+                        component_position,
+                    ),
                     "ProductTitle": product.Title(),
                     "ProductDescription": product.Description(),
                     "ProductId": product.UID(),
@@ -121,6 +132,18 @@ class RootMapViewerServiceGet(Service):
 
         return ""
 
+    def get_component_position(self, term):
+        """get the component position"""
+        available_components = api.portal.get_registry_record(
+            "clms.types.product_component.product_components"
+        )
+        components = json.loads(available_components).get("items", [])
+        for i, item in enumerate(components):
+            if item.get("@id") == term:
+                return i
+
+        return 99
+
     def get_component_info(self, product):
         """get the component information for a product"""
         vocab = getUtility(
@@ -130,7 +153,8 @@ class RootMapViewerServiceGet(Service):
         try:
             term = terms.getTerm(product.mapviewer_component)
             description = self.get_component_description(term.value)
-            return term.title, description
+            position = self.get_component_position(term.value)
+            return term.title, description, position
 
         except LookupError:
             return "", ""
@@ -167,6 +191,7 @@ class RootMapViewerServiceGet(Service):
                             "StaticImageLegend": layer_item.get(
                                 "static_legend_url", ""
                             ),
+                            "Fields": layer_item.get("fields", ""),
                         }
                     )
             if layers:

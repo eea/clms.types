@@ -23,7 +23,7 @@
         <indexed_attr value="keywords" />
   </index>
 
-  <index name="update_frequency" meta_type="FieldIndex">
+  <index name="update_frequency" meta_type="KeywordIndex">
         <indexed_attr value="update_frequency" />
   </index>
 

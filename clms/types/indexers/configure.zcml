@@ -19,6 +19,9 @@
   <adapter factory=".geographic_coverage.geographic_coverage"
     name="geographic_coverage" />
 
+  <adapter factory=".geographic_coverage.geographic_coverage_product"
+    name="geographic_coverage" />
+
   <adapter factory=".geographic_coverage.dummy"
     name="geographic_coverage" />
 
@@ -35,6 +38,9 @@
     name="custodian_information" />
 
   <adapter factory=".temporal_extent.temporal_extent"
+    name="temporal_extent" />
+
+  <adapter factory=".temporal_extent.temporal_extent_product"
     name="temporal_extent" />
 
   <adapter factory=".temporal_extent.dummy"
@@ -56,7 +62,26 @@
     name="documentation_sorting" />
 
 
+  <adapter factory=".update_frequency.dummy"
+    name="update_frequency" />
 
+  <adapter factory=".update_frequency.update_frequency_product"
+    name="update_frequency" />
+
+  <adapter factory=".update_frequency.update_frequency_dataset"
+    name="update_frequency" />
+
+  <adapter factory=".distribution_format_list.distribution_format_list"
+    name="distribution_format_list" />
+
+  <adapter factory=".distribution_format_list.dummy"
+    name="distribution_format_list" />
+
+  <adapter factory=".coordinate_reference_system.coordinate_reference_system"
+    name="coordinateReferenceSystemList" />
+
+  <adapter factory=".coordinate_reference_system.dummy"
+    name="coordinateReferenceSystemList" />
 
 
 </configure>

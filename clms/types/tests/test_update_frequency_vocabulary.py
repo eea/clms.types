@@ -12,7 +12,7 @@ from clms.types.testing import CLMS_TYPES_FUNCTIONAL_TESTING
 
 
 class TestUpdateFrequencyVocabularyIntegrationTest(unittest.TestCase):
-    """ test the vocabulary"""
+    """test the vocabulary"""
 
     layer = CLMS_TYPES_FUNCTIONAL_TESTING
 
@@ -25,7 +25,7 @@ class TestUpdateFrequencyVocabularyIntegrationTest(unittest.TestCase):
             container=self.portal,
             type="DataSet",
             id="dataset1",
-            update_frequency="annually",
+            update_frequency="anually",
         )
         self.dataset2 = api.content.create(
             container=self.portal,
@@ -48,6 +48,6 @@ class TestUpdateFrequencyVocabularyIntegrationTest(unittest.TestCase):
         vocabulary = factory(self.portal)
         self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
 
-        self.assertIn("annually", vocabulary)
+        self.assertIn("anually", vocabulary)
         self.assertIn("daily", vocabulary)
         self.assertNotIn("monthly", vocabulary)

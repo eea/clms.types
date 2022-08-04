@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+
+  <index name="update_frequency" meta_type="KeywordIndex">
+        <indexed_attr value="update_frequency" />
+  </index>
+</object>

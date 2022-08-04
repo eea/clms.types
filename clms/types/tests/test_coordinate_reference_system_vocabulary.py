@@ -14,7 +14,7 @@ from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 class TestCoordinateReferenceSystemVocabularyIntegrationTest(
     unittest.TestCase
 ):
-    """ test the vocabulary"""
+    """test the vocabulary"""
 
     layer = CLMS_TYPES_INTEGRATION_TESTING
 
@@ -28,7 +28,7 @@ class TestCoordinateReferenceSystemVocabularyIntegrationTest(
         )
         self.dataset1.coordinateReferenceSystemList = [
             "EPSG:4326",
-            "EPSG:3857",
+            "EPSG:3035",
         ]
 
         self.dataset2 = api.content.create(
@@ -37,7 +37,7 @@ class TestCoordinateReferenceSystemVocabularyIntegrationTest(
         self.dataset2.coordinateReferenceSystemList = ["EPSG:4326"]
 
     def test_vocabulary(self):
-        """ test that the values come from indexed values"""
+        """test that the values come from indexed values"""
         vocab_name = "clms.types.CoordinateReferenceSystemVocabulary"
         factory = getUtility(IVocabularyFactory, vocab_name)
         self.assertTrue(IVocabularyFactory.providedBy(factory))
@@ -51,5 +51,5 @@ class TestCoordinateReferenceSystemVocabularyIntegrationTest(
         )
 
         self.assertEqual(
-            vocabulary.getTerm(u"EPSG:3857").title, _(u"EPSG:3857")
+            vocabulary.getTerm(u"EPSG:3035").title, _(u"EPSG:3035")
         )
