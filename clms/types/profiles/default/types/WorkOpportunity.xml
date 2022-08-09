@@ -39,7 +39,7 @@
     &lt;schema&gt;
       &lt;field name=&quot;procurement_no&quot; type=&quot;zope.schema.TextLine&quot;&gt;
         &lt;required&gt;False&lt;/required&gt;
-        &lt;title&gt;procurement_no&lt;/title&gt;
+        &lt;title&gt;reference_no&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name=&quot;url&quot; type=&quot;zope.schema.TextLine&quot;&gt;
         &lt;required&gt;False&lt;/required&gt;

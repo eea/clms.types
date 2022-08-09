@@ -5,17 +5,18 @@ serializer for list-like fields
 from plone import api
 from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
+from plone.restapi.serializer.dxfields import CollectionFieldSerializer
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
 from zope.schema.interfaces import IList
 
 from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
-from clms.types.interfaces import IClmsTypesLayer
 from clms.types.content.use_case import IUseCase
+from clms.types.interfaces import IClmsTypesLayer
 
 
-class BaseListFieldSerializer:
+class BaseListFieldSerializer(CollectionFieldSerializer):
     """base serializer for list-like fields"""
 
     def __init__(self, field, context, request):
@@ -26,6 +27,14 @@ class BaseListFieldSerializer:
 
     def __call__(self):
         """serializer implementation"""
+        # Shortcut for taxonomy items. These are standard list fields
+        # and they should be handled as they are
+        if self.field.__name__.startswith("taxonomy_"):
+            return json_compatible(super().__call__())
+
+        # Specific implementation for those items having a UUID
+        # We query the ISerializeToJsonSummary to have extra
+        # information about them in the REST API
         value = self.get_value()
         new_value = []
         if value:
