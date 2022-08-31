@@ -49,6 +49,8 @@ class BaseListFieldSerializer(CollectionFieldSerializer):
                     new_item["token"] = item
 
                     new_value.append(new_item)
+                else:
+                    new_value.append(item)
 
         return json_compatible(new_value)
 
