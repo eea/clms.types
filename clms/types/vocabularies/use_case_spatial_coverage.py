@@ -28,245 +28,250 @@ class UseCaseSpatialCoverageVocabulary:
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
-            VocabItem("AD", "Andorra"),
-            VocabItem("AE", "United Arab Emirates"),
-            VocabItem("AF", "Afghanistan"),
-            VocabItem("AG", "Antigua and Barbuda"),
-            VocabItem("AI", "Anguilla"),
+            VocabItem("AD", "Andorra"),  # Disable?
+            VocabItem("AE", "United Arab Emirates"),  # Disable?
+            VocabItem("AF", "Afghanistan"),  # Disable?
+            VocabItem("AG", "Antigua and Barbuda"),  # Disable?
+            VocabItem("AI", "Anguilla"),  # Disable?
             VocabItem("AL", "Albania"),
-            VocabItem("AM", "Armenia"),
-            VocabItem("AO", "Angola"),
-            VocabItem("AR", "Argentina"),
-            VocabItem("AS", "American Samoa"),
+            VocabItem("AM", "Armenia"),  # Disable?
+            VocabItem("AO", "Angola"),  # Disable?
+            VocabItem("AR", "Argentina"),  # Disable?
+            VocabItem("AS", "American Samoa"),  # Disable?
             VocabItem("AT", "Austria"),
-            VocabItem("BW", "Botswana"),
-            VocabItem("CG", "Congo"),
+            VocabItem("BW", "Botswana"),  # Disable?
+            VocabItem("CG", "Congo"),  # Disable?
             VocabItem("CH", "Switzerland"),
-            VocabItem("CI", "Côte D’Ivoire"),
-            VocabItem("CK", "Cook Islands"),
-            VocabItem("AQ", "Antarctica"),
-            VocabItem("BY", "Belarus"),
-            VocabItem("BZ", "Belize"),
-            VocabItem("BJ", "Benin"),
-            VocabItem("BN", "Brunei"),
-            VocabItem("BO", "Bolivia"),
-            VocabItem("BQ", "Bonaire, Sint Eustatius and Saba"),
-            VocabItem("BT", "Bhutan"),
-            VocabItem("BV", "Bouvet Island"),
-            VocabItem("BR", "Brazil"),
-            VocabItem("BS", "Bahamas"),
-            VocabItem("CA", "Canada"),
-            VocabItem("AU", "Australia"),
-            VocabItem("AW", "Aruba"),
-            VocabItem("AZ", "Azerbaijan"),
+            VocabItem("CI", "Côte D’Ivoire"),  # Disable?
+            VocabItem("CK", "Cook Islands"),  # Disable?
+            VocabItem("AQ", "Antarctica"),  # Disable?
+            VocabItem("BY", "Belarus"),  # Disable?
+            VocabItem("BZ", "Belize"),  # Disable?
+            VocabItem("BJ", "Benin"),  # Disable?
+            VocabItem("BN", "Brunei"),  # Disable?
+            VocabItem("BO", "Bolivia"),  # Disable?
+            VocabItem("BQ", "Bonaire, Sint Eustatius and Saba"),  # Disable?
+            VocabItem("BT", "Bhutan"),  # Disable?
+            VocabItem("BV", "Bouvet Island"),  # Disable?
+            VocabItem("BR", "Brazil"),  # Disable?
+            VocabItem("BS", "Bahamas"),  # Disable?
+            VocabItem("CA", "Canada"),  # Disable?
+            VocabItem("AU", "Australia"),  # Disable?
+            VocabItem("AW", "Aruba"),  # Disable?
+            VocabItem("AZ", "Azerbaijan"),  # Disable?
             VocabItem("BA", "Bosnia and Herzegovina"),
-            VocabItem("BB", "Barbados"),
-            VocabItem("BD", "Bangladesh"),
+            VocabItem("BB", "Barbados"),  # Disable?
+            VocabItem("BD", "Bangladesh"),  # Disable?
             VocabItem("BE", "Belgium"),
-            VocabItem("BF", "Burkina Faso"),
+            VocabItem("BF", "Burkina Faso"),  # Disable?
             VocabItem("BG", "Bulgaria"),
-            VocabItem("BH", "Bahrain"),
-            VocabItem("BI", "Burundi"),
-            VocabItem("CL", "Chile"),
-            VocabItem("CD", "Democratic Republic of The Congo"),
-            VocabItem("CF", "Central African Republic"),
-            VocabItem("CN", "China"),
-            VocabItem("DJ", "Djibouti"),
-            VocabItem("DM", "Dominica"),
-            VocabItem("DO", "Dominican Republic"),
-            VocabItem("CO", "Colombia"),
-            VocabItem("CR", "Costa Rica"),
-            VocabItem("CU", "Cuba"),
-            VocabItem("CV", "Cape Verde"),
-            VocabItem("CW", "Curaçao"),
+            VocabItem("BH", "Bahrain"),  # Disable?
+            VocabItem("BI", "Burundi"),  # Disable?
+            VocabItem("CL", "Chile"),  # Disable?
+            VocabItem("CD", "Democratic Republic of The Congo"),  # Disable?
+            VocabItem("CF", "Central African Republic"),  # Disable?
+            VocabItem("CN", "China"),  # Disable?
+            VocabItem("DJ", "Djibouti"),  # Disable?
+            VocabItem("DM", "Dominica"),  # Disable?
+            VocabItem("DO", "Dominican Republic"),  # Disable?
+            VocabItem("CO", "Colombia"),  # Disable?
+            VocabItem("CR", "Costa Rica"),  # Disable?
+            VocabItem("CU", "Cuba"),  # Disable?
+            VocabItem("CV", "Cape Verde"),  # Disable?
+            VocabItem("CW", "Curaçao"),  # Disable?
             VocabItem("CY", "Cyprus"),
             VocabItem("CZ", "Czechia"),
             VocabItem("FI", "Finland"),
-            VocabItem("CM", "Cameroon"),
+            VocabItem("CM", "Cameroon"),  # Disable?
             VocabItem("DE", "Germany"),
-            VocabItem("DZ", "Algeria"),
+            VocabItem("DZ", "Algeria"),  # Disable?
             VocabItem("DK", "Denmark"),
-            VocabItem("ER", "Eritrea"),
+            VocabItem("ER", "Eritrea"),  # Disable?
             VocabItem("EL", "Greece"),
-            VocabItem("ET", "Ethiopia"),
-            VocabItem("FM", "Micronesia"),
-            VocabItem("FO", "Faroes"),
-            VocabItem("GA", "Gabon"),
-            VocabItem("GD", "Grenada"),
-            VocabItem("GE", "Georgia"),
-            VocabItem("GG", "Guernsey"),
-            VocabItem("GH", "Ghana"),
-            VocabItem("GI", "Gibraltar"),
+            VocabItem("ET", "Ethiopia"),  # Disable?
+            VocabItem("FM", "Micronesia"),  # Disable?
+            VocabItem("FO", "Faroes"),  # Disable?
+            VocabItem("GA", "Gabon"),  # Disable?
+            VocabItem("GD", "Grenada"),  # Disable?
+            VocabItem("GE", "Georgia"),  # Disable?
+            VocabItem("GG", "Guernsey"),  # Disable?
+            VocabItem("GH", "Ghana"),  # Disable?
+            VocabItem("GI", "Gibraltar"),  # Disable?
             VocabItem("FR", "France"),
             VocabItem("ES", "Spain"),
-            VocabItem("FJ", "Fiji"),
-            VocabItem("FK", "Falkland Islands"),
-            VocabItem("EC", "Ecuador"),
+            VocabItem("FJ", "Fiji"),  # Disable?
+            VocabItem("FK", "Falkland Islands"),  # Disable?
+            VocabItem("EC", "Ecuador"),  # Disable?
             VocabItem("EE", "Estonia"),
-            VocabItem("EG", "Egypt"),
-            VocabItem("EH", "Western Sahara"),
-            VocabItem("GL", "Greenland"),
-            VocabItem("GM", "Gambia"),
-            VocabItem("GN", "Guinea"),
-            VocabItem("GQ", "Equatorial Guinea"),
-            VocabItem("GS", "South Georgia and The South Sandwich Islands"),
-            VocabItem("GT", "Guatemala"),
-            VocabItem("GU", "Guam"),
-            VocabItem("GW", "Guinea-Bissau"),
+            VocabItem("EG", "Egypt"),  # Disable?
+            VocabItem("EH", "Western Sahara"),  # Disable?
+            VocabItem("GL", "Greenland"),  # Disable?
+            VocabItem("GM", "Gambia"),  # Disable?
+            VocabItem("GN", "Guinea"),  # Disable?
+            VocabItem("GQ", "Equatorial Guinea"),  # Disable?
+            VocabItem(
+                "GS", "South Georgia and The South Sandwich Islands"
+            ),  # Disable?
+            VocabItem("GT", "Guatemala"),  # Disable?
+            VocabItem("GU", "Guam"),  # Disable?
+            VocabItem("GW", "Guinea-Bissau"),  # Disable?
             VocabItem("HR", "Croatia"),
-            VocabItem("HT", "Haiti"),
+            VocabItem("HT", "Haiti"),  # Disable?
             VocabItem("HU", "Hungary"),
-            VocabItem("GY", "Guyana"),
-            VocabItem("HK", "Hong Kong"),
-            VocabItem("HM", "Heard Island and Mcdonald Islands"),
-            VocabItem("HN", "Honduras"),
-            VocabItem("KH", "Cambodia"),
-            VocabItem("KI", "Kiribati"),
-            VocabItem("KM", "Comoros"),
-            VocabItem("KN", "Saint Kitts and Nevis"),
-            VocabItem("KP", "North Korea"),
-            VocabItem("KW", "Kuwait"),
-            VocabItem("KY", "Cayman Islands"),
-            VocabItem("NP", "Nepal"),
-            VocabItem("NR", "Nauru"),
-            VocabItem("NU", "Niue"),
+            VocabItem("GY", "Guyana"),  # Disable?
+            VocabItem("HK", "Hong Kong"),  # Disable?
+            VocabItem("HM", "Heard Island and Mcdonald Islands"),  # Disable?
+            VocabItem("HN", "Honduras"),  # Disable?
+            VocabItem("KH", "Cambodia"),  # Disable?
+            VocabItem("KI", "Kiribati"),  # Disable?
+            VocabItem("KM", "Comoros"),  # Disable?
+            VocabItem("KN", "Saint Kitts and Nevis"),  # Disable?
+            VocabItem("KP", "North Korea"),  # Disable?
+            VocabItem("KW", "Kuwait"),  # Disable?
+            VocabItem("KY", "Cayman Islands"),  # Disable?
+            VocabItem("NP", "Nepal"),  # Disable?
+            VocabItem("NR", "Nauru"),  # Disable?
+            VocabItem("NU", "Niue"),  # Disable?
             VocabItem("IT", "Italy"),
-            VocabItem("LC", "Saint Lucia"),
+            VocabItem("LC", "Saint Lucia"),  # Disable?
             VocabItem("LI", "Liechtenstein"),
-            VocabItem("MR", "Mauritania"),
-            VocabItem("KR", "South Korea"),
-            VocabItem("LA", "Laos"),
-            VocabItem("MS", "Montserrat"),
-            VocabItem("JP", "Japan"),
-            VocabItem("KG", "Kyrgyzstan"),
-            VocabItem("ID", "Indonesia"),
+            VocabItem("MR", "Mauritania"),  # Disable?
+            VocabItem("KR", "South Korea"),  # Disable?
+            VocabItem("LA", "Laos"),  # Disable?
+            VocabItem("MS", "Montserrat"),  # Disable?
+            VocabItem("JP", "Japan"),  # Disable?
+            VocabItem("KG", "Kyrgyzstan"),  # Disable?
+            VocabItem("ID", "Indonesia"),  # Disable?
             VocabItem("IE", "Ireland"),
-            VocabItem("IL", "Israel"),
-            VocabItem("IM", "Isle of Man"),
-            VocabItem("IO", "British Indian Ocean Territory"),
-            VocabItem("IN", "India"),
-            VocabItem("IQ", "Iraq"),
+            VocabItem("IL", "Israel"),  # Disable?
+            VocabItem("IM", "Isle of Man"),  # Disable?
+            VocabItem("IO", "British Indian Ocean Territory"),  # Disable?
+            VocabItem("IN", "India"),  # Disable?
+            VocabItem("IQ", "Iraq"),  # Disable?
             VocabItem("IS", "Iceland"),
-            VocabItem("JE", "Jersey"),
-            VocabItem("JM", "Jamaica"),
-            VocabItem("JO", "Jordan"),
-            VocabItem("IR", "Iran"),
-            VocabItem("KE", "Kenya"),
-            VocabItem("OM", "Oman"),
-            VocabItem("LB", "Lebanon"),
-            VocabItem("LS", "Lesotho"),
+            VocabItem("JE", "Jersey"),  # Disable?
+            VocabItem("JM", "Jamaica"),  # Disable?
+            VocabItem("JO", "Jordan"),  # Disable?
+            VocabItem("IR", "Iran"),  # Disable?
+            VocabItem("KE", "Kenya"),  # Disable?
+            VocabItem("OM", "Oman"),  # Disable?
+            VocabItem("LB", "Lebanon"),  # Disable?
+            VocabItem("LS", "Lesotho"),  # Disable?
             VocabItem("LT", "Lithuania"),
             VocabItem("LU", "Luxembourg"),
             VocabItem("LV", "Latvia"),
-            VocabItem("LY", "Libya"),
-            VocabItem("MA", "Morocco"),
-            VocabItem("MM", "Myanmar/Burma"),
+            VocabItem("LY", "Libya"),  # Disable?
+            VocabItem("MA", "Morocco"),  # Disable?
+            VocabItem("MM", "Myanmar/Burma"),  # Disable?
             VocabItem("NO", "Norway"),
-            VocabItem("PA", "Panama"),
-            VocabItem("LK", "Sri Lanka"),
-            VocabItem("LR", "Liberia"),
-            VocabItem("ML", "Mali"),
-            VocabItem("MN", "Mongolia"),
-            VocabItem("MO", "Macau"),
-            VocabItem("MP", "Northern Mariana Islands"),
-            VocabItem("NE", "Niger"),
-            VocabItem("MD", "Moldova"),
+            VocabItem("PA", "Panama"),  # Disable?
+            VocabItem("LK", "Sri Lanka"),  # Disable?
+            VocabItem("LR", "Liberia"),  # Disable?
+            VocabItem("ML", "Mali"),  # Disable?
+            VocabItem("MN", "Mongolia"),  # Disable?
+            VocabItem("MO", "Macau"),  # Disable?
+            VocabItem("MP", "Northern Mariana Islands"),  # Disable?
+            VocabItem("NE", "Niger"),  # Disable?
+            VocabItem("MD", "Moldova"),  # Disable?
             VocabItem("ME", "Montenegro"),
-            VocabItem("MG", "Madagascar"),
+            VocabItem("MG", "Madagascar"),  # Disable?
             VocabItem("MK", "North Macedonia"),
             VocabItem("MT", "Malta"),
-            VocabItem("MU", "Mauritius"),
-            VocabItem("KZ", "Kazakhstan"),
-            VocabItem("MW", "Malawi"),
-            VocabItem("MY", "Malaysia"),
-            VocabItem("MZ", "Mozambique"),
-            VocabItem("NA", "Namibia"),
-            VocabItem("NC", "New Caledonia"),
-            VocabItem("NG", "Nigeria"),
-            VocabItem("NI", "Nicaragua"),
+            VocabItem("MU", "Mauritius"),  # Disable?
+            VocabItem("KZ", "Kazakhstan"),  # Disable?
+            VocabItem("MW", "Malawi"),  # Disable?
+            VocabItem("MY", "Malaysia"),  # Disable?
+            VocabItem("MZ", "Mozambique"),  # Disable?
+            VocabItem("NA", "Namibia"),  # Disable?
+            VocabItem("NC", "New Caledonia"),  # Disable?
+            VocabItem("NG", "Nigeria"),  # Disable?
+            VocabItem("NI", "Nicaragua"),  # Disable?
             VocabItem("NL", "Netherlands"),
-            VocabItem("PG", "Papua New Guinea"),
+            VocabItem("PG", "Papua New Guinea"),  # Disable?
             VocabItem("PT", "Portugal"),
-            VocabItem("PW", "Palau"),
-            VocabItem("PY", "Paraguay"),
-            VocabItem("QA", "Qatar"),
+            VocabItem("PW", "Palau"),  # Disable?
+            VocabItem("PY", "Paraguay"),  # Disable?
+            VocabItem("QA", "Qatar"),  # Disable?
             VocabItem("RO", "Romania"),
-            VocabItem("NZ", "New Zealand"),
-            VocabItem("PE", "Peru"),
-            VocabItem("PF", "French Polynesia"),
-            VocabItem("NF", "Norfolk Island"),
-            VocabItem("MX", "Mexico"),
-            VocabItem("PH", "Philippines"),
-            VocabItem("PK", "Pakistan"),
+            VocabItem("NZ", "New Zealand"),  # Disable?
+            VocabItem("PE", "Peru"),  # Disable?
+            VocabItem("PF", "French Polynesia"),  # Disable?
+            VocabItem("NF", "Norfolk Island"),  # Disable?
+            VocabItem("MX", "Mexico"),  # Disable?
+            VocabItem("PH", "Philippines"),  # Disable?
+            VocabItem("PK", "Pakistan"),  # Disable?
             VocabItem("PL", "Poland"),
-            VocabItem("PM", "Saint Pierre and Miquelon"),
-            VocabItem("PN", "Pitcairn Islands"),
-            VocabItem("PR", "Puerto Rico"),
-            VocabItem("PS", "Palestine"),
+            VocabItem("PM", "Saint Pierre and Miquelon"),  # Disable?
+            VocabItem("PN", "Pitcairn Islands"),  # Disable?
+            VocabItem("PR", "Puerto Rico"),  # Disable?
+            VocabItem("PS", "Palestine"),  # Disable?
             VocabItem("RS", "Serbia"),
-            VocabItem("RU", "Russian Federation"),
-            VocabItem("RW", "Rwanda"),
-            VocabItem("SA", "Saudi Arabia"),
-            VocabItem("TF", "French Southern and Antarctic Lands"),
-            VocabItem("TG", "Togo"),
-            VocabItem("TH", "Thailand"),
-            VocabItem("TJ", "Tajikistan"),
-            VocabItem("TL", "Timor-Leste"),
-            VocabItem("SS", "South Sudan"),
-            VocabItem("ST", "São Tomé and Príncipe"),
-            VocabItem("SV", "El Salvador"),
-            VocabItem("SY", "Syria"),
-            VocabItem("SZ", "Eswatini"),
-            VocabItem("TC", "Turks and Caicos Islands"),
-            VocabItem("TD", "Chad"),
-            VocabItem("SC", "Seychelles"),
-            VocabItem("SB", "Solomon Islands"),
-            VocabItem("TT", "Trinidad and Tobago"),
+            VocabItem("RU", "Russian Federation"),  # Disable?
+            VocabItem("RW", "Rwanda"),  # Disable?
+            VocabItem("SA", "Saudi Arabia"),  # Disable?
+            VocabItem("TF", "French Southern and Antarctic Lands"),  # Disable?
+            VocabItem("TG", "Togo"),  # Disable?
+            VocabItem("TH", "Thailand"),  # Disable?
+            VocabItem("TJ", "Tajikistan"),  # Disable?
+            VocabItem("TL", "Timor-Leste"),  # Disable?
+            VocabItem("SS", "South Sudan"),  # Disable?
+            VocabItem("ST", "São Tomé and Príncipe"),  # Disable?
+            VocabItem("SV", "El Salvador"),  # Disable?
+            VocabItem("SY", "Syria"),  # Disable?
+            VocabItem("SZ", "Eswatini"),  # Disable?
+            VocabItem("TC", "Turks and Caicos Islands"),  # Disable?
+            VocabItem("TD", "Chad"),  # Disable?
+            VocabItem("SC", "Seychelles"),  # Disable?
+            VocabItem("SB", "Solomon Islands"),  # Disable?
+            VocabItem("TT", "Trinidad and Tobago"),  # Disable?
             VocabItem("TR", "Turkey"),
-            VocabItem("TZ", "United Republic of Tanzania"),
-            VocabItem("SD", "Sudan"),
+            VocabItem("TZ", "United Republic of Tanzania"),  # Disable?
+            VocabItem("SD", "Sudan"),  # Disable?
             VocabItem("SE", "Sweden"),
-            VocabItem("SG", "Singapore"),
-            VocabItem("SH", "Saint Helena, Ascension and Tristan Da Cunha"),
+            VocabItem("SG", "Singapore"),  # Disable?
+            VocabItem(
+                "SH", "Saint Helena, Ascension and Tristan Da Cunha"
+            ),  # Disable?
             VocabItem("SI", "Slovenia"),
             VocabItem("SK", "Slovakia"),
-            VocabItem("SL", "Sierra Leone"),
-            VocabItem("SM", "San Marino"),
-            VocabItem("SN", "Senegal"),
-            VocabItem("TM", "Turkmenistan"),
-            VocabItem("TN", "Tunisia"),
-            VocabItem("TO", "Tonga"),
-            VocabItem("SO", "Somalia"),
-            VocabItem("SR", "Suriname"),
-            VocabItem("SJ", "Svalbard and Jan Mayen"),
-            VocabItem("XV", "Bir Tawil (Disputed Territory)"),
-            VocabItem("YE", "Yemen"),
-            VocabItem("ZA", "South Africa"),
-            VocabItem("ZM", "Zambia"),
-            VocabItem("ZW", "Zimbabwe"),
-            VocabItem("UA", "Ukraine"),
-            VocabItem("UG", "Uganda"),
+            VocabItem("SL", "Sierra Leone"),  # Disable?
+            VocabItem("SM", "San Marino"),  # Disable?
+            VocabItem("SN", "Senegal"),  # Disable?
+            VocabItem("TM", "Turkmenistan"),  # Disable?
+            VocabItem("TN", "Tunisia"),  # Disable?
+            VocabItem("TO", "Tonga"),  # Disable?
+            VocabItem("SO", "Somalia"),  # Disable?
+            VocabItem("SR", "Suriname"),  # Disable?
+            VocabItem("SJ", "Svalbard and Jan Mayen"),  # Disable?
+            VocabItem("XV", "Bir Tawil (Disputed Territory)"),  # Disable?
+            VocabItem("YE", "Yemen"),  # Disable?
+            VocabItem("ZA", "South Africa"),  # Disable?
+            VocabItem("ZM", "Zambia"),  # Disable?
+            VocabItem("ZW", "Zimbabwe"),  # Disable?
+            VocabItem("UA", "Ukraine"),  # Disable?
+            VocabItem("UG", "Uganda"),  # Disable?
             VocabItem("UK", "United Kingdom"),
-            VocabItem("XH", "Jammu Kashmir"),
-            VocabItem("XI", "Kuril Islands"),
-            VocabItem("XO", "Bassas Da India"),
-            VocabItem("XU", "Abyei"),
-            VocabItem("VE", "Venezuela"),
-            VocabItem("VG", "British Virgin Islands"),
-            VocabItem("VI", "Us Virgin Islands"),
-            VocabItem("VU", "Vanuatu"),
-            VocabItem("VN", "Vietnam"),
-            VocabItem("WS", "Samoa"),
-            VocabItem("XC", "Aksai Chin"),
-            VocabItem("XD", "Arunachal Pradesh"),
-            VocabItem("XE", "China/India"),
-            VocabItem("XF", "Hala'Ib Triangle"),
-            VocabItem("XG", "Ilemi Triangle"),
-            VocabItem("US", "United States"),
-            VocabItem("UY", "Uruguay"),
-            VocabItem("UZ", "Uzbekistan"),
-            VocabItem("VA", "Vatican City"),
-            VocabItem("VC", "Saint Vincent and The Grenadines"),
+            VocabItem("XH", "Jammu Kashmir"),  # Disable?
+            VocabItem("XI", "Kuril Islands"),  # Disable?
+            VocabItem("XO", "Bassas Da India"),  # Disable?
+            VocabItem("XU", "Abyei"),  # Disable?
+            VocabItem("VE", "Venezuela"),  # Disable?
+            VocabItem("VG", "British Virgin Islands"),  # Disable?
+            VocabItem("VI", "Us Virgin Islands"),  # Disable?
+            VocabItem("VU", "Vanuatu"),  # Disable?
+            VocabItem("VN", "Vietnam"),  # Disable?
+            VocabItem("WS", "Samoa"),  # Disable?
+            VocabItem("XC", "Aksai Chin"),  # Disable?
+            VocabItem("XD", "Arunachal Pradesh"),  # Disable?
+            VocabItem("XE", "China/India"),  # Disable?
+            VocabItem("XF", "Hala'Ib Triangle"),  # Disable?
+            VocabItem("XG", "Ilemi Triangle"),  # Disable?
+            VocabItem("US", "United States"),  # Disable?
+            VocabItem("UY", "Uruguay"),  # Disable?
+            VocabItem("UZ", "Uzbekistan"),  # Disable?
+            VocabItem("VA", "Vatican City"),  # Disable?
+            VocabItem("VC", "Saint Vincent and The Grenadines"),  # Disable?
+            VocabItem("KO", "Kosovo under UNSCR 1244/99*)"),
             VocabItem("EEA", "European Environment Agency"),
             VocabItem("EU", "European Union"),
             VocabItem("EU 27+UK", "European Union + United Kingdom"),
