@@ -6,7 +6,6 @@ import json
 
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
-from plone.namedfile import field as namedfile
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
