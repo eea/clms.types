@@ -2,7 +2,6 @@
 serializer for list-like fields
 """
 # -*- coding: utf-8 -*-
-from hashlib import new
 from plone import api
 from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
