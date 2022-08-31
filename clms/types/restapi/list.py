@@ -2,6 +2,7 @@
 serializer for list-like fields
 """
 # -*- coding: utf-8 -*-
+from hashlib import new
 from plone import api
 from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
@@ -49,6 +50,8 @@ class BaseListFieldSerializer(CollectionFieldSerializer):
                     new_item["token"] = item
 
                     new_value.append(new_item)
+                else:
+                    new_value.append(item)
 
         return json_compatible(new_value)
 
