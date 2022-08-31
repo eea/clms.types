@@ -31,11 +31,6 @@ MIXEDFIELD_SCHEMA = json.dumps(
 class IDataSet(model.Schema):
     """Marker interface and Dexterity Python Schema for DataSet"""
 
-    coverImage = namedfile.NamedBlobImage(
-        title=_(u"coverImage"),
-        required=False,
-    )
-
     model.fieldset(
         "metadata",
         label=_(u"Metadata"),
