@@ -100,23 +100,24 @@ class IUseCase(model.Schema):
         required=False,
     )
 
-    geographicCoverage = schema.List(
-        title=_(u"Spatial coverage"),
-        description=_(
-            "Choose at least one value from the drop down list with the"
-            " location represented by the data."
-        ),
-        required=True,
-        value_type=schema.Choice(
-            title=_(
-                u"Spatial coverage",
-            ),
-            vocabulary=u"clms.types.UseCaseSpatialCoverageVocabulary",
-            required=True,
-            readonly=False,
-        ),
-        readonly=False,
-    )
+    # Removed: we are using collective.taxonomy based listing now.
+    # geographicCoverage = schema.List(
+    #     title=_(u"Spatial coverage"),
+    #     description=_(
+    #         "Choose at least one value from the drop down list with the"
+    #         " location represented by the data."
+    #     ),
+    #     required=True,
+    #     value_type=schema.Choice(
+    #         title=_(
+    #             u"Spatial coverage",
+    #         ),
+    #         vocabulary=u"clms.types.UseCaseSpatialCoverageVocabulary",
+    #         required=True,
+    #         readonly=False,
+    #     ),
+    #     readonly=False,
+    # )
 
     products = schema.List(
         title=_(

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    name="UseCase"
+    meta_type="Dexterity FTI"
+    i18n:domain="clms.types">
+   <!-- Enabled behaviors -->
+  <property name="behaviors" purge="false">
+
+    <element value="collective.taxonomy.generated.use_case_spatial_coverage" />
+
+  </property>
+
+
+</object>

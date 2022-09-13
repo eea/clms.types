@@ -1,0 +1,32 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  >
+
+
+  <genericsetup:registerProfile
+    name="1017"
+    title="New version v1017"
+    directory="1017"
+    description='Configuration for version 1017'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+
+  <genericsetup:upgradeSteps
+    source="1016"
+    destination="1017"
+    profile="clms.types:default">
+      <genericsetup:upgradeStep title="New version v1017 "
+      description=""
+      handler=".v1017.upgrade" />
+
+
+      <genericsetup:upgradeDepends title="New version v1017"
+      description=""
+      import_profile="clms.types.upgrades:1017" />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>

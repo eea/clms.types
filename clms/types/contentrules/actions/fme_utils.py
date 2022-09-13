@@ -30,7 +30,7 @@ def usecase_to_discomap(usecase, operation):
     use_case_topics = ",".join(
         [topicsVocabulary.getTerm(item).title for item in usecase.topics]
     )
-    spatial_coverage = ",".join(usecase.geographicCoverage)
+    spatial_coverage = ",".join(usecase.taxonomy_use_case_spatial_coverage)
     use_case_outcome = usecase.outcome
     used_products = []
     if usecase.products:
