@@ -10,12 +10,12 @@
 <term><termIdentifier>AF</termIdentifier><caption><langstring language="en">Afghanistan</langstring></caption></term>
 <term><termIdentifier>AG</termIdentifier><caption><langstring language="en">Antigua and Barbuda</langstring></caption></term>
 <term><termIdentifier>AI</termIdentifier><caption><langstring language="en">Anguilla</langstring></caption></term>
-<term><termIdentifier>AL</termIdentifier><caption><langstring language="en">Albania,</langstring></caption></term>
+<term><termIdentifier>AL</termIdentifier><caption><langstring language="en">Albania</langstring></caption></term>
 <term><termIdentifier>AM</termIdentifier><caption><langstring language="en">Armenia</langstring></caption></term>
 <term><termIdentifier>AO</termIdentifier><caption><langstring language="en">Angola</langstring></caption></term>
 <term><termIdentifier>AR</termIdentifier><caption><langstring language="en">Argentina</langstring></caption></term>
 <term><termIdentifier>AS</termIdentifier><caption><langstring language="en">American Samoa</langstring></caption></term>
-<term><termIdentifier>AT</termIdentifier><caption><langstring language="en">Austria,</langstring></caption></term>
+<term><termIdentifier>AT</termIdentifier><caption><langstring language="en">Austria</langstring></caption></term>
 <term><termIdentifier>BW</termIdentifier><caption><langstring language="en">Botswana</langstring></caption></term>
 <term><termIdentifier>CG</termIdentifier><caption><langstring language="en">Congo</langstring></caption></term>
 <term><termIdentifier>CH</termIdentifier><caption><langstring language="en">Switzerland</langstring></caption></term>
@@ -246,7 +246,7 @@
 <term><termIdentifier>VC</termIdentifier><caption><langstring language="en">Saint Vincent and The Grenadines</langstring></caption></term>
 <term><termIdentifier>KO</termIdentifier><caption><langstring language="en">Kosovo under UNSCR 1244/99*)</langstring></caption></term>
 <term><termIdentifier>EU</termIdentifier><caption><langstring language="en">European Union</langstring></caption></term>
-<term><termIdentifier>EU</termIdentifier><caption><langstring language="en">UK", "European Union + United Kingdom</langstring></caption></term>
+<term><termIdentifier>EU 27+UK</termIdentifier><caption><langstring language="en">European Union + United Kingdom</langstring></caption></term>
 <term><termIdentifier>EEA38</termIdentifier><caption><langstring language="en">EEA38 + United Kingdom</langstring></caption></term>
 
 
