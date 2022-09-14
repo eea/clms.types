@@ -136,5 +136,14 @@
       name="coordinateReferenceSystemList"
       />
 
+  <adapter
+      factory=".spatial_representation_type.dummy"
+      name="spatial_representation_type"
+      />
+
+  <adapter
+      factory=".spatial_representation_type.spatial_representation_type"
+      name="spatial_representation_type"
+      />
 
 </configure>

@@ -119,4 +119,8 @@
       component=".products_and_datasets_vocabulary.ProductsAndDatasetsVocabularyFactory"
       />
 
+  <utility
+      name="clms.types.SpatialRepresentationTypeVocabulary"
+      component=".spatial_representation_type_vocabulary.SpatialRepresentationTypeFactory"
+      />
 </configure>
