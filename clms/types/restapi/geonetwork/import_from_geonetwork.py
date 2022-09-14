@@ -354,6 +354,13 @@ class ImportFromGeoNetwork(Service):
                 "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",  # noqa: E501
                 "type": "string",
             },
+            {
+                "field_id": "spatial_representation_type",
+                # pylint: disable=line-too-long
+                "xml_key": "//gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode",  # noqa: E501
+                "attribute": "codeListValue",
+                "type": "list",
+            },
         ]
 
         for field in fields_to_get:
@@ -648,7 +655,10 @@ class ImportFromGeoNetwork(Service):
                     item = fields_data[0]
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
-                    if (resolution.startswith("http") and resolution.find("#") != -1):  # noqa: E501
+                    if (
+                        resolution.startswith("http")
+                        and resolution.find("#") != -1
+                    ):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
                         "data": f"{item.text} {resolution}",
@@ -675,10 +685,21 @@ class ImportFromGeoNetwork(Service):
                     }
                     print(f"    OK DATA for field {field['field_id']}")
                 else:
-                    result[field["field_id"]] = {
-                        "data": [item.text for item in fields_data],
-                        "type": field["type"],
-                    }
+                    field_attribute = field.get("attribute", None)
+                    if field_attribute is None:
+                        result[field["field_id"]] = {
+                            "data": [item.text for item in fields_data],
+                            "type": field["type"],
+                        }
+                    else:
+                        result[field["field_id"]] = {
+                            "data": [
+                                item.attrib.get(field_attribute)
+                                for item in fields_data
+                            ],
+                            "type": field["type"],
+                        }
+
                     print(
                         f"    OK DATA for {field['type']} field"
                         f" {field['field_id']}"
