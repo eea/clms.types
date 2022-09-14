@@ -1,17 +1,19 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-  i18n_domain="clms.types">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="clms.types"
+    >
 
   <genericsetup:upgradeSteps
-    source="*"
-    destination="1.0"
-    profile="clms.types:default">
+      profile="clms.types:default"
+      source="*"
+      destination="1.0"
+      >
 
     <genericsetup:upgradeDepends
-       title="Import all steps from clms.types default profile"
-       import_profile="clms.types:default"
-      />
+        title="Import all steps from clms.types default profile"
+        import_profile="clms.types:default"
+        />
 
   </genericsetup:upgradeSteps>
 
