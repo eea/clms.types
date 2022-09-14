@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+
+
+  <index name="spatial_representation_type" meta_type="KeywordIndex">
+        <indexed_attr value="spatial_representation_type" />
+  </index>
+
+
+
+
+</object>

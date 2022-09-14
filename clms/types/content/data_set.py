@@ -81,6 +81,7 @@ class IDataSet(model.Schema):
             "date_stamp",
             "metadata_standard_name",
             "metadata_standard_version",
+            "spatial_representation_type",
             # identifiers for the importation
             # "geonetwork_identifiers",
         ],
@@ -498,6 +499,17 @@ class IDataSet(model.Schema):
             u"",
         ),
         default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    spatial_representation_type = schema.List(
+        title=_(
+            u"Spatial representation type",
+        ),
+        value_type=schema.TextLine(
+            title=u"Representation type",
+        ),
         required=False,
         readonly=False,
     )

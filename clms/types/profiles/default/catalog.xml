@@ -72,6 +72,11 @@
   </index>
 
 
+  <index name="spatial_representation_type" meta_type="KeywordIndex">
+        <indexed_attr value="spatial_representation_type" />
+  </index>
+
+
   <!-- Metadata columns for Work Opportunities and Tenders -->
   <column value="procurement_no" />
   <column value="submission_deadline" />
