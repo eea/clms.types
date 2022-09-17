@@ -711,6 +711,13 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
+    download_page_information = RichText(
+        title=_('Download tab extra information'),
+        description=_('This text will be shown in the download tab'),
+        required=False,
+
+    )
+
 
 @implementer(IDataSet)
 class DataSet(Container):
