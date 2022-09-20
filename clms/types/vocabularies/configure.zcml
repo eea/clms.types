@@ -1,117 +1,126 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    i18n_domain="clms.types">
+    i18n_domain="clms.types"
+    >
 
-    <!-- -*- extra stuff goes here -*- -->
+  <!-- -*- extra stuff goes here -*- -->
 
-    <utility
-        component=".topics_vocabulary.TopicsVocabularyFactory"
-        name="clms.types.TopicsVocabulary"
-    />
+  <utility
+      name="clms.types.TopicsVocabulary"
+      component=".topics_vocabulary.TopicsVocabularyFactory"
+      />
 
-    <utility
-        component=".products_vocabulary.ProductsVocabularyFactory"
-        name="clms.types.ProductsVocabulary"
-    />
+  <utility
+      name="clms.types.ProductsVocabulary"
+      component=".products_vocabulary.ProductsVocabularyFactory"
+      />
 
-    <utility
-        component=".datasets_vocabulary.DataSetsVocabularyFactory"
-        name="clms.types.DataSetsVocabulary"
-    />
+  <utility
+      name="clms.types.DataSetsVocabulary"
+      component=".datasets_vocabulary.DataSetsVocabularyFactory"
+      />
 
-    <utility
-        component=".conformity_pass_vocabulary.ConformityPassVocabularyFactory"
-        name="clms.types.ConformityPassVocabulary"
-    />
+  <utility
+      name="clms.types.ConformityPassVocabulary"
+      component=".conformity_pass_vocabulary.ConformityPassVocabularyFactory"
+      />
 
-    <utility
-        component=".category_topics_vocabulary.CategoryTopicsVocabularyFactory"
-        name="clms.types.CategoryTopicsVocabulary"
-    />
+  <utility
+      name="clms.types.CategoryTopicsVocabulary"
+      component=".category_topics_vocabulary.CategoryTopicsVocabularyFactory"
+      />
 
-    <utility
-        component=".inspire_themes_vocabulary.InspireThemesVocabularyFactory"
-        name="clms.types.InspireThemesVocabulary"
-    />
+  <utility
+      name="clms.types.InspireThemesVocabulary"
+      component=".inspire_themes_vocabulary.InspireThemesVocabularyFactory"
+      />
 
-    <utility
-        component=".full_dataset_format_vocabulary.FullDatasetFormatsVocabularyFactory"
-        name="clms.types.FullDatasetFormatsVocabulary"
-    />
+  <utility
+      name="clms.types.FullDatasetFormatsVocabulary"
+      component=".full_dataset_format_vocabulary.FullDatasetFormatsVocabularyFactory"
+      />
 
-    <utility
-        component=".full_dataset_source_vocabulary.FullDatasetSourcesVocabularyFactory"
-        name="clms.types.FullDatasetSourcesVocabulary"
-    />
+  <utility
+      name="clms.types.FullDatasetSourcesVocabulary"
+      component=".full_dataset_source_vocabulary.FullDatasetSourcesVocabularyFactory"
+      />
 
-    <utility
-        component=".temporal_coverage_vocabulary.TemporalCoverageVocabularyFactory"
-        name="clms.types.TemporalCoverageVocabulary"
-    />
+  <utility
+      name="clms.types.TemporalCoverageVocabulary"
+      component=".temporal_coverage_vocabulary.TemporalCoverageVocabularyFactory"
+      />
 
-    <utility
-        component=".keywords_vocabulary.KeywordsVocabularyFactory"
-        name="clms.types.KeywordsVocabulary"
-    />
+  <utility
+      name="clms.types.KeywordsVocabulary"
+      component=".keywords_vocabulary.KeywordsVocabularyFactory"
+      />
 
-    <utility
-        component=".update_frequency_vocabulary.UpdateFrequencyVocabularyFactory"
-        name="clms.types.UpdateFrequencyVocabulary"
-    />
+  <utility
+      name="clms.types.UpdateFrequencyVocabulary"
+      component=".update_frequency_vocabulary.UpdateFrequencyVocabularyFactory"
+      />
 
-    <utility
-        component=".geographic_coverage_vocabulary.GeographicCoverageVocabularyFactory"
-        name="clms.types.GeographicCoverageVocabulary"
-    />
+  <utility
+      name="clms.types.GeographicCoverageVocabulary"
+      component=".geographic_coverage_vocabulary.GeographicCoverageVocabularyFactory"
+      />
 
-    <utility
-        component=".spatial_resolution_vocabulary.SpatialResolutionVocabularyFactory"
-        name="clms.types.SpatialResolutionVocabulary"
-    />
+  <utility
+      name="clms.types.SpatialResolutionVocabulary"
+      component=".spatial_resolution_vocabulary.SpatialResolutionVocabularyFactory"
+      />
 
-    <utility
-        component=".coordinate_reference_system_vocabulary.CoordinateReferenceSystemVocabularyFactory"
-        name="clms.types.CoordinateReferenceSystemVocabulary"
-    />
+  <utility
+      name="clms.types.CoordinateReferenceSystemVocabulary"
+      component=".coordinate_reference_system_vocabulary.CoordinateReferenceSystemVocabularyFactory"
+      />
 
-    <utility
-        component=".distribution_format_list_vocabulary.DistributionFormatListVocabularyFactory"
-        name="clms.types.DistributionFormatListVocabulary"
-    />
+  <utility
+      name="clms.types.DistributionFormatListVocabulary"
+      component=".distribution_format_list_vocabulary.DistributionFormatListVocabularyFactory"
+      />
 
-    <utility
-        component=".custodian_information_vocabulary.CustodianInformationVocabularyFactory"
-        name="clms.types.CustodianInformationVocabulary"
-    />
+  <utility
+      name="clms.types.CustodianInformationVocabulary"
+      component=".custodian_information_vocabulary.CustodianInformationVocabularyFactory"
+      />
 
-    <utility
-        component=".gemet_vocabulary.GemetVocabularyFactory"
-        name="clms.types.GemetVocabulary"
-    />
+  <utility
+      name="clms.types.GemetVocabulary"
+      component=".gemet_vocabulary.GemetVocabularyFactory"
+      />
 
-    <utility
-        component=".gemet_inspire_themes_vocabulary.GemetInspireThemesVocabularyFactory"
-        name="clms.types.GemetInspireThemesVocabulary"
-    />
+  <utility
+      name="clms.types.GemetInspireThemesVocabulary"
+      component=".gemet_inspire_themes_vocabulary.GemetInspireThemesVocabularyFactory"
+      />
 
-    <utility
-        component=".temporal_extent_vocabulary.TemporalExtentVocabularyFactory"
-        name="clms.types.TemporalExtentVocabulary"
-    />
-    <utility
-        component=".component_title_vocabulary.ComponentTitleVocabularyFactory"
-        name="clms.types.ComponentTitleVocabulary" />
+  <utility
+      name="clms.types.TemporalExtentVocabulary"
+      component=".temporal_extent_vocabulary.TemporalExtentVocabularyFactory"
+      />
+  <utility
+      name="clms.types.ComponentTitleVocabulary"
+      component=".component_title_vocabulary.ComponentTitleVocabularyFactory"
+      />
 
-    <utility
-        component=".fme_operations_vocabulary.FMEOperationsVocabularyFactory"
-        name="clms.types.FMEOperationsVocabulary" />
+  <utility
+      name="clms.types.FMEOperationsVocabulary"
+      component=".fme_operations_vocabulary.FMEOperationsVocabularyFactory"
+      />
 
-    <utility
-        component=".use_case_spatial_coverage.UseCaseSpatialCoverageVocabularyFactory"
-        name="clms.types.UseCaseSpatialCoverageVocabulary" />
+  <utility
+      name="clms.types.UseCaseSpatialCoverageVocabulary"
+      component=".use_case_spatial_coverage.UseCaseSpatialCoverageVocabularyFactory"
+      />
 
-    <utility
-        component=".products_and_datasets_vocabulary.ProductsAndDatasetsVocabularyFactory"
-        name="clms.types.ProductsAndDatasetsVocabulary" />
+  <utility
+      name="clms.types.ProductsAndDatasetsVocabulary"
+      component=".products_and_datasets_vocabulary.ProductsAndDatasetsVocabularyFactory"
+      />
 
+  <utility
+      name="clms.types.SpatialRepresentationTypeVocabulary"
+      component=".spatial_representation_type_vocabulary.SpatialRepresentationTypeFactory"
+      />
 </configure>

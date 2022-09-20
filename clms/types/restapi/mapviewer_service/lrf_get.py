@@ -2,6 +2,7 @@
 REST API endpoint to get the mapviewer configuration data
 """
 import json
+import re
 
 from Acquisition import aq_inner, aq_parent
 from OFS.interfaces import IOrderedContainer
@@ -154,7 +155,7 @@ class RootMapViewerServiceGet(Service):
             term = terms.getTerm(product.mapviewer_component)
             description = self.get_component_description(term.value)
             position = self.get_component_position(term.value)
-            return term.title, description, position
+            return clean_component_title(term.title), description, position
 
         except LookupError:
             return "", ""
@@ -230,3 +231,16 @@ class RootMapViewerServiceGet(Service):
             frontend_domain = frontend_domain[:-1]
 
         return context_url.replace(plone_domain, frontend_domain)
+
+
+def clean_component_title(value):
+    """ we are using 03#title like titles for components, to be able
+        to sort them in a custom way in the search block, so
+        here we need to clean the component title, so the map viewer
+        gets the correct value
+    """
+    if '#' in value:
+        new_value = re.sub("^[0-9][0-9]#", '', value)
+        return new_value
+
+    return value

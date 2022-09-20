@@ -81,6 +81,7 @@ class IDataSet(model.Schema):
             "date_stamp",
             "metadata_standard_name",
             "metadata_standard_version",
+            "spatial_representation_type",
             # identifiers for the importation
             # "geonetwork_identifiers",
         ],
@@ -502,6 +503,17 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    spatial_representation_type = schema.List(
+        title=_(
+            u"Spatial representation type",
+        ),
+        value_type=schema.TextLine(
+            title=u"Representation type",
+        ),
+        required=False,
+        readonly=False,
+    )
+
     citation = RichText(title=_(u"Dataset citation"), required=False)
 
     geonetwork_identifiers = JSONField(
@@ -601,6 +613,7 @@ class IDataSet(model.Schema):
             "downloadable_full_dataset",
             "downloadable_files",
             "dataset_download_information",
+            "download_table_area_of_interest_title",
             # "dataset_full_path",
             # "dataset_full_format",
             # "dataset_full_source",
@@ -641,6 +654,19 @@ class IDataSet(model.Schema):
         widget="dataset_download_information_widget",
         default={"items": []},
         missing_value={"items": []},
+    )
+
+    download_table_area_of_interest_title = schema.TextLine(
+        title=_(
+            'Title of the "Area of interest" column in the prepackaged table',
+        ),
+        description=_(
+            'This field allows modifying the title of "Area of interest" '
+            'column in the prepackaged files table',
+        ),
+        default=u"Area of interest",
+        required=False,
+        readonly=False,
     )
 
     # dataset_full_path = schema.TextLine(
@@ -697,6 +723,12 @@ class IDataSet(model.Schema):
         widget="downloadable_files_widget",
         default={"items": []},
         missing_value={"items": []},
+    )
+
+    download_page_information = RichText(
+        title=_("Download tab extra information"),
+        description=_("This text will be shown in the download tab"),
+        required=False,
     )
 
 
