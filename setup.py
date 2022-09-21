@@ -57,6 +57,7 @@ setup(
         "plone.volto",
         "lxml",
         "requests",
+        "collective.dexteritytextindexer"
     ],
     extras_require={
         "test": [

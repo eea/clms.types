@@ -51,6 +51,7 @@
     <element value="clms.types.product_relations" />
     <element value="clms.types.dataset_relations" />
     <element value="collective.taxonomy.generated.technical_library_categorization" />
+    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
 
   </property>
 

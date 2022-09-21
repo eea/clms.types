@@ -48,6 +48,7 @@
     <element value="plone.basic"/>
     <element value="plone.locking" />
     <element value="plone.translatable" />
+    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
   </property>
 
   <!-- View information -->

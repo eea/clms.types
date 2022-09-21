@@ -58,6 +58,7 @@
     <!--<element value="plone.navigationroot" />-->
     <!--<element value="plone.selectablecontrainstypes" />-->
     <element value="collective.taxonomy.generated.use_case_spatial_coverage" />
+    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
 
   </property>
 
