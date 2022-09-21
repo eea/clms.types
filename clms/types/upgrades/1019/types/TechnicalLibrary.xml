@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    name="TechnicalLibrary"
+    meta_type="Dexterity FTI"
+    i18n:domain="clms.types">
+  <!-- Enabled behaviors -->
+  <property name="behaviors" purge="false">
+    <!-- Details about all standard behaviors following can be read at
+         https://docs.plone.org/external/plone.app.dexterity/docs/reference/standard-behaviours.html
+    -->
+
+    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
+  </property>
+
+
+</object>
