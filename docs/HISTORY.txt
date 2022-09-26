@@ -1,13 +1,9 @@
 Changelog
 =========
 
-8.2 - (2022-09-22)
+8.2 - (2022-09-21)
 ---------------------------
-* Change: feat: remove unneeded fields. CLMS-1202 [erral]
-
-8.2 - (2022-09-22)
----------------------------
-* Change: feat: remove unneeded fields. CLMS-1202
+* Change: Develop
   [erral]
 
 8.1 - (2022-09-14)
