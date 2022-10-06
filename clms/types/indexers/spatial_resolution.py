@@ -7,6 +7,7 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 
 from clms.types.content.data_set import IDataSet
+import re
 
 
 def convert_spatial_resolutions(values):
@@ -30,13 +31,13 @@ def convert_spatial_resolutions(values):
 
 def convert_spatial_resolution(value):
     """remove the meeter and return a number"""
-    value = value.replace("m", "").replace(",", ".")
-    return float(value.strip())
+    value = re.sub(r"[m|km]", "", value.replace(",", "."))
+    return str(value.strip())
 
 
 def convert_spatial_resolution_from_anything(value):
     """try to convert from a number"""
-    return float(value)
+    return str(value)
 
 
 def convert_spatial_resolution_from_deg_to_m(value):
@@ -48,7 +49,7 @@ def convert_spatial_resolution_from_deg_to_m(value):
         Decimal("1.0000")
     )  # noqa
     result = decimal_numeric_value_quantized * Decimal("10007566.8") / 90
-    return convert_spatial_resolution(result.to_integral())
+    return convert_spatial_resolution(str(result.to_integral()))
 
 
 @indexer(IDexterityContent)

@@ -12,7 +12,7 @@ from clms.types.testing import CLMS_TYPES_FUNCTIONAL_TESTING
 
 
 class TestSpatialResolutionVocabularyIntegrationTest(unittest.TestCase):
-    """ test the vocabulary"""
+    """test the vocabulary"""
 
     layer = CLMS_TYPES_FUNCTIONAL_TESTING
 
@@ -45,8 +45,8 @@ class TestSpatialResolutionVocabularyIntegrationTest(unittest.TestCase):
         vocabulary = factory(self.portal)
         self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
 
-        self.assertIn("1 km", vocabulary)
-        self.assertIn("2 km", vocabulary)
-        self.assertIn("3 km", vocabulary)
-        self.assertIn("20m", vocabulary)
-        self.assertNotIn("100m", vocabulary)
+        self.assertIn("1", vocabulary)
+        self.assertIn("2", vocabulary)
+        self.assertIn("3", vocabulary)
+        self.assertIn("20", vocabulary)
+        self.assertNotIn("100", vocabulary)
