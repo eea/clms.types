@@ -11,7 +11,7 @@ from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
 from clms.types.content.technical_library import ITechnicalLibrary
-
+from zope.i18n import translate
 
 @indexer(IDexterityContent)
 def dummy(obj):
@@ -38,9 +38,13 @@ def documentation_sorting(obj):
         result = []
 
         for item in items:
-            for i, vocabulary_item in enumerate(vocabulary):
-                if vocabulary_item.value == item:
-                    result.append(i)
-        return min(result) or 1
+            term = vocabulary.getTerm(item)
+            title = translate(term.title)
+            item_id, _ = title.split('#')
+            try:
+                result.append(int(item_id))
+            except ValueError:
+                result.append(1)
+        return min(result) or '1'
 
     return 1
