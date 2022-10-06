@@ -3,11 +3,10 @@
 An indexer to index the position of the taxonomy selected in a
 Technical Library to be able to sort on it.
 """
-
-
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 from zope.component import getUtility
+from zope.i18n import translate
 from zope.schema.interfaces import IVocabularyFactory
 
 from clms.types.content.technical_library import ITechnicalLibrary
@@ -38,9 +37,13 @@ def documentation_sorting(obj):
         result = []
 
         for item in items:
-            for i, vocabulary_item in enumerate(vocabulary):
-                if vocabulary_item.value == item:
-                    result.append(i)
-        return min(result) or 1
+            term = vocabulary.getTerm(item)
+            title = translate(term.title)
+            item_id, _ = title.split("#")
+            try:
+                result.append(int(item_id))
+            except ValueError:
+                result.append(1)
+        return min(result) or "1"
 
     return 1
