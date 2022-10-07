@@ -30,9 +30,14 @@ def convert_spatial_resolutions(values):
 
 
 def convert_spatial_resolution(value):
-    """remove the meeter and return a number"""
-    value = re.sub(r"[m|km]", "", value.replace(",", "."))
-    return str(value.strip())
+    """remove the meter or kilometer and return a number"""
+    if value and value.strip().endswith("km"):
+        value = re.sub(r"[km]", "", value.replace(",", "."))
+        decimal_value = Decimal(value)
+        result = (Decimal(1000) * decimal_value).to_integral()
+    else:
+        result = re.sub(r"[m]", "", value.replace(",", ".")).strip()
+    return str(result)
 
 
 def convert_spatial_resolution_from_anything(value):
