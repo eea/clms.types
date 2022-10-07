@@ -275,18 +275,24 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
     def test_spatial_resolution_indexer(self):
         """test the spatial resolution indexer in a dataset"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
-        self.dataset.qualitySpatialResolution_line = "1 km,100 m"
+        self.dataset.qualitySpatialResolution_line = (
+            "1 km,1.12 km,100 m,0.000992063492063 deg"
+        )
         # pylint: disable=not-callable
         indexed_value = spatial_resolution(self.dataset)()
 
-        self.assertEqual(len(indexed_value), 2)
-        self.assertIn("1 km", indexed_value)
-        self.assertIn("100 m", indexed_value)
+        self.assertEqual(len(indexed_value), 4)
+        self.assertIn("1000", indexed_value)
+        self.assertIn("1120", indexed_value)
+        self.assertIn("100", indexed_value)
+        self.assertIn("111", indexed_value)
 
     def test_spatial_resolution_indexer_adapter(self):
         """test the spatial resolution indexer adapter in a dataset"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
-        self.dataset.qualitySpatialResolution_line = "1 km,100 m"
+        self.dataset.qualitySpatialResolution_line = (
+            "1 km,1.12 km,100 m,0.000992063492063 deg"
+        )
 
         adapter = getMultiAdapter(
             (self.dataset, self.portal_catalog),
@@ -295,9 +301,11 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         )
         indexed_value = adapter()
 
-        self.assertEqual(len(indexed_value), 2)
-        self.assertIn("1 km", indexed_value)
-        self.assertIn("100 m", indexed_value)
+        self.assertEqual(len(indexed_value), 4)
+        self.assertIn("1000", indexed_value)
+        self.assertIn("1120", indexed_value)
+        self.assertIn("100", indexed_value)
+        self.assertIn("111", indexed_value)
 
     def test_spatial_resolution_indexer_adapter_fails(self):
         """test the spatial resolution indexer in a document"""

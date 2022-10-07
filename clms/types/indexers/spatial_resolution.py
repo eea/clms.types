@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Associated products indexers"""
 
+import re
 from decimal import Decimal
 
 from plone.dexterity.interfaces import IDexterityContent
@@ -14,21 +15,46 @@ def convert_spatial_resolutions(values):
     new_values = []
     for value in values:
         if value and value.strip().endswith("deg"):
+            new_values.append(convert_spatial_resolution_from_deg_to_m(value))
+        elif value and value.strip().endswith("m"):
             new_values.append(convert_spatial_resolution(value))
         else:
-            new_values.append(value)
+            try:
+                new_values.append(
+                    convert_spatial_resolution_from_anything(value)
+                )
+            except ValueError:
+                pass
 
     return new_values
 
 
 def convert_spatial_resolution(value):
+    """remove the meter or kilometer and return a number"""
+    if value and value.strip().endswith("km"):
+        value = re.sub(r"[km]", "", value.replace(",", "."))
+        decimal_value = Decimal(value)
+        result = (Decimal(1000) * decimal_value).to_integral()
+    else:
+        result = re.sub(r"[m]", "", value.replace(",", ".")).strip()
+    return str(result)
+
+
+def convert_spatial_resolution_from_anything(value):
+    """try to convert from a number"""
+    return str(value)
+
+
+def convert_spatial_resolution_from_deg_to_m(value):
     """convert from degrees to meters"""
     numeric_value = value.replace("deg", "").strip()
     decimal_numeric_value = Decimal(numeric_value)
     # pylint: disable=line-too-long
-    decimal_numeric_value_quantized = decimal_numeric_value.quantize(Decimal('1.0000'))  # noqa
-    result = decimal_numeric_value_quantized * Decimal('10007566.8') / 90
-    return f'{result.to_integral()} m'
+    decimal_numeric_value_quantized = decimal_numeric_value.quantize(
+        Decimal("1.0000")
+    )  # noqa
+    result = decimal_numeric_value_quantized * Decimal("10007566.8") / 90
+    return convert_spatial_resolution(str(result.to_integral()))
 
 
 @indexer(IDexterityContent)
