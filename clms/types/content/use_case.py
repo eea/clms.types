@@ -24,18 +24,6 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    # dexteritytextindexer.searchable('description')
-    # description = schema.Text(
-    #     title=_(u"label_description", default=u"Summary"),
-    #     description=_(
-    #         "Provide a short and complete abstract of the use case:"
-    #         " description, purpose, outcome, reference years, spatial coverage"
-    #         " or location…Provide extra links to documents, videos and"
-    #         " websites, if necessary."
-    #     ),
-    #     required=True,
-    # )
-    # Make sure to import: from plone.app.textfield import RichText
     dexteritytextindexer.searchable("text")
     text = RichText(
         title=_(u"label_description", default=u"Summary"),
