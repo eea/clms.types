@@ -39,8 +39,8 @@ def documentation_sorting(obj):
         for item in items:
             term = vocabulary.getTerm(item)
             title = translate(term.title)
-            item_id, _ = title.split("#")
             try:
+                item_id, _ = title.split("#")
                 result.append(int(item_id))
             except ValueError:
                 result.append(1)

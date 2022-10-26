@@ -49,15 +49,14 @@ setup(
         "plone.restapi",
         "collective.volto.dropdownmenu",
         "plone.schema>=1.3.0",
-        "eea.api.coremetadata",
-        "collective.taxonomy",
+        "collective.taxonomy<3.0",
         "eea.api.taxonomy",
         "clms.downloadtool",
         "clms.statstool",
         "plone.volto",
         "lxml",
         "requests",
-        "collective.dexteritytextindexer"
+        "collective.dexteritytextindexer",
     ],
     extras_require={
         "test": [
