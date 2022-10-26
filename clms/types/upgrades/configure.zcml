@@ -35,6 +35,7 @@
   <include file="1017.zcml" />
   <include file="1018.zcml" />
   <include file="1019.zcml" />
+  <include file="1020.zcml" />
 
 
 </configure>
