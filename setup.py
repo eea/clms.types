@@ -49,7 +49,7 @@ setup(
         "plone.restapi",
         "collective.volto.dropdownmenu",
         "plone.schema>=1.3.0",
-        "collective.taxonomy",
+        "collective.taxonomy<3.0",
         "eea.api.taxonomy",
         "clms.downloadtool",
         "clms.statstool",
