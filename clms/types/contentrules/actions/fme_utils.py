@@ -22,7 +22,10 @@ def usecase_to_discomap(usecase, operation):
 
     use_case_uid = usecase.UID()
     use_case_title = usecase.title
-    use_case_summary = usecase.description
+    try:
+        use_case_summary = usecase.text.output
+    except:
+        use_case_summary = ""
     submitting_production_year = usecase.submittingProducionYear
     responsible_organisation = usecase.responsibleOrganization
     contact_person_name_ = usecase.contactName
