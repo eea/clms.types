@@ -25,11 +25,9 @@ def usecase_to_discomap(usecase, operation):
     try:
         use_case_summary = usecase.text.output
     except Exception as e:
-        from logging import getLogger
-
-        log = getLogger(__name__)
         log.info(e)
         use_case_summary = ""
+
     submitting_production_year = usecase.submittingProducionYear
     responsible_organisation = usecase.responsibleOrganization
     contact_person_name_ = usecase.contactName
