@@ -14,6 +14,9 @@ def upgrade(setup_tool=None):
 
 
 def migrate_summary_for_usecases():
+    """upgrade old UseCases to move their content to the new
+    richtext field
+    """
     brains = api.content.find(portal_type="UseCase")
     for brain in brains:
         obj = brain.getObject()
