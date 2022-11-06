@@ -46,4 +46,6 @@ class DatasetGeographicalClassificationVocabulary:
         return SimpleVocabulary(terms)
 
 
-DatasetGeographicalClassificationVocabularyFactory = DatasetGeographicalClassificationVocabulary()
+DatasetGeographicalClassificationVocabularyFactory = (
+    DatasetGeographicalClassificationVocabulary()
+)
