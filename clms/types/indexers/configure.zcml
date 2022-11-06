@@ -146,4 +146,14 @@
       name="spatial_representation_type"
       />
 
+  <adapter
+      factory=".dataset_geographical_classification.dummy"
+      name="dataset_geographical_classification"
+      />
+
+  <adapter
+      factory=".dataset_geographical_classification.dataset_geographical_classification"
+      name="dataset_geographical_classification"
+      />
+
 </configure>

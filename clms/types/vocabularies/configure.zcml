@@ -123,4 +123,11 @@
       name="clms.types.SpatialRepresentationTypeVocabulary"
       component=".spatial_representation_type_vocabulary.SpatialRepresentationTypeFactory"
       />
+
+  <utility
+      name="clms.types.DatasetGeographicalClassificationVocabulary"
+      component=".dataset_geographical_classification_vocabulary.DatasetGeographicalClassificationVocabularyFactory"
+      />
+
+
 </configure>
