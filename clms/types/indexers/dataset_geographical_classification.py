@@ -17,7 +17,6 @@ def dummy(obj):
 def dataset_geographical_classification(obj):
     """Calculate and return the value for the indexer"""
     bounding_boxes = obj.geographicBoundingBox.get("items", [])
-    terms = []
     return classify_bounding_boxes(bounding_boxes)
 
 
