@@ -1,9 +1,9 @@
 Changelog
 =========
 
-8.6 - (2022-10-26)
+8.6 - (2022-11-06)
 ---------------------------
-* Change: Develop [erral]
+* Change: new index and upgrade step [erral]
 
 8.5 - (2022-10-07)
 ---------------------------
