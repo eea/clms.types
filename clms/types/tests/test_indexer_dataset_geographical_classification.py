@@ -96,7 +96,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertTrue(IDataSet.providedBy(self.dataset))
         indexed_value = dataset_geographical_classification(self.dataset)
 
-        self.assertTrue(isinstance(indexed_value, list))
+        self.assertTrue(isinstance(indexed_value(), list))
 
     def test_dataset_geographical_classification_adapter(self):
         """test the adapter"""
