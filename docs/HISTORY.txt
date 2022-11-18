@@ -1,6 +1,15 @@
 Changelog
 =========
 
+8.8 - (2022-11-18)
+---------------------------
+* Change EEA for European Economic Area [erral]
+* Tests [erral]
+
+8.7 - (2022-11-06)
+---------------------------
+* Tests [erral]
+
 8.6 - (2022-11-06)
 ---------------------------
 * Change: new index and upgrade step [erral]
