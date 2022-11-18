@@ -95,7 +95,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         """test the indexer in a dataset"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
         indexed_value = dataset_geographical_classification(self.dataset)
-
+        # pylint: disable=not-callable
         self.assertTrue(isinstance(indexed_value(), list))
 
     def test_dataset_geographical_classification_adapter(self):
