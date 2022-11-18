@@ -3,8 +3,6 @@ tests for the dataset_geographical_classification indexers
 """
 # -*- coding: utf-8 -*-
 
-# -*- coding: utf-8 -*-
-import datetime
 import json
 import unittest
 
@@ -98,7 +96,7 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         self.assertTrue(IDataSet.providedBy(self.dataset))
         indexed_value = dataset_geographical_classification(self.dataset)
 
-        self.assertTrue(isinstance(indexed_value(), list))
+        self.assertTrue(isinstance(indexed_value, list))
 
     def test_dataset_geographical_classification_adapter(self):
         """test the adapter"""
@@ -125,6 +123,8 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
 
 
 class TestIndexerUtils(unittest.TestCase):
+    """test utils"""
+
     def test_expand_bounding_box(self):
         """test the expand_bounding_box function"""
         bounding_box = {
