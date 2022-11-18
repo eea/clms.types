@@ -225,7 +225,7 @@ class TestIndexerUtils(unittest.TestCase):
             "south": "-60",
         }
 
-        self.assertIn("EEA", classify_bounding_boxes([bbox_eea]))
+        self.assertIn("European Economic Area", classify_bounding_boxes([bbox_eea]))
         self.assertIn(
             "Northern hemisphere", classify_bounding_boxes([bbox_northern])
         )

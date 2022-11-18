@@ -26,7 +26,7 @@ def classify_bounding_boxes(bounding_boxes):
 
     for bounding_box in bounding_boxes:
         if is_eea(bounding_box):
-            terms.append("EEA")
+            terms.append("European Economic Area")
         elif is_northern_hemisphere(bounding_box):
             terms.append("Northern hemisphere")
         elif is_southern_hemisphere(bounding_box):
