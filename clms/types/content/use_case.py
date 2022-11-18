@@ -126,6 +126,19 @@ class IUseCase(model.Schema):
     #     readonly=False,
     # )
 
+    external_url = schema.TextLine(
+        title=_(
+            u"External URL",
+        ),
+        description=_(
+            u"Fill this field with the external URL (if any) of this use-case"
+            u" so we can link our portal with the external.",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
     products = schema.List(
         title=_(
             u"CLMS associated products (Copernicus Land Monitoring Service"
