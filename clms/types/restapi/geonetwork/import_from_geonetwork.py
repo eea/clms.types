@@ -7,18 +7,17 @@ import json
 from datetime import datetime
 
 import requests
-from lxml import etree
-from plone.app.textfield.value import RichTextValue
-from plone.protect.interfaces import IDisableCSRFProtection
-from plone.restapi.services import Service
-from zope.interface import alsoProvides
-
 from clms.types.utils import (
     EEA_GEONETWORK_BASE_URL,
     NAMESPACES,
     NAMESPACES_VITO,
     VITO_GEONETWORK_BASE_URL,
 )
+from lxml import etree
+from plone.app.textfield.value import RichTextValue
+from plone.protect.interfaces import IDisableCSRFProtection
+from plone.restapi.services import Service
+from zope.interface import alsoProvides
 
 ISO_DATETIME_FORMAT = "%Y-%m-%d"
 ISO_DATETIME_FORMAT_WITH_TIME = "%Y-%m-%dT%H:%M:%S"
@@ -107,9 +106,11 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:identificationInfo/"
-                            "gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation"
+                            "gmd:MD_DataIdentification/"
+                            "gmd:citation/gmd:CI_Citation"
                             "/gmd:date/gmd:CI_Date[gmd:dateType/"
-                            "gmd:CI_DateTypeCode[@codeListValue='publication']]/"
+                            "gmd:CI_DateTypeCode"
+                            "[@codeListValue='publication']]/"
                             "gmd:date/gco:Date"
                         ),
                         "namespace": NAMESPACES,
@@ -123,9 +124,12 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:identificationInfo/"
-                            "gmd:MD_DataIdentification/gmd:citation/"
-                            "gmd:CI_Citation/gmd:date/gmd:CI_Date[gmd:dateType/"
-                            "gmd:CI_DateTypeCode[@codeListValue='revision']]/"
+                            "gmd:MD_DataIdentification/"
+                            "gmd:citation/"
+                            "gmd:CI_Citation/gmd:date/"
+                            "gmd:CI_Date[gmd:dateType/"
+                            "gmd:CI_DateTypeCode"
+                            "[@codeListValue='revision']]/"
                             "gmd:date/gco:Date"
                         ),
                         "namespace": NAMESPACES,
@@ -143,13 +147,6 @@ class ImportFromGeoNetwork(Service):
                 ],
                 "type": "text",
             },
-            # {
-            #     "field_id": "keywords",
-            #     "xml_key": "",
-            #     # "xml_key": "//gmd:descriptiveKeywords/" \
-            #       "gmd:MD_Keywords/gmd:keyword/gco:CharacterString",
-            #     "type": "string",
-            # },
             {
                 "field_id": "geographicCoverage",
                 "xml_keys": [
@@ -171,7 +168,8 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:resourceConstraints/"
-                            "gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor"
+                            "gmd:MD_LegalConstraints/"
+                            "gmd:otherConstraints/gmx:Anchor"
                         ),
                         "namespace": NAMESPACES,
                     }
@@ -225,7 +223,8 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:extent/gmd:EX_Extent/"
-                            "gmd:geographicElement/gmd:EX_GeographicBoundingBox"
+                            "gmd:geographicElement/"
+                            "gmd:EX_GeographicBoundingBox"
                         ),
                         "namespace": NAMESPACES,
                     }
@@ -328,7 +327,8 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:referenceSystemInfo/"
-                            "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
+                            "gmd:MD_ReferenceSystem/"
+                            "gmd:referenceSystemIdentifier/"
                             "gmd:RS_Identifier/gmd:code/gmx:Anchor"
                         ),
                         "namespace": NAMESPACES,
@@ -336,7 +336,8 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:referenceSystemInfo/"
-                            "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
+                            "gmd:MD_ReferenceSystem/
+                            "gmd:referenceSystemIdentifier/"
                             "gmd:RS_Identifier/gmd:code/gco:CharacterString"
                         ),
                         "namespace": NAMESPACES,
@@ -350,7 +351,8 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:report/gmd:DQ_DomainConsistency/"
-                            "gmd:result/gmd:DQ_ConformanceResult/gmd:specification/"
+                            "gmd:result/gmd:DQ_ConformanceResult/"
+                            "gmd:specification/"
                             "gmd:CI_Citation/gmd:title/gco:CharacterString"
                         ),
                         "namespace": NAMESPACES,
@@ -390,7 +392,8 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:distributionInfo/gmd:MD_Distribution/"
-                            "gmd:transferOptions/gmd:MD_DigitalTransferOptions/"
+                            "gmd:transferOptions/"
+                            "gmd:MD_DigitalTransferOptions/"
                             "gmd:onLine/gmd:CI_OnlineResource"
                         ),
                         "namespace": NAMESPACES,
@@ -402,7 +405,10 @@ class ImportFromGeoNetwork(Service):
                 "field_id": "identifier",
                 "xml_keys": [
                     {
-                        "xml_key": "//gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString",
+                        "xml_key": (
+                            "//gmd:MD_Metadata/"
+                            "gmd:fileIdentifier/gco:CharacterString"
+                        ),
                         "namespace": NAMESPACES,
                     }
                 ],
@@ -414,7 +420,8 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:contact/gmd:CI_ResponsibleParty[gmd:role/"
-                            "gmd:CI_RoleCode[@codeListValue='pointOfContact']]"
+                            "gmd:CI_RoleCode"
+                            "[@codeListValue='pointOfContact']]"
                         ),
                         "namespace": NAMESPACES,
                     }
@@ -477,10 +484,13 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "character_set",
-                # pylint: disable=line-too-long
                 "xml_keys": [
                     {
-                        "xml_key": "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",  # noqa: E501
+                        "xml_key": (
+                            "//gmd:MD_Metadata/"
+                            "gmd:characterSet/"
+                            "gmd:MD_CharacterSetCode"
+                        ),
                         "namespace": NAMESPACES,
                     }
                 ],
@@ -501,10 +511,13 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "metadata_standard_name",
-                # pylint: disable=line-too-long
                 "xml_keys": [
                     {
-                        "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",  # noqa: E501
+                        "xml_key": (
+                            "//gmd:MD_Metadata/"
+                            "gmd:metadataStandardName/"
+                            "gco:CharacterString"
+                        ),
                         "namespace": NAMESPACES,
                     }
                 ],
@@ -512,10 +525,13 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "metadata_standard_version",
-                # pylint: disable=line-too-long
                 "xml_keys": [
                     {
-                        "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",  # noqa: E501
+                        "xml_key": (
+                            "//gmd:MD_Metadata/"
+                            "gmd:metadataStandardVersion/"
+                            "gco:CharacterString"
+                        ),
                         "namespace": NAMESPACES,
                     }
                 ],
@@ -523,10 +539,12 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "spatial_representation_type",
-                # pylint: disable=line-too-long
                 "xml_keys": [
                     {
-                        "xml_key": "//gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode",  # noqa: E501
+                        "xml_key": (
+                            "//gmd:spatialRepresentationType/"
+                            "gmd:MD_SpatialRepresentationTypeCode",
+                        ),
                         "namespace": NAMESPACES,
                     }
                 ],
