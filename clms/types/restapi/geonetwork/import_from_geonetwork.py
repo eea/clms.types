@@ -659,7 +659,7 @@ class ImportFromGeoNetwork(Service):
                                     start[0].text,
                                     ISO_DATETIME_FORMAT_WITH_TIME,
                                 )
-                            except:
+                            except ValueError:
                                 dt_start_obj = datetime.strptime(
                                     start[0].text,
                                     ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z,
