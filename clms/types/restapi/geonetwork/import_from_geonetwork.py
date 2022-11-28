@@ -545,7 +545,7 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:spatialRepresentationType/"
-                            "gmd:MD_SpatialRepresentationTypeCode",
+                            "gmd:MD_SpatialRepresentationTypeCode"
                         ),
                         "namespace": NAMESPACES,
                     }
