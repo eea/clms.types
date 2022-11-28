@@ -272,6 +272,16 @@ class TestAssociatedDatasetsIndexer(unittest.TestCase):
         )
         self.assertRaises(AttributeError, adapter)
 
+    def test_spatial_resolution_single_valueindexer(self):
+        """test the spatial resolution indexer in a dataset"""
+        self.assertTrue(IDataSet.providedBy(self.dataset))
+        self.dataset.qualitySpatialResolution_line = "0.04464 deg"
+        # pylint: disable=not-callable
+        indexed_value = spatial_resolution(self.dataset)()
+
+        self.assertEqual(len(indexed_value), 1)
+        self.assertIn("4959", indexed_value)
+
     def test_spatial_resolution_indexer(self):
         """test the spatial resolution indexer in a dataset"""
         self.assertTrue(IDataSet.providedBy(self.dataset))
