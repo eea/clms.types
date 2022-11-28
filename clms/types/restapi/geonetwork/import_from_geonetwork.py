@@ -21,6 +21,7 @@ from zope.interface import alsoProvides
 
 ISO_DATETIME_FORMAT = "%Y-%m-%d"
 ISO_DATETIME_FORMAT_WITH_TIME = "%Y-%m-%dT%H:%M:%S"
+ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z = "%Y-%m-%dT%H:%M:%SZ"
 
 
 class ImportFromGeoNetwork(Service):
@@ -653,10 +654,16 @@ class ImportFromGeoNetwork(Service):
                                 ISO_DATETIME_FORMAT,
                             )
                         except ValueError:
-                            dt_start_obj = datetime.strptime(
-                                start[0].text,
-                                ISO_DATETIME_FORMAT_WITH_TIME,
-                            )
+                            try:
+                                dt_start_obj = datetime.strptime(
+                                    start[0].text,
+                                    ISO_DATETIME_FORMAT_WITH_TIME,
+                                )
+                            except:
+                                dt_start_obj = datetime.strptime(
+                                    start[0].text,
+                                    ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z,
+                                )
                         result["temporalExtentStart"] = {
                             "data": start[0].text,
                             "type": "string",
