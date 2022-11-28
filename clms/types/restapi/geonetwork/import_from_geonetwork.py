@@ -675,10 +675,16 @@ class ImportFromGeoNetwork(Service):
                                 ISO_DATETIME_FORMAT,
                             )
                         except ValueError:
-                            dt_end_obj = datetime.strptime(
-                                end[0].text,
-                                ISO_DATETIME_FORMAT_WITH_TIME,
-                            )
+                            try:
+                                dt_end_obj = datetime.strptime(
+                                    end[0].text,
+                                    ISO_DATETIME_FORMAT_WITH_TIME,
+                                )
+                            except ValueError:
+                                dt_end_obj = datetime.strptime(
+                                    end[0].text,
+                                    ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z,
+                                )
                         result["temporalExtentEnd"] = {
                             "data": end[0].text,
                             "type": "string",
