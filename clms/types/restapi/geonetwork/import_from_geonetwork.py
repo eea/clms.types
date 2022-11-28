@@ -16,10 +16,12 @@ from zope.interface import alsoProvides
 from clms.types.utils import (
     EEA_GEONETWORK_BASE_URL,
     NAMESPACES,
+    NAMESPACES_VITO,
     VITO_GEONETWORK_BASE_URL,
 )
 
 ISO_DATETIME_FORMAT = "%Y-%m-%d"
+ISO_DATETIME_FORMAT_WITH_TIME = "%Y-%m-%dT%H:%M:%S"
 
 
 class ImportFromGeoNetwork(Service):
@@ -101,29 +103,44 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "resourceEffective",
-                "xml_key": (
-                    "//gmd:identificationInfo/"
-                    "gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation"
-                    "/gmd:date/gmd:CI_Date[gmd:dateType/"
-                    "gmd:CI_DateTypeCode[@codeListValue='publication']]/"
-                    "gmd:date/gco:Date"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:identificationInfo/"
+                            "gmd:MD_DataIdentification/gmd:citation/gmd:CI_Citation"
+                            "/gmd:date/gmd:CI_Date[gmd:dateType/"
+                            "gmd:CI_DateTypeCode[@codeListValue='publication']]/"
+                            "gmd:date/gco:Date"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "date",
             },
             {
                 "field_id": "resourceModified",
-                "xml_key": (
-                    "//gmd:identificationInfo/"
-                    "gmd:MD_DataIdentification/gmd:citation/"
-                    "gmd:CI_Citation/gmd:date/gmd:CI_Date[gmd:dateType/"
-                    "gmd:CI_DateTypeCode[@codeListValue='revision']]/"
-                    "gmd:date/gco:Date"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:identificationInfo/"
+                            "gmd:MD_DataIdentification/gmd:citation/"
+                            "gmd:CI_Citation/gmd:date/gmd:CI_Date[gmd:dateType/"
+                            "gmd:CI_DateTypeCode[@codeListValue='revision']]/"
+                            "gmd:date/gco:Date"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "date",
             },
             {
                 "field_id": "dataResourceAbstract",
-                "xml_key": "//gmd:abstract/gco:CharacterString",
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:abstract/gco:CharacterString",
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "text",
             },
             # {
@@ -135,266 +152,403 @@ class ImportFromGeoNetwork(Service):
             # },
             {
                 "field_id": "geographicCoverage",
-                "xml_key": (
-                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
-                    "[gmd:type/gmd:MD_KeywordTypeCode"
-                    "[@codeListValue='place']]/gmd:keyword/"
-                    "gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:type/gmd:MD_KeywordTypeCode"
+                            "[@codeListValue='place']]/gmd:keyword/"
+                            "gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "json",
             },
             {
                 "field_id": "accessAndUseLimitationPublic_line",
-                "xml_key": (
-                    "//gmd:resourceConstraints/"
-                    "gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:resourceConstraints/"
+                            "gmd:MD_LegalConstraints/gmd:otherConstraints/gmx:Anchor"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
             },
             {
                 "field_id": "accessAndUseConstraints",
-                "xml_key": (
-                    "//gmd:resourceConstraints/"
-                    "gmd:MD_LegalConstraints/gmd:otherConstraints/"
-                    "gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:resourceConstraints/"
+                            "gmd:MD_LegalConstraints/gmd:otherConstraints/"
+                            "gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "text",
             },
             {
                 "field_id": "qualitySpatialResolution_line",
-                "xml_key": (
-                    "//gmd:spatialResolution/gmd:MD_Resolution/"
-                    "gmd:distance/gco:Distance"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:spatialResolution/gmd:MD_Resolution/"
+                            "gmd:distance/gco:Distance"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "resolution",
                 "attribute": "uom",
             },
             {
                 "field_id": "classificationTopicCategory",
-                "xml_key": (
-                    "//gmd:MD_DataIdentification/gmd:topicCategory/"
-                    "gmd:MD_TopicCategoryCode"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:MD_DataIdentification/gmd:topicCategory/"
+                            "gmd:MD_TopicCategoryCode"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "list",
             },
             {
                 "field_id": "geographicBoundingBox",
-                "xml_key": (
-                    "//gmd:extent/gmd:EX_Extent/"
-                    "gmd:geographicElement/gmd:EX_GeographicBoundingBox"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:extent/gmd:EX_Extent/"
+                            "gmd:geographicElement/gmd:EX_GeographicBoundingBox"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "json",
             },
             {
                 "field_id": "temporalCoverage",
-                "xml_key": (
-                    "//gmd:extent/gmd:EX_Extent/"
-                    "gmd:temporalElement/gmd:EX_TemporalExtent/"
-                    "gmd:extent/gml:TimePeriod"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:extent/gmd:EX_Extent/"
+                            "gmd:temporalElement/gmd:EX_TemporalExtent/"
+                            "gmd:extent/gml:TimePeriod"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:identificationInfo/"
+                            "gmd:MD_DataIdentification/"
+                            "gmd:extent/gmd:EX_Extent/"
+                            "gmd:temporalElement/gmd:EX_TemporalExtent/"
+                            "gmd:extent/gml:TimePeriod"
+                        ),
+                        "namespace": NAMESPACES_VITO,
+                    },
+                ],
                 "type": "list",
             },
             {
                 "field_id": "gemet",
-                "xml_key": (
-                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
-                    "[gmd:thesaurusName/gmd:CI_Citation/"
-                    "gmd:title/gco:CharacterString"
-                    "[contains(text(),'GEMET')]]"
-                    "/gmd:keyword/gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gco:CharacterString"
+                            "[contains(text(),'GEMET')]]"
+                            "/gmd:keyword/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "list",
             },
             {
                 "field_id": "gemetInspireThemes",
-                "xml_key": (
-                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
-                    "[gmd:thesaurusName/gmd:CI_Citation/"
-                    "gmd:title/gmx:Anchor"
-                    "[@xlink:href='http://inspire.ec.europa.eu/theme']]"
-                    "/gmd:keyword/gco:CharacterString"
-                ),
-                "if_not_xml_key": (
-                    "//gmd:descriptiveKeywords/gmd:MD_Keywords"
-                    "[gmd:thesaurusName/gmd:CI_Citation/"
-                    "gmd:title/gco:CharacterString"
-                    "[contains(text(),"
-                    "'GEMET - INSPIRE themes, version 1.0')]]"
-                    "/gmd:keyword/gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gmx:Anchor"
+                            "[@xlink:href='http://inspire.ec.europa.eu/theme']]"
+                            "/gmd:keyword/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gco:CharacterString"
+                            "[contains(text(),"
+                            "'GEMET - INSPIRE themes, version 1.0')]]"
+                            "/gmd:keyword/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                ],
                 "type": "list",
             },
             {
                 "field_id": "dataResourceType",
-                "xml_key": "//gmd:hierarchyLevel/gmd:MD_ScopeCode",
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:hierarchyLevel/gmd:MD_ScopeCode",
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "responsiblePartyWithRole",
-                "xml_key": "//gmd:pointOfContact/gmd:CI_ResponsibleParty",
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:pointOfContact/gmd:CI_ResponsibleParty"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "contact",
             },
             {
                 "field_id": "coordinateReferenceSystemList",
-                "xml_key": (
-                    "//gmd:referenceSystemInfo/"
-                    "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
-                    "gmd:RS_Identifier/gmd:code/gmx:Anchor"
-                ),
-                "if_not_xml_key": (
-                    "//gmd:referenceSystemInfo/"
-                    "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
-                    "gmd:RS_Identifier/gmd:code/gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:referenceSystemInfo/"
+                            "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
+                            "gmd:RS_Identifier/gmd:code/gmx:Anchor"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:referenceSystemInfo/"
+                            "gmd:MD_ReferenceSystem/gmd:referenceSystemIdentifier/"
+                            "gmd:RS_Identifier/gmd:code/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                ],
                 "type": "list",
             },
             {
                 "field_id": "conformitySpecification",
-                "xml_key": (
-                    "//gmd:report/gmd:DQ_DomainConsistency/"
-                    "gmd:result/gmd:DQ_ConformanceResult/gmd:specification/"
-                    "gmd:CI_Citation/gmd:title/gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:report/gmd:DQ_DomainConsistency/"
+                            "gmd:result/gmd:DQ_ConformanceResult/gmd:specification/"
+                            "gmd:CI_Citation/gmd:title/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "text",
             },
             {
                 "field_id": "conformityPass",
-                "xml_key": (
-                    "//gmd:DQ_DomainConsistency/gmd:result/"
-                    "gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:DQ_DomainConsistency/gmd:result/"
+                            "gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "choice",
             },
             {
                 "field_id": "qualityLineage",
-                "xml_key": (
-                    "//gmd:lineage/gmd:LI_Lineage/"
-                    "gmd:statement/gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:lineage/gmd:LI_Lineage/"
+                            "gmd:statement/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "text",
             },
             {
                 "field_id": "distributionInfo",
-                "xml_key": (
-                    "//gmd:distributionInfo/gmd:MD_Distribution/"
-                    "gmd:transferOptions/gmd:MD_DigitalTransferOptions/"
-                    "gmd:onLine/gmd:CI_OnlineResource"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:distributionInfo/gmd:MD_Distribution/"
+                            "gmd:transferOptions/gmd:MD_DigitalTransferOptions/"
+                            "gmd:onLine/gmd:CI_OnlineResource"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "distribution",
             },
             {
                 "field_id": "identifier",
-                "xml_key": (
-                    "//gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:MD_Metadata/gmd:fileIdentifier/gco:CharacterString",
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
             },
             {
                 "field_id": "point_of_contact_data",
-                "xml_key": (
-                    "//gmd:contact/gmd:CI_ResponsibleParty[gmd:role/"
-                    "gmd:CI_RoleCode[@codeListValue='pointOfContact']]"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:contact/gmd:CI_ResponsibleParty[gmd:role/"
+                            "gmd:CI_RoleCode[@codeListValue='pointOfContact']]"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "contact",
             },
             {
                 "field_id": "update_frequency",
-                "xml_key": (
-                    "//gmd:resourceMaintenance/"
-                    "gmd:MD_MaintenanceInformation/"
-                    "gmd:maintenanceAndUpdateFrequency/"
-                    "gmd:MD_MaintenanceFrequencyCode"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:resourceMaintenance/"
+                            "gmd:MD_MaintenanceInformation/"
+                            "gmd:maintenanceAndUpdateFrequency/"
+                            "gmd:MD_MaintenanceFrequencyCode"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "distribution_format_list",
-                "xml_key": (
-                    "//gmd:distributionInfo/gmd:MD_Distribution/"
-                    "gmd:distributionFormat/"
-                    "gmd:MD_Format/gmd:name/gco:CharacterString"
-                ),
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:distributionInfo/gmd:MD_Distribution/"
+                            "gmd:distributionFormat/"
+                            "gmd:MD_Format/gmd:name/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "list",
             },
             {
                 "field_id": "hierarchy_level",
-                "xml_key": "//gmd:hierarchyLevel/gmd:MD_ScopeCode",
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:hierarchyLevel/gmd:MD_ScopeCode",
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "metadata_language",
-                "xml_key": "//gmd:MD_Metadata/gmd:language/gmd:LanguageCode",
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:MD_Metadata/gmd:language/gmd:LanguageCode"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "character_set",
                 # pylint: disable=line-too-long
-                "xml_key": "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",  # noqa: E501
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:MD_Metadata/gmd:characterSet/gmd:MD_CharacterSetCode",  # noqa: E501
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
                 "attribute": "codeListValue",
             },
             {
                 "field_id": "date_stamp",
-                "xml_key": "//gmd:MD_Metadata/gmd:dateStamp/gco:DateTime",
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:MD_Metadata/gmd:dateStamp/gco:DateTime"
+                        ),
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
             },
             {
                 "field_id": "metadata_standard_name",
                 # pylint: disable=line-too-long
-                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",  # noqa: E501
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardName/gco:CharacterString",  # noqa: E501
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
             },
             {
                 "field_id": "metadata_standard_version",
                 # pylint: disable=line-too-long
-                "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",  # noqa: E501
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:MD_Metadata/gmd:metadataStandardVersion/gco:CharacterString",  # noqa: E501
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "type": "string",
             },
             {
                 "field_id": "spatial_representation_type",
                 # pylint: disable=line-too-long
-                "xml_key": "//gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode",  # noqa: E501
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:spatialRepresentationType/gmd:MD_SpatialRepresentationTypeCode",  # noqa: E501
+                        "namespace": NAMESPACES,
+                    }
+                ],
                 "attribute": "codeListValue",
                 "type": "list",
             },
         ]
 
         for field in fields_to_get:
-            if field.get("xml_key"):
+            for key in field.get("xml_keys", []):
+                xml_key = key["xml_key"]
+                namespace = key["namespace"]
                 fields_data = doc.xpath(
-                    field["xml_key"],
-                    namespaces=NAMESPACES,
+                    xml_key,
+                    namespaces=namespace,
                 )
-                if len(fields_data) == 0 and field.get("if_not_xml_key"):
-                    fields_data = doc.xpath(
-                        field["if_not_xml_key"],
-                        namespaces=NAMESPACES,
-                    )
-                    if len(fields_data) > 0:
-                        result[field["field_id"]] = {
-                            "data": [item.text for item in fields_data],
-                            "type": field["type"],
-                        }
-                        print(
-                            f"    OK DATA for {field['type']} field"
-                            f" {field['field_id']}"
-                        )
-                    else:
-                        print(
-                            "    WARNING!!! No DATA for field"
-                            f" {field['field_id']} with search keys"
-                            f" {field['xml_key']} first attempt with 0 results"
-                            f" and {field['if_not_xml_key']}"
-                        )
-                elif len(fields_data) == 0:
+
+                if len(fields_data) == 0:
                     print(
                         "    WARNING!!! No DATA for field"
                         f" {field['field_id']} with search key"
-                        f" {field['xml_key']}"
+                        f" {xml_key}"
                     )
                 elif field["field_id"] == "geographicBoundingBox":
                     bbox_data = {"items": []}
@@ -402,23 +556,19 @@ class ImportFromGeoNetwork(Service):
                     i = 0
                     for item in fields_data:
                         west = item.xpath(
-                            f"{field['xml_key']}/gmd:westBoundLongitude"
-                            "/gco:Decimal",
+                            f"{xml_key}/gmd:westBoundLongitude/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
                         east = item.xpath(
-                            f"{field['xml_key']}/gmd:eastBoundLongitude"
-                            "/gco:Decimal",
+                            f"{xml_key}/gmd:eastBoundLongitude/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
                         south = item.xpath(
-                            f"{field['xml_key']}/gmd:southBoundLatitude"
-                            "/gco:Decimal",
+                            f"{xml_key}/gmd:southBoundLatitude/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
                         north = item.xpath(
-                            f"{field['xml_key']}/gmd:northBoundLatitude"
-                            "/gco:Decimal",
+                            f"{xml_key}/gmd:northBoundLatitude/gco:Decimal",
                             namespaces=NAMESPACES,
                         )
 
@@ -467,28 +617,42 @@ class ImportFromGeoNetwork(Service):
                     item = fields_data[0]
                     start = item.xpath(
                         "gml:beginPosition",
-                        namespaces=NAMESPACES,
+                        namespaces=namespace,
                     )
+
                     end = item.xpath(
                         "gml:endPosition",
-                        namespaces=NAMESPACES,
+                        namespaces=namespace,
                     )
+
                     dt_start_obj = None
                     dt_end_obj = None
                     if start[0].text:
-                        dt_start_obj = datetime.strptime(
-                            start[0].text,
-                            ISO_DATETIME_FORMAT,
-                        )
+                        try:
+                            dt_start_obj = datetime.strptime(
+                                start[0].text,
+                                ISO_DATETIME_FORMAT,
+                            )
+                        except ValueError:
+                            dt_start_obj = datetime.strptime(
+                                start[0].text,
+                                ISO_DATETIME_FORMAT_WITH_TIME,
+                            )
                         result["temporalExtentStart"] = {
                             "data": start[0].text,
                             "type": "string",
                         }
                     if end[0].text:
-                        dt_end_obj = datetime.strptime(
-                            end[0].text,
-                            ISO_DATETIME_FORMAT,
-                        )
+                        try:
+                            dt_end_obj = datetime.strptime(
+                                end[0].text,
+                                ISO_DATETIME_FORMAT,
+                            )
+                        except ValueError:
+                            dt_end_obj = datetime.strptime(
+                                end[0].text,
+                                ISO_DATETIME_FORMAT_WITH_TIME,
+                            )
                         result["temporalExtentEnd"] = {
                             "data": end[0].text,
                             "type": "string",
@@ -514,65 +678,65 @@ class ImportFromGeoNetwork(Service):
                     i = 0
                     for item in fields_data:
                         organisationName = item.xpath(
-                            f"{field['xml_key']}/gmd:organisationName/"
+                            f"{xml_key}/gmd:organisationName/"
                             "gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         deliveryPoint = item.xpath(
-                            f"{field['xml_key']}/gmd:contactInfo/"
+                            f"{xml_key}/gmd:contactInfo/"
                             "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:deliveryPoint/"
                             "gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         city = item.xpath(
-                            f"{field['xml_key']}/gmd:contactInfo/"
+                            f"{xml_key}/gmd:contactInfo/"
                             "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:city/gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         administrativeArea = item.xpath(
-                            f"{field['xml_key']}/gmd:contactInfo/"
+                            f"{xml_key}/gmd:contactInfo/"
                             "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:administrativeArea/"
                             "gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         postalCode = item.xpath(
-                            f"{field['xml_key']}/gmd:contactInfo/"
+                            f"{xml_key}/gmd:contactInfo/"
                             "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:postalCode/"
                             "gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         country = item.xpath(
-                            f"{field['xml_key']}/gmd:contactInfo/"
+                            f"{xml_key}/gmd:contactInfo/"
                             "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:country/gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         electronicMailAddress = item.xpath(
-                            f"{field['xml_key']}/gmd:contactInfo/"
+                            f"{xml_key}/gmd:contactInfo/"
                             "gmd:CI_Contact/gmd:address/"
                             "gmd:CI_Address/gmd:electronicMailAddress/"
                             "gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         url = item.xpath(
-                            f"{field['xml_key']}/gmd:onlineResource/"
+                            f"{xml_key}/gmd:onlineResource/"
                             "gmd:CI_OnlineResource/"
                             "gmd:linkage/gmd:URL",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         urlTitle = item.xpath(
-                            f"{field['xml_key']}/gmd:onlineResource/"
+                            f"{xml_key}/gmd:onlineResource/"
                             "gmd:CI_OnlineResource/"
                             "gmd:name/gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            namespaces=namespace,
                         )
                         roleCode = item.xpath(
-                            f"{field['xml_key']}/gmd:role/gmd:CI_RoleCode",
-                            namespaces=NAMESPACES,
+                            f"{xml_key}/gmd:role/gmd:CI_RoleCode",
+                            namespaces=namespace,
                         )
                         contact_items.append(
                             {
@@ -625,13 +789,12 @@ class ImportFromGeoNetwork(Service):
                     i = 0
                     for item in fields_data:
                         resourceLocator = item.xpath(
-                            field["xml_key"] + "/gmd:linkage/gmd:URL",
-                            namespaces=NAMESPACES,
+                            xml_key + "/gmd:linkage/gmd:URL",
+                            namespaces=namespace,
                         )
                         services = item.xpath(
-                            f"{field['xml_key']}/gmd:protocol/"
-                            "gco:CharacterString",
-                            namespaces=NAMESPACES,
+                            f"{xml_key}/gmd:protocol/gco:CharacterString",
+                            namespaces=namespace,
                         )
                         distribution_items.append(
                             {
@@ -655,7 +818,10 @@ class ImportFromGeoNetwork(Service):
                     item = fields_data[0]
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
-                    if (resolution.startswith("http") and resolution.find("#") != -1):  # noqa: E501
+                    if (
+                        resolution.startswith("http")
+                        and resolution.find("#") != -1
+                    ):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
                         "data": f"{item.text} {resolution}",
@@ -701,12 +867,7 @@ class ImportFromGeoNetwork(Service):
                         f"    OK DATA for {field['type']} field"
                         f" {field['field_id']}"
                     )
-            else:
-                result[field["field_id"]] = {
-                    "data": "### NOT TESTED ###",
-                    "type": field["type"],
-                }
-                print(f"    No XML Key for {field['field_id']}")
+
         return result
 
     def save_data(
