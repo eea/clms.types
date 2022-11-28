@@ -279,7 +279,8 @@ class ImportFromGeoNetwork(Service):
                             "//gmd:descriptiveKeywords/gmd:MD_Keywords"
                             "[gmd:thesaurusName/gmd:CI_Citation/"
                             "gmd:title/gmx:Anchor"
-                            "[@xlink:href='http://inspire.ec.europa.eu/theme']]"
+                            "[@xlink:href='"
+                            "http://inspire.ec.europa.eu/theme']]"
                             "/gmd:keyword/gco:CharacterString"
                         ),
                         "namespace": NAMESPACES,
@@ -336,7 +337,7 @@ class ImportFromGeoNetwork(Service):
                     {
                         "xml_key": (
                             "//gmd:referenceSystemInfo/"
-                            "gmd:MD_ReferenceSystem/
+                            "gmd:MD_ReferenceSystem/"
                             "gmd:referenceSystemIdentifier/"
                             "gmd:RS_Identifier/gmd:code/gco:CharacterString"
                         ),
