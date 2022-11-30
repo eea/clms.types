@@ -1,9 +1,14 @@
 Changelog
 =========
 
+9.3 - (2022-11-30)
+---------------------------
+* Change: fix: import gemet and gemetInspireThemes according to new location in…
+  [erral]
+
 9.2 - (2022-11-28)
 ---------------------------
-* Change: Develop
+* Change: dev
   [erral]
 
 9.1 - (2022-11-28)
