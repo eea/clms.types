@@ -264,11 +264,21 @@ class ImportFromGeoNetwork(Service):
                             "//gmd:descriptiveKeywords/gmd:MD_Keywords"
                             "[gmd:thesaurusName/gmd:CI_Citation/"
                             "gmd:title/gco:CharacterString"
-                            "[contains(text(),'GEMET')]]"
+                            "[text()='GEMET']]"
                             "/gmd:keyword/gco:CharacterString"
                         ),
                         "namespace": NAMESPACES,
-                    }
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gco:CharacterString"
+                            "[text()='GEMET - Concepts version 3.0']]"
+                            "/gmd:keyword/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
                 ],
                 "type": "list",
             },
@@ -280,9 +290,9 @@ class ImportFromGeoNetwork(Service):
                             "//gmd:descriptiveKeywords/gmd:MD_Keywords"
                             "[gmd:thesaurusName/gmd:CI_Citation/"
                             "gmd:title/gmx:Anchor"
-                            "[@xlink:href='"
-                            "http://inspire.ec.europa.eu/theme']]"
-                            "/gmd:keyword/gco:CharacterString"
+                            "[text()="
+                            "'GEMET - INSPIRE themes, version 1.0']]"
+                            "/gmd:keyword/gmx:Anchor"
                         ),
                         "namespace": NAMESPACES,
                     },
@@ -291,8 +301,8 @@ class ImportFromGeoNetwork(Service):
                             "//gmd:descriptiveKeywords/gmd:MD_Keywords"
                             "[gmd:thesaurusName/gmd:CI_Citation/"
                             "gmd:title/gco:CharacterString"
-                            "[contains(text(),"
-                            "'GEMET - INSPIRE themes, version 1.0')]]"
+                            "[text()="
+                            "'GEMET - INSPIRE themes version 1.0']]"
                             "/gmd:keyword/gco:CharacterString"
                         ),
                         "namespace": NAMESPACES,
