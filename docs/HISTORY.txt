@@ -1,6 +1,9 @@
 Changelog
 =========
 
+9.4-dev0 - (unreleased)
+---------------------------
+
 9.3 - (2022-11-30)
 ---------------------------
 * Change: fix: import gemet and gemetInspireThemes according to new location in…
