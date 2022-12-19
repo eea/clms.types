@@ -16,6 +16,7 @@
     <permission id="clms.types.AddTender" title="clms.types: Add Tender" />
 
     <permission id="clms.types.AddTechnicalLibrary" title="clms.types: Add TechnicalLibrary" />
+    <permission id="clms.types.FAQ" title="clms.types: Add FAQ" />
 
 
   </configure>
