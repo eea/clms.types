@@ -18,7 +18,7 @@
   <element value="view"/>
  </property>
  <property name="default_view_fallback">False</property>
- <property name="add_permission">clms.types.AddWorkFAQ</property>
+ <property name="add_permission">clms.types.AddFAQ</property>
  <property
     name="klass">clms.types.content.faq.FAQ</property>
  <property name="behaviors">
@@ -32,8 +32,8 @@
   <element value="plone.basic"/>
   <element value="plone.locking"/>
   <element value="plone.translatable"/>
-  <element value="volto.blocks"/>
   <element value="collective.taxonomy.generated.faqcategories" />
+  <element value="plone.richtext"/>
  </property>
  <property name="schema">clms.types.content.faq.IFAQ</property>
 
