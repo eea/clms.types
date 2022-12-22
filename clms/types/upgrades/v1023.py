@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Run upgrade"""
-from . import logger
 from plone import api
+from . import logger
 
 
 def remove_unneeded_behaviors():
