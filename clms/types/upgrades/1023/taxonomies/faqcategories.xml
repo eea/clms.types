@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vdex xmlns="http://www.imsglobal.org/xsd/imsvdex_v1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsvdex_v1p0 imsvdex_v1p0.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd" orderSignificant="false" profileType="hierarchicalTokenTerms" language="en">
+  <vocabName>
+    <langstring language="en">FAQ Category</langstring>
+  </vocabName>
+  <vocabIdentifier>faqcategories</vocabIdentifier>
+  <term>
+    <termIdentifier>f3mfger8t6</termIdentifier>
+    <caption>
+      <langstring language="en">01#General Questions</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>rulmgjmxd5</termIdentifier>
+    <caption>
+      <langstring language="en">02#Navigation</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>f39xxysm1w</termIdentifier>
+    <caption>
+      <langstring language="en">03#Data use terms and conditions</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>yd3dqephsc</termIdentifier>
+    <caption>
+      <langstring language="en">04#Registration/Login</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>adhc43veuy</termIdentifier>
+    <caption>
+      <langstring language="en">05#Map viewer</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>iplsy3cwbc</termIdentifier>
+    <caption>
+      <langstring language="en">06#Download</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>nwme569c40</termIdentifier>
+    <caption>
+      <langstring language="en">07#Use cases</langstring>
+    </caption>
+  </term>
+  <term>
+    <termIdentifier>m6ucp0uth6</termIdentifier>
+    <caption>
+      <langstring language="bs"></langstring>
+      <langstring language="cs"></langstring>
+      <langstring language="da"></langstring>
+      <langstring language="de"></langstring>
+      <langstring language="en">08#Products</langstring>
+      <langstring language="es"></langstring>
+      <langstring language="et"></langstring>
+      <langstring language="fi"></langstring>
+      <langstring language="fr"></langstring>
+      <langstring language="hr"></langstring>
+      <langstring language="hu"></langstring>
+      <langstring language="it"></langstring>
+      <langstring language="lt"></langstring>
+      <langstring language="lv"></langstring>
+      <langstring language="mt"></langstring>
+      <langstring language="nl"></langstring>
+      <langstring language="pl"></langstring>
+      <langstring language="pt"></langstring>
+      <langstring language="ro"></langstring>
+      <langstring language="sk"></langstring>
+      <langstring language="sl"></langstring>
+      <langstring language="sv"></langstring>
+    </caption>
+    <term>
+      <termIdentifier>9oo3n6kr05</termIdentifier>
+      <caption>
+        <langstring language="en">09#General</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>7pgphx1xs7</termIdentifier>
+      <caption>
+        <langstring language="en">10#CORINE Land Cover</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>0lm0eh9u80</termIdentifier>
+      <caption>
+        <langstring language="bs"></langstring>
+        <langstring language="cs"></langstring>
+        <langstring language="da"></langstring>
+        <langstring language="de"></langstring>
+        <langstring language="en">11#European Ground Motion Service</langstring>
+        <langstring language="es"></langstring>
+        <langstring language="et"></langstring>
+        <langstring language="fi"></langstring>
+        <langstring language="fr"></langstring>
+        <langstring language="hr"></langstring>
+        <langstring language="hu"></langstring>
+        <langstring language="it"></langstring>
+        <langstring language="lt"></langstring>
+        <langstring language="lv"></langstring>
+        <langstring language="mt"></langstring>
+        <langstring language="nl"></langstring>
+        <langstring language="pl"></langstring>
+        <langstring language="pt"></langstring>
+        <langstring language="ro"></langstring>
+        <langstring language="sk"></langstring>
+        <langstring language="sl"></langstring>
+        <langstring language="sv"></langstring>
+      </caption>
+    </term>
+  </term>
+</vdex>
