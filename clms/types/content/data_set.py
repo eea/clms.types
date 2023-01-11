@@ -647,6 +647,8 @@ class IDataSet(model.Schema):
             "downloadable_files",
             "dataset_download_information",
             "download_table_area_of_interest_title",
+            "show_legend_on_prepackages",
+            "show_pop_up_in_mapviewer",
             # "dataset_full_path",
             # "dataset_full_format",
             # "dataset_full_source",
@@ -699,6 +701,28 @@ class IDataSet(model.Schema):
         ),
         default=u"Area of interest",
         required=False,
+        readonly=False,
+    )
+
+    show_legend_on_prepackages = schema.Bool(
+        title=_(
+            u'Show link to open the legends on a popup in the prepackages table?',
+        ),
+        description=_(
+            u'If selected this will show a button that will open a popup with the '
+             'image showing the legends of the prepackages files'
+        ),
+        required=False,
+        default=False,
+        readonly=False,
+    )
+
+    show_pop_up_in_mapviewer = schema.Bool(
+        title=_(
+            u"Show a pop up in the mapviewer saying that this dataset can't be shown",
+        ),
+        required=False,
+        default=False,
         readonly=False,
     )
 
