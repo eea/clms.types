@@ -339,7 +339,8 @@ class TestLRFMapViewer(unittest.TestCase):
             dataset1["HandlingLevel"], self.dataset1_1.mapviewer_handlinglevel
         )
         self.assertEqual(
-            dataset1["ShowPopUpInMapviewer"], self.dataset1_1.show_pop_up_in_mapviewer
+            dataset1["ShowPopUpInMapviewer"],
+            self.dataset1_1.show_pop_up_in_mapviewer
         )
 
     def test_dataset_layers(self):
