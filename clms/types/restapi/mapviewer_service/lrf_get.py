@@ -216,6 +216,9 @@ class RootMapViewerServiceGet(Service):
                     "Downloadable": bool(dataset.downloadable_full_dataset),
                     "PositionInParent": getObjPositionInParent(dataset),
                     "HandlingLevel": bool(dataset.mapviewer_handlinglevel),
+                    "MarkAsDownloadableNoServiceToVisualize": bool(
+                        dataset.show_pop_up_in_mapviewer
+                    ),
                 }
 
         return None

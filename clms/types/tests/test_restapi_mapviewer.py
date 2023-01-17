@@ -338,6 +338,10 @@ class TestLRFMapViewer(unittest.TestCase):
         self.assertEqual(
             dataset1["HandlingLevel"], self.dataset1_1.mapviewer_handlinglevel
         )
+        self.assertEqual(
+            dataset1["MarkAsDownloadableNoServiceToVisualize"],
+            self.dataset1_1.show_pop_up_in_mapviewer
+        )
 
     def test_dataset_layers(self):
         """test layer info"""
