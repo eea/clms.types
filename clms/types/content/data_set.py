@@ -706,8 +706,8 @@ class IDataSet(model.Schema):
 
     show_legend_on_prepackages = schema.Bool(
         title=_(
-            u"Show link to open the legends on a popup in the prepackages "
-            u"table?",
+            u"Show associated grid picture for prepackages "
+            u"nomenclature reference",
         ),
         description=_(
             "If selected this will show a button that will open a popup "
