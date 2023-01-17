@@ -339,7 +339,7 @@ class TestLRFMapViewer(unittest.TestCase):
             dataset1["HandlingLevel"], self.dataset1_1.mapviewer_handlinglevel
         )
         self.assertEqual(
-            dataset1["ShowPopUpInMapviewer"],
+            dataset1["MarkAsDownloadableNoServiceToVisualize"],
             self.dataset1_1.show_pop_up_in_mapviewer
         )
 

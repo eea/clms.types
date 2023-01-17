@@ -706,8 +706,8 @@ class IDataSet(model.Schema):
 
     show_legend_on_prepackages = schema.Bool(
         title=_(
-            u"Show link to open the legends on a popup in the prepackages "
-            u"table?",
+            u"Show associated grid picture for prepackages "
+            u"nomenclature reference",
         ),
         description=_(
             "If selected this will show a button that will open a popup "
@@ -720,8 +720,7 @@ class IDataSet(model.Schema):
 
     show_pop_up_in_mapviewer = schema.Bool(
         title=_(
-            "Show a pop up in the mapviewer saying that this dataset can't"
-            " be shown",
+            "Mark as downloadable but with no service to visualise",
         ),
         required=False,
         default=False,
