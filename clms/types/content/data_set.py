@@ -720,8 +720,7 @@ class IDataSet(model.Schema):
 
     show_pop_up_in_mapviewer = schema.Bool(
         title=_(
-            "Show a pop up in the mapviewer saying that this dataset can't"
-            " be shown",
+            "Mark as downloadable but with no service to visualise",
         ),
         required=False,
         default=False,
