@@ -1,6 +1,10 @@
 Changelog
 =========
 
+9.6 - (2023-02-08)
+---------------------------
+* Change: mark file of technical library items as primary [erral]
+
 9.6-dev0 - (unreleased)
 ---------------------------
 
