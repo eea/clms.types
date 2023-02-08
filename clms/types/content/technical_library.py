@@ -9,6 +9,7 @@ from zope import schema
 from zope.interface import implementer
 from collective import dexteritytextindexer
 from clms.types import _
+from plone.supermodel.directives import primary
 
 
 class ITechnicalLibrary(model.Schema):
@@ -18,7 +19,8 @@ class ITechnicalLibrary(model.Schema):
     # and customize it in Python:
 
     # model.load('product.xml')
-    dexteritytextindexer.searchable('file')
+    primary("file")
+    dexteritytextindexer.searchable("file")
     file = NamedBlobFile(title=_(u"File"), required=True)
 
     document_product = schema.TextLine(
