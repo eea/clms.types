@@ -2,14 +2,14 @@
 """
 TechnicalLibrary content-type definition
 """
+from clms.types import _
+from collective import dexteritytextindexer
 from plone.dexterity.content import Container
 from plone.namedfile.field import NamedBlobFile
 from plone.supermodel import model
+from plone.supermodel.directives import primary
 from zope import schema
 from zope.interface import implementer
-from collective import dexteritytextindexer
-from clms.types import _
-from plone.supermodel.directives import primary
 
 
 class ITechnicalLibrary(model.Schema):
