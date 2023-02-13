@@ -695,7 +695,8 @@ class IDataSet(model.Schema):
         ),
         default=(
             "<p>If you want to download the full dataset, click <a"
-            ' href="/en/how-to-guides/how-to-download-spatial-data/how-to-download-m2m">here</a>'
+            ' href="/en/how-to-guides/how-to-download-spatial-data/'
+            'how-to-download-m2m">here</a>'
             " to learn more.</p>"
         ),
         required=False,
