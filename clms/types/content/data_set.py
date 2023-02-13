@@ -4,15 +4,14 @@ DataSet content-type definition
 """
 import json
 
+from clms.types import _
+from collective import dexteritytextindexer
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
-from collective import dexteritytextindexer
-from clms.types import _
-
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
@@ -544,7 +543,10 @@ class IDataSet(model.Schema):
     )
 
     dexteritytextindexer.searchable("citation")
-    citation = RichText(title=_(u"Dataset citation"), required=False)
+    citation = RichText(
+        title=_(u"Dataset citation"),
+        required=False,
+    )
 
     geonetwork_identifiers = JSONField(
         title=_("Geonetwork identifier list"),
@@ -645,6 +647,7 @@ class IDataSet(model.Schema):
             "downloadable_dataset",
             "downloadable_full_dataset",
             "downloadable_files",
+            "download_full_dataset_text",
             "dataset_download_information",
             "download_table_area_of_interest_title",
             "show_legend_on_prepackages",
@@ -679,6 +682,23 @@ class IDataSet(model.Schema):
         ),
         required=False,
         default=True,
+        readonly=False,
+    )
+
+    # Make sure to import: from plone.app.textfield import RichText
+    download_full_dataset_text = RichText(
+        title=_(
+            'Text of the "Download full dataset"',
+        ),
+        description=_(
+            "Enter the text that will be shown in the Download tab",
+        ),
+        default=(
+            "<p>If you want to download the full dataset, click <a"
+            ' href="/en/how-to-guides/how-to-download-spatial-data/how-to-download-m2m">here</a>'
+            " to learn more.</p>"
+        ),
+        required=False,
         readonly=False,
     )
 

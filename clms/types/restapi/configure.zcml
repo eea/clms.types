@@ -1,8 +1,9 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:i18n="http://namespaces.zope.org/i18n"
-  xmlns:plone="http://namespaces.plone.org/plone"
-  i18n_domain="clms.types">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="clms.types"
+    >
 
   <include package=".geonetwork" />
   <include package=".mapviewer_service" />
@@ -13,5 +14,7 @@
   <adapter factory=".list.ProductRelationListFieldSerializer" />
 
   <adapter factory=".list.DataSetAndProductRelationListFieldSerializerUseCase" />
+
+  <include package=".adapters" />
 
 </configure>
