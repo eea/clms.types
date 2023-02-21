@@ -307,6 +307,17 @@ class ImportFromGeoNetwork(Service):
                         ),
                         "namespace": NAMESPACES,
                     },
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gco:CharacterString"
+                            "[text()="
+                            "'GEMET - INSPIRE themes, version 1.0']]"
+                            "/gmd:keyword/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
                 ],
                 "type": "list",
             },
