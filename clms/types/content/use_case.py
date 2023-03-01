@@ -203,6 +203,9 @@ class UseCase(Container):
     """UseCase content-type class"""
 
     def Description(self):
+        """return the Description converting the value of the
+        summary field to plain text
+        """
         portal_transforms = api.portal.get_tool("portal_transforms")
         data = portal_transforms.convertTo(
             "text/plain", self.text.output, mimetype="text/html"
