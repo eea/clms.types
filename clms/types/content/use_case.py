@@ -3,13 +3,13 @@
 UseCase content-type definition
 """
 from plone import api
+from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
 from zope.interface import Invalid, implementer, invariant
-from plone.app.dexterity import textindexer
 from clms.types import _
 from clms.types.content.utils import valid_email
 
