@@ -3,7 +3,7 @@
 TechnicalLibrary content-type definition
 """
 from clms.types import _
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from plone.dexterity.content import Container
 from plone.namedfile.field import NamedBlobFile
 from plone.supermodel import model
@@ -20,7 +20,7 @@ class ITechnicalLibrary(model.Schema):
 
     # model.load('product.xml')
     primary("file")
-    dexteritytextindexer.searchable("file")
+    textindexer.searchable("file")
     file = NamedBlobFile(title=_(u"File"), required=True)
 
     document_product = schema.TextLine(

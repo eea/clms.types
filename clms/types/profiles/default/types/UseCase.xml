@@ -60,7 +60,7 @@
     <element value="clms.types.dataset_relations" />
     <element value="clms.types.product_relations" />
     <element value="collective.taxonomy.generated.use_case_spatial_coverage" />
-    <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
+    <element value="plone.textindexer" />
 
   </property>
 

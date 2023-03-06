@@ -5,7 +5,7 @@ DataSet content-type definition
 import json
 
 from clms.types import _
-from collective import dexteritytextindexer
+from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
 from plone.schema.jsonfield import JSONField
@@ -100,10 +100,10 @@ class IDataSet(model.Schema):
     #     Topic of category: classificationTopicCategory
     #     Bounding Box: geographicBoundingBox
     #     Temporal extent: temporalCoverage
-    dexteritytextindexer.searchable("validation")
+    textindexer.searchable("validation")
     validation = RichText(title=_(u"Validation status"), required=False)
 
-    dexteritytextindexer.searchable("dataResourceTitle")
+    textindexer.searchable("dataResourceTitle")
     dataResourceTitle = schema.TextLine(
         title=_(
             u"Resource title",
@@ -116,7 +116,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("resourceEffective")
+    textindexer.searchable("resourceEffective")
     resourceEffective = schema.Date(
         title=_(
             u"Date of publication",
@@ -128,7 +128,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("resourceModified")
+    textindexer.searchable("resourceModified")
     resourceModified = schema.Date(
         title=_(
             u"Revision date",
@@ -140,12 +140,12 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("dataResourceAbstract")
+    textindexer.searchable("dataResourceAbstract")
     dataResourceAbstract = RichText(
         title=_(u"Resource abstract"), required=False
     )
 
-    dexteritytextindexer.searchable("keywords")
+    textindexer.searchable("keywords")
     keywords = schema.List(
         title=_(
             u"Keywords",
@@ -167,22 +167,22 @@ class IDataSet(model.Schema):
         default={},
     )
 
-    dexteritytextindexer.searchable("accessAndUseLimitationPublic_line")
+    textindexer.searchable("accessAndUseLimitationPublic_line")
     accessAndUseLimitationPublic_line = schema.TextLine(
         title=_(u"Limitation of public access"), required=False
     )
 
-    dexteritytextindexer.searchable("accessAndUseConstraints")
+    textindexer.searchable("accessAndUseConstraints")
     accessAndUseConstraints = RichText(
         title=_(u"Conditions applying to access and use"), required=False
     )
 
-    dexteritytextindexer.searchable("qualitySpatialResolution_line")
+    textindexer.searchable("qualitySpatialResolution_line")
     qualitySpatialResolution_line = schema.TextLine(
         title=_(u"Spatial Resolution"), required=False
     )
 
-    dexteritytextindexer.searchable("classificationTopicCategory")
+    textindexer.searchable("classificationTopicCategory")
     classificationTopicCategory = schema.List(
         title=_(
             u"Topic of Category",
@@ -210,7 +210,7 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    dexteritytextindexer.searchable("temporalCoverage")
+    textindexer.searchable("temporalCoverage")
     temporalCoverage = schema.List(
         title=_(
             u"Temporal Extent",
@@ -225,7 +225,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("temporalExtentStart")
+    textindexer.searchable("temporalExtentStart")
     temporalExtentStart = schema.TextLine(
         title=_(
             u"Temporal Extent Start",
@@ -238,7 +238,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("temporalExtentEnd")
+    textindexer.searchable("temporalExtentEnd")
     temporalExtentEnd = schema.TextLine(
         title=_(
             u"Temporal Extent End",
@@ -251,7 +251,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("gemet")
+    textindexer.searchable("gemet")
     gemet = schema.List(
         title=_(
             u"GEMET",
@@ -265,7 +265,7 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    dexteritytextindexer.searchable("gemetInspireThemes")
+    textindexer.searchable("gemetInspireThemes")
     gemetInspireThemes = schema.List(
         title=_(
             u"GEMET INSPIRE Themes",
@@ -281,7 +281,7 @@ class IDataSet(model.Schema):
 
     # HIERARCHY LEVEL
     #     Resource type: dataResourceType
-    dexteritytextindexer.searchable("dataResourceType")
+    textindexer.searchable("dataResourceType")
     dataResourceType = schema.TextLine(
         title=_(
             u"Resource Type",
@@ -298,7 +298,7 @@ class IDataSet(model.Schema):
     #     Responsible party with Role: responsiblePartyWithRole
     #     Responsible party: responsibleParty (DEPRECATED)
     #     Responsible party role: responsiblePartyRole (DEPRECATED)
-    dexteritytextindexer.searchable("responsiblePartyWithRole")
+    textindexer.searchable("responsiblePartyWithRole")
     responsiblePartyWithRole = JSONField(
         title=u"Responsible Party with Role ",
         required=False,
@@ -318,7 +318,7 @@ class IDataSet(model.Schema):
 
     # REFERENCE SYSTEM INFO
     #     Coordinate Reference System: coordinateReferenceSystem
-    dexteritytextindexer.searchable("coordinateReferenceSystemList")
+    textindexer.searchable("coordinateReferenceSystemList")
     coordinateReferenceSystemList = schema.List(
         title=_(u"Coordinate Reference System"),
         description=_(
@@ -339,12 +339,12 @@ class IDataSet(model.Schema):
     #     Specification: conformitySpecification
     #     Pass: conformityPass (conformityDegree)
     #     Lineage: qualityLineage
-    dexteritytextindexer.searchable("conformitySpecification")
+    textindexer.searchable("conformitySpecification")
     conformitySpecification = RichText(
         title=_(u"Specification"), required=False
     )
 
-    dexteritytextindexer.searchable("conformityPass")
+    textindexer.searchable("conformityPass")
     conformityPass = schema.Choice(
         title=_(u"Pass"),
         description=_(
@@ -356,7 +356,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("qualityLineage")
+    textindexer.searchable("qualityLineage")
     qualityLineage = RichText(title=_(u"Lineage"), required=False)
 
     # DISTRIBUTION INFO
@@ -364,7 +364,7 @@ class IDataSet(model.Schema):
     #     Resource Locator: dataResourceLocator (DEPRECATED)
     #     Services: dataServices (DEPRECATED)
 
-    dexteritytextindexer.searchable("distributionInfo")
+    textindexer.searchable("distributionInfo")
     distributionInfo = JSONField(
         title=u"Dataservices and each Resource Locator",
         required=False,
@@ -398,7 +398,7 @@ class IDataSet(model.Schema):
     #     Metadata standard name: metadata_standard_name
     #     Metadata standard version: metadata_standard_version
 
-    dexteritytextindexer.searchable("identifier")
+    textindexer.searchable("identifier")
     identifier = schema.TextLine(
         title=_(
             u"Identifier",
@@ -427,7 +427,7 @@ class IDataSet(model.Schema):
     #     required=False,
     #     readonly=False,
     # )
-    dexteritytextindexer.searchable("update_frequency")
+    textindexer.searchable("update_frequency")
     update_frequency = schema.TextLine(
         title=_(
             u"Update Frequency",
@@ -440,7 +440,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("distribution_format_list")
+    textindexer.searchable("distribution_format_list")
     distribution_format_list = schema.List(
         title=_(
             u"Distribution format",
@@ -452,7 +452,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("hierarchy_level")
+    textindexer.searchable("hierarchy_level")
     hierarchy_level = schema.TextLine(
         title=_(
             u"Hierarchy level",
@@ -465,7 +465,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("metadata_language")
+    textindexer.searchable("metadata_language")
     metadata_language = schema.TextLine(
         title=_(
             u"Metadata Language",
@@ -478,7 +478,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("character_set")
+    textindexer.searchable("character_set")
     character_set = schema.TextLine(
         title=_(
             u"Character Set",
@@ -491,7 +491,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("date_stamp")
+    textindexer.searchable("date_stamp")
     date_stamp = schema.TextLine(
         title=_(
             u"Date Stamp",
@@ -504,7 +504,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("metadata_standard_name")
+    textindexer.searchable("metadata_standard_name")
     metadata_standard_name = schema.TextLine(
         title=_(
             u"Metadata Standard Name",
@@ -517,7 +517,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("metadata_standard_version")
+    textindexer.searchable("metadata_standard_version")
     metadata_standard_version = schema.TextLine(
         title=_(
             u"Metadata Standard Version",
@@ -530,7 +530,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("spatial_representation_type")
+    textindexer.searchable("spatial_representation_type")
     spatial_representation_type = schema.List(
         title=_(
             u"Spatial representation type",
@@ -542,7 +542,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("citation")
+    textindexer.searchable("citation")
     citation = RichText(
         title=_(u"Dataset citation"),
         required=False,
@@ -570,7 +570,7 @@ class IDataSet(model.Schema):
         ],
     )
 
-    dexteritytextindexer.searchable("mapviewer_viewservice")
+    textindexer.searchable("mapviewer_viewservice")
     mapviewer_viewservice = schema.TextLine(
         title=_(
             u"View service",
@@ -616,7 +616,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("mapviewer_timeseriesservice")
+    textindexer.searchable("mapviewer_timeseriesservice")
     mapviewer_timeseriesservice = schema.TextLine(
         title=_(
             u"Time series and information service URL",
@@ -629,7 +629,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("mapviewer_handlinglevel")
+    textindexer.searchable("mapviewer_handlinglevel")
     mapviewer_handlinglevel = schema.Bool(
         title=_(
             u"Handling level",
@@ -804,7 +804,7 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    dexteritytextindexer.searchable("download_page_information")
+    textindexer.searchable("download_page_information")
     download_page_information = RichText(
         title=_("Download tab extra information"),
         description=_("This text will be shown in the download tab"),

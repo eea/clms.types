@@ -3,13 +3,13 @@
 UseCase content-type definition
 """
 from plone import api
+from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
 from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
 from zope.interface import Invalid, implementer, invariant
-from collective import dexteritytextindexer
 from clms.types import _
 from clms.types.content.utils import valid_email
 
@@ -18,14 +18,14 @@ class IUseCase(model.Schema):
     """Marker interface for UseCase"""
 
     # default fieldset
-    dexteritytextindexer.searchable("title")
+    textindexer.searchable("title")
     title = schema.TextLine(
         title=_(u"label_title", default=u"Title"),
         description=_("Provide a descriptive use case title."),
         required=True,
     )
 
-    dexteritytextindexer.searchable("text")
+    textindexer.searchable("text")
     text = RichText(
         title=_(u"label_description", default=u"Summary"),
         description=_(
@@ -38,7 +38,7 @@ class IUseCase(model.Schema):
         readonly=False,
     )
 
-    dexteritytextindexer.searchable("submittingProducionYear")
+    textindexer.searchable("submittingProducionYear")
     submittingProducionYear = schema.TextLine(
         title=_(u"Submitting production year of Use Case"),
         description=_(
@@ -48,7 +48,7 @@ class IUseCase(model.Schema):
         required=True,
     )
 
-    dexteritytextindexer.searchable("responsibleOrganization")
+    textindexer.searchable("responsibleOrganization")
     responsibleOrganization = schema.TextLine(
         title=_(u"Responsible organization"),
         description=_(
@@ -56,7 +56,7 @@ class IUseCase(model.Schema):
         ),
         required=True,
     )
-    dexteritytextindexer.searchable("contactName")
+    textindexer.searchable("contactName")
     contactName = schema.TextLine(
         title=_(u"Contact person name"),
         description=_("Provide the use case focal point name."),
@@ -69,7 +69,7 @@ class IUseCase(model.Schema):
         required=False,
     )
 
-    dexteritytextindexer.searchable("topics")
+    textindexer.searchable("topics")
     topics = schema.List(
         title=_(
             u"Use case topics",
@@ -91,7 +91,7 @@ class IUseCase(model.Schema):
         required=True,
         readonly=False,
     )
-    dexteritytextindexer.searchable("outcome")
+    textindexer.searchable("outcome")
     outcome = schema.TextLine(
         title=_(u"User case outcome"),
         description=_(
