@@ -812,6 +812,16 @@ class IDataSet(model.Schema):
         required=False,
     )
 
+    textindexer.searchable("download_other_ways_access_dataset")
+    download_other_ways_access_dataset = RichText(
+        title=_("Text for other ways to access the dataset"),
+        description=_(
+            "This text will be shown in the download tab. If empty, nothing"
+            " will be shown"
+        ),
+        required=False,
+    )
+
 
 @implementer(IDataSet)
 class DataSet(Container):
