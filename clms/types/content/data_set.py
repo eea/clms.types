@@ -648,6 +648,7 @@ class IDataSet(model.Schema):
             "downloadable_full_dataset",
             "downloadable_files",
             "download_full_dataset_text",
+            "download_page_information",
             "dataset_download_information",
             "download_table_area_of_interest_title",
             "show_legend_on_prepackages",
