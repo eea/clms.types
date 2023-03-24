@@ -32,8 +32,8 @@ ISO_DATETIME_FORMAT_WITH_TIME_MICROSECONDS_AND_FINAL_Z = (
 OK_STRING = (
     f"{COLORS['fg']['green']}    OK DATA{COLORS['end']} for field"
     f" {COLORS['fg']['blue']}"
-    + "{field_id}"
-    + f"{COLORS['end']}"
+    "{field_id}"
+    f"{COLORS['end']}"
 )
 
 
@@ -928,10 +928,7 @@ class ImportFromGeoNetwork(Service):
                     item = fields_data[0]
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
-                    if (
-                        resolution.startswith("http")
-                        and resolution.find("#") != -1
-                    ):  # noqa: E501
+                    if (resolution.startswith("http") and resolution.find("#") != -1):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
                         "data": f"{item.text} {resolution}",
