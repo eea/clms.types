@@ -103,6 +103,18 @@ class ITechnicalLibrary(model.Schema):
         readonly=False,
     )
 
+    model.fieldset(
+        "oldsite",
+        label=_(u"Old Site Values"),
+        fields=[
+            "document_product",
+            "document_type",
+            "document_title",
+            "document_url",
+            "document_file",
+        ],
+    )
+
 
 # document_product
 # document_type

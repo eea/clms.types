@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+
+  <column value="publication_date" />
+  <column value="version" />
+</object>
