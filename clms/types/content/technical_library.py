@@ -23,6 +23,30 @@ class ITechnicalLibrary(model.Schema):
     textindexer.searchable("file")
     file = NamedBlobFile(title=_(u"File"), required=True)
 
+    publication_date = schema.Date(
+        title=_(
+            u"Enter the publication date of this document",
+        ),
+        description=_(
+            u"",
+        ),
+        # defaultFactory=get_default_,
+        required=False,
+        readonly=False,
+    )
+
+    version = schema.TextLine(
+        title=_(
+            u"Enter the version of this document",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
     document_product = schema.TextLine(
         title=_(
             u"document_product (used for import from old site",

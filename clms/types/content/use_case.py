@@ -211,4 +211,5 @@ class UseCase(Container):
             "text/plain", self.text.output, mimetype="text/html"
         )
         html = data.getData()
-        return html
+        plone_view = api.content.get_view(name="plone", context=self)
+        return plone_view.cropText(html, 100)

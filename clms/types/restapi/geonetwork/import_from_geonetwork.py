@@ -8,6 +8,7 @@ from datetime import datetime
 
 import requests
 from clms.types.utils import (
+    COLORS,
     EEA_GEONETWORK_BASE_URL,
     NAMESPACES,
     NAMESPACES_VITO,
@@ -22,6 +23,58 @@ from zope.interface import alsoProvides
 ISO_DATETIME_FORMAT = "%Y-%m-%d"
 ISO_DATETIME_FORMAT_WITH_TIME = "%Y-%m-%dT%H:%M:%S"
 ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z = "%Y-%m-%dT%H:%M:%SZ"
+# pylint: disable=line-too-long
+ISO_DATETIME_FORMAT_WITH_TIME_MICROSECONDS_AND_FINAL_Z = (
+    "%Y-%m-%dT%H:%M:%S.%fZ"  # noqa
+)
+
+
+OK_STRING = (
+    f"{COLORS['fg']['green']}    OK DATA{COLORS['end']} for field"
+    f" {COLORS['fg']['blue']}"
+    "{field_id}"
+    f"{COLORS['end']}"
+)
+
+
+def handle_date_like_values(value):
+    """handle datetime-like values coming in different formats"""
+    datetime_object = None
+    try:
+        datetime_object = datetime.strptime(
+            value,
+            ISO_DATETIME_FORMAT,
+        )
+    except ValueError:
+        pass
+    try:
+        datetime_object = datetime.strptime(
+            value,
+            ISO_DATETIME_FORMAT_WITH_TIME,
+        )
+    except ValueError:
+        pass
+
+    try:
+        datetime_object = datetime.strptime(
+            value,
+            ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z,
+        )
+    except ValueError:
+        pass
+
+    try:
+        datetime_object = datetime.strptime(
+            value,
+            ISO_DATETIME_FORMAT_WITH_TIME_MICROSECONDS_AND_FINAL_Z,
+        )
+    except ValueError:
+        pass
+
+    if datetime_object is not None:
+        return datetime_object.date()
+
+    return None
 
 
 class ImportFromGeoNetwork(Service):
@@ -73,7 +126,8 @@ class ImportFromGeoNetwork(Service):
             url = EEA_GEONETWORK_BASE_URL.format(uid=uid)
         elif geonetwork_type == "VITO":
             url = VITO_GEONETWORK_BASE_URL.format(uid=uid)
-        print(f"    Getting {url}")
+
+        print(f"  Downloading {url}")
         result = requests.get(url)
         if result.ok:
             return result.text
@@ -89,7 +143,7 @@ class ImportFromGeoNetwork(Service):
         """
         result = {}
         doc = etree.fromstring(xml_data.encode("utf-8"))
-        print(f"    Getting JSON DATA for {geo_id}")
+        print(f"   Processing XML to get JSON for geonetwork id {geo_id}")
 
         fields_to_get = [
             {
@@ -104,16 +158,45 @@ class ImportFromGeoNetwork(Service):
             {
                 "field_id": "resourceEffective",
                 "xml_keys": [
+                    # {
+                    #     "xml_key": (
+                    #         "//gmd:identificationInfo/"
+                    #         "gmd:MD_DataIdentification/"
+                    #         "gmd:citation/gmd:CI_Citation"
+                    #         "/gmd:date/gmd:CI_Date[gmd:dateType/"
+                    #         "gmd:CI_DateTypeCode"
+                    #         "[@codeListValue='publication']]/"
+                    #         "gmd:date/gco:Date"
+                    #     ),
+                    #     "namespace": NAMESPACES,
+                    # },
+                    # {
+                    #     "xml_key": (
+                    #         "//gmd:identificationInfo/"
+                    #         "gmd:MD_DataIdentification/"
+                    #         "gmd:citation/gmd:CI_Citation"
+                    #         "/gmd:date/gmd:CI_Date[gmd:dateType/"
+                    #         "gmd:CI_DateTypeCode"
+                    #         "[@codeListValue='publication']]/"
+                    #         "gmd:date/gco:DateTime"
+                    #     ),
+                    #     "namespace": NAMESPACES,
+                    # },
+                    # # Use Creation date if nothing is set in publication
+                    # {
+                    #     "xml_key": (
+                    #         "//gmd:identificationInfo/"
+                    #         "gmd:MD_DataIdentification/"
+                    #         "gmd:citation/gmd:CI_Citation"
+                    #         "/gmd:date/gmd:CI_Date[gmd:dateType/"
+                    #         "gmd:CI_DateTypeCode"
+                    #         "[@codeListValue='creation']]/"
+                    #         "gmd:date/gco:Date"
+                    #     ),
+                    #     "namespace": NAMESPACES_VITO,
+                    # },
                     {
-                        "xml_key": (
-                            "//gmd:identificationInfo/"
-                            "gmd:MD_DataIdentification/"
-                            "gmd:citation/gmd:CI_Citation"
-                            "/gmd:date/gmd:CI_Date[gmd:dateType/"
-                            "gmd:CI_DateTypeCode"
-                            "[@codeListValue='publication']]/"
-                            "gmd:date/gco:Date"
-                        ),
+                        "xml_key": "//gmd:dateStamp/gco:DateTime",
                         "namespace": NAMESPACES,
                     }
                 ],
@@ -587,9 +670,9 @@ class ImportFromGeoNetwork(Service):
 
                 if len(fields_data) == 0:
                     print(
-                        "    WARNING!!! No DATA for field"
-                        f" {field['field_id']} with search key"
-                        f" {xml_key}"
+                        f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
+                        f" field {COLORS['fg']['blue']}{field['field_id']}"
+                        f"{COLORS['end']} with search key {xml_key}"
                     )
                 elif field["field_id"] == "geographicBoundingBox":
                     bbox_data = {"items": []}
@@ -636,7 +719,8 @@ class ImportFromGeoNetwork(Service):
                         "data": bbox_data,
                         "type": field["type"],
                     }
-                    print(f"    OK DATA for field {field['field_id']}")
+                    print(OK_STRING.format(field_id=field["field_id"]))
+
                 elif field["field_id"] == "geographicCoverage":
                     geo_data = {}
                     geo_items = []
@@ -652,7 +736,7 @@ class ImportFromGeoNetwork(Service):
                         "data": geo_data,
                         "type": field["type"],
                     }
-                    print(f"    OK DATA for field {field['field_id']}")
+                    print(OK_STRING.format(field_id=field["field_id"]))
                 elif field["field_id"] == "temporalCoverage":
                     temporalExtent = []
                     item = fields_data[0]
@@ -669,43 +753,14 @@ class ImportFromGeoNetwork(Service):
                     dt_start_obj = None
                     dt_end_obj = None
                     if start[0].text:
-                        try:
-                            dt_start_obj = datetime.strptime(
-                                start[0].text,
-                                ISO_DATETIME_FORMAT,
-                            )
-                        except ValueError:
-                            try:
-                                dt_start_obj = datetime.strptime(
-                                    start[0].text,
-                                    ISO_DATETIME_FORMAT_WITH_TIME,
-                                )
-                            except ValueError:
-                                dt_start_obj = datetime.strptime(
-                                    start[0].text,
-                                    ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z,
-                                )
+                        dt_start_obj = handle_date_like_values(start[0].text)
+
                         result["temporalExtentStart"] = {
                             "data": start[0].text,
                             "type": "string",
                         }
                     if end[0].text:
-                        try:
-                            dt_end_obj = datetime.strptime(
-                                end[0].text,
-                                ISO_DATETIME_FORMAT,
-                            )
-                        except ValueError:
-                            try:
-                                dt_end_obj = datetime.strptime(
-                                    end[0].text,
-                                    ISO_DATETIME_FORMAT_WITH_TIME,
-                                )
-                            except ValueError:
-                                dt_end_obj = datetime.strptime(
-                                    end[0].text,
-                                    ISO_DATETIME_FORMAT_WITH_TIME_AND_FINAL_Z,
-                                )
+                        dt_end_obj = handle_date_like_values(end[0].text)
                         result["temporalExtentEnd"] = {
                             "data": end[0].text,
                             "type": "string",
@@ -722,7 +777,7 @@ class ImportFromGeoNetwork(Service):
                             "data": temporalExtent,
                             "type": field["type"],
                         }
-                        print(f"    OK DATA for field {field['field_id']}")
+                        print(OK_STRING.format(field_id=field["field_id"]))
                     else:
                         print(f"    ERROR DATA for field {field['field_id']}")
                 elif field["type"] == "contact":
@@ -835,7 +890,8 @@ class ImportFromGeoNetwork(Service):
                         "type": field["type"],
                     }
 
-                    print(f"    OK DATA for contact field {field['field_id']}")
+                    print(OK_STRING.format(field_id=field["field_id"]))
+
                 elif field["type"] == "distribution":
                     distribution_data = {"items": []}
                     distribution_items = []
@@ -866,7 +922,8 @@ class ImportFromGeoNetwork(Service):
                         "data": distribution_data,
                         "type": field["type"],
                     }
-                    print(f"    OK DATA for field {field['field_id']}")
+                    print(OK_STRING.format(field_id=field["field_id"]))
+
                 elif field["type"] == "resolution":
                     item = fields_data[0]
                     resolution = item.attrib.get(field.get("attribute"))
@@ -887,7 +944,8 @@ class ImportFromGeoNetwork(Service):
                         "data": data,
                         "type": field["type"],
                     }
-                    print(f"    OK DATA for field {field['field_id']}")
+                    print(OK_STRING.format(field_id=field["field_id"]))
+
                 elif len(fields_data) > 1 and not field["type"] == "list":
                     fields_data_array = []
                     for field_data in fields_data:
@@ -896,7 +954,8 @@ class ImportFromGeoNetwork(Service):
                         "data": ", ".join(fields_data_array),
                         "type": field["type"],
                     }
-                    print(f"    OK DATA for field {field['field_id']}")
+                    print(OK_STRING.format(field_id=field["field_id"]))
+
                 else:
                     field_attribute = field.get("attribute", None)
                     if field_attribute is None:
@@ -913,10 +972,11 @@ class ImportFromGeoNetwork(Service):
                             "type": field["type"],
                         }
 
-                    print(
-                        f"    OK DATA for {field['type']} field"
-                        f" {field['field_id']}"
-                    )
+                    # print(
+                    #     f"    OK DATA for {field['type']} field"
+                    #     f" {field['field_id']}"
+                    # )
+                    print(OK_STRING.format(field_id=field["field_id"]))
 
         return result
 
@@ -942,10 +1002,7 @@ class ImportFromGeoNetwork(Service):
                 )
             elif field_type == "date":
                 try:
-                    date_data = datetime.strptime(
-                        data,
-                        ISO_DATETIME_FORMAT,
-                    )
+                    date_data = handle_date_like_values(data)
                     setattr(
                         self.context,
                         key,

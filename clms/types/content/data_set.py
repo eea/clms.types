@@ -648,6 +648,7 @@ class IDataSet(model.Schema):
             "downloadable_full_dataset",
             "downloadable_files",
             "download_full_dataset_text",
+            "download_page_information",
             "dataset_download_information",
             "download_table_area_of_interest_title",
             "show_legend_on_prepackages",
@@ -677,8 +678,8 @@ class IDataSet(model.Schema):
             "Check if this dataset can be downloaded as a full dataset ",
         ),
         description=_(
-            "If selected, an icon will be shown next to this dataset the map "
-            " viewer to be able to download the full dataset"
+            "If selected, an explanation of 'Download by area (and time)'"
+            "will be shown in the dataset download page."
         ),
         required=False,
         default=True,
@@ -808,6 +809,16 @@ class IDataSet(model.Schema):
     download_page_information = RichText(
         title=_("Download tab extra information"),
         description=_("This text will be shown in the download tab"),
+        required=False,
+    )
+
+    textindexer.searchable("download_other_ways_access_dataset")
+    download_other_ways_access_dataset = RichText(
+        title=_("Text for other ways to access the dataset"),
+        description=_(
+            "This text will be shown in the download tab. If empty, nothing"
+            " will be shown"
+        ),
         required=False,
     )
 
