@@ -678,8 +678,8 @@ class IDataSet(model.Schema):
             "Check if this dataset can be downloaded as a full dataset ",
         ),
         description=_(
-            "If selected, an icon will be shown next to this dataset the map "
-            " viewer to be able to download the full dataset"
+            "If selected, an explanation of 'Download by area (and time)'"
+            "will be shown in the dataset download page."
         ),
         required=False,
         default=True,
