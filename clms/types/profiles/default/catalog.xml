@@ -88,6 +88,8 @@
   <!-- Metadata columns for Work Opportunities and Tenders -->
   <column value="procurement_no" />
   <column value="submission_deadline" />
+  <column value="publication_date" />
+  <column value="version" />
 
 
 </object>
