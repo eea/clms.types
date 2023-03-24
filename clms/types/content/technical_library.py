@@ -112,12 +112,9 @@ class ITechnicalLibrary(model.Schema):
             "document_title",
             "document_url",
             "document_file",
-             # "dataset_full_path",
-            # "dataset_full_format",
-            # "dataset_full_source",
-            # "wekeo_choices",
         ],
     )
+
 
 # document_product
 # document_type
