@@ -8,11 +8,11 @@ from datetime import datetime
 
 import requests
 from clms.types.utils import (
+    COLORS,
     EEA_GEONETWORK_BASE_URL,
     NAMESPACES,
     NAMESPACES_VITO,
     VITO_GEONETWORK_BASE_URL,
-    COLORS,
 )
 from lxml import etree
 from plone.app.textfield.value import RichTextValue
@@ -671,9 +671,8 @@ class ImportFromGeoNetwork(Service):
                 if len(fields_data) == 0:
                     print(
                         f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
-                        " field"
-                        f" {COLORS['fg']['blue']}{field['field_id']}{COLORS['end']} with"
-                        f" search key {xml_key}"
+                        f" field {COLORS['fg']['blue']}{field['field_id']}"
+                        f"{COLORS['end']} with search key {xml_key}"
                     )
                 elif field["field_id"] == "geographicBoundingBox":
                     bbox_data = {"items": []}
@@ -720,11 +719,6 @@ class ImportFromGeoNetwork(Service):
                         "data": bbox_data,
                         "type": field["type"],
                     }
-                    # print(
-                    #     f"    {COLORS['fg']['green']}OK"
-                    #     f" DATA{COLORS['end']} for field"
-                    #     f" {COLORS['fg']['blue']}{field['field_id']}{COLORS['end']}"
-                    # )
                     print(OK_STRING.format(field_id=field["field_id"]))
 
                 elif field["field_id"] == "geographicCoverage":
@@ -742,7 +736,6 @@ class ImportFromGeoNetwork(Service):
                         "data": geo_data,
                         "type": field["type"],
                     }
-                    # print(f"    OK DATA for field {field['field_id']}")
                     print(OK_STRING.format(field_id=field["field_id"]))
                 elif field["field_id"] == "temporalCoverage":
                     temporalExtent = []
@@ -784,7 +777,6 @@ class ImportFromGeoNetwork(Service):
                             "data": temporalExtent,
                             "type": field["type"],
                         }
-                        # print(f"    OK DATA for field {field['field_id']}")
                         print(OK_STRING.format(field_id=field["field_id"]))
                     else:
                         print(f"    ERROR DATA for field {field['field_id']}")
@@ -898,7 +890,6 @@ class ImportFromGeoNetwork(Service):
                         "type": field["type"],
                     }
 
-                    # print(f"    OK DATA for contact field {field['field_id']}")
                     print(OK_STRING.format(field_id=field["field_id"]))
 
                 elif field["type"] == "distribution":
@@ -931,7 +922,6 @@ class ImportFromGeoNetwork(Service):
                         "data": distribution_data,
                         "type": field["type"],
                     }
-                    # print(f"    OK DATA for field {field['field_id']}")
                     print(OK_STRING.format(field_id=field["field_id"]))
 
                 elif field["type"] == "resolution":
@@ -957,7 +947,6 @@ class ImportFromGeoNetwork(Service):
                         "data": data,
                         "type": field["type"],
                     }
-                    # print(f"    OK DATA for field {field['field_id']}")
                     print(OK_STRING.format(field_id=field["field_id"]))
 
                 elif len(fields_data) > 1 and not field["type"] == "list":
@@ -968,7 +957,6 @@ class ImportFromGeoNetwork(Service):
                         "data": ", ".join(fields_data_array),
                         "type": field["type"],
                     }
-                    # print(f"    OK DATA for field {field['field_id']}")
                     print(OK_STRING.format(field_id=field["field_id"]))
 
                 else:
