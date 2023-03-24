@@ -1009,11 +1009,6 @@ class ImportFromGeoNetwork(Service):
                         date_data,
                     )
                 except Exception:
-                    import pdb
-
-                    pdb.set_trace()
-                    a = 1
-
                     continue
             else:
                 try:
@@ -1023,11 +1018,6 @@ class ImportFromGeoNetwork(Service):
                         data,
                     )
                 except Exception:
-                    import pdb
-
-                    pdb.set_trace()
-                    a = 1
-
                     continue
 
         self.context.reindexObject()
