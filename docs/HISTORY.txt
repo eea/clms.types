@@ -1,6 +1,11 @@
 Changelog
 =========
 
+10.7 - (2023-03-27)
+---------------------------
+* Change: Develop
+  [erral]
+
 10.6 - (2023-03-24)
 ---------------------------
 * Change: feat: CLMS-1940 new fields and upgrade step [erral]
