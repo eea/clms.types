@@ -693,7 +693,8 @@ class IDataSet(model.Schema):
             'Text of the "Download full dataset"',
         ),
         description=_(
-            "Enter the text that will be shown in the Download tab",
+            "This text will be shown in the download tab. If empty, nothing"
+            " will be shown"
         ),
         default=(
             "<p>If you want to download the full dataset, click <a"
@@ -809,7 +810,10 @@ class IDataSet(model.Schema):
     textindexer.searchable("download_page_information")
     download_page_information = RichText(
         title=_("Download tab extra information"),
-        description=_("This text will be shown in the download tab"),
+        description=_(
+            "This text will be shown in the download tab. If empty, nothing"
+            " will be shown"
+        ),
         required=False,
     )
 
