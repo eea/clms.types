@@ -119,7 +119,7 @@ class IDataSet(model.Schema):
     textindexer.searchable("resourceEffective")
     resourceEffective = schema.Date(
         title=_(
-            u"Date of publication",
+            u"Metadata date stamp",
         ),
         description=_(
             u"",
@@ -647,6 +647,7 @@ class IDataSet(model.Schema):
             "downloadable_dataset",
             "downloadable_full_dataset",
             "downloadable_files",
+            "download_by_area_extra_text",
             "download_full_dataset_text",
             "download_page_information",
             "download_other_ways_access_dataset",
@@ -676,7 +677,7 @@ class IDataSet(model.Schema):
 
     downloadable_full_dataset = schema.Bool(
         title=_(
-            "Check if this dataset can be downloaded as a full dataset ",
+            "Check if this dataset can be downloaded from the map viewer",
         ),
         description=_(
             "If selected, an explanation of 'Download by area (and time)'"
@@ -684,6 +685,18 @@ class IDataSet(model.Schema):
         ),
         required=False,
         default=True,
+        readonly=False,
+    )
+
+    download_by_area_extra_text = RichText(
+        title=_(
+            "Extra text for download by area/time",
+        ),
+        description=_(
+            "This text will be shown in the download tab, just below the"
+            " button. If empty, nothing will be shown"
+        ),
+        required=False,
         readonly=False,
     )
 
