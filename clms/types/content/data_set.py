@@ -676,7 +676,7 @@ class IDataSet(model.Schema):
 
     downloadable_full_dataset = schema.Bool(
         title=_(
-            "Check if this dataset can be downloaded as a full dataset ",
+            "Check if this dataset can be downloaded from the map viewer",
         ),
         description=_(
             "If selected, an explanation of 'Download by area (and time)'"
