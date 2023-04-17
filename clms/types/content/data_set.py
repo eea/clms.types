@@ -647,6 +647,7 @@ class IDataSet(model.Schema):
             "downloadable_dataset",
             "downloadable_full_dataset",
             "downloadable_files",
+            "download_by_area_extra_text",
             "download_full_dataset_text",
             "download_page_information",
             "download_other_ways_access_dataset",
@@ -684,6 +685,18 @@ class IDataSet(model.Schema):
         ),
         required=False,
         default=True,
+        readonly=False,
+    )
+
+    download_by_area_extra_text = RichText(
+        title=_(
+            "Extra text for download by area/time",
+        ),
+        description=_(
+            "This text will be shown in the download tab, just below the"
+            " button. If empty, nothing will be shown"
+        ),
+        required=False,
         readonly=False,
     )
 
