@@ -119,7 +119,7 @@ class IDataSet(model.Schema):
     textindexer.searchable("resourceEffective")
     resourceEffective = schema.Date(
         title=_(
-            u"Date of publication",
+            u"Metadata date stamp",
         ),
         description=_(
             u"",
