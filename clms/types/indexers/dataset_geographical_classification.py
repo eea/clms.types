@@ -51,7 +51,7 @@ def is_eea(bounding_box):
     """check if the bounding box corresponds to EEA"""
     north, east, south, west = expand_bounding_box(bounding_box)
 
-    return north <= 90.0 and south >= 20.0 and east <= 50.0 and west >= -60.0
+    return north <= 90.0 and south >= 20.0 and east <= 74.0 and west >= -60.0
 
 
 def is_northern_hemisphere(bounding_box):
