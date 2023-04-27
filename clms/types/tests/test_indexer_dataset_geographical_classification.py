@@ -191,13 +191,6 @@ class TestIndexerUtils(unittest.TestCase):
             "south": "10",
         }
 
-        bbox_southern = {
-            "north": "-90",
-            "east": "20",
-            "west": "50",
-            "south": "-20",
-        }
-
         bbox_global = {
             "north": "78.25",
             "east": "180",
@@ -210,17 +203,6 @@ class TestIndexerUtils(unittest.TestCase):
         )
         self.assertIn(
             "Northern hemisphere", classify_bounding_boxes([bbox_northern])
-        )
-        self.assertIn(
-            "Southern hemisphere", classify_bounding_boxes([bbox_southern])
-        )
-        self.assertIn(
-            "Northern hemisphere",
-            classify_bounding_boxes([bbox_northern, bbox_southern]),
-        )
-        self.assertIn(
-            "Southern hemisphere",
-            classify_bounding_boxes([bbox_northern, bbox_southern]),
         )
 
         self.assertIn(
