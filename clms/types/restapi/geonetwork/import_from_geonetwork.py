@@ -5,8 +5,10 @@ Import from geonetwork
 
 import json
 from datetime import datetime
+from logging import getLogger
 
 import requests
+from clms.types.indexers.dataset_geographical_classification import is_eea
 from clms.types.utils import (
     COLORS,
     EEA_GEONETWORK_BASE_URL,
@@ -77,6 +79,24 @@ def handle_date_like_values(value):
     return None
 
 
+def filter_bounding_boxes(bbox_items, geonetwork_type):
+    """filter bounding boxes to use only EEA-wide bounding
+    boxes in datasets coming from EEA geonetwork
+    """
+    log = getLogger(__name__)
+    if geonetwork_type == "EEA":
+        new_bbox_items = []
+        for bbox_item in bbox_items:
+            if is_eea(bbox_item):
+                new_bbox_items.append(bbox_item)
+
+        log.info(len(new_bbox_items))
+
+        return new_bbox_items
+
+    return bbox_items
+
+
 class ImportFromGeoNetwork(Service):
     """
     ImportFromGeoNetwork
@@ -106,8 +126,7 @@ class ImportFromGeoNetwork(Service):
                 "message": "No data found",
             }
         self.json_data = self.get_json_data(
-            self.xml_data,
-            geonetwork_id,
+            self.xml_data, geonetwork_id, geonetwork_type
         )
 
         self.save_data()
@@ -133,11 +152,7 @@ class ImportFromGeoNetwork(Service):
             return result.text
         return ""
 
-    def get_json_data(
-        self,
-        xml_data,
-        geo_id,
-    ):
+    def get_json_data(self, xml_data, geo_id, geonetwork_type):
         """
         json data from xml data
         """
@@ -714,7 +729,9 @@ class ImportFromGeoNetwork(Service):
                             }
                         )
                         i += 1
-                    bbox_data["items"] = bbox_items
+                    bbox_data["items"] = filter_bounding_boxes(
+                        bbox_items, geonetwork_type
+                    )
                     result[field["field_id"]] = {
                         "data": bbox_data,
                         "type": field["type"],

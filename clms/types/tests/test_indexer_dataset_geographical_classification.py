@@ -16,7 +16,6 @@ from clms.types.content.data_set import IDataSet
 from clms.types.indexers.dataset_geographical_classification import (
     is_eea,
     is_northern_hemisphere,
-    is_southern_hemisphere,
     classify_bounding_boxes,
     dataset_geographical_classification,
     expand_bounding_box,
@@ -175,25 +174,6 @@ class TestIndexerUtils(unittest.TestCase):
         self.assertTrue(is_northern_hemisphere(bounding_box_true))
         self.assertFalse(is_northern_hemisphere(bounding_box_false))
 
-    def test_is_southern_hemisphere(self):
-        """test the is_southern_hemisphere function"""
-        bounding_box_true = {
-            "north": "-90",
-            "east": "20",
-            "west": "50",
-            "south": "-20",
-        }
-
-        bounding_box_false = {
-            "north": "90",
-            "east": "20",
-            "west": "50",
-            "south": "10",
-        }
-
-        self.assertTrue(is_southern_hemisphere(bounding_box_true))
-        self.assertFalse(is_southern_hemisphere(bounding_box_false))
-
     def test_classify_bounding_boxes(self):
         """test the classify_bounding_boxes function"""
 
@@ -211,13 +191,6 @@ class TestIndexerUtils(unittest.TestCase):
             "south": "10",
         }
 
-        bbox_southern = {
-            "north": "-90",
-            "east": "20",
-            "west": "50",
-            "south": "-20",
-        }
-
         bbox_global = {
             "north": "78.25",
             "east": "180",
@@ -230,17 +203,6 @@ class TestIndexerUtils(unittest.TestCase):
         )
         self.assertIn(
             "Northern hemisphere", classify_bounding_boxes([bbox_northern])
-        )
-        self.assertIn(
-            "Southern hemisphere", classify_bounding_boxes([bbox_southern])
-        )
-        self.assertIn(
-            "Northern hemisphere",
-            classify_bounding_boxes([bbox_northern, bbox_southern]),
-        )
-        self.assertIn(
-            "Southern hemisphere",
-            classify_bounding_boxes([bbox_northern, bbox_southern]),
         )
 
         self.assertIn(
