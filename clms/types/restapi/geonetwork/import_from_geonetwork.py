@@ -80,6 +80,9 @@ def handle_date_like_values(value):
 
 
 def filter_bounding_boxes(bbox_items, geonetwork_type):
+    """filter bounding boxes to use only EEA-wide bounding
+    boxes in datasets coming from EEA geonetwork
+    """
     log = getLogger(__name__)
     if geonetwork_type == "EEA":
         new_bbox_items = []
@@ -942,7 +945,10 @@ class ImportFromGeoNetwork(Service):
                     item = fields_data[0]
                     resolution = item.attrib.get(field.get("attribute"))
                     # pylint: disable=line-too-long
-                    if (resolution.startswith("http") and resolution.find("#") != -1):  # noqa: E501
+                    if (
+                        resolution.startswith("http")
+                        and resolution.find("#") != -1
+                    ):  # noqa: E501
                         resolution = resolution.split("#")[1]
                     result[field["field_id"]] = {
                         "data": f"{item.text} {resolution}",
