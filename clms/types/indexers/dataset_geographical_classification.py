@@ -57,4 +57,3 @@ def is_northern_hemisphere(bounding_box):
     north, east, south, west = expand_bounding_box(bounding_box)
 
     return north <= 90.0 and south >= 0.0 and east <= 180.0 and west >= -180.0
-
