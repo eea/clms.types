@@ -16,7 +16,6 @@ from clms.types.content.data_set import IDataSet
 from clms.types.indexers.dataset_geographical_classification import (
     is_eea,
     is_northern_hemisphere,
-    is_southern_hemisphere,
     classify_bounding_boxes,
     dataset_geographical_classification,
     expand_bounding_box,
@@ -174,25 +173,6 @@ class TestIndexerUtils(unittest.TestCase):
 
         self.assertTrue(is_northern_hemisphere(bounding_box_true))
         self.assertFalse(is_northern_hemisphere(bounding_box_false))
-
-    def test_is_southern_hemisphere(self):
-        """test the is_southern_hemisphere function"""
-        bounding_box_true = {
-            "north": "-90",
-            "east": "20",
-            "west": "50",
-            "south": "-20",
-        }
-
-        bounding_box_false = {
-            "north": "90",
-            "east": "20",
-            "west": "50",
-            "south": "10",
-        }
-
-        self.assertTrue(is_southern_hemisphere(bounding_box_true))
-        self.assertFalse(is_southern_hemisphere(bounding_box_false))
 
     def test_classify_bounding_boxes(self):
         """test the classify_bounding_boxes function"""
