@@ -29,8 +29,6 @@ def classify_bounding_boxes(bounding_boxes):
             terms.append("European Economic Area")
         elif is_northern_hemisphere(bounding_box):
             terms.append("Northern hemisphere")
-        elif is_southern_hemisphere(bounding_box):
-            terms.append("Southern hemisphere")
         else:
             terms.append("Global")
 
@@ -60,8 +58,3 @@ def is_northern_hemisphere(bounding_box):
 
     return north <= 90.0 and south >= 0.0 and east <= 180.0 and west >= -180.0
 
-
-def is_southern_hemisphere(bounding_box):
-    """check if the bounding box corresponds to the southern hemisphere"""
-    north, east, south, west = expand_bounding_box(bounding_box)
-    return north <= 0.0 and south >= -90.0 and east <= 180.0 and west >= -180.0
