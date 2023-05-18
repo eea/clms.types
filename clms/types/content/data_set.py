@@ -30,6 +30,212 @@ class IDataSet(model.Schema):
     """Marker interface and Dexterity Python Schema for DataSet"""
 
     model.fieldset(
+        "characteristics",
+        label=_("Dataset characteristics"),
+        fields=[
+            "characteristics_type",
+            "characteristics_spatial_coverage",
+            "characteristics_spatial_resolution",
+            "characteristics_spatial_representation_type",
+            "characteristics_temporal_extent",
+            "characteristics_temporal_usability",
+            "characteristics_update_frequency",
+            "characteristics_timeliness",
+            "characteristics_platform",
+            "characteristics_sensor",
+            "characteristics_thematic_accuracy",
+            "characteristics_position_accuracy",
+            "characteristics_release_major_version",
+        ],
+    )
+
+    characteristics_type = schema.Choice(
+        title=_(
+            u"Type",
+        ),
+        description=_(
+            u"Type of observations",
+        ),
+        values=[
+            "Satellite observations",
+            "Satellite products",
+            "In situ observations",
+        ],
+        # defaultFactory=get_default_name,
+        required=True,
+        readonly=False,
+    )
+    characteristics_spatial_coverage = schema.TextLine(
+        title=_(
+            u"Spatial coverage",
+        ),
+        description=_(
+            u"The area of interest represented in the dataset",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+    characteristics_spatial_resolution = schema.TextLine(
+        title=_(
+            u"Spatial resolution",
+        ),
+        description=_(
+            u"Level of detail of the data set. Enter resolution distance with"
+            u" units",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+    characteristics_spatial_representation_type = schema.Choice(
+        title=_(
+            u"Spatial representation type",
+        ),
+        description=_(
+            u"Method used for spatial representation of geographical"
+            u" information",
+        ),
+        values=["Grid", "Vector", "Vector and Grid"],
+        required=True,
+        readonly=False,
+    )
+
+    characteristics_temporal_extent = schema.TextLine(
+        title=_(
+            u"Temporal extent",
+        ),
+        description=_(
+            "Time period covered by the content of the dataset (data"
+            " collection period). Use YYYY for a specific year. Use YYYY -"
+            " YYYY for a defined time period. Use YYYY - now for open-ended"
+            " datasets ",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+
+    characteristics_temporal_usability = schema.Choice(
+        title=_(
+            "Temporal usability",
+        ),
+        description=_(
+            "Temporal appliance related to the dataset update frequency:"
+            "Archive-only data (no updates)"
+            "Current = archive with regular updates"
+            "Future = forecasts",
+        ),
+        values=["Archive", "Current", "Future"],
+        required=True,
+        readonly=False,
+    )
+
+    characteristics_update_frequency = schema.Choice(
+        title=_(
+            u"Update frequency",
+        ),
+        description=_(
+            u"Frequency with which modifications and deletions are made to the"
+            u" data after it is first produced",
+        ),
+        values=[
+            "continual",
+            "daily",
+            "weekly",
+            "fortnightly",
+            "monthly",
+            "quaterly",
+            "biannually",
+            "annually",
+            "asNeeded",
+            "irregular",
+            "notPlanned",
+            "unknown",
+        ],
+        required=True,
+        readonly=False,
+    )
+
+    characteristics_timeliness = schema.TextLine(
+        title=_(
+            u"Timeliness",
+        ),
+        description=_(
+            u"How fast each update is made available to the user counting from"
+            u" the moment of the availability of the input data.",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    characteristics_platform = schema.TextLine(
+        title=_(
+            u"Platform",
+        ),
+        description=_(
+            u"Name of satellite family or ground base station",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    characteristics_sensor = schema.TextLine(
+        title=_(
+            u"Sensor",
+        ),
+        description=_(
+            u"Name of the instrument for detecting energy.",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    characteristics_thematic_accuracy = schema.TextLine(
+        title=_(
+            u"Thematic accuracy",
+        ),
+        description=_(
+            u"Refers to how well the class name on the map correspond to what"
+            u" is really on the ground. It can be expressed something like: "
+            u"Expected overall accuracy is greater than 85% ",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    characteristics_position_accuracy = schema.TextLine(
+        title=_(
+            u"Position accuracy",
+        ),
+        description=_(
+            u"Indicator or measure of how a spatial object is accurately"
+            u" positioned on the map with respect to its true position.",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    characteristics_release_major_version = schema.TextLine(
+        title=_(
+            u"Release / Major version",
+        ),
+        description=_(
+            u"Name given for the release that consists of major new features"
+            u" or existing features that might have been deprecated.",
+            u"V + number.Example: V2",
+        ),
+        default=u"",
+        required=False,
+        readonly=False,
+    )
+
+    model.fieldset(
         "metadata",
         label=_(u"Metadata"),
         fields=[
