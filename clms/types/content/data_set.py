@@ -97,7 +97,6 @@ class IDataSet(model.Schema):
             u" information",
         ),
         values=["Grid", "Vector", "Vector and Grid"],
-        # defaultFactory=get_default_characteristics_spatial_representation_type,
         required=True,
         readonly=False,
     )
@@ -128,7 +127,6 @@ class IDataSet(model.Schema):
             "Future = forecasts",
         ),
         values=["Archive", "Current", "Future"],
-        # defaultFactory=characteristics_temporal_usability
         required=True,
         readonly=False,
     )
@@ -155,12 +153,10 @@ class IDataSet(model.Schema):
             "notPlanned",
             "unknown",
         ],
-        # defaultFactory=get_default_name,
         required=True,
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     characteristics_timeliness = schema.TextLine(
         title=_(
             u"Timeliness",
@@ -174,7 +170,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     characteristics_platform = schema.TextLine(
         title=_(
             u"Platform",
@@ -187,7 +182,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     characteristics_sensor = schema.TextLine(
         title=_(
             u"Sensor",
@@ -200,7 +194,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     characteristics_thematic_accuracy = schema.TextLine(
         title=_(
             u"Thematic accuracy",
@@ -215,7 +208,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     characteristics_position_accuracy = schema.TextLine(
         title=_(
             u"Position accuracy",
@@ -229,7 +221,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     characteristics_release_major_version = schema.TextLine(
         title=_(
             u"Release / Major version",
