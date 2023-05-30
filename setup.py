@@ -49,7 +49,6 @@ setup(
         "collective.volto.dropdownmenu",
         "plone.schema",
         "collective.taxonomy",
-        "eea.api.taxonomy",
         "clms.downloadtool",
         "clms.statstool",
         "plone.volto",
