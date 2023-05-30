@@ -1,6 +1,10 @@
 Changelog
 =========
 
+11.2 - (2023-05-30)
+---------------------------
+* Change: fix: CLMS-2261 update static lists [erral]
+
 11.1 - (2023-05-18)
 ---------------------------
 * Change: feat: CLMS-2212 add new fields to the dataset [erral]
