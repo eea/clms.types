@@ -161,15 +161,15 @@ class ImportFromGeoNetwork(Service):
         print(f"   Processing XML to get JSON for geonetwork id {geo_id}")
 
         fields_to_get = [
-            {
-                "field_id": "dataResourceTitle",
-                "xml_key": (
-                    "//gmd:identificationInfo/"
-                    "gmd:MD_DataIdentification/gmd:citation/"
-                    "gmd:CI_Citation/gmd:title/gco:CharacterString"
-                ),
-                "type": "string",
-            },
+            # {
+            #     "field_id": "dataResourceTitle",
+            #     "xml_key": (
+            #         "//gmd:identificationInfo/"
+            #         "gmd:MD_DataIdentification/gmd:citation/"
+            #         "gmd:CI_Citation/gmd:title/gco:CharacterString"
+            #     ),
+            #     "type": "string",
+            # },
             {
                 "field_id": "resourceEffective",
                 "xml_keys": [
