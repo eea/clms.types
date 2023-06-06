@@ -245,7 +245,7 @@ class IDataSet(model.Schema):
         label=_(u"Metadata"),
         fields=[
             # "validation",
-            "dataResourceTitle",
+            # "dataResourceTitle",
             "resourceEffective",
             "resourceModified",
             # "dataResourceAbstract",
@@ -314,18 +314,18 @@ class IDataSet(model.Schema):
     textindexer.searchable("validation")
     validation = RichText(title=_(u"Validation status"), required=False)
 
-    textindexer.searchable("dataResourceTitle")
-    dataResourceTitle = schema.TextLine(
-        title=_(
-            u"Resource title",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
+    # textindexer.searchable("dataResourceTitle")
+    # dataResourceTitle = schema.TextLine(
+    #     title=_(
+    #         u"Resource title",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     default=u"",
+    #     required=False,
+    #     readonly=False,
+    # )
 
     textindexer.searchable("resourceEffective")
     resourceEffective = schema.Date(

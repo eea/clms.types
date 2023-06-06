@@ -79,7 +79,7 @@ def searchable_text(obj):
 
     return " ".join(
         [
-            obj.dataResourceTitle or "",
+            # obj.dataResourceTitle or "",
             dataResourceAbstract,
             obj.accessAndUseLimitationPublic_line or "",
             accessAndUseConstraints,
