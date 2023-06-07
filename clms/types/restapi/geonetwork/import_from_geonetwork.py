@@ -161,15 +161,15 @@ class ImportFromGeoNetwork(Service):
         print(f"   Processing XML to get JSON for geonetwork id {geo_id}")
 
         fields_to_get = [
-            {
-                "field_id": "dataResourceTitle",
-                "xml_key": (
-                    "//gmd:identificationInfo/"
-                    "gmd:MD_DataIdentification/gmd:citation/"
-                    "gmd:CI_Citation/gmd:title/gco:CharacterString"
-                ),
-                "type": "string",
-            },
+            # {
+            #     "field_id": "dataResourceTitle",
+            #     "xml_key": (
+            #         "//gmd:identificationInfo/"
+            #         "gmd:MD_DataIdentification/gmd:citation/"
+            #         "gmd:CI_Citation/gmd:title/gco:CharacterString"
+            #     ),
+            #     "type": "string",
+            # },
             {
                 "field_id": "resourceEffective",
                 "xml_keys": [
@@ -259,7 +259,7 @@ class ImportFromGeoNetwork(Service):
                         "namespace": NAMESPACES,
                     }
                 ],
-                "type": "json",
+                "type": "list",
             },
             {
                 "field_id": "accessAndUseLimitationPublic_line",
@@ -486,11 +486,17 @@ class ImportFromGeoNetwork(Service):
                 "xml_keys": [
                     {
                         "xml_key": (
-                            "//gmd:DQ_DomainConsistency/gmd:result/"
-                            "gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"
+                            "//gmd:DQ_ConformanceResult/gmd:pass/gco:Boolean"
                         ),
                         "namespace": NAMESPACES,
-                    }
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:DQ_ConformanceResult"
+                            "/gmd:pass[@gco:nilReason]"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
                 ],
                 "type": "choice",
             },
@@ -682,13 +688,24 @@ class ImportFromGeoNetwork(Service):
                     xml_key,
                     namespaces=namespace,
                 )
-
                 if len(fields_data) == 0:
                     print(
                         f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
                         f" field {COLORS['fg']['blue']}{field['field_id']}"
                         f"{COLORS['end']} with search key {xml_key}"
                     )
+                elif field["field_id"] == "conformityPass":
+                    data = fields_data[0]
+                    if data.text:
+                        value = bool(data.text)
+                        value = str(value).lower()
+                    else:
+                        value = "Null"
+
+                    result[field["field_id"]] = {
+                        "data": value,
+                        "type": "string",
+                    }
                 elif field["field_id"] == "geographicBoundingBox":
                     bbox_data = {"items": []}
                     bbox_items = []
@@ -738,22 +755,6 @@ class ImportFromGeoNetwork(Service):
                     }
                     print(OK_STRING.format(field_id=field["field_id"]))
 
-                elif field["field_id"] == "geographicCoverage":
-                    geo_data = {}
-                    geo_items = []
-                    for item in fields_data:
-                        geo_items.append(
-                            {
-                                "label": item.text,
-                                "value": item.text.lower(),
-                            }
-                        )
-                    geo_data["geolocation"] = geo_items
-                    result[field["field_id"]] = {
-                        "data": geo_data,
-                        "type": field["type"],
-                    }
-                    print(OK_STRING.format(field_id=field["field_id"]))
                 elif field["field_id"] == "temporalCoverage":
                     temporalExtent = []
                     item = fields_data[0]

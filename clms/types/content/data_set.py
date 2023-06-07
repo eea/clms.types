@@ -130,7 +130,6 @@ class IDataSet(model.Schema):
             "Archive-only (no updates)",
             "Archive with regular updates",
             "Forecasts",
-            "No values",
         ],
         required=True,
         readonly=False,
@@ -245,7 +244,7 @@ class IDataSet(model.Schema):
         label=_(u"Metadata"),
         fields=[
             # "validation",
-            "dataResourceTitle",
+            # "dataResourceTitle",
             "resourceEffective",
             "resourceModified",
             # "dataResourceAbstract",
@@ -314,18 +313,18 @@ class IDataSet(model.Schema):
     textindexer.searchable("validation")
     validation = RichText(title=_(u"Validation status"), required=False)
 
-    textindexer.searchable("dataResourceTitle")
-    dataResourceTitle = schema.TextLine(
-        title=_(
-            u"Resource title",
-        ),
-        description=_(
-            u"",
-        ),
-        default=u"",
-        required=False,
-        readonly=False,
-    )
+    # textindexer.searchable("dataResourceTitle")
+    # dataResourceTitle = schema.TextLine(
+    #     title=_(
+    #         u"Resource title",
+    #     ),
+    #     description=_(
+    #         u"",
+    #     ),
+    #     default=u"",
+    #     required=False,
+    #     readonly=False,
+    # )
 
     textindexer.searchable("resourceEffective")
     resourceEffective = schema.Date(
@@ -366,16 +365,32 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Keyword",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
     )
 
-    geographicCoverage = JSONField(
-        title=_(u"geographicCoverage"),
+    # geographicCoverage = JSONField(
+    #     title=_(u"geographicCoverage"),
+    #     required=False,
+    #     widget="geolocation",
+    #     default={},
+    # )
+
+    textindexer.searchable("geographicCoverage")
+    geographicCoverage = schema.List(
+        title=_(
+            u"Geographic coverage",
+        ),
+        value_type=schema.TextLine(
+            title=u"Geographic Coverage",
+            required=False,
+            readonly=False,
+        ),
         required=False,
-        widget="geolocation",
-        default={},
+        readonly=False,
     )
 
     textindexer.searchable("accessAndUseLimitationPublic_line")
@@ -431,6 +446,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Year",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
@@ -472,6 +489,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"THEME",
+            required=False,
+            readonly=False,
         ),
         required=False,
     )
@@ -486,6 +505,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"INSPIRE THEME",
+            required=False,
+            readonly=False,
         ),
         required=False,
     )
@@ -537,6 +558,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Reference",
+            required=False,
+            readonly=False,
         ),
         required=False,
     )
@@ -658,6 +681,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Format",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
@@ -748,6 +773,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Representation type",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,

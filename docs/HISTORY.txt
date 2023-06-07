@@ -1,6 +1,10 @@
 Changelog
 =========
 
+11.3 - (2023-06-07)
+---------------------------
+* Change: Develop [erral]
+
 11.2 - (2023-05-30)
 ---------------------------
 * Change: fix: CLMS-2261 update static lists [erral]
