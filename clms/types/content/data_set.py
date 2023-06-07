@@ -365,16 +365,32 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Keyword",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
     )
 
-    geographicCoverage = JSONField(
-        title=_(u"geographicCoverage"),
+    # geographicCoverage = JSONField(
+    #     title=_(u"geographicCoverage"),
+    #     required=False,
+    #     widget="geolocation",
+    #     default={},
+    # )
+
+    textindexer.searchable("geographicCoverage")
+    geographicCoverage = schema.List(
+        title=_(
+            u"Geographic coverage",
+        ),
+        value_type=schema.TextLine(
+            title=u"Geographic Coverage",
+            required=False,
+            readonly=False,
+        ),
         required=False,
-        widget="geolocation",
-        default={},
+        readonly=False,
     )
 
     textindexer.searchable("accessAndUseLimitationPublic_line")
@@ -430,6 +446,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Year",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
@@ -471,6 +489,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"THEME",
+            required=False,
+            readonly=False,
         ),
         required=False,
     )
@@ -485,6 +505,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"INSPIRE THEME",
+            required=False,
+            readonly=False,
         ),
         required=False,
     )
@@ -536,6 +558,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Reference",
+            required=False,
+            readonly=False,
         ),
         required=False,
     )
@@ -657,6 +681,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Format",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
@@ -747,6 +773,8 @@ class IDataSet(model.Schema):
         ),
         value_type=schema.TextLine(
             title=u"Representation type",
+            required=False,
+            readonly=False,
         ),
         required=False,
         readonly=False,
