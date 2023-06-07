@@ -130,7 +130,6 @@ class IDataSet(model.Schema):
             "Archive-only (no updates)",
             "Archive with regular updates",
             "Forecasts",
-            "No values",
         ],
         required=True,
         readonly=False,
