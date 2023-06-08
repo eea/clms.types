@@ -156,6 +156,8 @@ class IDataSet(model.Schema):
             "Quaterly",
             "Unknown",
             "Weekly",
+            "3-yearly",
+            "6-yearly"
         ],
         required=True,
         readonly=False,
