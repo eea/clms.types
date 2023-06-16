@@ -62,7 +62,7 @@ class IDataSet(model.Schema):
             "In situ observations",
         ],
         # defaultFactory=get_default_name,
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -75,7 +75,7 @@ class IDataSet(model.Schema):
             u"The area of interest represented in the dataset",
         ),
         default=u"",
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -89,7 +89,7 @@ class IDataSet(model.Schema):
             u" units",
         ),
         default=u"",
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -103,7 +103,7 @@ class IDataSet(model.Schema):
             u" information",
         ),
         values=["Grid", "Vector", "Vector and Grid"],
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -119,7 +119,7 @@ class IDataSet(model.Schema):
             " datasets ",
         ),
         default=u"",
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -139,7 +139,7 @@ class IDataSet(model.Schema):
             "Archive with regular updates",
             "Forecasts",
         ],
-        required=True,
+        required=False,
         readonly=False,
     )
 
@@ -168,7 +168,7 @@ class IDataSet(model.Schema):
             "3-yearly",
             "6-yearly",
         ],
-        required=True,
+        required=False,
         readonly=False,
     )
 
