@@ -1,6 +1,10 @@
 Changelog
 =========
 
+11.6 - (2023-06-16)
+---------------------------
+* Change: do not require given fields [erral]
+
 11.5 - (2023-06-13)
 ---------------------------
 * Change: index [erral]
