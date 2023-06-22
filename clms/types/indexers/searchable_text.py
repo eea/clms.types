@@ -1,9 +1,17 @@
 # -*- coding: utf-8 -*-
 """Searchable text indexers"""
-
-from plone.indexer import indexer
-
 from clms.types.content.data_set import IDataSet
+from clms.types.content.technical_library import ITechnicalLibrary
+from plone.app.dexterity.textindexer import interfaces
+from plone.app.dexterity.textindexer.converters import (
+    NamedfileFieldConverter as Base,
+)
+from plone.indexer import indexer
+from plone.namedfile.interfaces import INamedFileField
+from Products.CMFPlone.utils import safe_text
+from z3c.form.interfaces import IWidget
+from zope.component import adapter
+from zope.interface import implementer
 
 
 def get_from_json(field, keys):
@@ -94,3 +102,19 @@ def searchable_text(obj):
             obj.metadata_standard_name or "",
         ]
     )
+
+
+@implementer(interfaces.IDexterityTextIndexFieldConverter)
+@adapter(ITechnicalLibrary, INamedFileField, IWidget)
+class NamedfileFieldConverter(Base):
+    """Custom namedfilefielconverter to index the file name"""
+
+    def convert(self):
+        """convert method, call the super method and append the filename"""
+
+        data = super().convert()
+        if self.widget.filename:
+            data += " "
+            data += safe_text(self.widget.filename)
+
+        return data

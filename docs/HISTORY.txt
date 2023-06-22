@@ -1,6 +1,11 @@
 Changelog
 =========
 
+11.7 - (2023-06-22)
+---------------------------
+* Change: Develop
+  [erral]
+
 11.6 - (2023-06-16)
 ---------------------------
 * Change: do not require given fields [erral]
