@@ -40,12 +40,16 @@ def usecase_to_discomap(usecase, operation):
     used_products = []
     if usecase.products:
         used_products = [
-            api.content.get(UID=item).Title() for item in usecase.products
+            api.content.get(UID=item).Title()
+            for item in usecase.products
+            if api.content.get(UID=item)
         ]
     used_datasets = []
     if usecase.datasets:
         used_datasets = [
-            api.content.get(UID=item).Title() for item in usecase.datasets
+            api.content.get(UID=item).Title()
+            for item in usecase.datasets
+            if api.content.get(UID=item)
         ]
 
     clms_products_used = "/".join(used_products + used_datasets)
