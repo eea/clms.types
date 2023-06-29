@@ -1,6 +1,10 @@
 Changelog
 =========
 
+11.7 - (2023-06-29)
+---------------------------
+* Change: only return products that are in the portal, check if somehow the ite… [erral]
+
 11.7-dev0 - (unreleased)
 ---------------------------
 
