@@ -49,6 +49,16 @@ class TopicsVocabulary:
             VocabItem("17", _("Structure")),
             VocabItem("18", _("Transportation")),
             VocabItem("19", _("Utilities / Communication")),
+            VocabItem("20", _("Commercial applications")),
+            VocabItem("21", _("Scientific applications")),
+            VocabItem("22", _("Public services")),
+            VocabItem("23", _("Policy support")),
+            VocabItem("24", _("Energy")),
+            VocabItem("25", _("Land cover and land use")),
+            VocabItem("26", _("Vegetation and vegetation dynamics")),
+            VocabItem("27", _("Urban environment")),
+            VocabItem("28", _("Water, snow and ice")),
+            VocabItem("29", _("Satellite and reference data")),
         ]
 
         # create a list of SimpleTerm items:
@@ -62,7 +72,7 @@ class TopicsVocabulary:
                 )
             )
         # Create a SimpleVocabulary from the terms list and return it:
-        return SimpleVocabulary(terms)
+        return SimpleVocabulary(sorted(terms, key=lambda x: x.title.lower()))
 
 
 TopicsVocabularyFactory = TopicsVocabulary()
