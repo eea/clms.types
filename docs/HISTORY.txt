@@ -1,6 +1,10 @@
 Changelog
 =========
 
+11.7 - (2023-07-03)
+---------------------------
+* Change: new items in the use-case vocabulary [erral]
+
 11.7-dev0 - (unreleased)
 ---------------------------
 
