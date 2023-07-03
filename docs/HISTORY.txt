@@ -1,13 +1,17 @@
 Changelog
 =========
 
-11.7 - (2023-07-03)
+11.9 - (2023-07-03)
 ---------------------------
 * Change: new items in the use-case vocabulary [erral]
 
-11.7 - (2023-07-03)
+11.8 - (2023-06-29)
 ---------------------------
-* Change: new items in the use-case vocabulary
+* Change: only return products that are in the portal, check if somehow the ite… [erral]
+
+11.7 - (2023-06-22)
+---------------------------
+* Change: Develop
   [erral]
 
 11.6 - (2023-06-16)
