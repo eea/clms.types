@@ -270,7 +270,6 @@ class IDataSet(model.Schema):
         ],
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     textindexer.searchable("jrc_algorithm")
     jrc_algorithm = RichText(
         title=_(
@@ -284,7 +283,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     textindexer.searchable("jrc_quality")
     jrc_quality = RichText(
         title=_(
@@ -298,7 +296,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure to import: from plone.app.textfield import RichText
     textindexer.searchable("jrc_datalayers")
     jrc_datalayers = RichText(
         title=_(
@@ -312,26 +309,6 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    # Make sure you import:
-    # plone.app.z3cform.widget.SingleCheckBoxBoolFieldWidget
-    # directives.widget(
-    #     jrc_show_technical_documents=SingleCheckBoxBoolFieldWidget
-    # )
-    # jrc_show_technical_documents = schema.Bool(
-    #     title=_(
-    #         u"Show technical documents?",
-    #     ),
-    #     description=_(
-    #         u"If checked an accordion with related technical documents will be"
-    #         u" shown in the dataset page.",
-    #     ),
-    #     required=False,
-    #     default=False,
-    #     readonly=False,
-    # )
-
-    # Make sure you import:
-    # plone.app.z3cform.widget.SingleCheckBoxBoolFieldWidget
     directives.widget(jrc_show_related_datasets=SingleCheckBoxBoolFieldWidget)
     jrc_show_related_datasets = schema.Bool(
         title=_(
