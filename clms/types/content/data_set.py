@@ -12,6 +12,8 @@ from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
+from plone.app.z3cform.widget import SingleCheckBoxBoolFieldWidget
+from plone.autoform import directives
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
@@ -253,6 +255,94 @@ class IDataSet(model.Schema):
         ),
         default=u"",
         required=False,
+        readonly=False,
+    )
+
+    model.fieldset(
+        "jrc_data",
+        label=_("JRC Data"),
+        fields=[
+            "jrc_algorithm",
+            "jrc_quality",
+            "jrc_datalayers",
+            # "jrc_show_technical_documents",
+            "jrc_show_related_datasets",
+        ],
+    )
+
+    # Make sure to import: from plone.app.textfield import RichText
+    textindexer.searchable("jrc_algorithm")
+    jrc_algorithm = RichText(
+        title=_(
+            "Algorithm",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    # Make sure to import: from plone.app.textfield import RichText
+    textindexer.searchable("jrc_quality")
+    jrc_quality = RichText(
+        title=_(
+            "Quality",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    # Make sure to import: from plone.app.textfield import RichText
+    textindexer.searchable("jrc_datalayers")
+    jrc_datalayers = RichText(
+        title=_(
+            "Datalayers",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    # Make sure you import:
+    # plone.app.z3cform.widget.SingleCheckBoxBoolFieldWidget
+    # directives.widget(
+    #     jrc_show_technical_documents=SingleCheckBoxBoolFieldWidget
+    # )
+    # jrc_show_technical_documents = schema.Bool(
+    #     title=_(
+    #         u"Show technical documents?",
+    #     ),
+    #     description=_(
+    #         u"If checked an accordion with related technical documents will be"
+    #         u" shown in the dataset page.",
+    #     ),
+    #     required=False,
+    #     default=False,
+    #     readonly=False,
+    # )
+
+    # Make sure you import:
+    # plone.app.z3cform.widget.SingleCheckBoxBoolFieldWidget
+    directives.widget(jrc_show_related_datasets=SingleCheckBoxBoolFieldWidget)
+    jrc_show_related_datasets = schema.Bool(
+        title=_(
+            u"Show related datasets?",
+        ),
+        description=_(
+            u"If checked an accordion with related datasets will be shown in"
+            u" the dataset page.",
+        ),
+        required=False,
+        default=False,
         readonly=False,
     )
 
