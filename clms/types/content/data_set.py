@@ -7,13 +7,13 @@ import json
 from clms.types import _
 from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
+from plone.app.z3cform.widget import SingleCheckBoxBoolFieldWidget
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
-from plone.app.z3cform.widget import SingleCheckBoxBoolFieldWidget
-from plone.autoform import directives
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
