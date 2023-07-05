@@ -7,6 +7,8 @@ import json
 from clms.types import _
 from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
+from plone.app.z3cform.widget import SingleCheckBoxBoolFieldWidget
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
@@ -253,6 +255,71 @@ class IDataSet(model.Schema):
         ),
         default=u"",
         required=False,
+        readonly=False,
+    )
+
+    model.fieldset(
+        "jrc_data",
+        label=_("JRC Data"),
+        fields=[
+            "jrc_algorithm",
+            "jrc_quality",
+            "jrc_datalayers",
+            # "jrc_show_technical_documents",
+            "jrc_show_related_datasets",
+        ],
+    )
+
+    textindexer.searchable("jrc_algorithm")
+    jrc_algorithm = RichText(
+        title=_(
+            "Algorithm",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("jrc_quality")
+    jrc_quality = RichText(
+        title=_(
+            "Quality",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("jrc_datalayers")
+    jrc_datalayers = RichText(
+        title=_(
+            "Datalayers",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    directives.widget(jrc_show_related_datasets=SingleCheckBoxBoolFieldWidget)
+    jrc_show_related_datasets = schema.Bool(
+        title=_(
+            u"Show related datasets?",
+        ),
+        description=_(
+            u"If checked an accordion with related datasets will be shown in"
+            u" the dataset page.",
+        ),
+        required=False,
+        default=False,
         readonly=False,
     )
 
