@@ -7,6 +7,8 @@ import json
 from clms.types import _
 from plone.app.dexterity import textindexer
 from plone.app.textfield import RichText
+from plone.app.z3cform.widget import SingleCheckBoxBoolFieldWidget
+from plone.autoform import directives
 from plone.dexterity.content import Container
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
@@ -48,7 +50,7 @@ class IDataSet(model.Schema):
             "characteristics_release_major_version",
         ],
     )
-
+    textindexer.searchable("characteristics_type")
     characteristics_type = schema.Choice(
         title=_(
             u"Type",
@@ -62,9 +64,11 @@ class IDataSet(model.Schema):
             "In situ observations",
         ],
         # defaultFactory=get_default_name,
-        required=True,
+        required=False,
         readonly=False,
     )
+
+    textindexer.searchable("characteristics_spatial_coverage")
     characteristics_spatial_coverage = schema.TextLine(
         title=_(
             u"Spatial coverage",
@@ -73,9 +77,11 @@ class IDataSet(model.Schema):
             u"The area of interest represented in the dataset",
         ),
         default=u"",
-        required=True,
+        required=False,
         readonly=False,
     )
+
+    textindexer.searchable("characteristics_spatial_resolution")
     characteristics_spatial_resolution = schema.TextLine(
         title=_(
             u"Spatial resolution",
@@ -85,9 +91,11 @@ class IDataSet(model.Schema):
             u" units",
         ),
         default=u"",
-        required=True,
+        required=False,
         readonly=False,
     )
+
+    textindexer.searchable("characteristics_spatial_representation_type")
     characteristics_spatial_representation_type = schema.Choice(
         title=_(
             u"Spatial representation type",
@@ -97,10 +105,11 @@ class IDataSet(model.Schema):
             u" information",
         ),
         values=["Grid", "Vector", "Vector and Grid"],
-        required=True,
+        required=False,
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_temporal_extent")
     characteristics_temporal_extent = schema.TextLine(
         title=_(
             u"Temporal extent",
@@ -112,10 +121,11 @@ class IDataSet(model.Schema):
             " datasets ",
         ),
         default=u"",
-        required=True,
+        required=False,
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_temporal_usability")
     characteristics_temporal_usability = schema.Choice(
         title=_(
             "Temporal usability",
@@ -131,10 +141,11 @@ class IDataSet(model.Schema):
             "Archive with regular updates",
             "Forecasts",
         ],
-        required=True,
+        required=False,
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_update_frequency")
     characteristics_update_frequency = schema.Choice(
         title=_(
             u"Update frequency",
@@ -157,12 +168,13 @@ class IDataSet(model.Schema):
             "Unknown",
             "Weekly",
             "3-yearly",
-            "6-yearly"
+            "6-yearly",
         ],
-        required=True,
+        required=False,
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_timeliness")
     characteristics_timeliness = schema.TextLine(
         title=_(
             u"Timeliness",
@@ -176,6 +188,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_platform")
     characteristics_platform = schema.TextLine(
         title=_(
             u"Platform",
@@ -188,6 +201,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_sensor")
     characteristics_sensor = schema.TextLine(
         title=_(
             u"Sensor",
@@ -200,6 +214,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_thematic_accuracy")
     characteristics_thematic_accuracy = schema.TextLine(
         title=_(
             u"Thematic accuracy",
@@ -214,6 +229,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_position_accuracy")
     characteristics_position_accuracy = schema.TextLine(
         title=_(
             u"Position accuracy",
@@ -227,6 +243,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    textindexer.searchable("characteristics_release_major_version")
     characteristics_release_major_version = schema.TextLine(
         title=_(
             u"Release / Major version",
@@ -238,6 +255,71 @@ class IDataSet(model.Schema):
         ),
         default=u"",
         required=False,
+        readonly=False,
+    )
+
+    model.fieldset(
+        "jrc_data",
+        label=_("JRC Data"),
+        fields=[
+            "jrc_algorithm",
+            "jrc_quality",
+            "jrc_datalayers",
+            # "jrc_show_technical_documents",
+            "jrc_show_related_datasets",
+        ],
+    )
+
+    textindexer.searchable("jrc_algorithm")
+    jrc_algorithm = RichText(
+        title=_(
+            "Algorithm",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("jrc_quality")
+    jrc_quality = RichText(
+        title=_(
+            "Quality",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("jrc_datalayers")
+    jrc_datalayers = RichText(
+        title=_(
+            "Datalayers",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    directives.widget(jrc_show_related_datasets=SingleCheckBoxBoolFieldWidget)
+    jrc_show_related_datasets = schema.Bool(
+        title=_(
+            u"Show related datasets?",
+        ),
+        description=_(
+            u"If checked an accordion with related datasets will be shown in"
+            u" the dataset page.",
+        ),
+        required=False,
+        default=False,
         readonly=False,
     )
 
@@ -928,6 +1010,7 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    textindexer.searchable("download_by_area_extra_text")
     download_by_area_extra_text = RichText(
         title=_(
             "Extra text for download by area/time",
@@ -941,6 +1024,7 @@ class IDataSet(model.Schema):
     )
 
     # Make sure to import: from plone.app.textfield import RichText
+    textindexer.searchable("download_full_dataset_text")
     download_full_dataset_text = RichText(
         title=_(
             'Text of the "Download full dataset"',

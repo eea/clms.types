@@ -1,6 +1,34 @@
 Changelog
 =========
 
+11.2-dev0 - (unreleased)
+---------------------------
+
+11.10 - (2023-07-05)
+---------------------------
+* Change: new fields [erral]
+
+11.9 - (2023-07-03)
+---------------------------
+* Change: new items in the use-case vocabulary [erral]
+
+11.8 - (2023-06-29)
+---------------------------
+* Change: only return products that are in the portal, check if somehow the ite… [erral]
+
+11.7 - (2023-06-22)
+---------------------------
+* Change: Develop
+  [erral]
+
+11.6 - (2023-06-16)
+---------------------------
+* Change: do not require given fields [erral]
+
+11.5 - (2023-06-13)
+---------------------------
+* Change: index [erral]
+
 11.4 - (2023-06-08)
 ---------------------------
 * Change: Develop

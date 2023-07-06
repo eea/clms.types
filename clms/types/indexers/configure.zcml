@@ -156,4 +156,6 @@
       name="dataset_geographical_classification"
       />
 
+  <adapter factory=".searchable_text.NamedfileFieldConverter" />
+
 </configure>
