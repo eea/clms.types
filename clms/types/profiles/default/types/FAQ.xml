@@ -40,10 +40,6 @@
  <property
     name="model_source">&lt;model xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns:users=&quot;http://namespaces.plone.org/supermodel/users&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
     &lt;schema&gt;
-      &lt;field name=&quot;File&quot; type=&quot;plone.namedfile.field.NamedBlobFile&quot;&gt;
-        &lt;description/&gt;
-        &lt;title&gt;File&lt;/title&gt;
-      &lt;/field&gt;
       &lt;fieldset name=&quot;layout&quot; label=&quot;Layout&quot;&gt;
         &lt;field name=&quot;blocks&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
           &lt;default&gt;{&#x27;b4ef28c2-47e8-457e-8cca-013c8689f161&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;value&#x27;: [{&#x27;type&#x27;: &#x27;p&#x27;, &#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;&#x27;}]}], &#x27;plaintext&#x27;: &#x27;&#x27;}}&lt;/default&gt;
