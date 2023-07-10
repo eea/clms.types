@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="clms.types">
+
+    <!-- -*- extra stuff goes here -*- -->
+    <record
+        name="plone.displayed_types"
+        interface="plone.base.interfaces.controlpanel.INavigationSchema"
+        field="displayed_types">
+
+        <value purge="false">
+            <element>FAQ</element>
+            <element>Product</element>
+        </value>
+  </record>
+
+</registry>
