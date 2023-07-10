@@ -39,7 +39,7 @@
         title="clms.types: Add TechnicalLibrary"
         />
     <permission
-        id="clms.types.AddFAQ"
+        id="clms.types.FAQ"
         title="clms.types: Add FAQ"
         />
 
