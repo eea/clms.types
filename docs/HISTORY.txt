@@ -1,6 +1,10 @@
 Changelog
 =========
 
+12.3 - (2023-07-12)
+---------------------------
+* Change: implementation of DataSetAccordions [erral]
+
 12.2 - (2023-07-11)
 ---------------------------
 * Change: Develop
