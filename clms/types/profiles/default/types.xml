@@ -12,4 +12,5 @@
   <object name="Event" meta_type="Dexterity FTI" />
   <object name="factsheets" meta_type="Dexterity FTI" />
   <object name="FAQ" meta_type="Dexterity FTI" />
+  <object name="DataSetAccordion" meta_type="Dexterity FTI" />
 </object>

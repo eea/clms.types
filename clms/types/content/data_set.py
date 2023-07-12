@@ -262,51 +262,8 @@ class IDataSet(model.Schema):
         "jrc_data",
         label=_("JRC Data"),
         fields=[
-            "jrc_algorithm",
-            "jrc_quality",
-            "jrc_datalayers",
-            # "jrc_show_technical_documents",
             "jrc_show_related_datasets",
         ],
-    )
-
-    textindexer.searchable("jrc_algorithm")
-    jrc_algorithm = RichText(
-        title=_(
-            "Algorithm",
-        ),
-        description=_(
-            "",
-        ),
-        default="",
-        required=False,
-        readonly=False,
-    )
-
-    textindexer.searchable("jrc_quality")
-    jrc_quality = RichText(
-        title=_(
-            "Quality",
-        ),
-        description=_(
-            "",
-        ),
-        default="",
-        required=False,
-        readonly=False,
-    )
-
-    textindexer.searchable("jrc_datalayers")
-    jrc_datalayers = RichText(
-        title=_(
-            "Datalayers",
-        ),
-        description=_(
-            "",
-        ),
-        default="",
-        required=False,
-        readonly=False,
     )
 
     directives.widget(jrc_show_related_datasets=SingleCheckBoxBoolFieldWidget)
