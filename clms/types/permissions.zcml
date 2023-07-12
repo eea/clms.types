@@ -38,11 +38,16 @@
         id="clms.types.AddTechnicalLibrary"
         title="clms.types: Add TechnicalLibrary"
         />
+
     <permission
         id="clms.types.FAQ"
         title="clms.types: Add FAQ"
         />
 
+    <permission
+        id="clms.types.AddDataSetAccordion"
+        title="clms.types: Add DataSetAccordion"
+        />
 
   </configure>
 
