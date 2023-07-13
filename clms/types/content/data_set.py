@@ -260,7 +260,7 @@ class IDataSet(model.Schema):
 
     model.fieldset(
         "jrc_data",
-        label=_("JRC Data"),
+        label=_("Extra Data"),
         fields=[
             "jrc_show_related_datasets",
         ],
