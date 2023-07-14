@@ -260,9 +260,10 @@ class IDataSet(model.Schema):
 
     model.fieldset(
         "jrc_data",
-        label=_("Extra Data"),
+        label=_("CLMS associated datasets"),
         fields=[
             "jrc_show_related_datasets",
+            "datasets",
         ],
     )
 
@@ -1119,6 +1120,25 @@ class IDataSet(model.Schema):
             " will be shown"
         ),
         required=False,
+    )
+
+    datasets = schema.List(
+        title=_(
+            u"CLMS associated datasets",
+        ),
+        description=_(
+            u"Multiple selection allowed",
+        ),
+        value_type=schema.Choice(
+            title=_(
+                u"CLMS datasets used",
+            ),
+            vocabulary=u"clms.types.DataSetsVocabulary",
+            required=True,
+            readonly=False,
+        ),
+        required=False,
+        readonly=False,
     )
 
 
