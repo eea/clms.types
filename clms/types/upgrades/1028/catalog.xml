@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+  <index name="publication_date" meta_type="DateIndex">
+        <indexed_attr value="publication_date" />
+  </index>
+
+  <index name="version" meta_type="FieldIndex">
+        <indexed_attr value="version" />
+  </index>
+
+</object>
