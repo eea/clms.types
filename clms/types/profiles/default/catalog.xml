@@ -84,6 +84,13 @@
         <indexed_attr value="resourceEffective" />
   </index>
 
+  <index name="publication_date" meta_type="DateIndex">
+        <indexed_attr value="publication_date" />
+  </index>
+
+  <index name="version" meta_type="FieldIndex">
+        <indexed_attr value="version" />
+  </index>
 
   <!-- Metadata columns for Work Opportunities and Tenders -->
   <column value="procurement_no" />
