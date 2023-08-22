@@ -18,7 +18,7 @@ from clms.types.interfaces import IClmsTypesLayer
 
 
 class IUseCaseFMEControlPanel(Interface):
-    """ control panel schema"""
+    """control panel schema"""
 
     fme_url = schema.URI(
         title=_(
@@ -44,9 +44,57 @@ class IUseCaseFMEControlPanel(Interface):
         readonly=False,
     )
 
+    highlight_service = schema.TextLine(
+        title=_(
+            u"Enter the highlight service URL",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+
+    region_layer = schema.TextLine(
+        title=_(
+            u"Enter the region layer service URL",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+
+    spatial_coverage_layer = schema.TextLine(
+        title=_(
+            u"Enter the spatial coverage layer service URL",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+
+    thumbnail = schema.TextLine(
+        title=_(
+            u"Enter the thumbnail service URL",
+        ),
+        description=_(
+            u"",
+        ),
+        default=u"",
+        required=True,
+        readonly=False,
+    )
+
 
 class UseCaseControlPanelForm(RegistryEditForm):
-    """ control panel view"""
+    """control panel view"""
 
     schema = IUseCaseFMEControlPanel
     schema_prefix = "clms.types.usecase_fme"

@@ -192,6 +192,9 @@ class RootMapViewerServiceGet(Service):
                             "StaticImageLegend": layer_item.get(
                                 "static_legend_url", ""
                             ),
+                            "FilterStaticImageLegend": layer_item.get(
+                                "filter_static_legend_url", ""
+                            ),
                             "Fields": layer_item.get("fields", ""),
                         }
                     )
