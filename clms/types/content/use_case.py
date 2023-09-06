@@ -179,7 +179,7 @@ class IUseCase(model.Schema):
             required=True,
             readonly=False,
         ),
-        required=False,
+        required=True,
         readonly=False,
     )
 
