@@ -828,6 +828,11 @@ class IDataSet(model.Schema):
         required=False,
     )
 
+    technical_documents_accordion_text = RichText(
+        title=_(u"Technical documents accordion text"),
+        required=False,
+    )
+
     geonetwork_identifiers = JSONField(
         title=_("Geonetwork identifier list"),
         required=False,
