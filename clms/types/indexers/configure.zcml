@@ -76,11 +76,6 @@
       />
 
   <adapter
-      factory=".searchable_text.searchable_text"
-      name="SearchableText"
-      />
-
-  <adapter
       factory=".component_title.component_title_behavior"
       name="component_title"
       />
@@ -157,5 +152,7 @@
       />
 
   <adapter factory=".searchable_text.NamedfileFieldConverter" />
+
+  <adapter factory=".searchable_text.DataSetSearchableTextDynamicTextIndexExtender" />
 
 </configure>
