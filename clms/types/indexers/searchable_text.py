@@ -6,7 +6,6 @@ from plone.app.dexterity.textindexer import interfaces
 from plone.app.dexterity.textindexer.converters import (
     NamedfileFieldConverter as Base,
 )
-from plone.indexer import indexer
 from plone.namedfile.interfaces import INamedFileField
 from Products.CMFPlone.utils import safe_text
 from z3c.form.interfaces import IWidget
@@ -14,94 +13,7 @@ from zope.component import adapter
 from zope.interface import implementer
 
 
-def get_from_json(field, keys):
-    """
-    Get data from JSON
-    """
-    result = ""
-    items = field.get("items", [])
-    if len(items) == 0:
-        return ""
-    for item in items:
-        for key in keys:
-            if item.get(key) is not None:
-                result += item.get(key) + " "
-
-    return result
-
-
-@indexer(IDataSet)
-def searchable_text(obj):
-    """Calculate and return the value for the indexer"""
-
-    dataResourceAbstract = (
-        obj.dataResourceAbstract.output if obj.dataResourceAbstract else ""
-    )
-    accessAndUseConstraints = (
-        obj.accessAndUseConstraints.output
-        if obj.accessAndUseConstraints
-        else ""
-    )
-
-    conformitySpecification = (
-        obj.conformitySpecification.output
-        if obj.conformitySpecification
-        else ""
-    )
-    qualityLineage = obj.qualityLineage.output if obj.qualityLineage else ""
-    distributionInfo = get_from_json(
-        obj.distributionInfo, ["resourceLocator", "services"]
-    )
-
-    responsiblePartyWithRole = get_from_json(
-        obj.responsiblePartyWithRole,
-        [
-            "organisationName",
-            "deliveryPoint",
-            "city",
-            "administrativeArea",
-            "postalCode",
-            "country",
-            "electronicMailAddress",
-            "url",
-            "urlTitle",
-            "roleCode",
-        ],
-    )
-
-    point_of_contact_data = get_from_json(
-        obj.point_of_contact_data,
-        [
-            "organisationName",
-            "deliveryPoint",
-            "city",
-            "administrativeArea",
-            "postalCode",
-            "country",
-            "electronicMailAddress",
-            "url",
-            "urlTitle",
-            "roleCode",
-        ],
-    )
-
-    return " ".join(
-        [
-            # obj.dataResourceTitle or "",
-            dataResourceAbstract,
-            obj.accessAndUseLimitationPublic_line or "",
-            accessAndUseConstraints,
-            obj.qualitySpatialResolution_line or "",
-            responsiblePartyWithRole,
-            conformitySpecification,
-            qualityLineage,
-            distributionInfo,
-            point_of_contact_data,
-            obj.update_frequency or "",
-            obj.hierarchy_level or "",
-            obj.metadata_standard_name or "",
-        ]
-    )
+TITLE_IN_SEARCHABLE_TEXT_WEIGHT = 5
 
 
 @implementer(interfaces.IDexterityTextIndexFieldConverter)
@@ -118,3 +30,23 @@ class NamedfileFieldConverter(Base):
             data += safe_text(self.widget.filename)
 
         return data
+
+
+@implementer(interfaces.IDynamicTextIndexExtender)
+@adapter(IDataSet)
+class DataSetSearchableTextDynamicTextIndexExtender:
+    """an extender for DataSet searchable text to extend
+    the searchable text with additional text.
+    In our case with additional values of the title
+    to make the title more important
+    """
+
+    def __init__(self, context):
+        """initialization"""
+        self.context = context
+
+    def __call__(self):
+        """run the adapter"""
+        return " ".join(
+            [self.context.Title()] * TITLE_IN_SEARCHABLE_TEXT_WEIGHT
+        )
