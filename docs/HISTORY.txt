@@ -1,6 +1,10 @@
 Changelog
 =========
 
+13.0 - (2023-09-25)
+---------------------------
+* Change: Develop [erral]
+
 12.9 - (2023-09-11)
 ---------------------------
 * Change: adjust searchabletext index behavior for DataSets [erral]
