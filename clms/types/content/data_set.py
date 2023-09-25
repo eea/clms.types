@@ -879,7 +879,7 @@ class IDataSet(model.Schema):
     )
 
     mapviewer_layers = JSONField(
-        title=_("Layers available in the map viewer"),
+        title=_("Layers available in the data viewer"),
         required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="layer_widget",
@@ -962,7 +962,7 @@ class IDataSet(model.Schema):
 
     downloadable_full_dataset = schema.Bool(
         title=_(
-            "Check if this dataset can be downloaded from the map viewer",
+            "Check if this dataset can be downloaded from the data viewer",
         ),
         description=_(
             "If selected, an explanation of 'Download by area (and time)'"
@@ -1045,6 +1045,10 @@ class IDataSet(model.Schema):
     show_pop_up_in_mapviewer = schema.Bool(
         title=_(
             "Mark as downloadable but with no service to visualise",
+        ),
+        description=_(
+            "If activated, the dataset is not listed in the table of contents"
+            " (Hamburguer menu) of the data viewer"
         ),
         required=False,
         default=False,
