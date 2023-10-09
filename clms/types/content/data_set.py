@@ -87,10 +87,12 @@ class IDataSet(model.Schema):
             "Spatial resolution",
         ),
         description=_(
-            "Level of detail of the data set. Enter resolution distance with" " units",
+            "Dataset level of detail. Mandatory to enter a distance with "
+            "units if the dataset spatial representation type is other than "
+            ' "Vector" or "No value"'
         ),
         default="",
-        required=True,
+        required=False,
         readonly=False,
     )
 
