@@ -53,10 +53,10 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_type")
     characteristics_type = schema.Choice(
         title=_(
-            u"Type",
+            "Type",
         ),
         description=_(
-            u"Type of observations",
+            "Type of observations",
         ),
         values=[
             "Satellite observations",
@@ -71,12 +71,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_spatial_coverage")
     characteristics_spatial_coverage = schema.TextLine(
         title=_(
-            u"Spatial coverage",
+            "Spatial coverage",
         ),
         description=_(
-            u"The area of interest represented in the dataset",
+            "The area of interest represented in the dataset",
         ),
-        default=u"",
+        default="",
         required=True,
         readonly=False,
     )
@@ -84,25 +84,26 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_spatial_resolution")
     characteristics_spatial_resolution = schema.TextLine(
         title=_(
-            u"Spatial resolution",
+            "Spatial resolution",
         ),
         description=_(
-            u"Level of detail of the data set. Enter resolution distance with"
-            u" units",
+            "Dataset level of detail. Mandatory to enter a distance with "
+            "units if the dataset spatial representation type is other than "
+            ' "Vector" or "No value"'
         ),
-        default=u"",
-        required=True,
+        default="",
+        required=False,
         readonly=False,
     )
 
     textindexer.searchable("characteristics_spatial_representation_type")
     characteristics_spatial_representation_type = schema.Choice(
         title=_(
-            u"Spatial representation type",
+            "Spatial representation type",
         ),
         description=_(
-            u"Method used for spatial representation of geographical"
-            u" information",
+            "Method used for spatial representation of geographical "
+            "information",
         ),
         values=["Grid", "Vector", "Vector and Grid"],
         required=True,
@@ -112,7 +113,7 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_temporal_extent")
     characteristics_temporal_extent = schema.TextLine(
         title=_(
-            u"Temporal extent",
+            "Temporal extent",
         ),
         description=_(
             "Time period covered by the content of the dataset (data"
@@ -120,7 +121,7 @@ class IDataSet(model.Schema):
             " YYYY for a defined time period. Use YYYY - now for open-ended"
             " datasets ",
         ),
-        default=u"",
+        default="",
         required=True,
         readonly=False,
     )
@@ -148,11 +149,11 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_update_frequency")
     characteristics_update_frequency = schema.Choice(
         title=_(
-            u"Update frequency",
+            "Update frequency",
         ),
         description=_(
-            u"Frequency with which modifications and deletions are made to the"
-            u" data after it is first produced",
+            "Frequency with which modifications and deletions are made to the"
+            " data after it is first produced",
         ),
         values=[
             "Annually",
@@ -177,13 +178,13 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_timeliness")
     characteristics_timeliness = schema.TextLine(
         title=_(
-            u"Timeliness",
+            "Timeliness",
         ),
         description=_(
-            u"How fast each update is made available to the user counting from"
-            u" the moment of the availability of the input data.",
+            "How fast each update is made available to the user counting from"
+            " the moment of the availability of the input data.",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -191,12 +192,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_platform")
     characteristics_platform = schema.TextLine(
         title=_(
-            u"Platform",
+            "Platform",
         ),
         description=_(
-            u"Name of satellite family or ground base station",
+            "Name of satellite family or ground base station",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -204,12 +205,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_sensor")
     characteristics_sensor = schema.TextLine(
         title=_(
-            u"Sensor",
+            "Sensor",
         ),
         description=_(
-            u"Name of the instrument for detecting energy.",
+            "Name of the instrument for detecting energy.",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -217,14 +218,14 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_thematic_accuracy")
     characteristics_thematic_accuracy = schema.TextLine(
         title=_(
-            u"Thematic accuracy",
+            "Thematic accuracy",
         ),
         description=_(
-            u"Refers to how well the class name on the map correspond to what"
-            u" is really on the ground. It can be expressed something like: "
-            u"Expected overall accuracy is greater than 85% ",
+            "Refers to how well the class name on the map correspond to what"
+            " is really on the ground. It can be expressed something like: "
+            "Expected overall accuracy is greater than 85% ",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -232,13 +233,13 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_position_accuracy")
     characteristics_position_accuracy = schema.TextLine(
         title=_(
-            u"Position accuracy",
+            "Position accuracy",
         ),
         description=_(
-            u"Indicator or measure of how a spatial object is accurately"
-            u" positioned on the map with respect to its true position.",
+            "Indicator or measure of how a spatial object is accurately"
+            " positioned on the map with respect to its true position.",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -246,14 +247,14 @@ class IDataSet(model.Schema):
     textindexer.searchable("characteristics_release_major_version")
     characteristics_release_major_version = schema.TextLine(
         title=_(
-            u"Release / Major version",
+            "Release / Major version",
         ),
         description=_(
-            u"Name given for the release that consists of major new features"
-            u" or existing features that might have been deprecated.",
-            u"V + number.Example: V2",
+            "Name given for the release that consists of major new features"
+            " or existing features that might have been deprecated.",
+            "V + number.Example: V2",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -270,11 +271,11 @@ class IDataSet(model.Schema):
     directives.widget(jrc_show_related_datasets=SingleCheckBoxBoolFieldWidget)
     jrc_show_related_datasets = schema.Bool(
         title=_(
-            u"Show related datasets?",
+            "Show related datasets?",
         ),
         description=_(
-            u"If checked an accordion with related datasets will be shown in"
-            u" the dataset page.",
+            "If checked an accordion with related datasets will be shown in"
+            " the dataset page.",
         ),
         required=False,
         default=False,
@@ -283,7 +284,7 @@ class IDataSet(model.Schema):
 
     model.fieldset(
         "metadata",
-        label=_(u"Metadata"),
+        label=_("Metadata"),
         fields=[
             # "validation",
             # "dataResourceTitle",
@@ -353,7 +354,7 @@ class IDataSet(model.Schema):
     #     Bounding Box: geographicBoundingBox
     #     Temporal extent: temporalCoverage
     textindexer.searchable("validation")
-    validation = RichText(title=_(u"Validation status"), required=False)
+    validation = RichText(title=_("Validation status"), required=False)
 
     # textindexer.searchable("dataResourceTitle")
     # dataResourceTitle = schema.TextLine(
@@ -371,10 +372,10 @@ class IDataSet(model.Schema):
     textindexer.searchable("resourceEffective")
     resourceEffective = schema.Date(
         title=_(
-            u"Metadata date stamp",
+            "Metadata date stamp",
         ),
         description=_(
-            u"",
+            "",
         ),
         required=False,
         readonly=False,
@@ -383,10 +384,10 @@ class IDataSet(model.Schema):
     textindexer.searchable("resourceModified")
     resourceModified = schema.Date(
         title=_(
-            u"Revision date",
+            "Revision date",
         ),
         description=_(
-            u"",
+            "",
         ),
         required=False,
         readonly=False,
@@ -394,19 +395,20 @@ class IDataSet(model.Schema):
 
     textindexer.searchable("dataResourceAbstract")
     dataResourceAbstract = RichText(
-        title=_(u"Resource abstract"), required=False
+        title=_("Resource abstract"),
+        required=False
     )
 
     textindexer.searchable("keywords")
     keywords = schema.List(
         title=_(
-            u"Keywords",
+            "Keywords",
         ),
         description=_(
-            u"",
+            "",
         ),
         value_type=schema.TextLine(
-            title=u"Keyword",
+            title="Keyword",
             required=False,
             readonly=False,
         ),
@@ -424,10 +426,10 @@ class IDataSet(model.Schema):
     textindexer.searchable("geographicCoverage")
     geographicCoverage = schema.List(
         title=_(
-            u"Geographic coverage",
+            "Geographic coverage",
         ),
         value_type=schema.TextLine(
-            title=u"Geographic Coverage",
+            title="Geographic Coverage",
             required=False,
             readonly=False,
         ),
@@ -437,30 +439,30 @@ class IDataSet(model.Schema):
 
     textindexer.searchable("accessAndUseLimitationPublic_line")
     accessAndUseLimitationPublic_line = schema.TextLine(
-        title=_(u"Limitation of public access"), required=False
+        title=_("Limitation of public access"), required=False
     )
 
     textindexer.searchable("accessAndUseConstraints")
     accessAndUseConstraints = RichText(
-        title=_(u"Conditions applying to access and use"), required=False
+        title=_("Conditions applying to access and use"), required=False
     )
 
     textindexer.searchable("qualitySpatialResolution_line")
     qualitySpatialResolution_line = schema.TextLine(
-        title=_(u"Spatial Resolution"), required=False
+        title=_("Spatial Resolution"), required=False
     )
 
     textindexer.searchable("classificationTopicCategory")
     classificationTopicCategory = schema.List(
         title=_(
-            u"Topic of Category",
+            "Topic of Category",
         ),
         description=_(
-            u"",
+            "",
         ),
         value_type=schema.TextLine(
             title=_(
-                u"Use case topics",
+                "Use case topics",
             ),
             required=False,
             readonly=False,
@@ -470,7 +472,7 @@ class IDataSet(model.Schema):
     )
 
     geographicBoundingBox = JSONField(
-        title=_(u"Bounding Box"),
+        title=_("Bounding Box"),
         required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="bounding_widget",
@@ -481,13 +483,13 @@ class IDataSet(model.Schema):
     textindexer.searchable("temporalCoverage")
     temporalCoverage = schema.List(
         title=_(
-            u"Temporal Extent",
+            "Temporal Extent",
         ),
         description=_(
-            u"",
+            "",
         ),
         value_type=schema.TextLine(
-            title=u"Year",
+            title="Year",
             required=False,
             readonly=False,
         ),
@@ -498,12 +500,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("temporalExtentStart")
     temporalExtentStart = schema.TextLine(
         title=_(
-            u"Temporal Extent Start",
+            "Temporal Extent Start",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -511,12 +513,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("temporalExtentEnd")
     temporalExtentEnd = schema.TextLine(
         title=_(
-            u"Temporal Extent End",
+            "Temporal Extent End",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -524,13 +526,13 @@ class IDataSet(model.Schema):
     textindexer.searchable("gemet")
     gemet = schema.List(
         title=_(
-            u"GEMET",
+            "GEMET",
         ),
         description=_(
-            u"",
+            "",
         ),
         value_type=schema.TextLine(
-            title=u"THEME",
+            title="THEME",
             required=False,
             readonly=False,
         ),
@@ -540,13 +542,13 @@ class IDataSet(model.Schema):
     textindexer.searchable("gemetInspireThemes")
     gemetInspireThemes = schema.List(
         title=_(
-            u"GEMET INSPIRE Themes",
+            "GEMET INSPIRE Themes",
         ),
         description=_(
-            u"",
+            "",
         ),
         value_type=schema.TextLine(
-            title=u"INSPIRE THEME",
+            title="INSPIRE THEME",
             required=False,
             readonly=False,
         ),
@@ -558,12 +560,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("dataResourceType")
     dataResourceType = schema.TextLine(
         title=_(
-            u"Resource Type",
+            "Resource Type",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -574,7 +576,7 @@ class IDataSet(model.Schema):
     #     Responsible party role: responsiblePartyRole (DEPRECATED)
     textindexer.searchable("responsiblePartyWithRole")
     responsiblePartyWithRole = JSONField(
-        title=u"Responsible Party with Role ",
+        title="Responsible Party with Role ",
         required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="contact_widget",
@@ -594,12 +596,12 @@ class IDataSet(model.Schema):
     #     Coordinate Reference System: coordinateReferenceSystem
     textindexer.searchable("coordinateReferenceSystemList")
     coordinateReferenceSystemList = schema.List(
-        title=_(u"Coordinate Reference System"),
+        title=_("Coordinate Reference System"),
         description=_(
-            u"",
+            "",
         ),
         value_type=schema.TextLine(
-            title=u"Reference",
+            title="Reference",
             required=False,
             readonly=False,
         ),
@@ -617,23 +619,24 @@ class IDataSet(model.Schema):
     #     Lineage: qualityLineage
     textindexer.searchable("conformitySpecification")
     conformitySpecification = RichText(
-        title=_(u"Specification"), required=False
+        title=_("Specification"),
+        required=False
     )
 
     textindexer.searchable("conformityPass")
     conformityPass = schema.Choice(
-        title=_(u"Pass"),
+        title=_("Pass"),
         description=_(
-            u"(true - if conformant, false - if not "
+            "(true - if conformant, false - if not "
             "conformant, or Null - if not evaluated)",
         ),
-        vocabulary=u"clms.types.ConformityPassVocabulary",
+        vocabulary="clms.types.ConformityPassVocabulary",
         required=False,
         readonly=False,
     )
 
     textindexer.searchable("qualityLineage")
-    qualityLineage = RichText(title=_(u"Lineage"), required=False)
+    qualityLineage = RichText(title=_("Lineage"), required=False)
 
     # DISTRIBUTION INFO
     #     Distribution Info: distributionInfo
@@ -642,7 +645,7 @@ class IDataSet(model.Schema):
 
     textindexer.searchable("distributionInfo")
     distributionInfo = JSONField(
-        title=u"Dataservices and each Resource Locator",
+        title="Dataservices and each Resource Locator",
         required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="distribution_info_widget",
@@ -677,18 +680,18 @@ class IDataSet(model.Schema):
     textindexer.searchable("identifier")
     identifier = schema.TextLine(
         title=_(
-            u"Identifier",
+            "Identifier",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
 
     point_of_contact_data = JSONField(
-        title=u"Point of contact Data",
+        title="Point of contact Data",
         required=False,
         schema=MIXEDFIELD_SCHEMA,
         widget="contact_widget",
@@ -706,12 +709,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("update_frequency")
     update_frequency = schema.TextLine(
         title=_(
-            u"Update Frequency",
+            "Update Frequency",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -719,10 +722,10 @@ class IDataSet(model.Schema):
     textindexer.searchable("distribution_format_list")
     distribution_format_list = schema.List(
         title=_(
-            u"Distribution format",
+            "Distribution format",
         ),
         value_type=schema.TextLine(
-            title=u"Format",
+            title="Format",
             required=False,
             readonly=False,
         ),
@@ -733,12 +736,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("hierarchy_level")
     hierarchy_level = schema.TextLine(
         title=_(
-            u"Hierarchy level",
+            "Hierarchy level",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -746,12 +749,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("metadata_language")
     metadata_language = schema.TextLine(
         title=_(
-            u"Metadata Language",
+            "Metadata Language",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -759,12 +762,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("character_set")
     character_set = schema.TextLine(
         title=_(
-            u"Character Set",
+            "Character Set",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -772,12 +775,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("date_stamp")
     date_stamp = schema.TextLine(
         title=_(
-            u"Date Stamp",
+            "Date Stamp",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -785,12 +788,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("metadata_standard_name")
     metadata_standard_name = schema.TextLine(
         title=_(
-            u"Metadata Standard Name",
+            "Metadata Standard Name",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -798,12 +801,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("metadata_standard_version")
     metadata_standard_version = schema.TextLine(
         title=_(
-            u"Metadata Standard Version",
+            "Metadata Standard Version",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -811,10 +814,10 @@ class IDataSet(model.Schema):
     textindexer.searchable("spatial_representation_type")
     spatial_representation_type = schema.List(
         title=_(
-            u"Spatial representation type",
+            "Spatial representation type",
         ),
         value_type=schema.TextLine(
-            title=u"Representation type",
+            title="Representation type",
             required=False,
             readonly=False,
         ),
@@ -824,12 +827,12 @@ class IDataSet(model.Schema):
 
     textindexer.searchable("citation")
     citation = RichText(
-        title=_(u"Dataset citation"),
+        title=_("Dataset citation"),
         required=False,
     )
 
     technical_documents_accordion_text = RichText(
-        title=_(u"Technical documents accordion text"),
+        title=_("Technical documents accordion text"),
         required=False,
     )
 
@@ -844,7 +847,7 @@ class IDataSet(model.Schema):
 
     model.fieldset(
         "mapviewer",
-        label=_(u"Mapviewer"),
+        label=_("Mapviewer"),
         fields=[
             "mapviewer_viewservice",
             "mapviewer_default_active",
@@ -858,21 +861,21 @@ class IDataSet(model.Schema):
     textindexer.searchable("mapviewer_viewservice")
     mapviewer_viewservice = schema.TextLine(
         title=_(
-            u"View service",
+            "View service",
         ),
         description=_(
-            u"Enter the service url (WMS)",
+            "Enter the service url (WMS)",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
 
     mapviewer_default_active = schema.Bool(
         title=_(
-            u"Default active?",
+            "Default active?",
         ),
-        description=_(u"Enter whether is dataset should be active by default"),
+        description=_("Enter whether is dataset should be active by default"),
         required=False,
         default=False,
         readonly=False,
@@ -889,12 +892,12 @@ class IDataSet(model.Schema):
 
     mapviewer_istimeseries = schema.Bool(
         title=_(
-            u"Is time series?",
+            "Is time series?",
         ),
         description=_(
-            u"Mark this field if this dataset contains time series "
-            u" information and fill the next field with the time "
-            u"series service url"
+            "Mark this field if this dataset contains time series "
+            " information and fill the next field with the time "
+            "series service url"
         ),
         required=False,
         default=False,
@@ -904,12 +907,12 @@ class IDataSet(model.Schema):
     textindexer.searchable("mapviewer_timeseriesservice")
     mapviewer_timeseriesservice = schema.TextLine(
         title=_(
-            u"Time series and information service URL",
+            "Time series and information service URL",
         ),
         description=_(
-            u"",
+            "",
         ),
-        default=u"",
+        default="",
         required=False,
         readonly=False,
     )
@@ -917,7 +920,7 @@ class IDataSet(model.Schema):
     textindexer.searchable("mapviewer_handlinglevel")
     mapviewer_handlinglevel = schema.Bool(
         title=_(
-            u"Handling level",
+            "Handling level",
         ),
         description=_(""),
         required=False,
@@ -927,7 +930,7 @@ class IDataSet(model.Schema):
 
     model.fieldset(
         "downloads",
-        label=_(u"Downloads"),
+        label=_("Downloads"),
         fields=[
             "downloadable_dataset",
             "downloadable_full_dataset",
@@ -1023,15 +1026,15 @@ class IDataSet(model.Schema):
             'This field allows modifying the title of "Area of interest" '
             "column in the prepackaged files table",
         ),
-        default=u"Area of interest",
+        default="Area of interest",
         required=False,
         readonly=False,
     )
 
     show_legend_on_prepackages = schema.Bool(
         title=_(
-            u"Show associated grid picture for prepackages "
-            u"nomenclature reference",
+            "Show associated grid picture for prepackages "
+            "nomenclature reference",
         ),
         description=_(
             "If selected this will show a button that will open a popup "
@@ -1133,16 +1136,16 @@ class IDataSet(model.Schema):
 
     datasets = schema.List(
         title=_(
-            u"CLMS associated datasets",
+            "CLMS associated datasets",
         ),
         description=_(
-            u"Multiple selection allowed",
+            "Multiple selection allowed",
         ),
         value_type=schema.Choice(
             title=_(
-                u"CLMS datasets used",
+                "CLMS datasets used",
             ),
-            vocabulary=u"clms.types.DataSetsVocabulary",
+            vocabulary="clms.types.DataSetsVocabulary",
             required=True,
             readonly=False,
         ),
