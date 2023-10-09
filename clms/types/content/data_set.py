@@ -102,7 +102,8 @@ class IDataSet(model.Schema):
             "Spatial representation type",
         ),
         description=_(
-            "Method used for spatial representation of geographical" " information",
+            "Method used for spatial representation of geographical "
+            "information",
         ),
         values=["Grid", "Vector", "Vector and Grid"],
         required=True,
