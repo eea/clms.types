@@ -394,7 +394,10 @@ class IDataSet(model.Schema):
     )
 
     textindexer.searchable("dataResourceAbstract")
-    dataResourceAbstract = RichText(title=_("Resource abstract"), required=False)
+    dataResourceAbstract = RichText(
+        title=_("Resource abstract"), 
+        required=False
+    )
 
     textindexer.searchable("keywords")
     keywords = schema.List(
@@ -615,7 +618,10 @@ class IDataSet(model.Schema):
     #     Pass: conformityPass (conformityDegree)
     #     Lineage: qualityLineage
     textindexer.searchable("conformitySpecification")
-    conformitySpecification = RichText(title=_("Specification"), required=False)
+    conformitySpecification = RichText(
+        title=_("Specification"), 
+        required=False
+    )
 
     textindexer.searchable("conformityPass")
     conformityPass = schema.Choice(
@@ -1027,7 +1033,8 @@ class IDataSet(model.Schema):
 
     show_legend_on_prepackages = schema.Bool(
         title=_(
-            "Show associated grid picture for prepackages " "nomenclature reference",
+            "Show associated grid picture for prepackages "
+            "nomenclature reference",
         ),
         description=_(
             "If selected this will show a button that will open a popup "
