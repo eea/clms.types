@@ -395,7 +395,7 @@ class IDataSet(model.Schema):
 
     textindexer.searchable("dataResourceAbstract")
     dataResourceAbstract = RichText(
-        title=_("Resource abstract"), 
+        title=_("Resource abstract"),
         required=False
     )
 
@@ -619,7 +619,7 @@ class IDataSet(model.Schema):
     #     Lineage: qualityLineage
     textindexer.searchable("conformitySpecification")
     conformitySpecification = RichText(
-        title=_("Specification"), 
+        title=_("Specification"),
         required=False
     )
 
