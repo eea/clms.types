@@ -10,10 +10,12 @@ from plone.app.textfield import RichText
 from plone.app.z3cform.widget import SingleCheckBoxBoolFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container
+from plone.namedfile import field as namedfile
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
+
 
 MIXEDFIELD_SCHEMA = json.dumps(
     {
@@ -942,6 +944,7 @@ class IDataSet(model.Schema):
             "dataset_download_information",
             "download_table_area_of_interest_title",
             "show_legend_on_prepackages",
+            "download_grid_image_for_prepackages",
             "show_pop_up_in_mapviewer",
             # "dataset_full_path",
             # "dataset_full_format",
@@ -1043,6 +1046,16 @@ class IDataSet(model.Schema):
         required=False,
         default=False,
         readonly=False,
+    )
+
+    download_grid_image_for_prepackages = namedfile.NamedBlobImage(
+        title=_(u"Associated grid picture"),
+        description=_(
+            "If added here and the previous option is enabled, "
+            "this image will be the one shown when clicking the button in "
+            "the dataset download pacakge."
+        ),
+        required=False,
     )
 
     show_pop_up_in_mapviewer = schema.Bool(
