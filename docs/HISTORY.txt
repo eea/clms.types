@@ -1,6 +1,11 @@
 Changelog
 =========
 
+13.3 - (2023-10-18)
+---------------------------
+* Change: Back to devel
+  [erral]
+
 13.2 - (2023-10-18)
 ---------------------------
 * Change: version dependencies [erral]
