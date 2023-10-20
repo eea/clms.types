@@ -97,6 +97,7 @@
   <column value="submission_deadline" />
   <column value="publication_date" />
   <column value="version" />
+  <column value="ondemand" />
 
 
 </object>

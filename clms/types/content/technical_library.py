@@ -47,6 +47,20 @@ class ITechnicalLibrary(model.Schema):
         readonly=False,
     )
 
+    ondemand = schema.Bool(
+        title=_(
+            'On-demand document',
+        ),
+        description=_(
+            "If checked, the document will not be downloadable "
+            "but a link to the helpdesk will be offered to the "
+            "end user to request this file."
+        ),
+        required=False,
+        default=False,
+        readonly=False,
+    )
+
 
 @implementer(ITechnicalLibrary)
 class TechnicalLibrary(Container):
