@@ -685,7 +685,7 @@ class ImportFromGeoNetwork(Service):
                         "//gmd:CI_OnlineResource",
                     "namespace": NAMESPACES
                 }],
-                "type":"string"
+                "type": "string"
             },
             {
                 "field_id": "metadata_wmts_url",
@@ -694,16 +694,16 @@ class ImportFromGeoNetwork(Service):
                         "//gmd:CI_OnlineResource",
                     "namespace": NAMESPACES
                 }],
-                "type":"string"
+                "type": "string"
             },
-                        {
+            {
                 "field_id": "metadata_rest_api_url",
                 "xml_keys": [{
                     "xml_key":
                         "//gmd:CI_OnlineResource",
                     "namespace": NAMESPACES
                 }],
-                "type":"string"
+                "type": "string"
             }
         ]
 
@@ -998,8 +998,7 @@ class ImportFromGeoNetwork(Service):
                     for online_resource in fields_data:
                         character_strings = online_resource.xpath(
                             './/gmd:protocol/gco:CharacterString',
-                            namespaces=
-                        NAMESPACES)
+                            namespaces=NAMESPACES)
                         for character_string in character_strings:
                             if character_string.text == 'OGC:WMTS':
                                 result[field["field_id"]] = {
