@@ -707,6 +707,7 @@ class ImportFromGeoNetwork(Service):
             }
         ]
 
+        # pylint: disable=too-many-nested-blocks
         for field in fields_to_get:
             for key in field.get("xml_keys", []):
                 xml_key = key["xml_key"]
