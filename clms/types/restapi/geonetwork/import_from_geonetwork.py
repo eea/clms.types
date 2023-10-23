@@ -678,8 +678,36 @@ class ImportFromGeoNetwork(Service):
                 "attribute": "codeListValue",
                 "type": "list",
             },
+            {
+                "field_id": "metadata_wms_url",
+                "xml_keys": [{
+                    "xml_key":
+                        "//gmd:CI_OnlineResource",
+                    "namespace": NAMESPACES
+                }],
+                "type": "string"
+            },
+            {
+                "field_id": "metadata_wmts_url",
+                "xml_keys": [{
+                    "xml_key":
+                        "//gmd:CI_OnlineResource",
+                    "namespace": NAMESPACES
+                }],
+                "type": "string"
+            },
+            {
+                "field_id": "metadata_rest_api_url",
+                "xml_keys": [{
+                    "xml_key":
+                        "//gmd:CI_OnlineResource",
+                    "namespace": NAMESPACES
+                }],
+                "type": "string"
+            }
         ]
 
+        # pylint: disable=too-many-nested-blocks
         for field in fields_to_get:
             for key in field.get("xml_keys", []):
                 xml_key = key["xml_key"]
@@ -952,6 +980,50 @@ class ImportFromGeoNetwork(Service):
                         "data": f"{item.text} {resolution}",
                         "type": field["type"],
                     }
+                elif field["field_id"] == "metadata_wms_url":
+                    for online_resource in fields_data:
+                        character_strings = online_resource.xpath(
+                            './/gmd:protocol/gco:CharacterString',
+                            namespaces=NAMESPACES
+                        )
+                        for character_string in character_strings:
+                            if character_string.text == 'OGC:WMS':
+                                result[field["field_id"]] = {
+                                    "data": online_resource.xpath(
+                                        './/gmd:linkage/gmd:URL',
+                                        namespaces=NAMESPACES
+                                    )[0].text,
+                                    "type": "string",
+                                }
+                elif field["field_id"] == "metadata_wmts_url":
+                    for online_resource in fields_data:
+                        character_strings = online_resource.xpath(
+                            './/gmd:protocol/gco:CharacterString',
+                            namespaces=NAMESPACES)
+                        for character_string in character_strings:
+                            if character_string.text == 'OGC:WMTS':
+                                result[field["field_id"]] = {
+                                    "data": online_resource.xpath(
+                                        './/gmd:linkage/gmd:URL',
+                                        namespaces=NAMESPACES
+                                    )[0].text,
+                                    "type": "string",
+                                }
+                elif field["field_id"] == "metadata_rest_api_url":
+                    for online_resource in fields_data:
+                        character_strings = online_resource.xpath(
+                            './/gmd:protocol/gco:CharacterString',
+                            namespaces=NAMESPACES)
+                        for character_string in character_strings:
+                            if character_string.text == 'ESRI:REST':
+                                result[field["field_id"]] = {
+                                    "data": online_resource.xpath(
+                                        './/gmd:linkage/gmd:URL',
+                                        namespaces=NAMESPACES
+                                    )[0].text,
+                                    "type": "string",
+                                }
+
                 elif len(fields_data) == 1 and not field["type"] == "list":
                     item = fields_data[0]
                     if field.get("attribute"):

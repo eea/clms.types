@@ -41,6 +41,7 @@ class IDataSet(model.Schema):
             "characteristics_spatial_coverage",
             "characteristics_spatial_resolution",
             "characteristics_spatial_representation_type",
+            "characteristics_projection",
             "characteristics_temporal_extent",
             "characteristics_temporal_usability",
             "characteristics_update_frequency",
@@ -109,6 +110,17 @@ class IDataSet(model.Schema):
         ),
         values=["Grid", "Vector", "Vector and Grid"],
         required=True,
+        readonly=False,
+    )
+
+    textindexer.searchable("characteristics_projection")
+    characteristics_projection = schema.TextLine(
+        title=_(
+            "Projection",
+        ),
+        description="",
+        default="",
+        required=False,
         readonly=False,
     )
 
@@ -338,6 +350,9 @@ class IDataSet(model.Schema):
             "spatial_representation_type",
             # identifiers for the importation
             # "geonetwork_identifiers",
+            "metadata_wms_url",
+            "metadata_wmts_url",
+            "metadata_rest_api_url",
         ],
     )
 
@@ -823,6 +838,45 @@ class IDataSet(model.Schema):
             required=False,
             readonly=False,
         ),
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("metadata_wms_url")
+    metadata_wms_url = schema.TextLine(
+        title=_(
+            "Metadata WMS URL",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("metadata_wmts_url")
+    metadata_wmts_url = schema.TextLine(
+        title=_(
+            "Metadata WMTS URL",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("metadata_rest_api_url")
+    metadata_rest_api_url = schema.TextLine(
+        title=_(
+            "Metadata REST API URL",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
         required=False,
         readonly=False,
     )
