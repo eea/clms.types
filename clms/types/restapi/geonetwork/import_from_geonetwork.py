@@ -680,7 +680,7 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "metadata_wms_url",
-                "xml_keys":[{
+                "xml_keys": [{
                     "xml_key":
                         "//gmd:CI_OnlineResource",
                     "namespace": NAMESPACES
@@ -689,7 +689,7 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "metadata_wmts_url",
-                "xml_keys":[{
+                "xml_keys": [{
                     "xml_key":
                         "//gmd:CI_OnlineResource",
                     "namespace": NAMESPACES
@@ -698,7 +698,7 @@ class ImportFromGeoNetwork(Service):
             },
                         {
                 "field_id": "metadata_rest_api_url",
-                "xml_keys":[{
+                "xml_keys": [{
                     "xml_key":
                         "//gmd:CI_OnlineResource",
                     "namespace": NAMESPACES
@@ -981,29 +981,46 @@ class ImportFromGeoNetwork(Service):
                     }
                 elif field["field_id"] == "metadata_wms_url":
                     for online_resource in fields_data:
-                        character_strings = online_resource.xpath('.//gmd:protocol/gco:CharacterString', namespaces=NAMESPACES)
+                        character_strings = online_resource.xpath(
+                            './/gmd:protocol/gco:CharacterString',
+                            namespaces=NAMESPACES
+                        )
                         for character_string in character_strings:
                             if character_string.text == 'OGC:WMS':
                                 result[field["field_id"]] = {
-                                    "data": online_resource.xpath('.//gmd:linkage/gmd:URL', namespaces=NAMESPACES)[0].text,
+                                    "data": online_resource.xpath(
+                                        './/gmd:linkage/gmd:URL',
+                                        namespaces=NAMESPACES
+                                    )[0].text,
                                     "type": "string",
                                 }
                 elif field["field_id"] == "metadata_wmts_url":
                     for online_resource in fields_data:
-                        character_strings = online_resource.xpath('.//gmd:protocol/gco:CharacterString', namespaces=NAMESPACES)
+                        character_strings = online_resource.xpath(
+                            './/gmd:protocol/gco:CharacterString',
+                            namespaces=
+                        NAMESPACES)
                         for character_string in character_strings:
                             if character_string.text == 'OGC:WMTS':
                                 result[field["field_id"]] = {
-                                    "data": online_resource.xpath('.//gmd:linkage/gmd:URL', namespaces=NAMESPACES)[0].text,
+                                    "data": online_resource.xpath(
+                                        './/gmd:linkage/gmd:URL',
+                                        namespaces=NAMESPACES
+                                    )[0].text,
                                     "type": "string",
                                 }
                 elif field["field_id"] == "metadata_rest_api_url":
                     for online_resource in fields_data:
-                        character_strings = online_resource.xpath('.//gmd:protocol/gco:CharacterString', namespaces=NAMESPACES)
+                        character_strings = online_resource.xpath(
+                            './/gmd:protocol/gco:CharacterString',
+                            namespaces=NAMESPACES)
                         for character_string in character_strings:
                             if character_string.text == 'ESRI:REST':
                                 result[field["field_id"]] = {
-                                    "data": online_resource.xpath('.//gmd:linkage/gmd:URL', namespaces=NAMESPACES)[0].text,
+                                    "data": online_resource.xpath(
+                                        './/gmd:linkage/gmd:URL',
+                                        namespaces=NAMESPACES
+                                    )[0].text,
                                     "type": "string",
                                 }
 
