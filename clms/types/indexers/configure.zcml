@@ -155,4 +155,6 @@
 
   <adapter factory=".searchable_text.DataSetSearchableTextDynamicTextIndexExtender" />
 
+  <adapter factory=".searchable_text.TechnicalLibrarySearchableTextDynamicTextIndexExtender" />
+
 </configure>
