@@ -11,7 +11,7 @@ from z3c.form.interfaces import IWidget
 from zope.component import adapter
 from zope.interface import implementer
 
-TITLE_IN_SEARCHABLE_TEXT_WEIGHT = 5
+TITLE_IN_SEARCHABLE_TEXT_WEIGHT = 100
 
 
 @implementer(interfaces.IDexterityTextIndexFieldConverter)
