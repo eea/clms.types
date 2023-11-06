@@ -1,6 +1,9 @@
 Changelog
 =========
 
+14.1-dev0 - (unreleased)
+---------------------------
+
 14.0 - (2023-11-06)
 ---------------------------
 * Change: feat: custom adapter to decide when to show the full link [erral]
