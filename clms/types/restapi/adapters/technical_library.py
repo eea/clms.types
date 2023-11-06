@@ -22,7 +22,10 @@ class TechnicalLibraryPrimaryFileFieldTarget(PrimaryFileFieldTarget):
     """
     def use_primary_field_target(self):
         """ alter condition"""
-        super_value = super(TechnicalLibraryPrimaryFileFieldTarget, self).use_primary_field_target()
+        super_value = super(
+            TechnicalLibraryPrimaryFileFieldTarget,
+            self
+        ).use_primary_field_target()
         if super_value:
             if hasattr(self.context, 'ondemand') and self.context.ondemand:
                 return False
