@@ -7,5 +7,7 @@
 
   <adapter factory=".richtextvalue.richtext_converter" />
 
+  <adapter factory=".technical_library.TechnicalLibraryPrimaryFileFieldTarget" />
+
 
 </configure>

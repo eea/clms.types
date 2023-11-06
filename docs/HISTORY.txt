@@ -1,6 +1,10 @@
 Changelog
 =========
 
+14.0 - (2023-11-06)
+---------------------------
+* Change: feat: custom adapter to decide when to show the full link [erral]
+
 13.9 - (2023-10-24)
 ---------------------------
 * Change: Develop
