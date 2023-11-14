@@ -1023,7 +1023,8 @@ class IDataSet(model.Schema):
             "Maximum number of days allowed to be downloaded",
         ),
         description=_(
-            "This is the maximum number of days allowed to be downloaded in a time-series enabled dataset",
+            "This is the maximum number of days allowed to be downloaded "
+            "in a time-series enabled dataset",
         ),
         required=False,
         default=30,
