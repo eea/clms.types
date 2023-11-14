@@ -412,8 +412,7 @@ class IDataSet(model.Schema):
 
     textindexer.searchable("dataResourceAbstract")
     dataResourceAbstract = RichText(
-        title=_("Resource abstract"),
-        required=False
+        title=_("Resource abstract"), required=False
     )
 
     textindexer.searchable("keywords")
@@ -636,8 +635,7 @@ class IDataSet(model.Schema):
     #     Lineage: qualityLineage
     textindexer.searchable("conformitySpecification")
     conformitySpecification = RichText(
-        title=_("Specification"),
-        required=False
+        title=_("Specification"), required=False
     )
 
     textindexer.searchable("conformityPass")
@@ -1000,11 +998,35 @@ class IDataSet(model.Schema):
             "show_legend_on_prepackages",
             "download_grid_image_for_prepackages",
             "show_pop_up_in_mapviewer",
+            "download_limit_area_extent",
+            "download_limit_temporal_extent"
             # "dataset_full_path",
             # "dataset_full_format",
             # "dataset_full_source",
             # "wekeo_choices",
         ],
+    )
+
+    download_limit_area_extent = schema.Int(
+        title=_(
+            "Area extent max for downloads",
+        ),
+        description=_(
+            "This is the maximum size of the area allowed to be downloaded",
+        ),
+        required=False,
+        default=1996137506460,
+    )
+
+    download_limit_temporal_extent = schema.Int(
+        title=_(
+            "Maximum number of days allowed to be downloaded",
+        ),
+        description=_(
+            "This is the maximum number of days allowed to be downloaded in a time-series enabled dataset",
+        ),
+        required=False,
+        default=30,
     )
 
     downloadable_dataset = schema.Bool(
@@ -1103,7 +1125,7 @@ class IDataSet(model.Schema):
     )
 
     download_grid_image_for_prepackages = namedfile.NamedBlobImage(
-        title=_(u"Associated grid picture"),
+        title=_("Associated grid picture"),
         description=_(
             "If added here and the previous option is enabled, "
             "this image will be the one shown when clicking the button in "
