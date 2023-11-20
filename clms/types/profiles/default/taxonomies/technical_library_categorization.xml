@@ -7,7 +7,7 @@
   <term>
     <termIdentifier>18fdjdprkq</termIdentifier>
     <caption>
-      <langstring language="en">Product methodological descriptions, algorighms, scripts</langstring>
+      <langstring language="en">01#Product methodological descriptions, algorighms, scripts</langstring>
     </caption>
     <term>
       <termIdentifier>pvwxi0tmyr</termIdentifier>
@@ -37,7 +37,7 @@
   <term>
     <termIdentifier>x0ho7are9n</termIdentifier>
     <caption>
-      <langstring language="en">Product QCQA, validation reports and data</langstring>
+      <langstring language="en">02#Product QCQA, validation reports and data</langstring>
     </caption>
     <term>
       <termIdentifier>i2223921k5</termIdentifier>
@@ -67,7 +67,7 @@
   <term>
     <termIdentifier>63qwxkfcrx</termIdentifier>
     <caption>
-      <langstring language="en">Product manuals, guidelines, specifications</langstring>
+      <langstring language="en">03#Product manuals, guidelines, specifications</langstring>
     </caption>
     <term>
       <termIdentifier>c5ifc5oxei</termIdentifier>
@@ -109,28 +109,7 @@
   <term>
     <termIdentifier>nmxu54oq9q</termIdentifier>
     <caption>
-      <langstring language="bs"></langstring>
-      <langstring language="cs"></langstring>
-      <langstring language="da"></langstring>
-      <langstring language="de"></langstring>
-      <langstring language="en">Other publications</langstring>
-      <langstring language="es"></langstring>
-      <langstring language="et"></langstring>
-      <langstring language="fi"></langstring>
-      <langstring language="fr"></langstring>
-      <langstring language="hr"></langstring>
-      <langstring language="hu"></langstring>
-      <langstring language="it"></langstring>
-      <langstring language="lt"></langstring>
-      <langstring language="lv"></langstring>
-      <langstring language="mt"></langstring>
-      <langstring language="nl"></langstring>
-      <langstring language="pl"></langstring>
-      <langstring language="pt"></langstring>
-      <langstring language="ro"></langstring>
-      <langstring language="sk"></langstring>
-      <langstring language="sl"></langstring>
-      <langstring language="sv"></langstring>
+      <langstring language="en">04#Other publications</langstring>
     </caption>
     <term>
       <termIdentifier>4nreudjbnv</termIdentifier>
@@ -147,29 +126,35 @@
     <term>
       <termIdentifier>ptt660ie4v</termIdentifier>
       <caption>
-        <langstring language="bs"></langstring>
-        <langstring language="cs"></langstring>
-        <langstring language="da"></langstring>
-        <langstring language="de"></langstring>
         <langstring language="en">Technical papers</langstring>
-        <langstring language="es"></langstring>
-        <langstring language="et"></langstring>
-        <langstring language="fi"></langstring>
-        <langstring language="fr"></langstring>
-        <langstring language="hr"></langstring>
-        <langstring language="hu"></langstring>
-        <langstring language="it"></langstring>
-        <langstring language="lt"></langstring>
-        <langstring language="lv"></langstring>
-        <langstring language="mt"></langstring>
-        <langstring language="nl"></langstring>
-        <langstring language="pl"></langstring>
-        <langstring language="pt"></langstring>
-        <langstring language="ro"></langstring>
-        <langstring language="sk"></langstring>
-        <langstring language="sl"></langstring>
-        <langstring language="sv"></langstring>
       </caption>
     </term>
   </term>
+
+  <term>
+    <termIdentifier>bbbnmxu54oq9q</termIdentifier>
+    <caption>
+      <langstring language="en">Other things</langstring>
+    </caption>
+    <term>
+      <termIdentifier>bbb4nreudjbnv</termIdentifier>
+      <caption>
+        <langstring language="en">Articles</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>bbb4pxtalb09h</termIdentifier>
+      <caption>
+        <langstring language="en">Studies</langstring>
+      </caption>
+    </term>
+    <term>
+      <termIdentifier>bbbptt660ie4v</termIdentifier>
+      <caption>
+        <langstring language="en">Technical papers</langstring>
+      </caption>
+    </term>
+  </term>
+
+
 </vdex>
