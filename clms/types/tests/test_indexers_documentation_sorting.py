@@ -2,7 +2,6 @@
 Tests indexers on this package
 """
 # -*- coding: utf-8 -*-
-import json
 import unittest
 
 from plone import api
