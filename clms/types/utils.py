@@ -1,5 +1,9 @@
 """ some constants"""
 # -*- coding: utf-8 -*-
+from collective.taxonomy.interfaces import ITaxonomy
+from collective.taxonomy.restapi.services.taxonomy.get import TaxonomyGet
+from zope.component import getUtility
+from zope.globalrequest import getRequest
 
 EEA_GEONETWORK_BASE_URL = (
     "https://sdi.eea.europa.eu/catalogue/copernicus/"
@@ -77,3 +81,15 @@ COLORS = {
         "lightgrey": "\033[47m",
     },
 }
+
+
+def get_taxonomy_tree(taxonomy_identifier):
+    """given a taxonomy identifer, return its corresponding tree"""
+    request = getRequest()
+    taxonomy = getUtility(ITaxonomy, taxonomy_identifier)
+    taxonomy_view = TaxonomyGet(taxonomy, request)
+    traversed_taxonomy_view = taxonomy_view.publishTraverse(
+        request, taxonomy_identifier
+    )
+    json_data = traversed_taxonomy_view.get_data()
+    return json_data.get("tree", [])

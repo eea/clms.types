@@ -8,6 +8,7 @@ from plone.indexer import indexer
 from zope.component import getUtility
 from zope.i18n import translate
 from zope.schema.interfaces import IVocabularyFactory
+from clms.types.utils import get_taxonomy_tree
 
 from clms.types.content.technical_library import ITechnicalLibrary
 
@@ -18,6 +19,14 @@ def dummy(obj):
     raise AttributeError("This field should not indexed here!")
 
 
+def build_index_value(first, second):
+    """build an index value to return
+    the first value is more important than the second
+    """
+
+    return (first * 1000) + second
+
+
 @indexer(ITechnicalLibrary)
 def documentation_sorting(obj):
     """Calculate and return the value for the indexer:
@@ -25,12 +34,13 @@ def documentation_sorting(obj):
     and return the minimum, because documents may be related to more than
     one taxonomy item
     """
-
+    taxonomy_name = "collective.taxonomy.technical_library_categorization"
+    taxonomy_tree = get_taxonomy_tree(taxonomy_name)
     items = obj.taxonomy_technical_library_categorization
     if items:
         factory = getUtility(
             IVocabularyFactory,
-            name="collective.taxonomy.technical_library_categorization",
+            name=taxonomy_name,
         )
         vocabulary = factory(obj)
 
@@ -44,6 +54,38 @@ def documentation_sorting(obj):
                 result.append(int(item_id))
             except ValueError:
                 result.append(1)
-        return min(result) or "1"
 
-    return 1
+        value = min(result) or 1
+        return build_index_value(
+            value, get_index_in_subtree(taxonomy_tree, value, items)
+        )
+
+    return build_index_value(1, 999)
+
+
+def get_index_in_subtree(tree, value, registered_values):
+    """given a tree, a value and a list of registered values
+    return the lowest index of the first registered_value seen
+    in the tree that corresponds to the subtree of the value.
+
+    Otherwise, return a big value
+    """
+    values = []
+    for item in tree:
+        item_title = item.get("title", "")
+        try:
+            # pylint: disable=unused-variable
+            number, rest = item_title.split("#")
+            if int(number) == value:
+                for child_index, child in enumerate(item.get("children", [])):
+                    if child.get("key", "") in registered_values:
+                        values.append(child_index)
+        except ValueError:
+            # Catch any error that can happen
+            pass
+
+    values.sort()
+    if values:
+        return values[0]
+
+    return 999
