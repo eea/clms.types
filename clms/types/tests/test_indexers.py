@@ -32,7 +32,7 @@ from clms.types.indexers.temporal_extent import temporal_extent
 from clms.types.testing import CLMS_TYPES_INTEGRATION_TESTING
 
 
-class TestAssociatedDatasetsIndexer(unittest.TestCase):
+class TestIndexers(unittest.TestCase):
     """test associated_datasets indexer"""
 
     layer = CLMS_TYPES_INTEGRATION_TESTING
