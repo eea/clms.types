@@ -50,7 +50,6 @@ NAMESPACES_VITO = {
     ),
 }
 
-
 COLORS = {
     "end": "\033[0m",
     "fg": {
