@@ -16,7 +16,6 @@ from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.content.data_set import IDataSet
 from clms.types.content.product import IProduct
-from clms.types.content.technical_library import ITechnicalLibrary
 from clms.types.indexers.associated_datasets import (
     associated_datasets_behavior,
 )
@@ -25,7 +24,6 @@ from clms.types.indexers.associated_products import (
 )
 from clms.types.indexers.component_title import component_title_behavior
 from clms.types.indexers.custodian_information import custodian_information
-from clms.types.indexers.documentation_sorting import documentation_sorting
 from clms.types.indexers.geographic_coverage import geographic_coverage
 from clms.types.indexers.spatial_resolution import spatial_resolution
 from clms.types.indexers.temporal_extent import temporal_extent
@@ -83,18 +81,6 @@ class TestIndexers(unittest.TestCase):
         )
         self.document = api.content.create(
             container=self.portal, type="Document", id="document1"
-        )
-        self.technical_library1 = api.content.create(
-            container=self.portal,
-            type="TechnicalLibrary",
-            id="technical-1",
-            technical_library_categorization=["18fdjdprkq"],
-        )
-
-        self.technical_library2 = api.content.create(
-            container=self.portal,
-            type="TechnicalLibrary",
-            id="technical-2",
         )
 
     def test_newsitem_associated_datasets_indexer(self):
@@ -423,41 +409,5 @@ class TestIndexers(unittest.TestCase):
             (self.document, self.portal_catalog),
             interface=IIndexer,
             name="component_title",
-        )
-        self.assertRaises(AttributeError, adapter)
-
-    def test_documentation_sorting_indexer(self):
-        """test the documentation sorting indexer in a Technical Library"""
-        self.assertTrue(ITechnicalLibrary.providedBy(self.technical_library1))
-        indexed_value = documentation_sorting(self.technical_library1)
-
-        self.assertTrue(isinstance(indexed_value(), int))
-
-    def test_documentation_sorting_indexer_adapter(self):
-        """test the adapter"""
-        self.assertTrue(ITechnicalLibrary.providedBy(self.technical_library1))
-
-        adapter = getMultiAdapter(
-            (self.technical_library1, self.portal_catalog),
-            interface=IIndexer,
-            name="documentation_sorting",
-        )
-        indexed_value = adapter()
-        self.assertTrue(isinstance(indexed_value, int))
-
-    def test_documentation_sorting_indexer_empty_field_value(self):
-        """test the indexer when the field is empty"""
-        self.assertTrue(ITechnicalLibrary.providedBy(self.technical_library2))
-        indexed_value = documentation_sorting(self.technical_library2)
-        self.assertTrue(isinstance(indexed_value(), int))
-
-    def test_documentation_sorting_indexer_elsewere(self):
-        """test in some other object type"""
-        self.assertFalse(ITechnicalLibrary.providedBy(self.document))
-
-        adapter = getMultiAdapter(
-            (self.document, self.portal_catalog),
-            interface=IIndexer,
-            name="documentation_sorting",
         )
         self.assertRaises(AttributeError, adapter)
