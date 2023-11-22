@@ -53,14 +53,14 @@ def documentation_sorting(obj):
                 item_id, _ = title.split("#")
                 result.append(int(item_id))
             except ValueError:
-                result.append(1)
+                result.append(999)
 
         value = min(result) or 999
         return build_index_value(
             value, get_index_in_subtree(taxonomy_tree, value, items)
         )
 
-    return build_index_value(1, 999)
+    return build_index_value(999, 999)
 
 
 def get_index_in_subtree(tree, value, registered_values):

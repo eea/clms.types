@@ -199,3 +199,13 @@ class TestIndexers(unittest.TestCase):
         self.assertTrue(isinstance(value_7, int))
         items = [value_4, value_7]
         self.assertEqual(items, sorted(items))
+
+    def test_documentation_sorting_empty_category(self):
+        """test that when an item has no category, it is sorted
+        in the last position
+        """
+        value_5 = documentation_sorting(self.technical_library5)()
+        value_6 = documentation_sorting(self.technical_library6)()
+        value_7 = documentation_sorting(self.technical_library7)()
+        items = [value_6, value_7, value_5]
+        self.assertEqual(items, sorted(items))
