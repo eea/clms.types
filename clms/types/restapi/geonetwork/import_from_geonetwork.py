@@ -995,6 +995,15 @@ class ImportFromGeoNetwork(Service):
                                     )[0].text,
                                     "type": "string",
                                 }
+                    if result.get(field["field_id"]) is not None:
+                        print(OK_STRING.format(field_id=field["field_id"]))
+                    else:
+                        print(
+                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
+                            f" field {COLORS['fg']['blue']}{field['field_id']}"
+                            f"{COLORS['end']} with search key {xml_key}"
+                        )
+
                 elif field["field_id"] == "metadata_wmts_url":
                     for online_resource in fields_data:
                         character_strings = online_resource.xpath(
@@ -1009,6 +1018,14 @@ class ImportFromGeoNetwork(Service):
                                     )[0].text,
                                     "type": "string",
                                 }
+                    if result.get(field["field_id"]) is not None:
+                        print(OK_STRING.format(field_id=field["field_id"]))
+                    else:
+                        print(
+                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
+                            f" field {COLORS['fg']['blue']}{field['field_id']}"
+                            f"{COLORS['end']} with search key {xml_key}"
+                        )
                 elif field["field_id"] == "metadata_rest_api_url":
                     for online_resource in fields_data:
                         character_strings = online_resource.xpath(
@@ -1023,6 +1040,14 @@ class ImportFromGeoNetwork(Service):
                                     )[0].text,
                                     "type": "string",
                                 }
+                    if result.get(field["field_id"]) is not None:
+                        print(OK_STRING.format(field_id=field["field_id"]))
+                    else:
+                        print(
+                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
+                            f" field {COLORS['fg']['blue']}{field['field_id']}"
+                            f"{COLORS['end']} with search key {xml_key}"
+                        )
 
                 elif len(fields_data) == 1 and not field["type"] == "list":
                     item = fields_data[0]
