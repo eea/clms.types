@@ -680,31 +680,34 @@ class ImportFromGeoNetwork(Service):
             },
             {
                 "field_id": "metadata_wms_url",
-                "xml_keys": [{
-                    "xml_key":
-                        "//gmd:CI_OnlineResource",
-                    "namespace": NAMESPACES
-                }],
-                "type": "string"
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:CI_OnlineResource",
+                        "namespace": NAMESPACES,
+                    }
+                ],
+                "type": "string",
             },
             {
                 "field_id": "metadata_wmts_url",
-                "xml_keys": [{
-                    "xml_key":
-                        "//gmd:CI_OnlineResource",
-                    "namespace": NAMESPACES
-                }],
-                "type": "string"
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:CI_OnlineResource",
+                        "namespace": NAMESPACES,
+                    }
+                ],
+                "type": "string",
             },
             {
                 "field_id": "metadata_rest_api_url",
-                "xml_keys": [{
-                    "xml_key":
-                        "//gmd:CI_OnlineResource",
-                    "namespace": NAMESPACES
-                }],
-                "type": "string"
-            }
+                "xml_keys": [
+                    {
+                        "xml_key": "//gmd:CI_OnlineResource",
+                        "namespace": NAMESPACES,
+                    }
+                ],
+                "type": "string",
+            },
         ]
 
         # pylint: disable=too-many-nested-blocks
@@ -983,15 +986,15 @@ class ImportFromGeoNetwork(Service):
                 elif field["field_id"] == "metadata_wms_url":
                     for online_resource in fields_data:
                         character_strings = online_resource.xpath(
-                            './/gmd:protocol/gco:CharacterString',
-                            namespaces=NAMESPACES
+                            ".//gmd:protocol/gco:CharacterString",
+                            namespaces=NAMESPACES,
                         )
                         for character_string in character_strings:
-                            if character_string.text == 'OGC:WMS':
+                            if character_string.text == "OGC:WMS":
                                 result[field["field_id"]] = {
                                     "data": online_resource.xpath(
-                                        './/gmd:linkage/gmd:URL',
-                                        namespaces=NAMESPACES
+                                        ".//gmd:linkage/gmd:URL",
+                                        namespaces=NAMESPACES,
                                     )[0].text,
                                     "type": "string",
                                 }
@@ -999,22 +1002,24 @@ class ImportFromGeoNetwork(Service):
                         print(OK_STRING.format(field_id=field["field_id"]))
                     else:
                         print(
-                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
-                            f" field {COLORS['fg']['blue']}{field['field_id']}"
-                            f"{COLORS['end']} with search key {xml_key}"
+                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} "
+                            f"for field {COLORS['fg']['blue']}"
+                            f"{field['field_id']} {COLORS['end']} with search "
+                            f"key {xml_key}"
                         )
 
                 elif field["field_id"] == "metadata_wmts_url":
                     for online_resource in fields_data:
                         character_strings = online_resource.xpath(
-                            './/gmd:protocol/gco:CharacterString',
-                            namespaces=NAMESPACES)
+                            ".//gmd:protocol/gco:CharacterString",
+                            namespaces=NAMESPACES,
+                        )
                         for character_string in character_strings:
-                            if character_string.text == 'OGC:WMTS':
+                            if character_string.text == "OGC:WMTS":
                                 result[field["field_id"]] = {
                                     "data": online_resource.xpath(
-                                        './/gmd:linkage/gmd:URL',
-                                        namespaces=NAMESPACES
+                                        ".//gmd:linkage/gmd:URL",
+                                        namespaces=NAMESPACES,
                                     )[0].text,
                                     "type": "string",
                                 }
@@ -1022,21 +1027,24 @@ class ImportFromGeoNetwork(Service):
                         print(OK_STRING.format(field_id=field["field_id"]))
                     else:
                         print(
-                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
-                            f" field {COLORS['fg']['blue']}{field['field_id']}"
-                            f"{COLORS['end']} with search key {xml_key}"
+                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} "
+                            f"for field {COLORS['fg']['blue']}"
+                            f"{field['field_id']} {COLORS['end']} with search "
+                            f"key {xml_key}"
                         )
+
                 elif field["field_id"] == "metadata_rest_api_url":
                     for online_resource in fields_data:
                         character_strings = online_resource.xpath(
-                            './/gmd:protocol/gco:CharacterString',
-                            namespaces=NAMESPACES)
+                            ".//gmd:protocol/gco:CharacterString",
+                            namespaces=NAMESPACES,
+                        )
                         for character_string in character_strings:
-                            if character_string.text == 'ESRI:REST':
+                            if character_string.text == "ESRI:REST":
                                 result[field["field_id"]] = {
                                     "data": online_resource.xpath(
-                                        './/gmd:linkage/gmd:URL',
-                                        namespaces=NAMESPACES
+                                        ".//gmd:linkage/gmd:URL",
+                                        namespaces=NAMESPACES,
                                     )[0].text,
                                     "type": "string",
                                 }
@@ -1044,10 +1052,12 @@ class ImportFromGeoNetwork(Service):
                         print(OK_STRING.format(field_id=field["field_id"]))
                     else:
                         print(
-                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} for"
-                            f" field {COLORS['fg']['blue']}{field['field_id']}"
-                            f"{COLORS['end']} with search key {xml_key}"
+                            f"{COLORS['fg']['red']}    No DATA{COLORS['end']} "
+                            f"for field {COLORS['fg']['blue']}"
+                            f"{field['field_id']} {COLORS['end']} with search "
+                            f"key {xml_key}"
                         )
+
 
                 elif len(fields_data) == 1 and not field["type"] == "list":
                     item = fields_data[0]
