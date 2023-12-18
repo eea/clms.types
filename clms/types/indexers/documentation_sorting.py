@@ -47,13 +47,18 @@ def documentation_sorting(obj):
         result = []
 
         for item in items:
-            term = vocabulary.getTerm(item)
-            title = translate(term.title)
             try:
-                item_id, _ = title.split("#")
-                result.append(int(item_id))
-            except ValueError:
-                result.append(999)
+                term = vocabulary.getTerm(item)
+                title = translate(term.title)
+                try:
+                    item_id, _ = title.split("#")
+                    result.append(int(item_id))
+                except ValueError:
+                    result.append(999)
+            except KeyError:
+                # It has an unexisting taxonomy assigned
+                # do nothing
+                pass
 
         value = min(result) or 999
         return build_index_value(
