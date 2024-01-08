@@ -8,6 +8,7 @@
   <include package=".geonetwork" />
   <include package=".mapviewer_service" />
   <include package=".import_wms_layers" />
+  <include package=".import_api_layers" />
   <include package=".import_fields_from_wms" />
 
   <adapter factory=".list.DataSetRelationListFieldSerializer" />
