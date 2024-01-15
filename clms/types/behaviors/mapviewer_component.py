@@ -22,18 +22,6 @@ class IMapviewerComponentMarker(Interface):
 class IMapviewerComponent(model.Schema):
     """ interface definition """
 
-    component_title = schema.TextLine(
-        title=_(
-            u"(DEPRECATED) Component Title",
-        ),
-        description=_(
-            u"WE ARE ONLY USING THIS TO EASE THE MIGRATION FROM OLD TO NEW",
-        ),
-        default=u"Default",
-        required=False,
-        readonly=False,
-    )
-
     mapviewer_component = schema.Choice(
         title=_(
             "Component Title",
@@ -56,18 +44,6 @@ class MapviewerComponent:
 
     def __init__(self, context):
         self.context = context
-
-    @property
-    def component_title(self):
-        """ getter """
-        if safe_hasattr(self.context, "component_title"):
-            return self.context.component_title
-        return None
-
-    @component_title.setter
-    def component_title(self, value):
-        """ setter """
-        self.context.component_title = value
 
     @property
     def mapviewer_component(self):
