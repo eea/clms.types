@@ -49,8 +49,3 @@ def dataset_edit_handler(object, event):
                     dataset.absolute_url()
                 )
                 dataset.reindexObject()
-
-
-
-
-
