@@ -92,6 +92,10 @@
         <indexed_attr value="version" />
   </index>
 
+  <index name="characteristics_spatial_representation_type" meta_type="FieldIndex">
+        <indexed_attr value="characteristics_spatial_representation_type" />
+  </index>
+
   <!-- Metadata columns for Work Opportunities and Tenders -->
   <column value="procurement_no" />
   <column value="submission_deadline" />

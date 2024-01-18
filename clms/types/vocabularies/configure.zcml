@@ -129,5 +129,10 @@
       component=".dataset_geographical_classification_vocabulary.DatasetGeographicalClassificationVocabularyFactory"
       />
 
+  <utility
+      name="clms.types.CharacteristicsSpatialRepresentationTypeVocabulary"
+      component=".characteristics_spatial_representation_type_vocabulary.CharacteristicsSpatialRepresentationTypeFactory"
+      />
+
 
 </configure>

@@ -1,9 +1,12 @@
 Changelog
 =========
 
-14.6 - (2024-01-15)
+14.6 - (2024-01-18)
 ---------------------------
-* Change: Develop
+* Change: feat: CLMS-2988 change explanation and default value
+  [erral]
+
+* Change: feat: CLMS-3004 new fields for dataset catalog
   [erral]
 
 14.5 - (2023-12-18)

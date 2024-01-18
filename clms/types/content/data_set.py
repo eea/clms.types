@@ -1012,10 +1012,13 @@ class IDataSet(model.Schema):
             "Area extent max for downloads",
         ),
         description=_(
-            "This is the maximum size of the area allowed to be downloaded",
+            "This number defines the maximun area to be downloaded by "
+            "rectangle in the data viewer. It is an adimensional number. "
+            "1600000000000 value, will allow to download data for a size "
+            "similar to the Iberian Peninsula.",
         ),
         required=False,
-        default=1996137506460,
+        default=1600000000000,
     )
 
     download_limit_temporal_extent = schema.Int(
