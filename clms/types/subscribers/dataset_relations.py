@@ -2,10 +2,10 @@
 An event subsriber to set both-direction relations in datasets
 """
 # -*- coding: utf-8 -*-
+from logging import getLogger
+
 from plone import api
 
-
-from logging import getLogger
 log = getLogger(__name__)
 
 
@@ -26,7 +26,10 @@ def dataset_edit_handler(object, event):
                 dataset_object = dataset_brain.getObject()
                 try:
                     dataset_object.datasets.remove(object.UID())
-                    log.info('Dataset relation removed in %s', dataset_object.absolute_url())
+                    log.info(
+                        'Dataset relation removed in %s',
+                        dataset_object.absolute_url()
+                    )
                 except ValueError:
                     # The item is not there
                     log.info('Dataset not related')
@@ -41,7 +44,9 @@ def dataset_edit_handler(object, event):
                 dataset.datasets.append(object.UID())
                 log.info(
                     'Added related dataset. Current object %s, '
-                    'related dataset %s', object.absolute_url(), dataset.absolute_url()
+                    'related dataset %s',
+                    object.absolute_url(),
+                    dataset.absolute_url()
                 )
                 dataset.reindexObject()
 
