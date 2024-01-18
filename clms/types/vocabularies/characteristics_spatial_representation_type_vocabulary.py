@@ -30,7 +30,8 @@ class CharacteristicsSpatialRepresentationType:
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         catalog = api.portal.get_tool("portal_catalog")
-        items = catalog.uniqueValuesFor("characteristics_spatial_representation_type")
+        items = catalog.uniqueValuesFor(
+            "characteristics_spatial_representation_type")
 
         # create a list of SimpleTerm items:
         terms = []
@@ -45,5 +46,5 @@ class CharacteristicsSpatialRepresentationType:
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)
 
-
-CharacteristicsSpatialRepresentationTypeFactory = CharacteristicsSpatialRepresentationType()
+# pylint: disable=line-too-long
+CharacteristicsSpatialRepresentationTypeFactory = CharacteristicsSpatialRepresentationType() # noqa
