@@ -5,8 +5,10 @@ Changelog
 ---------------------------
 * Change: feat: CLMS-2988 change explanation and default value [erral]
 
-14.6-dev0 - (unreleased)
+14.6 - (2024-01-18)
 ---------------------------
+* Change: feat: CLMS-2988 change explanation and default value
+  [erral]
 
 14.5 - (2023-12-18)
 ---------------------------
