@@ -47,4 +47,4 @@ class CharacteristicsSpatialRepresentationType:
         return SimpleVocabulary(terms)
 
 # pylint: disable=line-too-long
-CharacteristicsSpatialRepresentationTypeFactory = CharacteristicsSpatialRepresentationType() # noqa
+CharacteristicsSpatialRepresentationTypeFactory = CharacteristicsSpatialRepresentationType()  # noqa
