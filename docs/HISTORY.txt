@@ -1,6 +1,10 @@
 Changelog
 =========
 
+14.8 - (2024-01-18)
+---------------------------
+* Change: feat: CLMS-2868 implement to-way-automatic relation of datasets [erral]
+
 14.6 - (2024-01-18)
 ---------------------------
 * Change: feat: CLMS-2988 change explanation and default value
