@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Run upgrade"""
-from . import logger
 from plone import api
+
+from . import logger
 
 
 def set_related_datasets():
