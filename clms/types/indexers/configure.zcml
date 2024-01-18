@@ -26,6 +26,11 @@
       />
 
   <adapter
+      factory=".associated_datasets.associated_datasets_direct"
+      name="associated_datasets"
+      />
+
+  <adapter
       factory=".geographic_coverage.geographic_coverage"
       name="geographic_coverage"
       />
