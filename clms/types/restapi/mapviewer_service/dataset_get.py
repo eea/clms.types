@@ -106,6 +106,7 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                     "MarkAsDownloadableNoServiceToVisualize": bool(
                         dataset.show_pop_up_in_mapviewer
                     ),
+                    "DownloadLimitAreaExtent": dataset.download_limit_area_extent,
                 }
 
         return None
