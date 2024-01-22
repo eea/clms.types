@@ -222,7 +222,8 @@ class RootMapViewerServiceGet(Service):
                     "MarkAsDownloadableNoServiceToVisualize": bool(
                         dataset.show_pop_up_in_mapviewer
                     ),
-                    "DownloadLimitAreaExtent": dataset.download_limit_area_extent,
+                    # pylint: disable=line-too-long
+                    "DownloadLimitAreaExtent": dataset.download_limit_area_extent,  # noqa
                 }
 
         return None
@@ -241,13 +242,13 @@ class RootMapViewerServiceGet(Service):
 
 
 def clean_component_title(value):
-    """ we are using 03#title like titles for components, to be able
-        to sort them in a custom way in the search block, so
-        here we need to clean the component title, so the map viewer
-        gets the correct value
+    """we are using 03#title like titles for components, to be able
+    to sort them in a custom way in the search block, so
+    here we need to clean the component title, so the map viewer
+    gets the correct value
     """
-    if '#' in value:
-        new_value = re.sub("^[0-9][0-9]#", '', value)
+    if "#" in value:
+        new_value = re.sub("^[0-9][0-9]#", "", value)
         return new_value
 
     return value
