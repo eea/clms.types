@@ -27,6 +27,18 @@
     <permission>Manage Portal</permission>
   </configlet>
 
+  <configlet
+      i18n:attributes="title"
+      title="Download Limits Control Panel"
+      action_id="download-limits-controlpanel"
+      appId="download-limits-controlpanel"
+      category="Products"
+      condition_expr=""
+      icon_expr=""
+      url_expr="string:${portal_url}/@@download-limits-controlpanel"
+      visible="True">
+    <permission>Manage Portal</permission>
+  </configlet>
 
 
 </object>

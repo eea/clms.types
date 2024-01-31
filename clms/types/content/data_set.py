@@ -998,27 +998,12 @@ class IDataSet(model.Schema):
             "show_legend_on_prepackages",
             "download_grid_image_for_prepackages",
             "show_pop_up_in_mapviewer",
-            "download_limit_area_extent",
             "download_limit_temporal_extent"
             # "dataset_full_path",
             # "dataset_full_format",
             # "dataset_full_source",
             # "wekeo_choices",
         ],
-    )
-
-    download_limit_area_extent = schema.Int(
-        title=_(
-            "Area extent max for downloads",
-        ),
-        description=_(
-            "This number defines the maximun area to be downloaded by "
-            "rectangle in the data viewer. It is an adimensional number. "
-            "1600000000000 value, will allow to download data for a size "
-            "similar to the Iberian Peninsula.",
-        ),
-        required=False,
-        default=1600000000000,
     )
 
     download_limit_temporal_extent = schema.Int(

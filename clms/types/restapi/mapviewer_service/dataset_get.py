@@ -5,6 +5,8 @@ REST API endpoint to get the mapviewer configuration data for a given dataset
 from Acquisition import aq_inner, aq_parent
 from OFS.interfaces import IOrderedContainer
 from plone import api
+from plone.memoize.view import memoize
+
 from .lrf_get import RootMapViewerServiceGet
 
 
@@ -25,6 +27,13 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
         result = super().reply()
         result["Download"] = True
         return result
+
+    @memoize
+    def max_area_extent(self):
+        """return the max area allowed to be downloaded"""
+        return api.portal.get_registry_record(
+            "clms.types.download_limits.area_extent", default=1600000000000
+        )
 
     def get_products(self):
         """get all products"""
@@ -106,8 +115,7 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                     "MarkAsDownloadableNoServiceToVisualize": bool(
                         dataset.show_pop_up_in_mapviewer
                     ),
-                    # pylint: disable=line-too-long
-                    "DownloadLimitAreaExtent": dataset.download_limit_area_extent,  # noqa
+                    "DownloadLimitAreaExtent": self.max_area_extent()
                 }
 
         return None
