@@ -7,6 +7,7 @@ import re
 from Acquisition import aq_inner, aq_parent
 from OFS.interfaces import IOrderedContainer
 from plone import api
+from plone.memoize.view import memoize
 from plone.restapi.services import Service
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
@@ -54,6 +55,13 @@ class RootMapViewerServiceGet(Service):
                 components, key=lambda x: x.get("ComponentPosition")
             ),  # noqa: E501
         }
+
+    @memoize
+    def max_area_extent(self):
+        """return the max area allowed to be downloaded"""
+        return api.portal.get_registry_record(
+            "clms.types.download_limits.area_extent", default=1600000000000
+        )
 
     def get_datasets(self):
         """get all datasets"""
@@ -222,8 +230,7 @@ class RootMapViewerServiceGet(Service):
                     "MarkAsDownloadableNoServiceToVisualize": bool(
                         dataset.show_pop_up_in_mapviewer
                     ),
-                    # pylint: disable=line-too-long
-                    "DownloadLimitAreaExtent": dataset.download_limit_area_extent,  # noqa
+                    "DownloadLimitAreaExtent": self.max_area_extent(),
                 }
 
         return None
