@@ -48,6 +48,7 @@
   <include file="1030.zcml" />
   <include file="1031.zcml" />
   <include file="1032.zcml" />
+  <include file="1033.zcml" />
 
 
 </configure>

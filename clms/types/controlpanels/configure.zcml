@@ -3,9 +3,11 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="clms.types">
+    i18n_domain="clms.types"
+    >
 
   <include package=".component" />
   <include package=".usecase_fme" />
+  <include package=".download_limits" />
 
 </configure>
