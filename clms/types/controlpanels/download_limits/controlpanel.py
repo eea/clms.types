@@ -2,21 +2,16 @@
 control panel to save component configuration
 """
 # -*- coding: utf-8 -*-
-import json
-
-from plone.app.registry.browser.controlpanel import (
-    ControlPanelFormWrapper,
-    RegistryEditForm,
-)
+from clms.types import _
+from clms.types.interfaces import IClmsTypesLayer
+from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
+                                                     RegistryEditForm)
 from plone.restapi.controlpanels import RegistryConfigletPanel
 from plone.restapi.controlpanels.interfaces import IControlpanel
 from plone.z3cform import layout
+from zope import schema
 from zope.component import adapter
 from zope.interface import Interface, implementer
-
-from clms.types import _
-from clms.types.interfaces import IClmsTypesLayer
-from zope import schema
 
 
 class IDownloadLimitsControlPanel(IControlpanel):
