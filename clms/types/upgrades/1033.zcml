@@ -26,6 +26,13 @@
         />
 
 
+    <genericsetup:upgradeDepends
+        title="New version v1033"
+        description=""
+        import_profile="clms.types.upgrades:1033"
+        />
+
+
   </genericsetup:upgradeSteps>
 
 </configure>
