@@ -928,7 +928,11 @@ class IDataSet(model.Schema):
         title=_(
             "Default active?",
         ),
-        description=_("Enter whether is dataset should be active by default"),
+        description=_("Enable if this dataset is the one "
+                      "to be active by default (instead of "
+                      "the first one under the product umbrella) "
+                      "in the Data viewer (if the product is "
+                      "activated) accessed from the Home page"),
         required=False,
         default=False,
         readonly=False,
