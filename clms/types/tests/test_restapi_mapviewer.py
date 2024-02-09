@@ -81,7 +81,6 @@ class TestLRFMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=False,
-            mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=False,
             mapviewer_layers={
@@ -120,7 +119,6 @@ class TestLRFMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=True,
-            mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=True,
             mapviewer_layers={
@@ -166,7 +164,6 @@ class TestLRFMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=False,
-            mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=False,
             mapviewer_layers={
@@ -205,7 +202,6 @@ class TestLRFMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=True,
-            mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=True,
             mapviewer_layers={
@@ -329,10 +325,6 @@ class TestLRFMapViewer(unittest.TestCase):
             dataset1["IsTimeSeries"], self.dataset1_1.mapviewer_istimeseries
         )
         self.assertEqual(
-            dataset1["TimeSeriesService"],
-            self.dataset1_1.mapviewer_timeseriesservice,
-        )
-        self.assertEqual(
             dataset1["Downloadable"], self.dataset1_1.downloadable_full_dataset
         )
         self.assertEqual(
@@ -413,7 +405,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=False,
-            mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=False,
             mapviewer_layers={
@@ -446,7 +437,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=True,
-            mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=True,
             mapviewer_layers={
@@ -489,7 +479,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=False,
-            mapviewer_timeseriesservice="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=False,
             mapviewer_layers={
@@ -522,7 +511,7 @@ class TestDataSetMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=True,
-            mapviewer_timeseriesservice="",
+            ="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=True,
             mapviewer_layers={
@@ -637,10 +626,6 @@ class TestDataSetMapViewer(unittest.TestCase):
         )
         self.assertEqual(
             dataset1["IsTimeSeries"], self.dataset1_1.mapviewer_istimeseries
-        )
-        self.assertEqual(
-            dataset1["TimeSeriesService"],
-            self.dataset1_1.mapviewer_timeseriesservice,
         )
         self.assertEqual(
             dataset1["Downloadable"], self.dataset1_1.downloadable_full_dataset

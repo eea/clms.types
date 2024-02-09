@@ -108,7 +108,6 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                     "Default_active": dataset.mapviewer_default_active,
                     "Layer": layers,
                     "IsTimeSeries": dataset.mapviewer_istimeseries,
-                    "TimeSeriesService": dataset.mapviewer_timeseriesservice,
                     "Downloadable": bool(dataset.downloadable_full_dataset),
                     "PositionInParent": getObjPositionInParent(dataset),
                     "HandlingLevel": bool(dataset.mapviewer_handlinglevel),

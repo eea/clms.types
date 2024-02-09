@@ -906,7 +906,7 @@ class IDataSet(model.Schema):
             "mapviewer_viewservice",
             "mapviewer_default_active",
             "mapviewer_layers",
-            "mapviewer_timeseriesservice",
+            "mapviewer_istimeseries",
             "mapviewer_handlinglevel",
         ],
     )
@@ -947,16 +947,17 @@ class IDataSet(model.Schema):
         missing_value={"items": []},
     )
 
-    textindexer.searchable("mapviewer_timeseriesservice")
-    mapviewer_timeseriesservice = schema.TextLine(
+    mapviewer_istimeseries = schema.Bool(
         title=_(
-            "Time series and information service URL",
+            "Is time series?",
         ),
         description=_(
-            "",
+            "Mark this field if this dataset contains time series "
+            " information and fill the next field with the time "
+            "series service url"
         ),
-        default="",
         required=False,
+        default=False,
         readonly=False,
     )
 
