@@ -511,7 +511,6 @@ class TestDataSetMapViewer(unittest.TestCase):
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=True,
-            ="",
             downloadable_full_dataset=True,
             mapviewer_handlinglevel=True,
             mapviewer_layers={
