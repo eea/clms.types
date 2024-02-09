@@ -907,7 +907,6 @@ class IDataSet(model.Schema):
             "mapviewer_default_active",
             "mapviewer_layers",
             "mapviewer_istimeseries",
-            "mapviewer_timeseriesservice",
             "mapviewer_handlinglevel",
         ],
     )
@@ -929,7 +928,11 @@ class IDataSet(model.Schema):
         title=_(
             "Default active?",
         ),
-        description=_("Enter whether is dataset should be active by default"),
+        description=_("Enable if this dataset is the one "
+                      "to be active by default (instead of "
+                      "the first one under the product umbrella) "
+                      "in the Data viewer (if the product is "
+                      "activated) accessed from the Home page"),
         required=False,
         default=False,
         readonly=False,
@@ -955,19 +958,6 @@ class IDataSet(model.Schema):
         ),
         required=False,
         default=False,
-        readonly=False,
-    )
-
-    textindexer.searchable("mapviewer_timeseriesservice")
-    mapviewer_timeseriesservice = schema.TextLine(
-        title=_(
-            "Time series and information service URL",
-        ),
-        description=_(
-            "",
-        ),
-        default="",
-        required=False,
         readonly=False,
     )
 
