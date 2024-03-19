@@ -5,5 +5,5 @@ from . import logger
 
 def upgrade(setup_tool=None):
     """Run upgrade"""
-    logger.info("Running upgrade (Python): v1034")
+    logger.info("Running upgrade (Python): v1035")
     logger.info("Done")
