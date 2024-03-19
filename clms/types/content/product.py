@@ -24,6 +24,7 @@ class IProduct(model.Schema):
         readonly=False,
     )
 
+
 @implementer(IProduct)
 class Product(Container):
     """Product content type class"""
