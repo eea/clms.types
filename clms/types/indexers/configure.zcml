@@ -156,6 +156,17 @@
       name="dataset_geographical_classification"
       />
 
+
+  <adapter
+      factory=".dataset_characteristics_projections.dummy"
+      name="dataset_characteristics_projections"
+      />
+
+  <adapter
+      factory=".dataset_characteristics_projections.dataset_characteristics_projections"
+      name="dataset_characteristics_projections"
+      />
+
   <adapter factory=".searchable_text.NamedfileFieldConverter" />
 
   <adapter factory=".searchable_text.DataSetSearchableTextDynamicTextIndexExtender" />
