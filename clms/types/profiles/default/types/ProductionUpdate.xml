@@ -36,31 +36,32 @@
   <element value="clms.types.dataset_relations" />
  </property>
  <property name="schema"></property>
- <property
+<property
     name="model_source">&lt;model xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns:users=&quot;http://namespaces.plone.org/supermodel/users&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
-    &lt;schema&gt;
-      &lt;field name=&quot;status&quot; type=&quot;zope.schema.Choice&quot;&gt;
-        &lt;title &gt;Status&lt;/title&gt;
-        &lt;description &gt;&lt;/description&gt;
-        &lt;vocabulary&gt;clms.types.ProductionUpdateStatusVocabulary&lt;/vocabulary&gt;
-        &lt;default&gt;&lt;/default&gt;
-        &lt;required&gt;True&lt;/required&gt;
-        &lt;readonly&gt;False&lt;/readonly&gt;
-      &lt;/field&gt;
-      &lt;fieldset name=&quot;layout&quot; label=&quot;Layout&quot;&gt;
+  &lt;schema&gt;
+  &lt;field name=&quot;status&quot; type=&quot;zope.schema.Choice&quot;&gt;
+  &lt;title &gt;Status&lt;/title&gt;
+  &lt;description &gt;&lt;/description&gt;
+  &lt;vocabulary&gt;clms.types.ProductionUpdateStatusVocabulary&lt;/vocabulary&gt;
+  &lt;default&gt;&lt;/default&gt;
+  &lt;required&gt;True&lt;/required&gt;
+  &lt;readonly&gt;False&lt;/readonly&gt;
+  &lt;/field&gt;
+  &lt;fieldset name=&quot;layout&quot; label=&quot;Layout&quot;&gt;
         &lt;field name=&quot;blocks&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
-          &lt;default&gt;{}&lt;/default&gt;
+          &lt;default&gt;{&#x27;615f266c-b45e-4525-83e1-b22eca688522&#x27;: {&#x27;@type&#x27;: &#x27;title&#x27;}, &#x27;682ceedf-8bda-40ef-aed9-60ddab4de131&#x27;: {&#x27;@type&#x27;: &#x27;slate&#x27;, &#x27;value&#x27;: [{&#x27;type&#x27;: &#x27;p&#x27;, &#x27;children&#x27;: [{&#x27;text&#x27;: &#x27;&#x27;}]}], &#x27;plaintext&#x27;: &#x27;&#x27;}, &#x27;e95d3fd3-eb96-4b14-a3a4-2c6e1db084df&#x27;: {&#x27;@type&#x27;: &#x27;metadata&#x27;, &#x27;data&#x27;: {&#x27;id&#x27;: &#x27;effective&#x27;, &#x27;widget&#x27;: &#x27;datetime&#x27;}},&#x27;99522951-a6d1-4427-ba8e-7f87eab9c87b&#x27;: {&#x27;@type&#x27;: &#x27;leadimage&#x27;}}&lt;/default&gt;
+          &lt;description/&gt;
           &lt;required&gt;False&lt;/required&gt;
           &lt;title&gt;Blocks&lt;/title&gt;
         &lt;/field&gt;
         &lt;field name=&quot;blocks_layout&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
-          &lt;default&gt;{&#x27;items&#x27;: []}&lt;/default&gt;
+          &lt;default&gt;{&#x27;items&#x27;: [&#x27;615f266c-b45e-4525-83e1-b22eca688522&#x27;, &#x27;e95d3fd3-eb96-4b14-a3a4-2c6e1db084df&#x27;,&#x27;99522951-a6d1-4427-ba8e-7f87eab9c87b&#x27;, &#x27;682ceedf-8bda-40ef-aed9-60ddab4de131&#x27;]}&lt;/default&gt;
+          &lt;description/&gt;
           &lt;required&gt;False&lt;/required&gt;
           &lt;title&gt;Blocks Layout&lt;/title&gt;
         &lt;/field&gt;
       &lt;/fieldset&gt;
-    &lt;/schema&gt;
-  &lt;/model&gt;</property>
+  &lt;/schema&gt;
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
