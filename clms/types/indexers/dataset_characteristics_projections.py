@@ -19,7 +19,7 @@ def dataset_characteristics_projections(obj):
     projections = dataset_projection.split("/")
 
     cleaned_projections = map(clean, projections)
-    return cleaned_projections
+    return [proj for proj in cleaned_projections]
 
 
 def clean(item):

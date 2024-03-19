@@ -100,7 +100,7 @@
         <indexed_attr value="status" />
   </index>
 
-  <index name="dataset_characteristics_projections" meta_type="FieldIndex">
+  <index name="dataset_characteristics_projections" meta_type="KeywordIndex">
     <indexed_attr values="dataset_characteristics_projections" />
   </index>
 
