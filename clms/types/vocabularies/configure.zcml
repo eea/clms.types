@@ -139,4 +139,9 @@
       component=".production_update_status_vocabulary.ProductionUpdateStatusVocabularyFactory"
       />
 
+  <utility
+      name="clms.types.DataSetCharacteristicsProjections"
+      component=".dataset_characteristics_projections.DataSetCharacteristicsProjectionsFactory"
+      />
+
 </configure>
