@@ -32,11 +32,11 @@
   <element value="plone.basic"/>
   <element value="plone.locking"/>
   <element value="plone.translatable"/>
-  <element value="clms.types.product_relations" />
-  <element value="clms.types.dataset_relations" />
+  <element value="clms.types.product_relations"/>
+  <element value="clms.types.dataset_relations"/>
  </property>
  <property name="schema"></property>
-<property
+ <property
     name="model_source">&lt;model xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns:users=&quot;http://namespaces.plone.org/supermodel/users&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
   &lt;schema&gt;
   &lt;field name=&quot;status&quot; type=&quot;zope.schema.Choice&quot;&gt;
@@ -62,6 +62,7 @@
         &lt;/field&gt;
       &lt;/fieldset&gt;
   &lt;/schema&gt;
+  &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
