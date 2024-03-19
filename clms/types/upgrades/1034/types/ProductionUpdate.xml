@@ -45,13 +45,6 @@
         &lt;required&gt;True&lt;/required&gt;
         &lt;readonly&gt;False&lt;/readonly&gt;
       &lt;/field&gt;
-      &lt;field name=&quot;publication_date&quot; type=&quot;zope.schema.Date&quot;&gt;
-        &lt;title &gt;Publication date&lt;/title&gt;
-        &lt;description &gt;&lt;/description&gt;
-        &lt;default&gt;&lt;/default&gt;
-        &lt;required&gt;True&lt;/required&gt;
-        &lt;readonly&gt;False&lt;/readonly&gt;
-      &lt;/field&gt;
       &lt;fieldset name=&quot;layout&quot; label=&quot;Layout&quot;&gt;
         &lt;field name=&quot;blocks&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
           &lt;default&gt;{}&lt;/default&gt;
