@@ -134,5 +134,9 @@
       component=".characteristics_spatial_representation_type_vocabulary.CharacteristicsSpatialRepresentationTypeFactory"
       />
 
+  <utility
+      name="clms.types.ProductionUpdateStatusVocabulary"
+      component=".production_update_status_vocabulary.ProductionUpdateStatusVocabularyFactory"
+      />
 
 </configure>

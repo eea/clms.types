@@ -49,6 +49,11 @@
         title="clms.types: Add DataSetAccordion"
         />
 
+    <permission
+        id="clms.types.AddProductionUpdate"
+        title="clms.types: Add ProductionUpdate"
+        />
+
   </configure>
 
 </configure>
