@@ -908,7 +908,6 @@ class IDataSet(model.Schema):
             "mapviewer_layers",
             "mapviewer_istimeseries",
             "mapviewer_handlinglevel",
-            "mapviewer_message"
         ],
     )
 
@@ -970,18 +969,6 @@ class IDataSet(model.Schema):
         description=_(""),
         required=False,
         default=False,
-        readonly=False,
-    )
-
-    mapviewer_message = schema.TextLine(
-        title=_(
-            'Message to be shown next to the dataset name in the data viewer',
-        ),
-        description=_(
-            '',
-        ),
-        default='',
-        required=False,
         readonly=False,
     )
 

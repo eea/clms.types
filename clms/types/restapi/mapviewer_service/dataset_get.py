@@ -62,6 +62,7 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                         datasets, key=lambda x: x.get("DatasetTitle")
                     ),  # noqa: E501
                     "PositionInParent": getObjPositionInParent(product),
+                    "Message": product.mapviewer_message,
                 }
 
     def serialize_dataset(self, dataset):
@@ -115,7 +116,6 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                         dataset.show_pop_up_in_mapviewer
                     ),
                     "DownloadLimitAreaExtent": self.max_area_extent(),
-                    "Message": dataset.mapviewer_message,
                 }
 
         return None
