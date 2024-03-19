@@ -230,6 +230,7 @@ class RootMapViewerServiceGet(Service):
                         dataset.show_pop_up_in_mapviewer
                     ),
                     "DownloadLimitAreaExtent": self.max_area_extent(),
+                    "Message": dataset.mapviewer_message,
                 }
 
         return None
