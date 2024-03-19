@@ -3,7 +3,7 @@
   <permissions>
     <!-- -*- extra stuff goes here -*- -->
 
-    <permission name="clms.types: Add ProductionUpdate" acquire="True">
+cd sr clm    <permission name="clms.types: Add ProductionUpdate" acquire="True">
       <role name="Manager" />
       <role name="Site Administrator" />
       <role name="Owner" />

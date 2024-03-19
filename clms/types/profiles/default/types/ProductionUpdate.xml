@@ -32,6 +32,8 @@
   <element value="plone.basic"/>
   <element value="plone.locking"/>
   <element value="plone.translatable"/>
+  <element value="clms.types.product_relations" />
+  <element value="clms.types.dataset_relations" />
  </property>
  <property name="schema"></property>
  <property
