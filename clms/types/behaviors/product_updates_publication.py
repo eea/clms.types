@@ -5,18 +5,18 @@ product_updates_publication behavior
 
 from clms.types import _
 from plone import schema
-from plone.autoform.interfaces import IFormFieldProvider
-from plone.supermodel import model
-from zope.component import adapter
-from zope.interface import Interface, implementer, provider, invariant
-from plone.autoform import directives
-from plone.app.z3cform.widget import DatetimeFieldWidget
 from plone.app.dexterity.behaviors.metadata import (
-    EffectiveAfterExpires,
     DCFieldProperty,
+    EffectiveAfterExpires,
     MetadataBase,
 )
+from plone.app.z3cform.widget import DatetimeFieldWidget
+from plone.autoform import directives
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.supermodel import model
 from z3c.form.interfaces import IAddForm, IEditForm
+from zope.component import adapter
+from zope.interface import Interface, implementer, invariant, provider
 
 
 class IProductUpdatesPublicationMarker(Interface):
