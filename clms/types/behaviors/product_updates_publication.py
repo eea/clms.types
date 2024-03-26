@@ -8,12 +8,9 @@ from plone import schema
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from zope.component import adapter
-from zope.interface import Interface
-from zope.interface import implementer
-from zope.interface import provider
+from zope.interface import Interface, implementer, provider, invariant
 from plone.autoform import directives
 from plone.app.z3cform.widget import DatetimeFieldWidget
-from zope.interface import invariant
 from plone.app.dexterity.behaviors.metadata import (
     EffectiveAfterExpires,
     DCFieldProperty,
@@ -28,6 +25,8 @@ class IProductUpdatesPublicationMarker(Interface):
 
 @provider(IFormFieldProvider)
 class IProductUpdatesPublication(model.Schema):
+    """IProductUpdatesPublication"""
+
     # dates fieldset
     model.fieldset(
         "dates",
@@ -59,6 +58,7 @@ class IProductUpdatesPublication(model.Schema):
 
     @invariant
     def validate_start_end(data):
+        """validate_start_end"""
         if data.effective and data.expires and data.effective > data.expires:
             raise EffectiveAfterExpires(
                 _(
@@ -75,6 +75,8 @@ class IProductUpdatesPublication(model.Schema):
 @implementer(IProductUpdatesPublication)
 @adapter(IProductUpdatesPublicationMarker)
 class ProductUpdatesPublication(MetadataBase):
+    """ProductUpdatesPublication"""
+
     effective = DCFieldProperty(
         IProductUpdatesPublication["effective"], get_name="effective_date"
     )
