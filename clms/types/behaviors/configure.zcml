@@ -1,40 +1,53 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:plone="http://namespaces.plone.org/plone"
-  xmlns:zcml="http://namespaces.zope.org/zcml"
-  i18n_domain="plone">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone"
+    >
 
-    <include package="plone.behavior" file="meta.zcml"/>
+  <include
+      package="plone.behavior"
+      file="meta.zcml"
+      />
 
-    <!-- -*- extra stuff goes here -*- -->
+  <!-- -*- extra stuff goes here -*- -->
 
-    <plone:behavior
-        name="clms.types.mapviewer_component"
-        title="A field to signal the component of this product"
-        description="This field will be used to group products under a single component in the mapviewer"
-        provides=".mapviewer_component.IMapviewerComponent"
-        factory=".mapviewer_component.MapviewerComponent"
-        marker=".mapviewer_component.IMapviewerComponentMarker"
-        />
+  <plone:behavior
+      name="clms.types.mapviewer_component"
+      title="A field to signal the component of this product"
+      description="This field will be used to group products under a single component in the mapviewer"
+      factory=".mapviewer_component.MapviewerComponent"
+      provides=".mapviewer_component.IMapviewerComponent"
+      marker=".mapviewer_component.IMapviewerComponentMarker"
+      />
 
-    <plone:behavior
-        name="clms.types.product_relations"
-        title="A field to relate Plone elements to product"
-        description="This field will be used to relate elements to Product portal_type"
-        provides=".product_relation.IProductRelation"
-        factory=".product_relation.ProductRelation"
-        marker=".product_relation.IProductRelationMarker"
-        />
+  <plone:behavior
+      name="clms.types.product_relations"
+      title="A field to relate Plone elements to product"
+      description="This field will be used to relate elements to Product portal_type"
+      factory=".product_relation.ProductRelation"
+      provides=".product_relation.IProductRelation"
+      marker=".product_relation.IProductRelationMarker"
+      />
 
 
-    <plone:behavior
-        name="clms.types.dataset_relations"
-        title="A field to relate Plone elements to dataset"
-        description="This field will be used to relate elements to DataSet portal_type"
-        provides=".dataset_relation.IDataSetRelation"
-        factory=".dataset_relation.DataSetRelation"
-        marker=".dataset_relation.IDataSetRelationMarker"
-        />
+  <plone:behavior
+      name="clms.types.dataset_relations"
+      title="A field to relate Plone elements to dataset"
+      description="This field will be used to relate elements to DataSet portal_type"
+      factory=".dataset_relation.DataSetRelation"
+      provides=".dataset_relation.IDataSetRelation"
+      marker=".dataset_relation.IDataSetRelationMarker"
+      />
+
+  <plone:behavior
+      name="clms.types.product_updates_publication"
+      title="A field to manage Product updates publication"
+      description="This field will be used to make effective field required for Product update elements"
+      factory=".product_updates_publication.ProductUpdatesPublication"
+      provides=".product_updates_publication.IProductUpdatesPublication"
+      marker=".product_updates_publication.IProductUpdatesPublicationMarker"
+      />
 
 </configure>
