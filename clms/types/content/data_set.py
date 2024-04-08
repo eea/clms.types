@@ -1221,6 +1221,43 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    model.fieldset(
+        "production_updates",
+        label=_("Production updates"),
+        fields=[
+            "production_updates_show",
+            "production_updates_text",
+
+        ],
+    )
+
+    production_updates_show = schema.Bool(
+        title=_(
+            'Show the production updates generic text?',
+        ),
+        description=_(
+            u'If checked a generic text (editable in the next field) will be shown in the production updates section'
+        ),
+        required=False,
+        default=False,
+        readonly=False,
+    )
+
+    # Make sure to import: from plone.app.textfield import RichText
+    production_updates_text = RichText(
+        title=_(
+            u'Production updates generic text',
+        ),
+        description=_(
+            u'',
+        ),
+        default=u'<p>Production is on-going according to the plan.</p>',
+        required=False,
+        readonly=False,
+    )
+
+
+
 
 @implementer(IDataSet)
 class DataSet(Container):
