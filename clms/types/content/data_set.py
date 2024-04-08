@@ -1236,7 +1236,8 @@ class IDataSet(model.Schema):
             'Show the production updates generic text?',
         ),
         description=_(
-            u'If checked a generic text (editable in the next field) will be shown in the production updates section'
+            'If checked a generic text (editable in the next field) will be '
+            'shown in the production updates section'
         ),
         required=False,
         default=False,
@@ -1255,8 +1256,6 @@ class IDataSet(model.Schema):
         required=False,
         readonly=False,
     )
-
-
 
 
 @implementer(IDataSet)
