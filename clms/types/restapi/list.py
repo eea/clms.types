@@ -39,7 +39,13 @@ class BaseListFieldSerializer(CollectionFieldSerializer):
         new_value = []
         if value:
             for item in value:
-                referenced_object = api.content.get(UID=item)
+                try:
+                    referenced_object = api.content.get(UID=item)
+                except:
+                    # Handle non-existing objects
+                    # or objects which we can't access
+                    # Unauthorized errors
+                    referenced_object = None
                 if referenced_object:
 
                     new_item = getMultiAdapter(
