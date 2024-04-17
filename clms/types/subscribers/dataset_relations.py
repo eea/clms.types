@@ -36,16 +36,17 @@ def dataset_edit_handler(obj, event):
                 dataset_object.reindexObject()
 
         # Finally do the setting again
-        for dataset_uid in obj.datasets:
-            dataset = api.content.get(UID=dataset_uid)
-            if dataset.datasets is None:
-                dataset.datasets = []
-            if obj.UID() not in dataset.datasets:
-                dataset.datasets.append(obj.UID())
-                log.info(
-                    'Added related dataset. Current object %s, '
-                    'related dataset %s',
-                    obj.absolute_url(),
-                    dataset.absolute_url()
-                )
-                dataset.reindexObject()
+        if obj.datasets:
+            for dataset_uid in obj.datasets:
+                dataset = api.content.get(UID=dataset_uid)
+                if dataset.datasets is None:
+                    dataset.datasets = []
+                if obj.UID() not in dataset.datasets:
+                    dataset.datasets.append(obj.UID())
+                    log.info(
+                        'Added related dataset. Current object %s, '
+                        'related dataset %s',
+                        obj.absolute_url(),
+                        dataset.absolute_url()
+                    )
+                    dataset.reindexObject()

@@ -44,7 +44,7 @@
         &lt;title&gt;Show &quot;Show in mapviewer&quot; link&lt;/title&gt;
         &lt;form:widget type=&quot;z3c.form.browser.radio.RadioFieldWidget&quot;/&gt;
       &lt;/field&gt;
-      &lt;field name=&quot;mapviewer_message&quot; type=&quot;zope.schema.Bool&quot;&gt;
+      &lt;field name=&quot;mapviewer_message&quot; type=&quot;zope.schema.TextLine&quot;&gt;
         &lt;description&gt;Message to be shown next to the product in the data viewer&lt;/description&gt;
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Data viewer message&lt;/title&gt;
