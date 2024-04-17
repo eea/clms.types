@@ -100,22 +100,26 @@ def usecase_to_discomap(usecase, operation):
     headers = {
         "Content-Type": "application/json; charset=utf-8",
         "Accept": "application/json",
-        "Authorization": "fmetoken token={0}".format(fme_token),
+        "Authorization": f"fmetoken token={fme_token}",
     }
     data = json.dumps(fme_data)
     resp = requests.post(fme_url, data, headers=headers)
-    log.info(resp)
-    log.info(data)
     if resp.ok:
         fme_task_id = resp.json().get("id", None)
 
-    if not fme_task_id:
+        if not fme_task_id:
+            return {
+                "status": "error",
+                "msg": "Wrong request to FME",
+            }
+
         return {
-            "status": "error",
-            "msg": "Wrong request to FME",
+            "status": "ok",
+            "msg": f"FME task created. Task id: {fme_task_id}",
         }
 
+    log.info(resp)
     return {
-        "status": "ok",
-        "msg": "FME task created. Task id: {0}".format(fme_task_id),
+        "status": "error"   ,
+        "msg": "Wrong request to FME",
     }
