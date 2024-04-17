@@ -120,6 +120,6 @@ def usecase_to_discomap(usecase, operation):
 
     log.info(resp)
     return {
-        "status": "error"   ,
+        "status": "error",
         "msg": "Wrong request to FME",
     }
