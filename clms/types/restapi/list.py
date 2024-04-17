@@ -2,18 +2,18 @@
 serializer for list-like fields
 """
 # -*- coding: utf-8 -*-
-from plone import api
-from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
-from plone.restapi.serializer.converters import json_compatible
-from plone.restapi.serializer.dxfields import CollectionFieldSerializer
-from zope.component import adapter, getMultiAdapter
-from zope.interface import implementer
-from zope.schema.interfaces import IList
-
 from clms.types.behaviors.dataset_relation import IDataSetRelationMarker
 from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.content.use_case import IUseCase
 from clms.types.interfaces import IClmsTypesLayer
+from plone import api
+from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
+from plone.restapi.serializer.converters import json_compatible
+from plone.restapi.serializer.dxfields import CollectionFieldSerializer
+from zExceptions import Unauthorized
+from zope.component import adapter, getMultiAdapter
+from zope.interface import implementer
+from zope.schema.interfaces import IList
 
 
 class BaseListFieldSerializer(CollectionFieldSerializer):
@@ -41,7 +41,7 @@ class BaseListFieldSerializer(CollectionFieldSerializer):
             for item in value:
                 try:
                     referenced_object = api.content.get(UID=item)
-                except:
+                except Unauthorized:
                     # Handle non-existing objects
                     # or objects which we can't access
                     # Unauthorized errors
