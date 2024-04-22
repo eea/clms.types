@@ -186,52 +186,52 @@ class RootMapViewerServiceGet(Service):
 
     def serialize_dataset(self, dataset):
         """serialize one dataset using the keys needed by the mapviewer"""
-        if dataset.mapviewer_viewservice:
-            layers = []
-            layers_value = dataset.mapviewer_layers
-            for layer_item in layers_value.get("items", []):
-                if "hide" not in layer_item or not layer_item["hide"]:
-                    layers.append(
-                        {
-                            "LayerId": layer_item.get("id", ""),
-                            "Title": layer_item.get("title", ""),
-                            "Default_active": layer_item.get(
-                                "default_active", False
-                            ),
-                            "StaticImageLegend": layer_item.get(
-                                "static_legend_url", ""
-                            ),
-                            "FilterStaticImageLegend": layer_item.get(
-                                "filter_static_legend_url", ""
-                            ),
-                            "Fields": layer_item.get("fields", ""),
-                        }
-                    )
-            if layers:
-                parent = aq_parent(dataset)
-                return {
-                    # Datasets are saved inside product, so the Title name is
-                    # its parent's name
-                    # pylint: disable=line-too-long
-                    "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
-                    # pylint: disable=line-too-long
-                    "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
-                    "DatasetId": api.content.get_uuid(obj=dataset),
-                    "DatasetTitle": dataset.Title(),
-                    "DatasetDescription": dataset.Description(),
-                    "DatasetURL": self.get_item_volto_url(dataset),
-                    "ViewService": dataset.mapviewer_viewservice,
-                    "Default_active": dataset.mapviewer_default_active,
-                    "Layer": layers,
-                    "IsTimeSeries": dataset.mapviewer_istimeseries,
-                    "Downloadable": bool(dataset.downloadable_full_dataset),
-                    "PositionInParent": getObjPositionInParent(dataset),
-                    "HandlingLevel": bool(dataset.mapviewer_handlinglevel),
-                    "MarkAsDownloadableNoServiceToVisualize": bool(
-                        dataset.show_pop_up_in_mapviewer
-                    ),
-                    "DownloadLimitAreaExtent": self.max_area_extent(),
-                }
+
+        layers = []
+        layers_value = dataset.mapviewer_layers
+        for layer_item in layers_value.get("items", []):
+            if "hide" not in layer_item or not layer_item["hide"]:
+                layers.append(
+                    {
+                        "LayerId": layer_item.get("id", ""),
+                        "Title": layer_item.get("title", ""),
+                        "Default_active": layer_item.get(
+                            "default_active", False
+                        ),
+                        "StaticImageLegend": layer_item.get(
+                            "static_legend_url", ""
+                        ),
+                        "FilterStaticImageLegend": layer_item.get(
+                            "filter_static_legend_url", ""
+                        ),
+                        "Fields": layer_item.get("fields", ""),
+                    }
+                )
+        if layers:
+            parent = aq_parent(dataset)
+            return {
+                # Datasets are saved inside product, so the Title name is
+                # its parent's name
+                # pylint: disable=line-too-long
+                "Product": parent.portal_type == "Product" and parent.Title() or "Default",  # noqa: E501
+                # pylint: disable=line-too-long
+                "ProductId": parent.portal_type == "Product" and api.content.get_uuid(obj=parent) or "",  # noqa: E501
+                "DatasetId": api.content.get_uuid(obj=dataset),
+                "DatasetTitle": dataset.Title(),
+                "DatasetDescription": dataset.Description(),
+                "DatasetURL": self.get_item_volto_url(dataset),
+                "ViewService": dataset.mapviewer_viewservice,
+                "Default_active": dataset.mapviewer_default_active,
+                "Layer": layers,
+                "IsTimeSeries": dataset.mapviewer_istimeseries,
+                "Downloadable": bool(dataset.downloadable_full_dataset),
+                "PositionInParent": getObjPositionInParent(dataset),
+                "HandlingLevel": bool(dataset.mapviewer_handlinglevel),
+                "MarkAsDownloadableNoServiceToVisualize": bool(
+                    dataset.show_pop_up_in_mapviewer
+                ),
+                "DownloadLimitAreaExtent": self.max_area_extent(),
+            }
 
         return None
 
