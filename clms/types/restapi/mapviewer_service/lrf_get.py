@@ -186,7 +186,7 @@ class RootMapViewerServiceGet(Service):
 
     def serialize_dataset(self, dataset):
         """serialize one dataset using the keys needed by the mapviewer"""
-        if dataset.mapviewer_service:
+        if dataset.mapviewer_viewservice:
             layers = []
             layers_value = dataset.mapviewer_layers
             for layer_item in layers_value.get("items", []):
