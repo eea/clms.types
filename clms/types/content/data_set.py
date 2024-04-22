@@ -988,7 +988,8 @@ class IDataSet(model.Schema):
             "show_legend_on_prepackages",
             "download_grid_image_for_prepackages",
             "show_pop_up_in_mapviewer",
-            "download_limit_temporal_extent"
+            "download_limit_temporal_extent",
+            "download_show_auxiliary_calendar",
             # "dataset_full_path",
             # "dataset_full_format",
             # "dataset_full_source",
@@ -1006,6 +1007,18 @@ class IDataSet(model.Schema):
         ),
         required=False,
         default=30,
+    )
+
+    download_show_auxiliary_calendar = schema.Bool(
+        title=_(
+            "Show auxiliary calendar",
+        ),
+        description=_(
+            "Calendar not based on Getcapability files for time series datasets with no web service"
+        ),
+        required=False,
+        default=False,
+        readonly=False,
     )
 
     downloadable_dataset = schema.Bool(
