@@ -1014,7 +1014,8 @@ class IDataSet(model.Schema):
             "Show auxiliary calendar",
         ),
         description=_(
-            "Calendar not based on Getcapability files for time series datasets with no web service"
+            "Calendar not based on Getcapability files for time series "
+            "datasets with no web service"
         ),
         required=False,
         default=False,
