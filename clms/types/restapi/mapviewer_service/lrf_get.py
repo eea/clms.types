@@ -127,7 +127,7 @@ class RootMapViewerServiceGet(Service):
                         datasets, key=lambda x: x.get("PositionInParent")
                     ),  # noqa: E501
                     "PositionInParent": getObjPositionInParent(product),
-                    "Message": product.mapviewer_message,
+                    # "Message": product.mapviewer_message,
                 }
 
     def get_component_description(self, term):
@@ -230,6 +230,7 @@ class RootMapViewerServiceGet(Service):
                     dataset.show_pop_up_in_mapviewer
                 ),
                 "DownloadLimitAreaExtent": self.max_area_extent(),
+                "Message": dataset.download_mapviewer_message,
             }
 
         return None
