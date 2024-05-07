@@ -908,6 +908,7 @@ class IDataSet(model.Schema):
             "mapviewer_layers",
             "mapviewer_istimeseries",
             "mapviewer_handlinglevel",
+            "download_mapviewer_message",
         ],
     )
 
@@ -994,7 +995,7 @@ class IDataSet(model.Schema):
             # "dataset_full_format",
             # "dataset_full_source",
             # "wekeo_choices",
-            "download_mapviewer_message",
+            # "download_mapviewer_message",
         ],
     )
 
@@ -1025,10 +1026,10 @@ class IDataSet(model.Schema):
 
     download_mapviewer_message = schema.TextLine(
         title=_(
-            "Message to be shown next to the dataset in the data viewer",
+            "Mapviewer message"
         ),
         description=_(
-            "",
+            "Message to be shown next to the dataset in the data viewer",
         ),
         default="",
         required=False,
