@@ -83,6 +83,7 @@ class TestLRFMapViewer(unittest.TestCase):
             mapviewer_istimeseries=False,
             downloadable_full_dataset=True,
             download_mapviewer_message='This is a dummy message',
+            show_pop_up_in_mapviewer=False,
             mapviewer_handlinglevel=False,
             mapviewer_layers={
                 "items": [
@@ -369,6 +370,11 @@ class TestLRFMapViewer(unittest.TestCase):
 
         self.assertEqual(
             dataset1["Message"], self.dataset1_1.download_mapviewer_message
+        )
+
+        self.assertEqual(
+            dataset1["MarkAsDownloadableNoServiceToVisualize"],
+            self.dataset1_1.show_pop_up_in_mapviewer,
         )
 
         self.assertEqual(dataset1["DatasetId"], self.dataset1_1.UID())
