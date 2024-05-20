@@ -28,19 +28,27 @@ class TestUtils(unittest.TestCase):
 
     def test_has_items_single_item_without_path(self):
         """with an empty value is False"""
-        self.assertEqual(has_items({"items": [{"title": "some title"}]}), False)
+        self.assertEqual(
+            has_items({"items": [{"title": "some title"}]}), False
+        )
 
     def test_has_items_single_item_with_path(self):
         """ This should be True """
         self.assertEqual(
-            has_items({"items": [{"title": "some title", "path": "/some_path"}]}), True
+            has_items(
+                {"items": [{"title": "some title", "path": "/some_path"}]}
+            ),
+            True
         )
 
     def test_has_items_multiple_values_without_path(self):
         """ This should be False """
         self.assertEqual(
             has_items(
-                {"items": [{"title": "some title"}, {"title": "some other title"}]}
+                {"items": [
+                        {"title": "some title"}, {"title": "some other title"}
+                    ]
+                }
             ),
             False,
         )
@@ -52,7 +60,10 @@ class TestUtils(unittest.TestCase):
                 {
                     "items": [
                         {"title": "some title", "path": "/some_path/here"},
-                        {"title": "some other title", "path": "/some_path/other/here"},
+                        {
+                            "title": "some other title",
+                            "path": "/some_path/other/here"
+                        },
                     ]
                 }
             ),
