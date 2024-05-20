@@ -2,7 +2,8 @@
 
 import unittest
 
-from clms.types.restapi.mapviewer_service.lrf_get import clean_component_title, has_items
+from clms.types.restapi.mapviewer_service.lrf_get import clean_component_title
+from clms.types.restapi.mapviewer_service.lrf_get import has_items
 
 
 class TestUtils(unittest.TestCase):
