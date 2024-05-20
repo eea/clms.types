@@ -82,6 +82,8 @@ class TestLRFMapViewer(unittest.TestCase):
             mapviewer_default_active=True,
             mapviewer_istimeseries=False,
             downloadable_full_dataset=True,
+            download_mapviewer_message='This is a dummy message',
+            show_pop_up_in_mapviewer=False,
             mapviewer_handlinglevel=False,
             mapviewer_layers={
                 "items": [
@@ -105,6 +107,18 @@ class TestLRFMapViewer(unittest.TestCase):
                         "default_active": False,
                         "hide": False,
                         "static_legend_url": "",
+                    },
+                ]
+            },
+            downloadable_files={
+                "items": [
+                    {
+                        "@id": "27e4e333-149c-49c4-a11e-96a1d0d1b6ff",
+                        "path": "/some_path",
+                    },
+                    {
+                        "@id": "27e4e333-149c-49c4-a11e-96a1d0d1b6fa",
+                        "path": "/some_other_path",
                     },
                 ]
             },
@@ -144,6 +158,13 @@ class TestLRFMapViewer(unittest.TestCase):
                         "hide": False,
                         "static_legend_url": "",
                     },
+                ]
+            },
+            downloadable_files={
+                "items": [
+                    {
+                        "@id": "27e4e333-149c-49c4-a11e-96a1d0d1b6ff",
+                    }
                 ]
             },
         )
@@ -191,6 +212,15 @@ class TestLRFMapViewer(unittest.TestCase):
                     },
                 ]
             },
+            downloadable_files={
+                "items": [
+                    {
+                        "@id": "27e4e333-149c-49c4-a11e-96a1d0d1b6ff",
+                        "title": "some title",
+                    }
+                ]
+            },
+
         )
 
         self.dataset2_2 = api.content.create(
@@ -307,6 +337,9 @@ class TestLRFMapViewer(unittest.TestCase):
 
         self.assertEqual(len(datasets), 4)
         dataset1 = datasets[0]
+        dataset2 = datasets[1]
+        dataset3 = datasets[2]
+
         self.assertEqual(dataset1["DatasetTitle"], self.dataset1_1.title)
         self.assertEqual(
             dataset1["DatasetDescription"], self.dataset1_1.description
@@ -334,6 +367,24 @@ class TestLRFMapViewer(unittest.TestCase):
             dataset1["MarkAsDownloadableNoServiceToVisualize"],
             self.dataset1_1.show_pop_up_in_mapviewer
         )
+
+        self.assertEqual(
+            dataset1["Message"], self.dataset1_1.download_mapviewer_message
+        )
+
+        self.assertEqual(
+            dataset1["MarkAsDownloadableNoServiceToVisualize"],
+            self.dataset1_1.show_pop_up_in_mapviewer,
+        )
+
+        self.assertEqual(dataset1["DatasetId"], self.dataset1_1.UID())
+        self.assertTrue(dataset1["HasPrepackagedFiles"])
+
+        self.assertEqual(dataset2["DatasetId"], self.dataset1_2.UID())
+        self.assertFalse(dataset2["HasPrepackagedFiles"])
+
+        self.assertEqual(dataset3["DatasetId"], self.dataset2_1.UID())
+        self.assertFalse(dataset3["HasPrepackagedFiles"])
 
     def test_dataset_layers(self):
         """test layer info"""

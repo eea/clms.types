@@ -35,6 +35,7 @@
   <element value="clms.types.product_relations"/>
   <element value="clms.types.dataset_relations"/>
   <element value="clms.types.product_updates_publication"/>
+  <element value="volto.blocks.editable.layout"/>
  </property>
  <property name="schema"></property>
  <property
