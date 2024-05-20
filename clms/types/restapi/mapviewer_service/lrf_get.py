@@ -231,6 +231,7 @@ class RootMapViewerServiceGet(Service):
                 ),
                 "DownloadLimitAreaExtent": self.max_area_extent(),
                 "Message": dataset.download_mapviewer_message,
+                "HasPrepackagedFiles": has_items(dataset.downloadable_files),
             }
 
         return None
@@ -259,3 +260,21 @@ def clean_component_title(value):
         return new_value
 
     return value
+
+
+def has_items(value):
+    """
+    we need to check if the items saved in the value are
+    valid downloadable items
+    """
+    items = value.get('items')
+    if len(items) > 1:
+        return True
+
+    if len(items) == 1:
+        item = items[0]
+        # path is the mandatory attribute, if there is something
+        # not-nulish there it is safe to return True
+        return bool(item.get("path", ""))
+
+    return False
