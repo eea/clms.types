@@ -265,16 +265,14 @@ def clean_component_title(value):
 def has_items(value):
     """
     we need to check if the items saved in the value are
-    valid downloadable items
-    """
-    items = value.get('items')
-    if len(items) > 1:
-        return True
+    valid downloadable items.
 
-    if len(items) == 1:
-        item = items[0]
-        # path is the mandatory attribute, if there is something
-        # not-nulish there it is safe to return True
-        return bool(item.get("path", ""))
+    At least one of the items must have a path attribute
+    with a value
+    """
+    items = value.get('items', [])
+    for item in items:
+        if bool(item.get("path", "")):
+            return True
 
     return False
