@@ -988,7 +988,7 @@ class IDataSet(model.Schema):
             "download_table_area_of_interest_title",
             "show_legend_on_prepackages",
             "download_grid_image_for_prepackages",
-            "show_pop_up_in_mapviewer",
+            # "show_pop_up_in_mapviewer",
             "download_limit_temporal_extent",
             "download_show_auxiliary_calendar",
             # "dataset_full_path",
@@ -1141,18 +1141,19 @@ class IDataSet(model.Schema):
         required=False,
     )
 
-    show_pop_up_in_mapviewer = schema.Bool(
-        title=_(
-            "Mark as downloadable but with no service to visualise",
-        ),
-        description=_(
-            "If activated, the dataset is not listed in the table of contents"
-            " (Hamburguer menu) of the data viewer"
-        ),
-        required=False,
-        default=False,
-        readonly=False,
-    )
+    # show_pop_up_in_mapviewer = schema.Bool(
+    #     title=_(
+    #         "Mark as downloadable but with no service to visualise",
+    #     ),
+    #     description=_(
+    #         "If activated, the dataset is not listed in the table of
+    #         contents"
+    #         " (Hamburguer menu) of the data viewer"
+    #     ),
+    #     required=False,
+    #     default=False,
+    #     readonly=False,
+    # )
 
     # dataset_full_path = schema.TextLine(
     #     title=_(
