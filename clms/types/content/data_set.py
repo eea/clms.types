@@ -988,7 +988,7 @@ class IDataSet(model.Schema):
             "download_table_area_of_interest_title",
             "show_legend_on_prepackages",
             "download_grid_image_for_prepackages",
-            "show_pop_up_in_mapviewer",
+            # "show_pop_up_in_mapviewer",
             "download_limit_temporal_extent",
             "download_show_auxiliary_calendar",
             # "dataset_full_path",
