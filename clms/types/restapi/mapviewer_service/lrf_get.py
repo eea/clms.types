@@ -226,9 +226,9 @@ class RootMapViewerServiceGet(Service):
                 "Downloadable": bool(dataset.downloadable_full_dataset),
                 "PositionInParent": getObjPositionInParent(dataset),
                 "HandlingLevel": bool(dataset.mapviewer_handlinglevel),
-                "MarkAsDownloadableNoServiceToVisualize": bool(
-                    dataset.show_pop_up_in_mapviewer
-                ),
+                # "MarkAsDownloadableNoServiceToVisualize": bool(
+                #     dataset.show_pop_up_in_mapviewer
+                # ),
                 "DownloadLimitAreaExtent": self.max_area_extent(),
                 "Message": dataset.download_mapviewer_message,
                 "HasPrepackagedFiles": has_items(dataset.downloadable_files),
