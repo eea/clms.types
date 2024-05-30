@@ -1146,7 +1146,8 @@ class IDataSet(model.Schema):
     #         "Mark as downloadable but with no service to visualise",
     #     ),
     #     description=_(
-    #         "If activated, the dataset is not listed in the table of contents"
+    #         "If activated, the dataset is not listed in the table of
+    #         contents"
     #         " (Hamburguer menu) of the data viewer"
     #     ),
     #     required=False,
