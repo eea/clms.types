@@ -1,0 +1,20 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="clms.types">
+
+  <adapter
+    factory=".feedback_survey.FeedbackSurveyService"
+    name="feedback_survey"
+    />
+
+  <plone:service
+    method="GET"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    factory=".feedback_survey.FeedbackSurveyServiceGet"
+    name="@feedback_survey"
+    permission="zope2.View"
+    />
+
+</configure>

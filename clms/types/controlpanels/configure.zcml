@@ -9,5 +9,6 @@
   <include package=".component" />
   <include package=".usecase_fme" />
   <include package=".download_limits" />
+  <include package=".feedback_survey" />
 
 </configure>

@@ -52,6 +52,7 @@
   <include file="1034.zcml" />
   <include file="1035.zcml" />
   <include file="1036.zcml" />
+  <include file="1037.zcml" />
 
 
 </configure>
