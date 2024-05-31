@@ -9,6 +9,7 @@
   <include package=".mapviewer_service" />
   <include package=".import_wms_layers" />
   <include package=".import_fields_from_wms" />
+  <include package=".feedback_survey_service" />
 
   <adapter factory=".list.DataSetRelationListFieldSerializer" />
   <adapter factory=".list.ProductRelationListFieldSerializer" />
