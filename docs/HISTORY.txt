@@ -1,6 +1,10 @@
 Changelog
 =========
 
+16.4 - (2024-05-31)
+---------------------------
+* Change: Update version.txt [tiberiuichim]
+
 16.2 - (2024-05-30)
 ---------------------------
 * Change: Develop
