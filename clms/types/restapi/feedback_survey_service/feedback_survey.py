@@ -2,26 +2,26 @@
 REST API endpoint to get the feedback_survey configuration data
 """
 
+from clms.types.interfaces import IClmsTypesLayer
+from plone import api
 from plone.dexterity.interfaces import IDexterityContent
+from plone.memoize.view import memoize
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.services import Service
 from zope.component import adapter
 from zope.interface import implementer
-from clms.types.interfaces import IClmsTypesLayer
-from plone.memoize.view import memoize
-from plone import api
 
 
 @implementer(IExpandableElement)
 @adapter(IDexterityContent, IClmsTypesLayer)
-class FeedbackSurveyService(object):
+class FeedbackSurveyService:
     """Feedback survey configuration"""
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
 
-    # @memoize
+    @memoize
     def get_survey_config(self):
         """return survey configuration"""
         is_active = api.portal.get_registry_record(

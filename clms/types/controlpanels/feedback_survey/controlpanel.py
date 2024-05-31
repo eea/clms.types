@@ -52,7 +52,8 @@ class FeedbackSurveyView(RegistryEditForm):
     label = _("Feedback Survey Control Panel")
 
 
-FeedbackSurveyViewView = layout.wrap_form(FeedbackSurveyView, ControlPanelFormWrapper)
+FeedbackSurveyViewView = layout.wrap_form(
+    FeedbackSurveyView, ControlPanelFormWrapper)
 
 
 @adapter(Interface, IClmsTypesLayer)
