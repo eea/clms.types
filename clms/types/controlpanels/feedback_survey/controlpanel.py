@@ -1,5 +1,5 @@
 """
-control panel to save component configuration
+control panel to save feedback survey configuration
 """
 
 # -*- coding: utf-8 -*-
