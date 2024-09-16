@@ -1,6 +1,11 @@
 Changelog
 =========
 
+16.5 - (2024-06-21)
+---------------------------
+* Change: Back to devel
+  [tiberiuichim]
+
 16.4 - (2024-05-31)
 ---------------------------
 * Change: Update version.txt [tiberiuichim]
