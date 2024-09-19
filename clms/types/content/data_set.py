@@ -305,6 +305,7 @@ class IDataSet(model.Schema):
             "resourceEffective",
             "resourceModified",
             # "dataResourceAbstract",
+            "keywords",
             "geographicCoverage",
             "accessAndUseLimitationPublic_line",
             "accessAndUseConstraints",
@@ -412,6 +413,23 @@ class IDataSet(model.Schema):
     textindexer.searchable("dataResourceAbstract")
     dataResourceAbstract = RichText(
         title=_("Resource abstract"), required=False
+    )
+
+    textindexer.searchable("keywords")
+    keywords = schema.List(
+        title=_(
+            "Keywords",
+        ),
+        description=_(
+            "",
+        ),
+        value_type=schema.TextLine(
+            title="Keywords",
+            required=False,
+            readonly=False,
+        ),
+        required=False,
+        readonly=False,
     )
 
     # geographicCoverage = JSONField(
@@ -1272,23 +1290,16 @@ class IDataSet(model.Schema):
         "searchable_text",
         label=_("Searchable text"),
         fields=[
-            "keywords",
+            "keyword",
         ],
     )
 
-    textindexer.searchable("keywords")
-    keywords = schema.List(
+    textindexer.searchable("keyword")
+    keyword = schema.TextLine(
         title=_(
-            "Keywords",
+            "Keyword",
         ),
-        description=_(
-            "",
-        ),
-        value_type=schema.TextLine(
-            title="Keyword",
-            required=False,
-            readonly=False,
-        ),
+        default="",
         required=False,
         readonly=False,
     )
