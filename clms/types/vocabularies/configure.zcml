@@ -6,6 +6,11 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <utility
+      name="clms.types.DataSetProductFamilyTitle"
+      component=".dataset_product_family_title.DataSetProductFamilyTitleFactory"
+      />
+
+  <utility
       name="clms.types.TopicsVocabulary"
       component=".topics_vocabulary.TopicsVocabularyFactory"
       />
