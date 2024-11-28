@@ -14,7 +14,7 @@ class DataSetProductFamilyTitle:
 
     def __call__(self, context):
         """
-        Generates a vocabulary of product family titles 
+        Generates a vocabulary of product family titles
         from taxonomy, filtered by parent title.
         """
 
@@ -51,10 +51,8 @@ class DataSetProductFamilyTitle:
             for node in tree:
                 key = str(node["key"])
                 title = str(node["title"])
-                # pylint: disable=line-too-long
-                full_title = f"{parent_title} > {title}" if parent_title else title
-                # pylint: disable=line-too-long
-                terms.append(SimpleTerm(value=key, token=key, title=full_title))
+                full_title = f"{parent_title} > {title}" if parent_title else title # noqa
+                terms.append(SimpleTerm(value=key, token=key, title=full_title)) # noqa
 
                 # Process children recursively
                 children = node.get("children", [])
@@ -65,7 +63,7 @@ class DataSetProductFamilyTitle:
         # Retrieve the taxonomy tree
         taxonomy_tree = get_taxonomy_tree("collective.taxonomy.family")
 
-        # Filter taxonomy to include only the 
+        # Filter taxonomy to include only the
         # children of the matching parent title
         filtered_tree = find_matching_taxonomy(taxonomy_tree, parent_id)
 
