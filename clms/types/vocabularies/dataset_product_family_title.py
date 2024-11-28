@@ -51,7 +51,9 @@ class DataSetProductFamilyTitle:
             for node in tree:
                 key = str(node["key"])
                 title = str(node["title"])
+                # pylint: disable=line-too-long
                 full_title = f"{parent_title} > {title}" if parent_title else title  # noqa
+                # pylint: disable=line-too-long
                 terms.append(SimpleTerm(value=key, token=key, title=full_title))  # noqa
 
                 # Process children recursively
