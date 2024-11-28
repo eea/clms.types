@@ -14,12 +14,14 @@ class DataSetProductFamilyTitle:
 
     def __call__(self, context):
         """
-        Generates a vocabulary of product family titles from taxonomy, filtered by parent title.
+        Generates a vocabulary of product family titles 
+        from taxonomy, filtered by parent title.
         """
 
         parent_id = None
         try:
-            parent_title = context.REQUEST.get("HTTP_REFERER")  # Get the parent title of the current dataset
+            # Get the parent title of the current dataset
+            parent_title = context.REQUEST.get("HTTP_REFERER")
             parent_id = parent_title.split("/")[-3]
         except:
             parent_title = None
@@ -30,14 +32,15 @@ class DataSetProductFamilyTitle:
             """
             for node in tree:
                 if node["key"] == parent_id:
-                    return node.get("children", [])  # Return the children of the matching node
+                    # Return the children of the matching node
+                    return node.get("children", [])
                 # Recurse into children to find a match
                 children = node.get("children", [])
                 if children:
                     result = find_matching_taxonomy(children, parent_id)
                     if result:
                         return result
-            
+
             return []  # Return an empty list if no match is found
 
         def traverse_taxonomy(tree, parent_title=""):
@@ -48,8 +51,9 @@ class DataSetProductFamilyTitle:
             for node in tree:
                 key = str(node["key"])
                 title = str(node["title"])
+                # pylint: disable=line-too-long
                 full_title = f"{parent_title} > {title}" if parent_title else title
-
+                # pylint: disable=line-too-long
                 terms.append(SimpleTerm(value=key, token=key, title=full_title))
 
                 # Process children recursively
@@ -61,7 +65,8 @@ class DataSetProductFamilyTitle:
         # Retrieve the taxonomy tree
         taxonomy_tree = get_taxonomy_tree("collective.taxonomy.family")
 
-        # Filter taxonomy to include only the children of the matching parent title
+        # Filter taxonomy to include only the 
+        # children of the matching parent title
         filtered_tree = find_matching_taxonomy(taxonomy_tree, parent_id)
 
         # Flatten the filtered taxonomy into a list of SimpleTerms
