@@ -51,8 +51,8 @@ class DataSetProductFamilyTitle:
             for node in tree:
                 key = str(node["key"])
                 title = str(node["title"])
-                full_title = f"{parent_title} > {title}" if parent_title else title # noqa
-                terms.append(SimpleTerm(value=key, token=key, title=full_title)) # noqa
+                full_title = f"{parent_title} > {title}" if parent_title else title  # noqa
+                terms.append(SimpleTerm(value=key, token=key, title=full_title))  # noqa
 
                 # Process children recursively
                 children = node.get("children", [])
