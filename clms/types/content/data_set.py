@@ -1304,6 +1304,24 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    model.fieldset(
+        "categorization",
+        label=_("Categorization"),
+        fields=[
+            "familyTitle",
+        ],
+    )
+
+    textindexer.searchable("familyTitle")
+    familyTitle = schema.Choice(
+        title="Family Title",
+        description=
+            "Select Family Title"
+        ,
+        vocabulary="clms.types.DataSetProductFamilyTitle",
+        required=False,
+        readonly=False,
+    )
 
 @implementer(IDataSet)
 class DataSet(Container):
