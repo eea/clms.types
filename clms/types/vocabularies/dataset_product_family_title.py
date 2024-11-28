@@ -63,7 +63,13 @@ class DataSetProductFamilyTitle:
             return terms
 
         # Retrieve the taxonomy tree
-        taxonomy_tree = get_taxonomy_tree("collective.taxonomy.family")
+        try:
+            taxonomy_tree = get_taxonomy_tree("collective.taxonomy.family")
+        except Exception:
+            taxonomy_tree = None
+
+        if taxonomy_tree is None:
+            return SimpleVocabulary([])
 
         # Filter taxonomy to include only the
         # children of the matching parent title
