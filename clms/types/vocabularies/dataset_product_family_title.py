@@ -23,7 +23,7 @@ class DataSetProductFamilyTitle:
             # Get the parent title of the current dataset
             parent_title = context.REQUEST.get("HTTP_REFERER")
             parent_id = parent_title.split("/")[-3]
-        except:
+        except Exception:
             parent_title = None
 
         def find_matching_taxonomy(tree, parent_id):
