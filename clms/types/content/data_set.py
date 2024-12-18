@@ -1251,6 +1251,24 @@ class IDataSet(model.Schema):
     )
 
     model.fieldset(
+        "order_technical_docs",
+        label=_("Order technical documents"),
+        fields=[
+            "technical_documents_order",
+        ],
+    )
+
+    textindexer.searchable("technical_documents_order")
+    technical_documents_order = JSONField(
+        title=_("Order technical documents"),
+        description=_("Drag and drop the documents to order them"),
+        required=False,
+        widget="order_docs_widget",
+        default={"items": []},
+        missing_value={"items": []},
+    )
+
+    model.fieldset(
         "production_updates",
         label=_("Production updates"),
         fields=[
