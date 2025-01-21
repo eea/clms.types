@@ -10,6 +10,19 @@ from clms.types.utils import get_taxonomy_tree
 class DataSetProductFamilyTitle:
     """
     Vocabulary factory for product family titles.
+
+    Logic for determining the vocabulary:
+    - If the request comes from a dataset URL:
+        /product/dataset => parent_id = product
+    - Else:
+        parent_id = None
+
+    If the product name exists and is found in the taxonomy:
+        vocabulary = taxonomy(product)
+    If the product name exists but is not found in the taxonomy:
+        vocabulary = []
+    If the product name doesn't exist (None):
+        vocabulary = taxonomy(all_products)
     """
 
     def __call__(self, context):
@@ -22,7 +35,8 @@ class DataSetProductFamilyTitle:
         try:
             # Get the parent title of the current dataset
             parent_title = context.REQUEST.get("HTTP_REFERER")
-            parent_id = parent_title.split("/")[-3]
+            parts = [p for p in parent_title.split("/") if p and not p.startswith("edit")]
+            parent_id = parts[-2] if "products" in parts else None
         except Exception:
             parent_title = None
 
@@ -62,6 +76,17 @@ class DataSetProductFamilyTitle:
                     terms.extend(traverse_taxonomy(children, full_title))
             return terms
 
+        def find_all_products_taxonomy(tree):
+            """
+            Collect all products' children from the taxonomy tree.
+            """
+            all_products = []
+            for node in tree:
+                children = node.get("children", [])
+                if children:
+                    all_products.extend(children)
+            return all_products
+
         # Retrieve the taxonomy tree
         try:
             taxonomy_tree = get_taxonomy_tree("collective.taxonomy.family")
@@ -71,9 +96,13 @@ class DataSetProductFamilyTitle:
         if taxonomy_tree is None:
             return SimpleVocabulary([])
 
-        # Filter taxonomy to include only the
-        # children of the matching parent title
-        filtered_tree = find_matching_taxonomy(taxonomy_tree, parent_id)
+        # Determine the filtered tree based on parent_id
+        if parent_id is None:
+            # No parent_id, return all products
+            filtered_tree = find_all_products_taxonomy(taxonomy_tree)
+        else:
+            # Filter by parent_id
+            filtered_tree = find_matching_taxonomy(taxonomy_tree, parent_id)
 
         # Flatten the filtered taxonomy into a list of SimpleTerms
         terms = traverse_taxonomy(filtered_tree)
