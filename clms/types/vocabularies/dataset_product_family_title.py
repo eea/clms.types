@@ -35,7 +35,7 @@ class DataSetProductFamilyTitle:
         try:
             # Get the parent title of the current dataset
             parent_title = context.REQUEST.get("HTTP_REFERER")
-            parts = [p for p in parent_title.split("/") if p and not p.startswith("edit")]
+            parts = [p for p in parent_title.split("/") if p and not p.startswith("edit")]  # noqa
             parent_id = parts[-2] if "products" in parts else None
         except Exception:
             parent_title = None
