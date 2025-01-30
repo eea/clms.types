@@ -2,15 +2,15 @@
 """
 Product content-type definition
 """
+from .product_layout import product_layout_blocks, product_layout_items
 from clms.types import _
 from plone.app.dexterity import textindexer
 from plone.dexterity.content import Container
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
+from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA
 from zope.interface import implementer
 from zope import schema
-from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
-from .product_layout import product_layout_blocks, product_layout_items
 
 
 class IProduct(model.Schema):
