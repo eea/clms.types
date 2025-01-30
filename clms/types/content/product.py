@@ -3,7 +3,6 @@
 Product content-type definition
 """
 
-from .product_layout import product_layout_blocks, product_layout_items
 from clms.types import _
 from plone.app.dexterity import textindexer
 from plone.dexterity.content import Container
@@ -12,6 +11,7 @@ from plone.supermodel import model
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA
 from zope.interface import implementer
 from zope import schema
+from .product_layout import product_layout_blocks, product_layout_items
 
 
 class IProduct(model.Schema):
@@ -22,13 +22,13 @@ class IProduct(model.Schema):
             'Show "Show in mapviewer" link',
         ),
         description=_(
-            'If selected a "Show in mapviewer" link will appear in the product page',
+            'If selected a "Show in mapviewer" link will appear in the product page',  # noqa
         ),
         required=False,
         readonly=False,
     )
 
-    model.fieldset("layout", label=_("Layout"), fields=["blocks", "blocks_layout"])
+    model.fieldset("layout", label=_("Layout"), fields=["blocks", "blocks_layout"])  # noqa
 
     blocks = JSONField(
         title=_("Blocks"),

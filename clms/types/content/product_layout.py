@@ -18,7 +18,7 @@ product_layout_blocks = {
                 "4369cdcf-e5da-47bd-aed6-bbeda18e7058": {
                     "@type": "tab",
                     "blocks": {
-                        "a32b9945-a113-427b-9869-2c6cca8d61d0": {"@type": "slate"},
+                        "a32b9945-a113-427b-9869-2c6cca8d61d0": {"@type": "slate"},  # noqa
                         "d03381ad-6888-4906-9e00-020d04738bae": {
                             "@type": "accordion",
                             "collapsed": True,
@@ -117,7 +117,7 @@ product_layout_blocks = {
                             "right_arrows": True,
                             "title_size": "h2",
                         },
-                        "74010e6d-c09e-4b71-b7ab-a551d013df59": {"@type": "slate"},
+                        "74010e6d-c09e-4b71-b7ab-a551d013df59": {"@type": "slate"},  # noqa
                     },
                     "blocks_layout": {
                         "items": [
@@ -135,7 +135,7 @@ product_layout_blocks = {
                             "variation": "CclCardsnews",
                             "content_type": "News Item",
                         },
-                        "42c54fe8-7b79-485a-b4d9-ba0b24680dd2": {"@type": "slate"},
+                        "42c54fe8-7b79-485a-b4d9-ba0b24680dd2": {"@type": "slate"},  # noqa
                     },
                     "blocks_layout": {
                         "items": [
@@ -148,7 +148,7 @@ product_layout_blocks = {
                 "8e01ded9-9fed-403b-b5ec-27b0424aceaa": {
                     "@type": "tab",
                     "blocks": {
-                        "7f6fb98b-30f4-4bc1-823d-23de69614c3c": {"@type": "slate"},
+                        "7f6fb98b-30f4-4bc1-823d-23de69614c3c": {"@type": "slate"},  # noqa
                         "eb5a8e3e-6276-47fa-aa7b-83d0f4276029": {
                             "@type": "accordion",
                             "collapsed": True,
@@ -209,7 +209,7 @@ product_layout_blocks = {
                             "variation": "CclCardsdoc",
                             "content_type": "UseCase",
                         },
-                        "95c78c8e-e4f9-4ee6-8693-628acaf7b1c2": {"@type": "slate"},
+                        "95c78c8e-e4f9-4ee6-8693-628acaf7b1c2": {"@type": "slate"},  # noqa
                     },
                     "blocks_layout": {
                         "items": [
@@ -343,7 +343,7 @@ product_layout_blocks = {
                                                 "plaintext": "",
                                                 "value": [
                                                     {
-                                                        "children": [{"text": ""}],
+                                                        "children": [{"text": ""}],  # noqa
                                                         "type": "p",
                                                     }
                                                 ],
@@ -359,15 +359,15 @@ product_layout_blocks = {
                                     }
                                 },
                                 "blocks_layout": {
-                                    "items": ["5d6a4a6b-6fb0-46fa-85d3-5529c700f7d1"]
+                                    "items": ["5d6a4a6b-6fb0-46fa-85d3-5529c700f7d1"]  # noqa
                                 },
                             },
                             "non_exclusive": True,
                             "right_arrows": True,
                             "title_size": "h2",
                         },
-                        "d2afd518-909b-4f22-a917-7dbf8904496c": {"@type": "slate"},
-                        "dbce85e8-e218-4255-9b9b-336bef77ab00": {"@type": "slate"},
+                        "d2afd518-909b-4f22-a917-7dbf8904496c": {"@type": "slate"},  # noqa
+                        "dbce85e8-e218-4255-9b9b-336bef77ab00": {"@type": "slate"},  # noqa
                     },
                     "blocks_layout": {
                         "items": [
