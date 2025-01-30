@@ -18,17 +18,18 @@ class IProduct(model.Schema):
     """Marker interface and Dexterity Python Schema for Product"""
 
     showhow_in_mapviewer_link = schema.Bool(
-        title=_(
-            'Show "Show in mapviewer" link',
-        ),
+        title=_('Show "Show in mapviewer" link'),
         description=_(
-            'If selected a "Show in mapviewer" link will appear in the product page',  # noqa
+            'If selected a "Show in mapviewer" link will appear in the '
+            'product page'
         ),
         required=False,
         readonly=False,
     )
 
-    model.fieldset("layout", label=_("Layout"), fields=["blocks", "blocks_layout"])  # noqa
+    model.fieldset(
+        "layout", label=_("Layout"), fields=["blocks", "blocks_layout"]
+    )
 
     blocks = JSONField(
         title=_("Blocks"),
