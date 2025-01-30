@@ -1,3 +1,6 @@
+# flake8: noqa
+# pylint: skip-file
+
 product_layout_items = [
     "82008ae8-dbe9-4d85-b411-c5a5712bf337",
     "ee3e46d4-6edd-485c-8b6f-bfab8a68c57d&#x27",
