@@ -2,6 +2,7 @@
 """
 Product content-type definition
 """
+
 from .product_layout import product_layout_blocks, product_layout_items
 from clms.types import _
 from plone.app.dexterity import textindexer
@@ -27,9 +28,7 @@ class IProduct(model.Schema):
         readonly=False,
     )
 
-    model.fieldset(
-        "layout", label=_("Layout"), fields=["blocks", "blocks_layout"]
-    )
+    model.fieldset("layout", label=_("Layout"), fields=["blocks", "blocks_layout"])
 
     blocks = JSONField(
         title=_("Blocks"),

@@ -1,10 +1,11 @@
 # flake8: noqa
 # pylint: skip-file
 
+
 product_layout_items = [
     "82008ae8-dbe9-4d85-b411-c5a5712bf337",
-    "ee3e46d4-6edd-485c-8b6f-bfab8a68c57d&#x27",
-    "x27;250fcf76-7b52-4bec-bd66-7b50e0dd6613&#x27",
+    "ee3e46d4-6edd-485c-8b6f-bfab8a68c57d",
+    "250fcf76-7b52-4bec-bd66-7b50e0dd6613",
 ]
 
 product_layout_blocks = {
@@ -25,26 +26,26 @@ product_layout_blocks = {
                                 "blocks": {
                                     "cfa85bd8-232f-4c42-8a2e-9b56ad376ddf": {
                                         "blocks": {
-                                            "930887b1-07be-4f3a-aed0-21a6d74ea634": {
+                                            "930887b1-07be-4f3a-aed0-21a6d74ea634": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "930887b1-07be-4f3a-aed0-21a6d74ea634"
+                                                "930887b1-07be-4f3a-aed0-21a6d74ea634"  # noqa
                                             ]
                                         },
                                     },
                                     "f1d71fe4-f017-4377-bfd7-b2cc982f8d0b": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "89d6f9e7-fc21-4a4e-ad0f-ac6eea194e9c": {
+                                            "89d6f9e7-fc21-4a4e-ad0f-ac6eea194e9c": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "89d6f9e7-fc21-4a4e-ad0f-ac6eea194e9c"
+                                                "89d6f9e7-fc21-4a4e-ad0f-ac6eea194e9c"  # noqa
                                             ]
                                         },
                                         "title": "Application area",
@@ -80,26 +81,26 @@ product_layout_blocks = {
                                 "blocks": {
                                     "0ebf3614-6709-4e72-b848-6206cf0a369e": {
                                         "blocks": {
-                                            "70e7a129-5b8e-4060-bf34-6f863082b4de": {
+                                            "70e7a129-5b8e-4060-bf34-6f863082b4de": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "70e7a129-5b8e-4060-bf34-6f863082b4de"
+                                                "70e7a129-5b8e-4060-bf34-6f863082b4de"  # noqa
                                             ]
                                         },
                                     },
                                     "ab28b752-9d95-416a-a22a-345c0b1e8d02": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "b3fde412-4630-43f5-b298-9c4058f42eb2": {
+                                            "b3fde412-4630-43f5-b298-9c4058f42eb2": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "b3fde412-4630-43f5-b298-9c4058f42eb2"
+                                                "b3fde412-4630-43f5-b298-9c4058f42eb2"  # noqa
                                             ]
                                         },
                                         "title": "User uptake",
@@ -155,26 +156,26 @@ product_layout_blocks = {
                                 "blocks": {
                                     "1b9f7c0c-a275-46eb-b24f-d773cb8e5def": {
                                         "blocks": {
-                                            "eb455e39-cc82-4a9a-8df6-107fe3dbf428": {
+                                            "eb455e39-cc82-4a9a-8df6-107fe3dbf428": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "eb455e39-cc82-4a9a-8df6-107fe3dbf428"
+                                                "eb455e39-cc82-4a9a-8df6-107fe3dbf428"  # noqa
                                             ]
                                         },
                                     },
                                     "8f20c524-8563-46e1-a22a-8b98ff5b42f6": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "7828f647-5c82-4699-b05a-b34cb6c70e2f": {
+                                            "7828f647-5c82-4699-b05a-b34cb6c70e2f": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "7828f647-5c82-4699-b05a-b34cb6c70e2f"
+                                                "7828f647-5c82-4699-b05a-b34cb6c70e2f"  # noqa
                                             ]
                                         },
                                         "title": "on-going",
@@ -229,13 +230,13 @@ product_layout_blocks = {
                                     "10af3800-4071-495f-a70f-3978ed3862b6": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "382d6010-3cf0-40aa-9a11-dc0a01b0e001": {
+                                            "382d6010-3cf0-40aa-9a11-dc0a01b0e001": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "382d6010-3cf0-40aa-9a11-dc0a01b0e001"
+                                                "382d6010-3cf0-40aa-9a11-dc0a01b0e001"  # noqa
                                             ]
                                         },
                                         "title": "Extra documentation",
@@ -243,13 +244,13 @@ product_layout_blocks = {
                                     "9388ff8f-6c49-463b-9ecb-e7f44b7809bb": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "89f7d6c4-c262-4183-a8cb-c335a61bd655": {
+                                            "89f7d6c4-c262-4183-a8cb-c335a61bd655": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "89f7d6c4-c262-4183-a8cb-c335a61bd655"
+                                                "89f7d6c4-c262-4183-a8cb-c335a61bd655"  # noqa
                                             ]
                                         },
                                         "title": "Technical Information",
@@ -257,13 +258,13 @@ product_layout_blocks = {
                                     "adffa341-e4b1-4678-8ebb-a844bf1b4537": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "f2505176-5d3d-4d70-b163-04c2fa5d3a49": {
+                                            "f2505176-5d3d-4d70-b163-04c2fa5d3a49": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "f2505176-5d3d-4d70-b163-04c2fa5d3a49"
+                                                "f2505176-5d3d-4d70-b163-04c2fa5d3a49"  # noqa
                                             ]
                                         },
                                         "title": "More documentation",
@@ -271,13 +272,13 @@ product_layout_blocks = {
                                     "b77fb68f-2679-4e77-b911-47ba5ffd5c8f": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "d3b6efee-e1a9-4672-a29f-70b3c16ccd5c": {
+                                            "d3b6efee-e1a9-4672-a29f-70b3c16ccd5c": {  # noqa
                                                 "@type": "slate"
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "d3b6efee-e1a9-4672-a29f-70b3c16ccd5c"
+                                                "d3b6efee-e1a9-4672-a29f-70b3c16ccd5c"  # noqa
                                             ]
                                         },
                                         "title": "Overview",
@@ -311,25 +312,25 @@ product_layout_blocks = {
                                     "5d6a4a6b-6fb0-46fa-85d3-5529c700f7d1": {
                                         "@type": "accordionPanel",
                                         "blocks": {
-                                            "c8f2820a-e8e0-4feb-a801-718b6f4284f6": {
+                                            "c8f2820a-e8e0-4feb-a801-718b6f4284f6": {  # noqa
                                                 "@type": "listing",
-                                                "block": "c8f2820a-e8e0-4feb-a801-718b6f4284f6",
+                                                "block": "c8f2820a-e8e0-4feb-a801-718b6f4284f6",  # noqa
                                                 "query": [],
                                                 "querystring": {
                                                     "query": [
                                                         {
                                                             "i": "portal_type",
-                                                            "o": "plone.app.querystring.operation.selection.any",
+                                                            "o": "plone.app.querystring.operation.selection.any",  # noqa
                                                             "v": ["Product"],
                                                         },
                                                         {
                                                             "i": "path",
-                                                            "o": "plone.app.querystring.operation.string.relativePath",
+                                                            "o": "plone.app.querystring.operation.string.relativePath",  # noqa
                                                             "v": "",
                                                         },
                                                         {
-                                                            "i": "review_state",
-                                                            "o": "plone.app.querystring.operation.selection.any",
+                                                            "i": "review_state",  # noqa
+                                                            "o": "plone.app.querystring.operation.selection.any",  # noqa
                                                             "v": ["published"],
                                                         },
                                                     ],
@@ -337,7 +338,7 @@ product_layout_blocks = {
                                                 },
                                                 "variation": "CclCardsline",
                                             },
-                                            "dd4bedcd-24c5-40aa-bdfd-dccd8781a6bb": {
+                                            "dd4bedcd-24c5-40aa-bdfd-dccd8781a6bb": {  # noqa
                                                 "@type": "slate",
                                                 "plaintext": "",
                                                 "value": [
@@ -350,8 +351,8 @@ product_layout_blocks = {
                                         },
                                         "blocks_layout": {
                                             "items": [
-                                                "c8f2820a-e8e0-4feb-a801-718b6f4284f6",
-                                                "dd4bedcd-24c5-40aa-bdfd-dccd8781a6bb",
+                                                "c8f2820a-e8e0-4feb-a801-718b6f4284f6",  # noqa
+                                                "dd4bedcd-24c5-40aa-bdfd-dccd8781a6bb",  # noqa
                                             ]
                                         },
                                         "title": "Products",
