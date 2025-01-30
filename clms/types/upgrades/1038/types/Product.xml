@@ -20,7 +20,6 @@
  <property name="add_permission">clms.types.AddProduct</property>
  <property name="klass">clms.types.content.product.Product</property>
  <property name="behaviors">
-  <element value="plone.namefromtitle"/>
   <element value="plone.allowdiscussion"/>
   <element value="plone.excludefromnavigation"/>
   <element value="plone.shortname"/>
