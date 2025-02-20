@@ -17,7 +17,7 @@ from .product_layout import product_layout_blocks, product_layout_items
 class IProduct(model.Schema):
     """Marker interface and Dexterity Python Schema for Product"""
 
-    showhow_in_mapviewer_link = schema.Bool(
+    show_in_mapviewer_link = schema.Bool(
         title=_('Show "Show in mapviewer" link'),
         description=_(
             'If selected a "Show in mapviewer" link will appear in the '
