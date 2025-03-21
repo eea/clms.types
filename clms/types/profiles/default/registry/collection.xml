@@ -364,6 +364,19 @@
         <value key="group" i18n:translate="">Product</value>
     </records>
 
+     <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.familyTitle">
+        <value key="title" i18n:translate="">Family Title (Metadata)</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+        <value key="vocabulary">clms.types.DataSetAllFamilyTitles</value>
+        <value key="group" i18n:translate="">Metadata</value>
+    </records>
 
 
 
