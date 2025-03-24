@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="clms.types">
+
+
+    <records interface="plone.app.querystring.interfaces.IQueryField"
+            prefix="plone.app.querystring.field.familyTitle">
+        <value key="title" i18n:translate="">Family Title (Metadata)</value>
+        <value key="description" i18n:translate=""></value>
+        <value key="enabled">True</value>
+        <value key="sortable">True</value>
+        <value key="operations">
+            <element>plone.app.querystring.operation.selection.any</element>
+            <element>plone.app.querystring.operation.selection.all</element>
+        </value>
+        <value key="vocabulary">clms.types.DataSetAllFamilyTitles</value>
+        <value key="group" i18n:translate="">Metadata</value>
+    </records>
+
+
+
+</registry>
