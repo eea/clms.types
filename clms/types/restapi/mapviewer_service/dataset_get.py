@@ -116,6 +116,7 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                 # ),
                 "DownloadLimitAreaExtent": self.max_area_extent(),
                 "Message": dataset.download_mapviewer_message,
+                "FamilyTitle": dataset.familyTitle,
             }
 
         return None
