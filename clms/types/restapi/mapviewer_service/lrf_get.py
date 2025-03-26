@@ -232,6 +232,7 @@ class RootMapViewerServiceGet(Service):
                 "DownloadLimitAreaExtent": self.max_area_extent(),
                 "Message": dataset.download_mapviewer_message,
                 "HasPrepackagedFiles": has_items(dataset.downloadable_files),
+                "FamilyTitle": dataset.familyTitle
             }
 
         return None
