@@ -979,6 +979,7 @@ class IDataSet(model.Schema):
         fields=[
             "downloadable_dataset",
             "downloadable_full_dataset",
+            "byoc_collection_id",
             "downloadable_files",
             "download_by_area_extra_text",
             "download_full_dataset_text",
@@ -1059,6 +1060,19 @@ class IDataSet(model.Schema):
         ),
         required=False,
         default=True,
+        readonly=False,
+    )
+
+    textindexer.searchable("byoc_collection_id")
+    byoc_collection_id = schema.TextLine(
+        title=_(
+            "BYOC Collection",
+        ),
+        description=_(
+            "To download the datasets via CDSE, it is necessary to "
+            "include a BYOC identifier.",
+        ),
+        required=False,
         readonly=False,
     )
 
