@@ -130,7 +130,7 @@ class ImportFromGeoNetwork(Service):
             logger.info(
                 "Fetched XML data for ID %s: %s",
                 geonetwork_id,
-                self.xml_data[:1000] if isinstance(
+                self.xml_data if isinstance(
                     self.xml_data, str) else repr(self.xml_data),
             )
         except Exception as e:
