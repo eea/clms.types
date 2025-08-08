@@ -114,9 +114,12 @@ class ImportFromGeoNetwork(Service):
             geonetwork_id = body_json.get("id")
             geonetwork_type = body_json.get("type")
             logger.info(
-                f"GeoNetwork ID: {geonetwork_id}, Type: {geonetwork_type}")
+                "Received request to import GeoNetwork ID: %s, Type: %s",
+                geonetwork_id,
+                geonetwork_type,
+            )
         except Exception as e:
-            logger.error(f"Error parsing request body: {e}")
+            logger.error("Error parsing request body: %s", e)
             return {
                 "status": "error",
                 "message": "Invalid request body",
@@ -125,10 +128,14 @@ class ImportFromGeoNetwork(Service):
         try:
             self.xml_data = self.get_xml_data(geonetwork_id, geonetwork_type)
             logger.debug(
-                f"Fetched XML data for ID {geonetwork_id}: {self.xml_data}")
+                "Fetched XML data for ID %s: %s",
+                geonetwork_id,
+                self.xml_data[:1000] if isinstance(
+                    self.xml_data, str) else repr(self.xml_data),
+            )
         except Exception as e:
-            logger.error(
-                f"Error fetching XML data for ID {geonetwork_id}: {e}")
+            logger.error("Error fetching XML data for ID %s: %s",
+                         geonetwork_id, e)
             return {
                 "status": "error",
                 "message": "No data found",
@@ -138,10 +145,13 @@ class ImportFromGeoNetwork(Service):
             self.json_data = self.get_json_data(
                 self.xml_data, geonetwork_id, geonetwork_type)
             logger.debug(
-                f"Converted JSON: {json.dumps(self.json_data, indent=2)}")
+                "Converted JSON data for ID %s: %s",
+                geonetwork_id,
+                json.dumps(self.json_data, indent=2),
+            )
         except Exception as e:
             logger.error(
-                f"Error converting XML to JSON for ID {geonetwork_id}: {e}")
+                "Error converting XML to JSON for ID %s: %s", geonetwork_id, e)
             return {
                 "status": "error",
                 "message": "Failed to convert data",
@@ -150,9 +160,9 @@ class ImportFromGeoNetwork(Service):
         try:
             self.save_data()
             logger.info(
-                f"Successfully saved data for GeoNetwork ID {geonetwork_id}")
+                "Successfully saved data for GeoNetwork ID %s", geonetwork_id)
         except Exception as e:
-            logger.error(f"Error saving data for ID {geonetwork_id}: {e}")
+            logger.error("Error saving data for ID %s: %s", geonetwork_id, e)
             return {
                 "status": "error",
                 "message": "Failed to save data",
