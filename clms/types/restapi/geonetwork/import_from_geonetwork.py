@@ -3,6 +3,7 @@
 Import from geonetwork
 """
 
+import logging
 import json
 from datetime import datetime
 from logging import getLogger
@@ -30,6 +31,8 @@ ISO_DATETIME_FORMAT_WITH_TIME_MICROSECONDS_AND_FINAL_Z = (
     "%Y-%m-%dT%H:%M:%S.%fZ"  # noqa
 )
 
+
+logger = logging.getLogger(__name__)
 
 OK_STRING = (
     f"{COLORS['fg']['green']}    OK DATA{COLORS['end']} for field"
@@ -102,34 +105,59 @@ class ImportFromGeoNetwork(Service):
     ImportFromGeoNetwork
     """
 
-    def __call__(
-        self,
-    ):
-        # Implement your own actions:
+    def __call__(self):
+        # Disable CSRF protection
+        alsoProvides(self.request, IDisableCSRFProtection)
 
-        alsoProvides(
-            self.request,
-            IDisableCSRFProtection,
-        )
-
-        body_json = json.loads(self.request.get("BODY"))
-        geonetwork_id = body_json.get("id")
-        geonetwork_type = body_json.get("type")
         try:
-            self.xml_data = self.get_xml_data(
-                geonetwork_id,
-                geonetwork_type,
-            )
-        except Exception:
+            body_json = json.loads(self.request.get("BODY"))
+            geonetwork_id = body_json.get("id")
+            geonetwork_type = body_json.get("type")
+            logger.info(
+                f"GeoNetwork ID: {geonetwork_id}, Type: {geonetwork_type}")
+        except Exception as e:
+            logger.error(f"Error parsing request body: {e}")
+            return {
+                "status": "error",
+                "message": "Invalid request body",
+            }
+
+        try:
+            self.xml_data = self.get_xml_data(geonetwork_id, geonetwork_type)
+            logger.debug(
+                f"Fetched XML data for ID {geonetwork_id}: {self.xml_data}")
+        except Exception as e:
+            logger.error(
+                f"Error fetching XML data for ID {geonetwork_id}: {e}")
             return {
                 "status": "error",
                 "message": "No data found",
             }
-        self.json_data = self.get_json_data(
-            self.xml_data, geonetwork_id, geonetwork_type
-        )
 
-        self.save_data()
+        try:
+            self.json_data = self.get_json_data(
+                self.xml_data, geonetwork_id, geonetwork_type)
+            logger.debug(
+                f"Converted JSON: {json.dumps(self.json_data, indent=2)}")
+        except Exception as e:
+            logger.error(
+                f"Error converting XML to JSON for ID {geonetwork_id}: {e}")
+            return {
+                "status": "error",
+                "message": "Failed to convert data",
+            }
+
+        try:
+            self.save_data()
+            logger.info(
+                f"Successfully saved data for GeoNetwork ID {geonetwork_id}")
+        except Exception as e:
+            logger.error(f"Error saving data for ID {geonetwork_id}: {e}")
+            return {
+                "status": "error",
+                "message": "Failed to save data",
+            }
+
         self.json_data["requested_geonetwork_id"] = geonetwork_id
         return json.dumps(self.json_data)
 
