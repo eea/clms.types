@@ -127,7 +127,7 @@ class ImportFromGeoNetwork(Service):
 
         try:
             self.xml_data = self.get_xml_data(geonetwork_id, geonetwork_type)
-            logger.debug(
+            logger.info(
                 "Fetched XML data for ID %s: %s",
                 geonetwork_id,
                 self.xml_data[:1000] if isinstance(
@@ -144,7 +144,7 @@ class ImportFromGeoNetwork(Service):
         try:
             self.json_data = self.get_json_data(
                 self.xml_data, geonetwork_id, geonetwork_type)
-            logger.debug(
+            logger.info(
                 "Converted JSON data for ID %s: %s",
                 geonetwork_id,
                 json.dumps(self.json_data, indent=2),
