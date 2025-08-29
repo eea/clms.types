@@ -233,7 +233,8 @@ class RootMapViewerServiceGet(Service):
                 "Message": dataset.download_mapviewer_message,
                 "HasPrepackagedFiles": has_items(dataset.downloadable_files),
                 "FamilyTitle": dataset.familyTitle,
-                "dataset_download_information": dataset.dataset_download_information,
+                "dataset_download_information":
+                    dataset.dataset_download_information,
             }
 
         return None
