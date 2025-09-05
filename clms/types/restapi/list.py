@@ -11,6 +11,7 @@ from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxfields import CollectionFieldSerializer
 from zExceptions import Unauthorized
+from plone.api.exc import MissingParameterError
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
 from zope.schema.interfaces import IList
@@ -41,11 +42,12 @@ class BaseListFieldSerializer(CollectionFieldSerializer):
             for item in value:
                 try:
                     referenced_object = api.content.get(UID=item)
-                except Unauthorized:
+                except (Unauthorized, MissingParameterError):
                     # Handle non-existing objects
                     # or objects which we can't access
                     # Unauthorized errors
                     referenced_object = None
+
                 if referenced_object:
 
                     new_item = getMultiAdapter(
