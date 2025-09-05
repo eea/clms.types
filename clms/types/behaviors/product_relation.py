@@ -7,7 +7,7 @@ from clms.types import _
 from plone import schema
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
-from Products.CMFPlone.utils import safe_hasattr
+from Products.CMFPlone.utils import safe_hasattr, getToolByName
 from zope.component import adapter
 from zope.interface import Interface
 from zope.interface import implementer
@@ -54,7 +54,11 @@ class ProductRelation:
     def products(self):
         """getter"""
         if safe_hasattr(self.context, "products"):
-            return self.context.products
+            catalog = getToolByName(self.context, 'portal_catalog')
+            valid_products = [
+                uid for uid in self.context.products if len(
+                    catalog(UID=uid)) > 0]
+            return valid_products
         return None
 
     @products.setter
