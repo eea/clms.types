@@ -7,6 +7,7 @@ from clms.types.behaviors.product_relation import IProductRelationMarker
 from clms.types.content.use_case import IUseCase
 from clms.types.interfaces import IClmsTypesLayer
 from plone import api
+from plone.api.exc import MissingParameterError
 from plone.restapi.interfaces import IFieldSerializer, ISerializeToJsonSummary
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxfields import CollectionFieldSerializer
@@ -41,11 +42,12 @@ class BaseListFieldSerializer(CollectionFieldSerializer):
             for item in value:
                 try:
                     referenced_object = api.content.get(UID=item)
-                except Unauthorized:
+                except (Unauthorized, MissingParameterError):
                     # Handle non-existing objects
                     # or objects which we can't access
                     # Unauthorized errors
                     referenced_object = None
+
                 if referenced_object:
 
                     new_item = getMultiAdapter(
