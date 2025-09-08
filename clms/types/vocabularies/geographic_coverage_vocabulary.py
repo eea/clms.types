@@ -24,7 +24,8 @@ class GeographicCoverageVocabulary:
 
         # create a list of SimpleTerm items:
         terms = []
-        for item in items:
+        normalized = [item for item in items if item is not None]
+        for item in normalized:
             terms.append(
                 SimpleTerm(
                     value=item,
