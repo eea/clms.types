@@ -27,8 +27,36 @@ def geographic_coverage_product(obj):
     return geographic_coverages
 
 
+def normalize_gcoverage_value(value):
+    """Use Global instead of multiple variations"""
+    if not value:
+        return value
+
+    normalized = str(value).strip().lower()
+
+    if normalized in {"globe", "global", "world"}:
+        return "Global"
+
+    return value
+
+
+def normalize_gcoverage(value):
+    """ Keep values as they are, but normalize Global value and always return
+    a list
+    """
+    if not value:
+        return []
+    if isinstance(value, dict):
+        items = value.get("geolocation", [])
+        values = [item.get("label") for item in items]
+        return normalize_gcoverage(values)
+    if isinstance(value, list):
+        return [
+            normalize_gcoverage_value(v) for v in value if v is not None]
+    return normalize_gcoverage_value(value)
+
+
 @indexer(IDataSet)
 def geographic_coverage(obj):
     """Calculate and return the value for the indexer"""
-    items = obj.geographicCoverage.get("geolocation", [])
-    return [item.get("label") for item in items]
+    return normalize_gcoverage(obj.geographicCoverage) or []

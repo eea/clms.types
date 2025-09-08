@@ -5,6 +5,7 @@ classify datasets according to their coordinates into spatial categories
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 from clms.types.content.data_set import IDataSet
+from clms.types.indexers.geographic_coverage import normalize_gcoverage
 
 
 @indexer(IDexterityContent)
@@ -16,13 +17,25 @@ def dummy(obj):
 @indexer(IDataSet)
 def dataset_geographical_classification(obj):
     """Calculate and return the value for the indexer"""
+    is_global = False
+    try:
+        if "Global" in normalize_gcoverage(obj.geographicCoverage):
+            is_global = True
+    except Exception:
+        pass
     bounding_boxes = obj.geographicBoundingBox.get("items", [])
-    return classify_bounding_boxes(bounding_boxes)
+    return classify_bounding_boxes(bounding_boxes, is_global)
 
 
-def classify_bounding_boxes(bounding_boxes):
+def classify_bounding_boxes(bounding_boxes, is_global=False):
     """classify the bounding boxes according to their location"""
     terms = []
+
+    # Now we can define as Global datasets having this value in
+    # geographicCoverage field. The goal is to make them be listed in
+    # search when Global filter is selected.
+    if is_global:
+        terms.append("Global")
 
     for bounding_box in bounding_boxes:
         if is_eea(bounding_box):
