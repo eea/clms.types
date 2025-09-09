@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="clms.types">
+
+  <records
+      interface="plone.app.querystring.interfaces.IQueryOperation"
+      prefix="plone.app.querystring.operation.int.between">
+
+    <value key="operation">clms.types.restapi.adapters.querystring_operations.int_between_operation</value>
+    <value key="title">Between (integer range)</value>
+    <value key="description">Find values between two integers</value>
+  </records>
+
+</registry>
