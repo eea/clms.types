@@ -904,6 +904,7 @@ class IDataSet(model.Schema):
         label=_("Mapviewer"),
         fields=[
             "mapviewer_viewservice",
+            "mapviewer_service_id",
             "mapviewer_default_active",
             "mapviewer_layers",
             "mapviewer_istimeseries",
@@ -919,6 +920,18 @@ class IDataSet(model.Schema):
         ),
         description=_(
             "Enter the service url (WMS)",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+    mapviewer_service_id = schema.TextLine(
+        title=_(
+            "View service ID",
+        ),
+        description=_(
+            "Enter the service ID (WMS)",
         ),
         default="",
         required=False,
