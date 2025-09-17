@@ -15,6 +15,8 @@ from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
 from zope import schema
 from zope.interface import implementer
+from plone.autoform.directives import read_permission
+from plone.autoform.directives import write_permission
 
 
 MIXEDFIELD_SCHEMA = json.dumps(
@@ -926,6 +928,8 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    read_permission(mapviewer_service_id="cmf.ModifyPortalContent")
+    write_permission(mapviewer_service_id="cmf.ModifyPortalContent")
     mapviewer_service_id = schema.TextLine(
         title=_(
             "View service ID",
