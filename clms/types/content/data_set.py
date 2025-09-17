@@ -13,10 +13,9 @@ from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
+from plone.autoform.directives import read_permission, write_permission
 from zope import schema
 from zope.interface import implementer
-from plone.autoform.directives import read_permission
-from plone.autoform.directives import write_permission
 
 
 MIXEDFIELD_SCHEMA = json.dumps(
