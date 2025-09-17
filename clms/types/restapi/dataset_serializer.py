@@ -34,7 +34,7 @@ class DataSetSerializer(SerializeToJson):
             read_permissions = mergedTaggedValueDict(
                 schema, READ_PERMISSIONS_KEY)
 
-            for name, field in getFields(schema).items():
+            for name, _ in getFields(schema).items():
                 if not self.check_permission(read_permissions.get(name), obj):
                     result[name] = None
                     continue
