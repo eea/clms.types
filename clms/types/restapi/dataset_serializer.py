@@ -1,15 +1,14 @@
 """Custom serializer for DataSet content type to exclude sensitive fields."""
 
+from clms.types.content.data_set import IDataSet
 from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.serializer.dxcontent import SerializeToJson
-from zope.component import adapter
-from zope.interface import Interface, implementer
 from plone.dexterity.utils import iterSchemata
-from clms.types.content.data_set import IDataSet
 from plone.autoform.interfaces import READ_PERMISSIONS_KEY
 from plone.supermodel.utils import mergedTaggedValueDict
-from zope.schema import getFields
+from zope.interface import Interface, implementer
 from zope.component import adapter
+from zope.schema import getFields
 
 
 @implementer(IFieldSerializer)
@@ -18,7 +17,8 @@ class DataSetSerializer(SerializeToJson):
     """Custom serializer for DataSet content that excludes sensitive fields."""
 
     EXCLUDED_FIELDS = {
-        # Internal service ID - should not be exposed to users without Modify Portal Content permission
+        # pylint: disable=line-too-long
+        # Internal service ID - should not be exposed to users without Modify Portal Content permission  # noqa: E501
         'mapviewer_service_id',
     }
 
