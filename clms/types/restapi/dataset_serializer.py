@@ -36,9 +36,6 @@ class DataSetSerializer(SerializeToJson):
 
             for name, field in getFields(schema).items():
                 if not self.check_permission(read_permissions.get(name), obj):
-                    print("----------HERE----------")
-                    print("skipping, ", name, field)
-                    print("----------HERE----------")
                     result[name] = None
                     continue
 
