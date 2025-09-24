@@ -13,6 +13,7 @@ from plone.dexterity.content import Container
 from plone.namedfile import field as namedfile
 from plone.schema.jsonfield import JSONField
 from plone.supermodel import model
+from plone.autoform.directives import read_permission, write_permission
 from zope import schema
 from zope.interface import implementer
 
@@ -926,6 +927,8 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
+    read_permission(mapviewer_service_id="cmf.ManagePortal")
+    write_permission(mapviewer_service_id="cmf.ManagePortal")
     mapviewer_service_id = schema.TextLine(
         title=_(
             "View service ID",
