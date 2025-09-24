@@ -15,6 +15,13 @@
   <adapter factory=".list.ProductRelationListFieldSerializer" />
 
   <adapter factory=".list.DataSetAndProductRelationListFieldSerializerUseCase" />
+  
+  <adapter 
+    factory=".dataset_serializer.DataSetSerializer"
+    provides="plone.restapi.interfaces.ISerializeToJson"
+    for="clms.types.content.data_set.IDataSet
+         zope.interface.Interface"
+  />
 
   <include package=".adapters" />
 
