@@ -16,12 +16,6 @@ from zope.schema import getFields
 class DataSetSerializer(SerializeToJson):
     """Custom serializer for DataSet content that excludes sensitive fields."""
 
-    EXCLUDED_FIELDS = {
-        # pylint: disable=line-too-long
-        # Internal service ID - should not be exposed to users without Modify Portal Content permission  # noqa: E501
-        'mapviewer_service_id',
-    }
-
     def __call__(self, version=None, include_items=True):
         """Serialize the DataSet content, excluding sensitive fields."""
         # Call the parent serializer to get the default serialization

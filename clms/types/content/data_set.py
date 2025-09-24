@@ -927,8 +927,8 @@ class IDataSet(model.Schema):
         readonly=False,
     )
 
-    read_permission(mapviewer_service_id="cmf.ModifyPortalContent")
-    write_permission(mapviewer_service_id="cmf.ModifyPortalContent")
+    read_permission(mapviewer_service_id="cmf.ManagePortal")
+    write_permission(mapviewer_service_id="cmf.ManagePortal")
     mapviewer_service_id = schema.TextLine(
         title=_(
             "View service ID",
