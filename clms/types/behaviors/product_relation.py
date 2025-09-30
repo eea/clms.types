@@ -55,6 +55,8 @@ class ProductRelation:
         """getter"""
         if safe_hasattr(self.context, "products"):
             catalog = getToolByName(self.context, 'portal_catalog')
+            if self.context.products is None:
+                return []
             valid_products = [
                 uid for uid in self.context.products if len(
                     catalog(UID=uid)) > 0]
