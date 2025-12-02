@@ -5,6 +5,7 @@ dataset_relation behavior
 
 from clms.types import _
 from plone import schema
+from plone import api
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from Products.CMFPlone.utils import safe_hasattr
@@ -53,8 +54,17 @@ class DataSetRelation:
     @property
     def datasets(self):
         """getter"""
+        catalog = api.portal.get_tool('portal_catalog')
+
         if safe_hasattr(self.context, "datasets"):
-            return self.context.datasets
+            associated_datasets = self.context.datasets
+            valid_datasets = []
+            for dataset_id in associated_datasets:
+                if len(catalog(UID=dataset_id)) > 0:
+                    valid_datasets.append(dataset_id)
+            # Return only existing datasets. Else when a dataset is deleted,
+            # this item is not editable anymore.
+            return valid_datasets
         return None
 
     @datasets.setter
