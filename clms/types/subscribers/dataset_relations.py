@@ -39,6 +39,8 @@ def dataset_edit_handler(obj, event):
         if obj.datasets:
             for dataset_uid in obj.datasets:
                 dataset = api.content.get(UID=dataset_uid)
+                if dataset is None:
+                    continue
                 if dataset.datasets is None:
                     dataset.datasets = []
                 if obj.UID() not in dataset.datasets:
