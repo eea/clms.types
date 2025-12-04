@@ -59,6 +59,8 @@ class DataSetRelation:
         if safe_hasattr(self.context, "datasets"):
             associated_datasets = self.context.datasets
             valid_datasets = []
+            if associated_datasets is None:
+                return []
             for dataset_id in associated_datasets:
                 if len(catalog(UID=dataset_id)) > 0:
                     valid_datasets.append(dataset_id)
