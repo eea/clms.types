@@ -28,7 +28,7 @@ class ITechnicalLibrary(model.Schema):
             u"External source URL",
         ),
         description=_(
-            u"Example: https://library.land.copernicus.eu/products/CLCplus_Backbone_2021_PUM_v1.html",
+            u"Example: https://library.land.copernicus.eu/products/test.html",
         ),
         required=False,
         readonly=False,
