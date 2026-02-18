@@ -21,7 +21,18 @@ class ITechnicalLibrary(model.Schema):
     # model.load('product.xml')
     primary("file")
     textindexer.searchable("file")
-    file = NamedBlobFile(title=_(u"File"), required=True)
+    file = NamedBlobFile(title=_(u"File"), required=False)
+
+    external_source_url = schema.URI(
+        title=_(
+            u"External source URL",
+        ),
+        description=_(
+            u"Example: https://library.land.copernicus.eu/products/test.html",
+        ),
+        required=False,
+        readonly=False,
+    )
 
     publication_date = schema.Date(
         title=_(
