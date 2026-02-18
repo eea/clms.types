@@ -121,7 +121,7 @@ class IDataSet(model.Schema):
         ),
         description="",
         default="",
-        required=False,
+        required=True,
         readonly=False,
     )
 
