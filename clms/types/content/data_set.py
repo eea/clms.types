@@ -52,6 +52,7 @@ class IDataSet(model.Schema):
             "characteristics_thematic_accuracy",
             "characteristics_position_accuracy",
             "characteristics_release_major_version",
+            "characteristics_file_structure"
         ],
     )
     textindexer.searchable("characteristics_type")
@@ -270,6 +271,22 @@ class IDataSet(model.Schema):
             "V + number.Example: V2",
         ),
         default="",
+        required=False,
+        readonly=False,
+    )
+
+    textindexer.searchable("characteristics_file_structure")
+    characteristics_file_structure = schema.Choice(
+        title=_(
+            "File structure",
+        ),
+        description=_(
+            "For FME to identify which dataset is tiled"
+        ),
+        values=[
+            "Full dataset",
+            "Tiled dataset",
+        ],
         required=False,
         readonly=False,
     )
