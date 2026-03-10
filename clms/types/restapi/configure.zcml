@@ -23,6 +23,13 @@
          zope.interface.Interface"
   />
 
+  <adapter
+    factory=".technical_library_serializer.TechnicalLibrarySerializer"
+    provides="plone.restapi.interfaces.ISerializeToJson"
+    for="clms.types.content.technical_library.ITechnicalLibrary
+         zope.interface.Interface"
+  />
+
   <include package=".adapters" />
 
 </configure>
