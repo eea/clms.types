@@ -6,11 +6,11 @@ from urllib.request import Request
 from urllib.request import urlopen
 
 from clms.types.content.technical_library import ITechnicalLibrary
+from plone.restapi.interfaces import IFieldSerializer
 from plone.restapi.serializer.dxcontent import SerializeToJson
 from zope.component import adapter
 from zope.interface import Interface
 from zope.interface import implementer
-from plone.restapi.interfaces import IFieldSerializer
 
 try:
     from bs4 import BeautifulSoup
