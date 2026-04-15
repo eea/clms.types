@@ -175,6 +175,7 @@ class IDataSet(model.Schema):
             "Annually",
             "AsNeeded",
             "Biannually",
+            "Every 6 months",
             "Continual",
             "Daily",
             "Fortnightly",
