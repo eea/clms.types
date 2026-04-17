@@ -8,7 +8,7 @@ from zope.globalrequest import getRequest
 
 EEA_GEONETWORK_BASE_URL = (
     "https://sdi.eea.europa.eu/catalogue/copernicus/"
-    "api/records/{uid}/formatters/xml?approved=true"
+    "api/records/{uid}/formatters/iso19139?output=xml"
 )
 VITO_GEONETWORK_BASE_URL = (
     "https://globalland.vito.be/geonetwork/"
