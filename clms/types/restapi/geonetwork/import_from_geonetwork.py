@@ -399,9 +399,29 @@ class ImportFromGeoNetwork(Service):
                         "xml_key": (
                             "//gmd:descriptiveKeywords/gmd:MD_Keywords"
                             "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gmx:Anchor"
+                            "[text()='GEMET']]"
+                            "/gmd:keyword/gmx:Anchor"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
                             "gmd:title/gco:CharacterString"
                             "[text()='GEMET']]"
                             "/gmd:keyword/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gmx:Anchor"
+                            "[text()='GEMET - Concepts version 3.0']]"
+                            "/gmd:keyword/gmx:Anchor"
                         ),
                         "namespace": NAMESPACES,
                     },
@@ -507,6 +527,15 @@ class ImportFromGeoNetwork(Service):
             {
                 "field_id": "conformitySpecification",
                 "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:report/gmd:DQ_DomainConsistency/"
+                            "gmd:result/gmd:DQ_ConformanceResult/"
+                            "gmd:specification/"
+                            "gmd:CI_Citation/gmd:title/gmx:Anchor"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
                     {
                         "xml_key": (
                             "//gmd:report/gmd:DQ_DomainConsistency/"
