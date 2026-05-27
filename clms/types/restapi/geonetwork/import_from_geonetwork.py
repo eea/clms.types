@@ -393,6 +393,32 @@ class ImportFromGeoNetwork(Service):
                 "type": "list",
             },
             {
+                "field_id": "keywords",
+                "xml_keys": [
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gco:CharacterString"
+                            "[text()='EEA keyword list']]"
+                            "/gmd:keyword/gco:CharacterString"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                    {
+                        "xml_key": (
+                            "//gmd:descriptiveKeywords/gmd:MD_Keywords"
+                            "[gmd:thesaurusName/gmd:CI_Citation/"
+                            "gmd:title/gmx:Anchor"
+                            "[text()='EEA keyword list']]"
+                            "/gmd:keyword/gmx:Anchor"
+                        ),
+                        "namespace": NAMESPACES,
+                    },
+                ],
+                "type": "list",
+            },
+            {
                 "field_id": "gemet",
                 "xml_keys": [
                     {
