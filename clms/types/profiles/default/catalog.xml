@@ -114,6 +114,7 @@
   <column value="publication_date" />
   <column value="version" />
   <column value="ondemand" />
+  <column value="external_source_url" />
 
 
 </object>
