@@ -1208,6 +1208,7 @@ class ImportFromGeoNetwork(Service):
             data = value["data"]
             field_type = value["type"]
             if field_type == "text":
+                data = data or ""
                 setattr(
                     self.context,
                     key,
