@@ -7,6 +7,7 @@ from OFS.interfaces import IOrderedContainer
 from plone import api
 from plone.memoize.view import memoize
 
+from .byoc import enrich_mapviewer_dataset
 from .lrf_get import RootMapViewerServiceGet
 
 
@@ -95,7 +96,7 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
             else:
                 title = "Default"
                 productId = ""
-            return {
+            serialized = {
                 # Datasets are saved inside product, so the Title name is
                 # its parent's name
                 "Product": title,
@@ -118,6 +119,10 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                 "Message": dataset.download_mapviewer_message,
                 "FamilyTitle": dataset.familyTitle,
             }
+            return enrich_mapviewer_dataset(
+                serialized,
+                dataset.dataset_download_information,
+            )
 
         return None
 

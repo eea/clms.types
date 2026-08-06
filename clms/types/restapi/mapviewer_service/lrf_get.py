@@ -2,6 +2,7 @@
 REST API endpoint to get the mapviewer configuration data
 """
 import json
+import logging
 import re
 
 from Acquisition import aq_inner, aq_parent
@@ -11,6 +12,11 @@ from plone.memoize.view import memoize
 from plone.restapi.services import Service
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
+
+from .byoc import enrich_mapviewer_dataset
+from .byoc import get_byoc_snapshot
+
+logger = logging.getLogger(__name__)
 
 
 def getObjPositionInParent(obj):
@@ -43,7 +49,7 @@ class RootMapViewerServiceGet(Service):
                 }
             )
 
-        return {
+        result = {
             "Map": {
                 "div": "mapDiv",
                 "center": [15, 50],
@@ -55,6 +61,37 @@ class RootMapViewerServiceGet(Service):
                 components, key=lambda x: x.get("ComponentPosition")
             ),  # noqa: E501
         }
+        datasets = [
+            dataset
+            for component in result["Components"]
+            for product in component.get("Products", [])
+            for dataset in product.get("Datasets", [])
+        ]
+        enriched_datasets = [
+            dataset for dataset in datasets
+            if dataset.get("browserCollectionId")
+        ]
+        enriched_layers = [
+            layer
+            for dataset in enriched_datasets
+            for layer in dataset.get("Layer", [])
+            if "hasLowRes" in layer
+        ]
+        snapshot = get_byoc_snapshot()
+        snapshot_source = snapshot.get("source", {})
+        snapshot_collections = snapshot.get("collections", {})
+        logger.info(
+            "MapViewer BYOC response built: snapshot_commit=%s "
+            "snapshot_collections=%s datasets=%s "
+            "matched_collections=%s enriched_layers=%s dual_layers=%s",
+            snapshot_source.get("commit"),
+            len(snapshot_collections),
+            len(datasets),
+            len(enriched_datasets),
+            len(enriched_layers),
+            sum(layer.get("hasLowRes", False) for layer in enriched_layers),
+        )
+        return result
 
     @memoize
     def max_area_extent(self):
@@ -208,7 +245,7 @@ class RootMapViewerServiceGet(Service):
                 )
         if layers:
             parent = aq_parent(dataset)
-            return {
+            serialized = {
                 # Datasets are saved inside product, so the Title name is
                 # its parent's name
                 # pylint: disable=line-too-long
@@ -236,6 +273,10 @@ class RootMapViewerServiceGet(Service):
                 "dataset_download_information":
                     dataset.dataset_download_information,
             }
+            return enrich_mapviewer_dataset(
+                serialized,
+                dataset.dataset_download_information,
+            )
 
         return None
 
