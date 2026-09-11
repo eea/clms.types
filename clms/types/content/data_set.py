@@ -39,6 +39,7 @@ class IDataSet(model.Schema):
         label=_("Dataset characteristics"),
         fields=[
             "characteristics_type",
+            "characteristics_data_type",
             "characteristics_spatial_coverage",
             "characteristics_spatial_resolution",
             "characteristics_spatial_representation_type",
@@ -69,6 +70,22 @@ class IDataSet(model.Schema):
             "In situ observations",
         ],
         # defaultFactory=get_default_name,
+        required=True,
+        readonly=False,
+    )
+
+    textindexer.searchable("characteristics_data_type")
+    characteristics_data_type = schema.Choice(
+        title=_(
+            "Data type",
+        ),
+        description=_(
+            "Defines the nature of the data represented",
+        ),
+        values=[
+            "discrete",
+            "continuous",
+        ],
         required=True,
         readonly=False,
     )

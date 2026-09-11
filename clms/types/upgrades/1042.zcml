@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    >
+
+
+  <genericsetup:registerProfile
+      name="1042"
+      title="New version v1042"
+      description="Configuration for version 1042"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+      directory="1042"
+      />
+
+
+  <genericsetup:upgradeSteps
+      profile="clms.types:default"
+      source="1041"
+      destination="1042"
+      >
+    <genericsetup:upgradeStep
+        title="Add dataset characteristics data type"
+        description=""
+        handler=".v1042.upgrade"
+        />
+
+
+  </genericsetup:upgradeSteps>
+
+</configure>
