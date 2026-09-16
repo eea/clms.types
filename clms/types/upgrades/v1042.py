@@ -12,8 +12,7 @@ def upgrade(setup_tool=None):
 
     for brain in api.content.find(portal_type="DataSet"):
         obj = brain.getObject()
-        if not getattr(obj, "characteristics_data_type", None):
-            obj.characteristics_data_type = "discrete"
-            obj.reindexObject()
+        obj.characteristics_data_type = "continuous"
+        obj.reindexObject()
 
     logger.info("Done")
