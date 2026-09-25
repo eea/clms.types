@@ -86,7 +86,7 @@ class IDataSet(model.Schema):
             "discrete",
             "continuous",
         ],
-        required=True,
+        required=False,
         readonly=False,
     )
 
