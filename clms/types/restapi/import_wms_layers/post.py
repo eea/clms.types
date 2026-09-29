@@ -193,7 +193,7 @@ class ImportWMSLayers(Service):
                             "@id": uuid.uuid4().hex,
                             "id": name_tags[0].text,
                             "title": title,
-                            "default_active": False,
+                            "default_active": True,
                             "hide": False,
                         }
                     )
@@ -250,7 +250,7 @@ class ImportWMSLayers(Service):
                             "@id": uuid.uuid4().hex,
                             "id": identifier_tags[0].text,
                             "title": title,
-                            "default_active": False,
+                            "default_active": True,
                             "hide": False,
                         }
                     )
