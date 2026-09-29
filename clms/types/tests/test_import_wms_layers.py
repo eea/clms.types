@@ -106,6 +106,7 @@ class TestImportWMSLayers(unittest.TestCase):
         layers = self.service.context.mapviewer_layers["items"]
         self.assertEqual(layers[0]["id"], "snow:extent")
         self.assertEqual(layers[0]["title"], "Snow Cover Extent")
+        self.assertTrue(layers[0]["default_active"])
 
     def test_imports_wmts_identifiers_and_merges_layers(self):
         """WMTS ows:Identifier values populate mapviewer layer IDs."""
@@ -139,6 +140,7 @@ class TestImportWMSLayers(unittest.TestCase):
         self.assertEqual([layer["id"] for layer in layers], ["GDMP", "NDVI"])
         self.assertIs(layers[0], existing_layer)
         self.assertEqual(layers[1]["title"], "NDVI")
+        self.assertTrue(layers[1]["default_active"])
 
     def test_extracts_wmts_type_from_geonetwork(self):
         """GeoNetwork protocol metadata is passed through with its URL."""
