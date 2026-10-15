@@ -126,6 +126,8 @@ def enrich_mapviewer_dataset(
         layer = layers[layer_index]
         has_low_resolution = bool(browser_layer.get("hasLowRes"))
         layer["description"] = browser_layer.get("description")
+        # CDSE band identifiers read by the layer evalscript
+        layer["bands"] = deepcopy(browser_layer.get("bands") or [])
         layer["hasLowRes"] = has_low_resolution
         layer["resolution_data"] = {}
         if has_low_resolution:
