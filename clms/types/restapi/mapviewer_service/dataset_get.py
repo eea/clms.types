@@ -112,6 +112,7 @@ class DataSetMapViewerServiceGet(RootMapViewerServiceGet):
                 "Downloadable": bool(dataset.downloadable_full_dataset),
                 "PositionInParent": getObjPositionInParent(dataset),
                 "HandlingLevel": bool(dataset.mapviewer_handlinglevel),
+                "DataType": dataset.characteristics_data_type,
                 # "MarkAsDownloadableNoServiceToVisualize": bool(
                 #     dataset.show_pop_up_in_mapviewer
                 # ),
