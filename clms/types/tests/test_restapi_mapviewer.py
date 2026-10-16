@@ -78,6 +78,7 @@ class TestLRFMapViewer(unittest.TestCase):
             id="dataset1_1",
             title="Dataset 1",
             description="Dataset 1 description",
+            characteristics_data_type="continuous",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=False,
@@ -363,6 +364,9 @@ class TestLRFMapViewer(unittest.TestCase):
         self.assertEqual(
             dataset1["HandlingLevel"], self.dataset1_1.mapviewer_handlinglevel
         )
+        self.assertEqual(
+            dataset1["DataType"], self.dataset1_1.characteristics_data_type
+        )
         # self.assertEqual(
         #     dataset1["MarkAsDownloadableNoServiceToVisualize"],
         #     self.dataset1_1.show_pop_up_in_mapviewer
@@ -453,6 +457,7 @@ class TestDataSetMapViewer(unittest.TestCase):
             id="dataset1_1",
             title="Dataset 1",
             description="Dataset 1 description",
+            characteristics_data_type="continuous",
             mapviewer_viewservice="http://myservice.com/service",
             mapviewer_default_active=True,
             mapviewer_istimeseries=False,
@@ -682,6 +687,9 @@ class TestDataSetMapViewer(unittest.TestCase):
         )
         self.assertEqual(
             dataset1["HandlingLevel"], self.dataset1_1.mapviewer_handlinglevel
+        )
+        self.assertEqual(
+            dataset1["DataType"], self.dataset1_1.characteristics_data_type
         )
 
     def test_dataset_layers(self):
